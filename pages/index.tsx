@@ -3,32 +3,63 @@
 import * as React from "react";
 import { formatPrice, getQuantityItem, getTotalPrice, handleQuantityChange, newCart } from "../common";
 import OrderItem from "../components/OrderItem";
-
-import { ScreenVariantProvider } from "../components/plasmic/isv/PlasmicGlobalVariant__Screen";
 import { PlasmicHomepage } from "../components/plasmic/isv/PlasmicHomepage";
-
 import options from "../data.json";
+import useSWR from "swr";
+import { useRouter } from 'next/router'
+
 
 function Homepage() {
   const [cart, setCart] = React.useState(newCart());
+  const [isLoading, setIsLoading] = React.useState(false);
+  const router = useRouter();
 
-  console.log(cart);
-  return <PlasmicHomepage
-    options={{
-      children: options.map(option =>(
-        <OrderItem
-          key={option.id}
-          title={option.name}
-          description={option.description}
-          price={`R$ ${formatPrice(option.price)}`}
-          quantity={getQuantityItem(option, cart)}
-          onChangeQuantity={handleQuantityChange(option, cart, setCart)}
-        />
-      ))
-    }}
-    shoppingCart={{lineItems: cart.lineItems, cart, setCart}}
-    totalPrice={formatPrice(getTotalPrice(cart))}
-  />;
+  const goToCheckout = async () => {
+    setIsLoading(true);
+    const items = cart.lineItems.map(item => ({
+      id: item.item.id,
+      title: item.item.name,
+      description: item.item.description,
+      unit_price: item.item.price,
+      quantity: item.quantity
+    }));
+
+    const response = await fetch("/api/admin", {
+      method: "post",
+      body: JSON.stringify(items)
+    });
+
+    const data = await response.json();
+    
+    const link = data.sandbox_init_point;
+    router.push(link);
+  }
+
+  return (
+    <>
+      <PlasmicHomepage
+        options={{
+          children: options.map(option =>(
+            <OrderItem
+              key={option.id}
+              title={option.name}
+              description={option.description}
+              price={`R$ ${formatPrice(option.price)}`}
+              quantity={getQuantityItem(option, cart)}
+              onChangeQuantity={handleQuantityChange(option, cart, setCart)}
+            />
+          ))
+        }}
+        shoppingCart={{lineItems: cart.lineItems, cart, setCart}}
+        totalPrice={formatPrice(getTotalPrice(cart))}
+        payBtn={{
+          onClick: () => goToCheckout(),
+          isDisabled: cart.lineItems.length === 0
+        }}
+        loading={{hide: !isLoading}}
+      />
+    </>
+  );
 }
 
 export default Homepage;

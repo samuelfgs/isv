@@ -37,7 +37,9 @@ import {
 import Separator from "../../Separator"; // plasmic-import: wUTVsB-fca/component
 import OrderItem from "../../OrderItem"; // plasmic-import: XSxN5kXvF2/component
 import ShoppingCart from "../../ShoppingCart"; // plasmic-import: 2L-PECr0xw/component
+import EmptyMessage from "../../EmptyMessage"; // plasmic-import: jepsdtzBQs/component
 import Button from "../../Button"; // plasmic-import: dTivG-jH3lW/component
+import Loading from "../../Loading"; // plasmic-import: 3JMpsqmVnQ/component
 
 import { useScreenVariants as useScreenVariantsrLyYkqyGlc01Z } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: rLyYkqyGLC01z/globalVariant
 
@@ -66,7 +68,9 @@ export type PlasmicHomepage__OverridesType = {
   root?: p.Flex<"div">;
   options?: p.Flex<"div">;
   shoppingCart?: p.Flex<typeof ShoppingCart>;
-  button?: p.Flex<typeof Button>;
+  emptyMessage?: p.Flex<typeof EmptyMessage>;
+  payBtn?: p.Flex<typeof Button>;
+  loading?: p.Flex<typeof Loading>;
 };
 
 export interface DefaultHomepageProps {}
@@ -295,22 +299,45 @@ function PlasmicHomepage__RenderFunc(props: {
               </div>
             </div>
           ) : null}
-
-          <Button
-            data-plasmic-name={"button"}
-            data-plasmic-override={overrides.button}
-            className={classNames("__wab_instance", sty.button)}
-          >
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__xwAkv
-              )}
+          {true ? (
+            <p.Stack
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox__kJ0)}
             >
-              {"Finalizar"}
-            </div>
-          </Button>
+              <EmptyMessage
+                data-plasmic-name={"emptyMessage"}
+                data-plasmic-override={overrides.emptyMessage}
+                className={classNames("__wab_instance", sty.emptyMessage)}
+                isEmpty={true}
+              />
+
+              {true ? (
+                <Button
+                  data-plasmic-name={"payBtn"}
+                  data-plasmic-override={overrides.payBtn}
+                  className={classNames("__wab_instance", sty.payBtn)}
+                >
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__xwAkv
+                    )}
+                  >
+                    {"Finalizar"}
+                  </div>
+                </Button>
+              ) : null}
+            </p.Stack>
+          ) : null}
+
+          <Loading
+            data-plasmic-name={"loading"}
+            data-plasmic-override={overrides.loading}
+            className={classNames("__wab_instance", sty.loading)}
+            hide={true}
+          />
         </p.Stack>
       </div>
     </React.Fragment>
@@ -318,10 +345,19 @@ function PlasmicHomepage__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "options", "shoppingCart", "button"],
+  root: [
+    "root",
+    "options",
+    "shoppingCart",
+    "emptyMessage",
+    "payBtn",
+    "loading"
+  ],
   options: ["options"],
   shoppingCart: ["shoppingCart"],
-  button: ["button"]
+  emptyMessage: ["emptyMessage"],
+  payBtn: ["payBtn"],
+  loading: ["loading"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -330,7 +366,9 @@ type NodeDefaultElementType = {
   root: "div";
   options: "div";
   shoppingCart: typeof ShoppingCart;
-  button: typeof Button;
+  emptyMessage: typeof EmptyMessage;
+  payBtn: typeof Button;
+  loading: typeof Loading;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -392,7 +430,9 @@ export const PlasmicHomepage = Object.assign(
     // Helper components rendering sub-elements
     options: makeNodeComponent("options"),
     shoppingCart: makeNodeComponent("shoppingCart"),
-    button: makeNodeComponent("button"),
+    emptyMessage: makeNodeComponent("emptyMessage"),
+    payBtn: makeNodeComponent("payBtn"),
+    loading: makeNodeComponent("loading"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,

@@ -146,6 +146,32 @@
           "cssFilePath": "plasmic/isv/PlasmicShoppingCartLineItem.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "jepsdtzBQs",
+          "name": "EmptyMessage",
+          "type": "managed",
+          "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
+          "renderModuleFilePath": "plasmic/isv/PlasmicEmptyMessage.tsx",
+          "importSpec": {
+            "modulePath": "EmptyMessage.tsx"
+          },
+          "cssFilePath": "plasmic/isv/PlasmicEmptyMessage.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "3JMpsqmVnQ",
+          "name": "Loading",
+          "type": "managed",
+          "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
+          "renderModuleFilePath": "plasmic/isv/PlasmicLoading.tsx",
+          "importSpec": {
+            "modulePath": "Loading.tsx"
+          },
+          "cssFilePath": "plasmic/isv/PlasmicLoading.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -190,6 +216,16 @@
           "id": "qztvESEFB",
           "name": "Screen Shot 2022-06-30 at 09.18.51.png",
           "filePath": "../public/plasmic/isv/images/screenShot20220630At091851Png.png"
+        },
+        {
+          "id": "TYExDRQ7j",
+          "name": "image",
+          "filePath": "../public/plasmic/isv/images/image.png"
+        },
+        {
+          "id": "6fdtcID3G",
+          "name": "loading-buffer.gif",
+          "filePath": "../public/plasmic/isv/images/loadingBuffergif.gif"
         }
       ],
       "indirect": false,

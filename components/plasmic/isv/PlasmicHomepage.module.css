@@ -246,14 +246,45 @@
 .slotTargetTotalPrice {
   font-size: 22px;
 }
-.button:global(.__wab_instance) {
-  max-width: 80%;
+.freeBox__kJ0 {
+  flex-direction: column;
+  display: flex;
   position: relative;
-  margin-top: calc(25px + 5px) !important;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  margin-top: calc(0px + 5px) !important;
+  min-width: 0;
+  padding: 8px;
+}
+.freeBox__kJ0 > :global(.__wab_flex-container) {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  margin-top: calc(0px - 20px);
+  height: calc(100% + 20px);
+}
+.freeBox__kJ0 > :global(.__wab_flex-container) > *,
+.freeBox__kJ0 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__kJ0 > :global(.__wab_flex-container) > picture > img,
+.freeBox__kJ0
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-top: 20px;
+}
+.emptyMessage:global(.__wab_instance) {
+  position: relative;
+}
+.payBtn:global(.__wab_instance) {
+  max-width: 80%;
   width: 100%;
   min-width: 0;
+  display: flex;
 }
-.svg__t1Vgb {
+.svg__qTtLk {
   position: relative;
   object-fit: cover;
   width: 1em;
@@ -262,9 +293,18 @@
 .text__xwAkv {
   font-size: 18px;
 }
-.svg___8KfTg {
+.svg__e5LX {
   position: relative;
   object-fit: cover;
   width: 1em;
   height: 1em;
+}
+.loading:global(.__wab_instance) {
+  max-width: 100%;
+  position: fixed;
+  left: 0;
+  top: 30%;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
 }
