@@ -34,14 +34,16 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
-import { NavigationBar } from "@plasmicpkgs/plasmic-nav"; // plasmic-import: jGx9tiKJoex/codeComponent
 import Separator from "../../Separator"; // plasmic-import: wUTVsB-fca/component
 import OrderItem from "../../OrderItem"; // plasmic-import: XSxN5kXvF2/component
+import ShoppingCart from "../../ShoppingCart"; // plasmic-import: 2L-PECr0xw/component
 import Button from "../../Button"; // plasmic-import: dTivG-jH3lW/component
+
+import { useScreenVariants as useScreenVariantsrLyYkqyGlc01Z } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: rLyYkqyGLC01z/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic_igreja.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
+import projectcss from "./plasmic_isv.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
 import sty from "./PlasmicHomepage.module.css"; // plasmic-import: nz4OkXyiCp9B/css
 
 import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: q1TlDUyNqop/icon
@@ -53,13 +55,17 @@ export type PlasmicHomepage__VariantsArgs = {};
 type VariantPropType = keyof PlasmicHomepage__VariantsArgs;
 export const PlasmicHomepage__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicHomepage__ArgsType = {};
+export type PlasmicHomepage__ArgsType = {
+  totalPrice?: React.ReactNode;
+};
+
 type ArgPropType = keyof PlasmicHomepage__ArgsType;
-export const PlasmicHomepage__ArgProps = new Array<ArgPropType>();
+export const PlasmicHomepage__ArgProps = new Array<ArgPropType>("totalPrice");
 
 export type PlasmicHomepage__OverridesType = {
   root?: p.Flex<"div">;
-  navigationBar?: p.Flex<typeof NavigationBar>;
+  options?: p.Flex<"div">;
+  shoppingCart?: p.Flex<typeof ShoppingCart>;
   button?: p.Flex<typeof Button>;
 };
 
@@ -81,6 +87,10 @@ function PlasmicHomepage__RenderFunc(props: {
     props.args
   );
   const $props = args;
+
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariantsrLyYkqyGlc01Z()
+  });
 
   return (
     <React.Fragment>
@@ -109,111 +119,6 @@ function PlasmicHomepage__RenderFunc(props: {
           )}
         >
           {true ? (
-            <NavigationBar
-              data-plasmic-name={"navigationBar"}
-              data-plasmic-override={overrides.navigationBar}
-              brand={
-                true ? (
-                  <p.Stack
-                    as={"div"}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.freeBox__bec60)}
-                  >
-                    <p.PlasmicImg
-                      alt={""}
-                      className={classNames(sty.img__b9Nq)}
-                      displayHeight={"50px" as const}
-                      displayMaxHeight={"none" as const}
-                      displayMaxWidth={"100%" as const}
-                      displayMinHeight={"0" as const}
-                      displayMinWidth={"0" as const}
-                      displayWidth={"50px" as const}
-                      loading={"lazy" as const}
-                      src={{
-                        src: "/plasmic/igreja/images/screenShot20220630At091851Png.png",
-                        fullWidth: 622,
-                        fullHeight: 390,
-                        aspectRatio: undefined
-                      }}
-                    />
-
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__rVvjr
-                      )}
-                    >
-                      {"IGREJA EM SÃO VICENTE"}
-                    </div>
-                  </p.Stack>
-                ) : null
-              }
-              className={classNames("__wab_instance", sty.navigationBar)}
-              closeButton={
-                <p.PlasmicImg
-                  alt={""}
-                  className={classNames(sty.img___7Lbe0)}
-                  displayHeight={"auto" as const}
-                  displayMaxHeight={"none" as const}
-                  displayMaxWidth={"none" as const}
-                  displayMinHeight={"0" as const}
-                  displayMinWidth={"0" as const}
-                  displayWidth={"auto" as const}
-                  src={"https://static1.plasmic.app/close.svg" as const}
-                />
-              }
-              itemsGap={8 as const}
-              menuItems={
-                <React.Fragment>
-                  <p.PlasmicLink
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.a,
-                      projectcss.__wab_text,
-                      sty.link__pr2HP
-                    )}
-                    component={Link}
-                    href={"/" as const}
-                    platform={"nextjs"}
-                  >
-                    {"Home"}
-                  </p.PlasmicLink>
-
-                  <p.PlasmicLink
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.a,
-                      projectcss.__wab_text,
-                      sty.link___0S9RC
-                    )}
-                    component={Link}
-                    href={"/" as const}
-                    platform={"nextjs"}
-                  >
-                    {"About"}
-                  </p.PlasmicLink>
-
-                  <p.PlasmicLink
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.a,
-                      projectcss.__wab_text,
-                      sty.link__jMcon
-                    )}
-                    component={Link}
-                    href={"/" as const}
-                    platform={"nextjs"}
-                  >
-                    {"Contact"}
-                  </p.PlasmicLink>
-                </React.Fragment>
-              }
-              openButton={null}
-              responsiveBreakpoint={768 as const}
-            />
-          ) : null}
-          {true ? (
             <p.Stack
               as={"div"}
               hasGap={true}
@@ -230,7 +135,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 displayWidth={"50px" as const}
                 loading={"lazy" as const}
                 src={{
-                  src: "/plasmic/igreja/images/screenShot20220630At091851Png.png",
+                  src: "/plasmic/isv/images/screenShot20220630At091851Png.png",
                   fullWidth: 622,
                   fullHeight: 390,
                   aspectRatio: undefined
@@ -309,13 +214,17 @@ function PlasmicHomepage__RenderFunc(props: {
               className={classNames(sty.img___9EB9B)}
               displayHeight={"auto" as const}
               displayMaxHeight={"none" as const}
-              displayMaxWidth={"100%" as const}
+              displayMaxWidth={
+                hasVariant(globalVariants, "screen", "desktop")
+                  ? ("400px" as const)
+                  : ("100%" as const)
+              }
               displayMinHeight={"0" as const}
               displayMinWidth={"0" as const}
               displayWidth={"100%" as const}
               loading={"lazy" as const}
               src={{
-                src: "/plasmic/igreja/images/whatsAppImage20220628At15712PMjpeg.jpeg",
+                src: "/plasmic/isv/images/whatsAppImage20220628At15712PMjpeg.jpeg",
                 fullWidth: 1280,
                 fullHeight: 1600,
                 aspectRatio: undefined
@@ -337,40 +246,70 @@ function PlasmicHomepage__RenderFunc(props: {
             {"Monte seu combo"}
           </div>
 
-          <OrderItem
-            className={classNames("__wab_instance", sty.orderItem__hq7V5)}
-            price={"R$ 10,00"}
-          />
+          <div
+            data-plasmic-name={"options"}
+            data-plasmic-override={overrides.options}
+            className={classNames(projectcss.all, sty.options)}
+          >
+            <OrderItem
+              className={classNames("__wab_instance", sty.orderItem__hq7V5)}
+              price={"R$ 10,00"}
+            />
 
-          <OrderItem
-            className={classNames("__wab_instance", sty.orderItem__hjyHf)}
-            description={"Caldo a vontade\nBebida a vontade\n1 Sobremesa"}
-            title={"Combo 2"}
-          />
+            <OrderItem
+              className={classNames("__wab_instance", sty.orderItem__hjyHf)}
+              description={"Caldo a vontade\nBebida a vontade\n1 Sobremesa"}
+              title={"Combo 2"}
+            />
+          </div>
 
           <Separator
             className={classNames("__wab_instance", sty.separator__elFUv)}
           />
 
-          <div className={classNames(projectcss.all, sty.freeBox__waueD)}>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__lNoFu
-              )}
-            >
-              {"Enter some text"}
+          {true ? (
+            <ShoppingCart
+              data-plasmic-name={"shoppingCart"}
+              data-plasmic-override={overrides.shoppingCart}
+              className={classNames("__wab_instance", sty.shoppingCart)}
+            />
+          ) : null}
+          {true ? (
+            <div className={classNames(projectcss.all, sty.freeBox__a2Eq7)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__nzQLq
+                )}
+              >
+                {"Total: R$"}
+              </div>
+
+              <div className={classNames(projectcss.all, sty.freeBox__xeh4E)}>
+                {p.renderPlasmicSlot({
+                  defaultContents: "90.00",
+                  value: args.totalPrice,
+                  className: classNames(sty.slotTargetTotalPrice)
+                })}
+              </div>
             </div>
-          </div>
+          ) : null}
 
           <Button
             data-plasmic-name={"button"}
             data-plasmic-override={overrides.button}
             className={classNames("__wab_instance", sty.button)}
-            color={"blue" as const}
           >
-            {"Comprar"}
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__xwAkv
+              )}
+            >
+              {"Finalizar"}
+            </div>
           </Button>
         </p.Stack>
       </div>
@@ -379,8 +318,9 @@ function PlasmicHomepage__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "navigationBar", "button"],
-  navigationBar: ["navigationBar"],
+  root: ["root", "options", "shoppingCart", "button"],
+  options: ["options"],
+  shoppingCart: ["shoppingCart"],
   button: ["button"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -388,7 +328,8 @@ type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  navigationBar: typeof NavigationBar;
+  options: "div";
+  shoppingCart: typeof ShoppingCart;
   button: typeof Button;
 };
 
@@ -449,7 +390,8 @@ export const PlasmicHomepage = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    navigationBar: makeNodeComponent("navigationBar"),
+    options: makeNodeComponent("options"),
+    shoppingCart: makeNodeComponent("shoppingCart"),
     button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicHomepage

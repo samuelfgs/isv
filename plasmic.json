@@ -22,42 +22,22 @@
   "defaultPlasmicDir": "./plasmic",
   "projects": [
     {
-      "projectId": "7nJ7UcFmq9UzB6eXfC5z4a",
-      "projectApiToken": "uZp069FLSLNVA2dpWnqC3BUaj3flvtNBNXt6e1b67rm4Uh6lGHgYJ65FCBXlOFTB5KDW7RmmOxIAzgHYCg",
-      "projectName": "plasmic-nav",
-      "version": "0.0.2",
-      "cssFilePath": "plasmic/plasmic_nav/plasmic_plasmic_nav.module.css",
-      "components": [],
-      "icons": [],
-      "images": [],
-      "indirect": true,
-      "globalContextsFilePath": "",
-      "codeComponents": [
-        {
-          "id": "jGx9tiKJoex",
-          "name": "NavigationBar",
-          "componentImportPath": "@plasmicpkgs/plasmic-nav"
-        }
-      ],
-      "jsBundleThemes": []
-    },
-    {
       "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
       "projectApiToken": "SxJZYiB3MQDPo7gqAGxXReroLGqJifEMkq52yjjtN6iTVFpa44RUvNr2MkCd9xKW25ipEBdkwYeu0PzHw",
       "projectName": "isv",
       "version": "latest",
-      "cssFilePath": "plasmic/igreja/plasmic_igreja.module.css",
+      "cssFilePath": "plasmic/isv/plasmic_isv.module.css",
       "components": [
         {
           "id": "nz4OkXyiCp9B",
           "name": "Homepage",
           "type": "managed",
           "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
-          "renderModuleFilePath": "plasmic/igreja/PlasmicHomepage.tsx",
+          "renderModuleFilePath": "plasmic/isv/PlasmicHomepage.tsx",
           "importSpec": {
             "modulePath": "../pages/index.tsx"
           },
-          "cssFilePath": "plasmic/igreja/PlasmicHomepage.module.css",
+          "cssFilePath": "plasmic/isv/PlasmicHomepage.module.css",
           "scheme": "blackbox",
           "componentType": "page"
         },
@@ -66,11 +46,11 @@
           "name": "EventDetails",
           "type": "managed",
           "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
-          "renderModuleFilePath": "plasmic/igreja/PlasmicEventDetails.tsx",
+          "renderModuleFilePath": "plasmic/isv/PlasmicEventDetails.tsx",
           "importSpec": {
             "modulePath": "EventDetails.tsx"
           },
-          "cssFilePath": "plasmic/igreja/PlasmicEventDetails.module.css",
+          "cssFilePath": "plasmic/isv/PlasmicEventDetails.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         },
@@ -79,11 +59,11 @@
           "name": "Separator",
           "type": "managed",
           "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
-          "renderModuleFilePath": "plasmic/igreja/PlasmicSeparator.tsx",
+          "renderModuleFilePath": "plasmic/isv/PlasmicSeparator.tsx",
           "importSpec": {
             "modulePath": "Separator.tsx"
           },
-          "cssFilePath": "plasmic/igreja/PlasmicSeparator.module.css",
+          "cssFilePath": "plasmic/isv/PlasmicSeparator.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         },
@@ -92,11 +72,11 @@
           "name": "Button",
           "type": "managed",
           "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
-          "renderModuleFilePath": "plasmic/igreja/PlasmicButton.tsx",
+          "renderModuleFilePath": "plasmic/isv/PlasmicButton.tsx",
           "importSpec": {
             "modulePath": "Button.tsx"
           },
-          "cssFilePath": "plasmic/igreja/PlasmicButton.module.css",
+          "cssFilePath": "plasmic/isv/PlasmicButton.module.css",
           "scheme": "blackbox",
           "componentType": "component",
           "plumeType": "button"
@@ -106,11 +86,11 @@
           "name": "Quantity",
           "type": "managed",
           "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
-          "renderModuleFilePath": "plasmic/igreja/PlasmicQuantity.tsx",
+          "renderModuleFilePath": "plasmic/isv/PlasmicQuantity.tsx",
           "importSpec": {
             "modulePath": "Quantity.tsx"
           },
-          "cssFilePath": "plasmic/igreja/PlasmicQuantity.module.css",
+          "cssFilePath": "plasmic/isv/PlasmicQuantity.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         },
@@ -119,11 +99,11 @@
           "name": "TextInput",
           "type": "managed",
           "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
-          "renderModuleFilePath": "plasmic/igreja/PlasmicTextInput.tsx",
+          "renderModuleFilePath": "plasmic/isv/PlasmicTextInput.tsx",
           "importSpec": {
             "modulePath": "TextInput.tsx"
           },
-          "cssFilePath": "plasmic/igreja/PlasmicTextInput.module.css",
+          "cssFilePath": "plasmic/isv/PlasmicTextInput.module.css",
           "scheme": "blackbox",
           "componentType": "component",
           "plumeType": "text-input"
@@ -133,11 +113,37 @@
           "name": "OrderItem",
           "type": "managed",
           "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
-          "renderModuleFilePath": "plasmic/igreja/PlasmicOrderItem.tsx",
+          "renderModuleFilePath": "plasmic/isv/PlasmicOrderItem.tsx",
           "importSpec": {
             "modulePath": "OrderItem.tsx"
           },
-          "cssFilePath": "plasmic/igreja/PlasmicOrderItem.module.css",
+          "cssFilePath": "plasmic/isv/PlasmicOrderItem.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "2L-PECr0xw",
+          "name": "ShoppingCart",
+          "type": "managed",
+          "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
+          "renderModuleFilePath": "plasmic/isv/PlasmicShoppingCart.tsx",
+          "importSpec": {
+            "modulePath": "ShoppingCart.tsx"
+          },
+          "cssFilePath": "plasmic/isv/PlasmicShoppingCart.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "cnD_NnksTl",
+          "name": "ShoppingCartLineItem",
+          "type": "managed",
+          "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
+          "renderModuleFilePath": "plasmic/isv/PlasmicShoppingCartLineItem.tsx",
+          "importSpec": {
+            "modulePath": "ShoppingCartLineItem.tsx"
+          },
+          "cssFilePath": "plasmic/isv/PlasmicShoppingCartLineItem.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         }
@@ -146,39 +152,44 @@
         {
           "id": "q1TlDUyNqop",
           "name": "ChecksvgIcon",
-          "moduleFilePath": "plasmic/igreja/icons/PlasmicIcon__Checksvg.tsx"
+          "moduleFilePath": "plasmic/isv/icons/PlasmicIcon__Checksvg.tsx"
         },
         {
           "id": "k5kwo7sOrBj",
           "name": "IconIcon",
-          "moduleFilePath": "plasmic/igreja/icons/PlasmicIcon__Icon.tsx"
+          "moduleFilePath": "plasmic/isv/icons/PlasmicIcon__Icon.tsx"
         },
         {
           "id": "AUsPFN29Z5Y",
           "name": "SearchsvgIcon",
-          "moduleFilePath": "plasmic/igreja/icons/PlasmicIcon__Searchsvg.tsx"
+          "moduleFilePath": "plasmic/isv/icons/PlasmicIcon__Searchsvg.tsx"
         },
         {
           "id": "TZ5ExugZ2",
           "name": "PlusIcon",
-          "moduleFilePath": "plasmic/igreja/icons/PlasmicIcon__Plus.tsx"
+          "moduleFilePath": "plasmic/isv/icons/PlasmicIcon__Plus.tsx"
         },
         {
           "id": "mRXgFtwg-",
           "name": "MinusIcon",
-          "moduleFilePath": "plasmic/igreja/icons/PlasmicIcon__Minus.tsx"
+          "moduleFilePath": "plasmic/isv/icons/PlasmicIcon__Minus.tsx"
+        },
+        {
+          "id": "TTU77nTGk",
+          "name": "CartIcon",
+          "moduleFilePath": "plasmic/isv/icons/PlasmicIcon__Cart.tsx"
         }
       ],
       "images": [
         {
           "id": "06QJB7uhY",
           "name": "WhatsApp Image 2022-06-28 at 1.57.12 PM.jpeg",
-          "filePath": "../public/plasmic/igreja/images/whatsAppImage20220628At15712PMjpeg.jpeg"
+          "filePath": "../public/plasmic/isv/images/whatsAppImage20220628At15712PMjpeg.jpeg"
         },
         {
           "id": "qztvESEFB",
           "name": "Screen Shot 2022-06-30 at 09.18.51.png",
-          "filePath": "../public/plasmic/igreja/images/screenShot20220630At091851Png.png"
+          "filePath": "../public/plasmic/isv/images/screenShot20220630At091851Png.png"
         }
       ],
       "indirect": false,
@@ -192,7 +203,7 @@
         "id": "rLyYkqyGLC01z",
         "name": "Screen",
         "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
-        "contextFilePath": "plasmic/igreja/PlasmicGlobalVariant__Screen.tsx"
+        "contextFilePath": "plasmic/isv/PlasmicGlobalVariant__Screen.tsx"
       }
     ]
   },

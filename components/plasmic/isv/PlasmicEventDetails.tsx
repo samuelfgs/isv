@@ -37,7 +37,7 @@ import {
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic_igreja.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
+import projectcss from "./plasmic_isv.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
 import sty from "./PlasmicEventDetails.module.css"; // plasmic-import: 0hiJFeXyCY/css
 
 export type PlasmicEventDetails__VariantMembers = {};

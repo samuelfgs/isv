@@ -37,7 +37,7 @@ import {
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic_igreja.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
+import projectcss from "./plasmic_isv.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
 import sty from "./PlasmicButton.module.css"; // plasmic-import: dTivG-jH3lW/css
 
 import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: q1TlDUyNqop/icon

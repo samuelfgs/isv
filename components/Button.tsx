@@ -1,8 +1,5 @@
 import * as React from "react";
-import {
-  PlasmicButton,
-  DefaultButtonProps
-} from "./plasmic/igreja/PlasmicButton";
+import { PlasmicButton, DefaultButtonProps } from "./plasmic/isv/PlasmicButton";
 import {
   ButtonRef,
   HtmlAnchorOnlyProps,

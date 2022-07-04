@@ -4,7 +4,7 @@ import * as React from "react";
 import {
   PlasmicQuantity,
   DefaultQuantityProps
-} from "./plasmic/igreja/PlasmicQuantity";
+} from "./plasmic/isv/PlasmicQuantity";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 
 // Your component props start with props for variants and slots you defined
@@ -20,7 +20,12 @@ import { HTMLElementRefOf } from "@plasmicapp/react-web";
 //
 // You can also stop extending from DefaultQuantityProps altogether and have
 // total control over the props for your component.
-export interface QuantityProps extends DefaultQuantityProps {}
+export interface QuantityProps extends DefaultQuantityProps {
+  quantity: number;
+  onChangeQuantity: (q: number) => void;
+}
+
+const isNumeric = (num: string) => !isNaN(+num);
 
 function Quantity_(props: QuantityProps, ref: HTMLElementRefOf<"div">) {
   // Use PlasmicQuantity to render this component as it was
@@ -38,7 +43,24 @@ function Quantity_(props: QuantityProps, ref: HTMLElementRefOf<"div">) {
   // By default, we are just piping all QuantityProps here, but feel free
   // to do whatever works for you.
 
-  return <PlasmicQuantity root={{ ref }} {...props} />;
+  const { quantity, onChangeQuantity, ...rest } = props;
+  return <PlasmicQuantity 
+    root={{ ref }} 
+    plusButton={{
+      onClick: () => onChangeQuantity?.(quantity + 1)
+    }}
+    textInput={{
+      value: quantity,
+      onChange: (e) => {
+        if (isNumeric(e.target.value))
+          onChangeQuantity?.(+e.target.value);
+      }
+    }}
+    minusButton={{
+      onClick: () => onChangeQuantity?.(Math.max(0, quantity - 1))
+    }}
+    {...rest} 
+  />;
 }
 
 const Quantity = React.forwardRef(Quantity_);

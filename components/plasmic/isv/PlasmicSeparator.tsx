@@ -37,7 +37,7 @@ import {
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic_igreja.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
+import projectcss from "./plasmic_isv.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
 import sty from "./PlasmicSeparator.module.css"; // plasmic-import: wUTVsB-fca/css
 
 export type PlasmicSeparator__VariantMembers = {};

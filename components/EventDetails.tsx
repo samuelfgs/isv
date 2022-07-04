@@ -4,7 +4,7 @@ import * as React from "react";
 import {
   PlasmicEventDetails,
   DefaultEventDetailsProps
-} from "./plasmic/igreja/PlasmicEventDetails";
+} from "./plasmic/isv/PlasmicEventDetails";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 
 // Your component props start with props for variants and slots you defined

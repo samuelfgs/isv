@@ -1,0 +1,129 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  position: relative;
+  background: #e7e7e7;
+  min-width: 0;
+  padding: 8px;
+}
+.rooteven {
+  background: #ffffff;
+  border: 1px solid #e7e7e7;
+}
+.freeBox__sv7Tj {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.freeBox__tPsW5 {
+  flex-direction: row;
+  display: flex;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 0px;
+}
+.freeBox__tPsW5 > :global(.__wab_flex-container) {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  min-width: 0;
+  margin-left: calc(0px - 5px);
+  width: calc(100% + 5px);
+}
+.freeBox__tPsW5 > :global(.__wab_flex-container) > *,
+.freeBox__tPsW5 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__tPsW5 > :global(.__wab_flex-container) > picture > img,
+.freeBox__tPsW5
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: 5px;
+}
+.freeBox___8HMms {
+  width: auto;
+  height: auto;
+  max-width: 800px;
+  padding-left: 0px;
+  display: flex;
+  flex-direction: row;
+}
+.slotTargetIndex {
+  font-weight: 700;
+}
+.text {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 800px;
+}
+.freeBox__bAMb3 {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  min-width: 0;
+}
+.freeBox__ndMl6 {
+  flex-direction: row;
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 0px;
+}
+.freeBox__ndMl6 > :global(.__wab_flex-container) {
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 0;
+  margin-left: calc(0px - 20px);
+  width: calc(100% + 20px);
+}
+.freeBox__ndMl6 > :global(.__wab_flex-container) > *,
+.freeBox__ndMl6 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__ndMl6 > :global(.__wab_flex-container) > picture > img,
+.freeBox__ndMl6
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: 20px;
+}
+.slotTargetPrice {
+  font-weight: 600;
+  color: #535353;
+}
+.freeBox__i53 {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.quantity:global(.__wab_instance) {
+  max-width: 100%;
+}
