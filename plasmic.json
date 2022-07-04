@@ -7,7 +7,7 @@
   },
   "style": {
     "scheme": "css-modules",
-    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.css"
+    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.module.css"
   },
   "images": {
     "scheme": "public-files",
@@ -38,12 +38,13 @@
           "name": "NavigationBar",
           "componentImportPath": "@plasmicpkgs/plasmic-nav"
         }
-      ]
+      ],
+      "jsBundleThemes": []
     },
     {
       "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
       "projectApiToken": "SxJZYiB3MQDPo7gqAGxXReroLGqJifEMkq52yjjtN6iTVFpa44RUvNr2MkCd9xKW25ipEBdkwYeu0PzHw",
-      "projectName": "Igreja",
+      "projectName": "isv",
       "version": "latest",
       "cssFilePath": "plasmic/igreja/plasmic_igreja.module.css",
       "components": [

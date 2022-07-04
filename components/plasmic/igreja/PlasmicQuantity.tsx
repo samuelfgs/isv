@@ -58,7 +58,9 @@ export const PlasmicQuantity__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicQuantity__OverridesType = {
   root?: p.Flex<"div">;
+  minusButton?: p.Flex<typeof Button>;
   textInput?: p.Flex<typeof TextInput>;
+  plusButton?: p.Flex<typeof Button>;
   textbox?: p.Flex<typeof TextInput>;
 };
 
@@ -100,7 +102,9 @@ function PlasmicQuantity__RenderFunc(props: {
       )}
     >
       <Button
-        className={classNames("__wab_instance", sty.button__kCvEh)}
+        data-plasmic-name={"minusButton"}
+        data-plasmic-override={overrides.minusButton}
+        className={classNames("__wab_instance", sty.minusButton)}
         size={"compact" as const}
       >
         <div
@@ -122,7 +126,9 @@ function PlasmicQuantity__RenderFunc(props: {
       />
 
       <Button
-        className={classNames("__wab_instance", sty.button__kc52I)}
+        data-plasmic-name={"plusButton"}
+        data-plasmic-override={overrides.plusButton}
+        className={classNames("__wab_instance", sty.plusButton)}
         size={"compact" as const}
       >
         <div
@@ -140,15 +146,19 @@ function PlasmicQuantity__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "textInput", "textbox"],
-  textInput: ["textInput", "textbox"]
+  root: ["root", "minusButton", "textInput", "textbox", "plusButton"],
+  minusButton: ["minusButton"],
+  textInput: ["textInput", "textbox"],
+  plusButton: ["plusButton"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  minusButton: typeof Button;
   textInput: typeof TextInput;
+  plusButton: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -208,7 +218,9 @@ export const PlasmicQuantity = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    minusButton: makeNodeComponent("minusButton"),
     textInput: makeNodeComponent("textInput"),
+    plusButton: makeNodeComponent("plusButton"),
 
     // Metadata about props expected for PlasmicQuantity
     internalVariantProps: PlasmicQuantity__VariantProps,
