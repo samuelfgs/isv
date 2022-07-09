@@ -202,7 +202,11 @@ function PlasmicHomepage__RenderFunc(props: {
                       sty.link
                     )}
                     component={Link}
+                    href={
+                      "https://www.google.com/maps/place/R.+Jardel+Fran%C3%A7a,+18+-+Cidade+N%C3%A1utica,+S%C3%A3o+Vicente+-+SP,+11340-340/@-23.952288,-46.411209,16z/data=!4m5!3m4!1s0x94ce1b90972cbc35:0xcd547d49f39bffe5!8m2!3d-23.9522879!4d-46.4112093" as const
+                    }
                     platform={"nextjs"}
+                    target={"_blank" as const}
                   >
                     <PinIcon
                       className={classNames(projectcss.all, sty.svg__cwMa)}
