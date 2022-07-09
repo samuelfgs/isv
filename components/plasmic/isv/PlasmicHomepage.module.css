@@ -14,14 +14,14 @@
   align-items: center;
   min-width: 0;
   min-height: 0;
-  margin-top: calc(0px - 5px);
-  height: calc(100% + 5px);
+  margin-top: calc(0px - 0px);
+  height: calc(100% + 0px);
 }
 .root > :global(.__wab_flex-container) > *,
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
 .root > :global(.__wab_flex-container) > picture > img,
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
-  margin-top: 5px;
+  margin-top: 0px;
 }
 .freeBox__fhZpR {
   flex-direction: row;
@@ -69,7 +69,7 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
-  padding: 8px 0px;
+  padding: 0px;
 }
 .freeBox__wFFs9 > :global(.__wab_flex-container) {
   flex-direction: column;
@@ -90,7 +90,6 @@
   margin-top: 0px;
 }
 .freeBox___8Tr6E {
-  display: flex;
   position: relative;
   flex-direction: column;
   align-items: center;
@@ -99,6 +98,7 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
+  display: none;
   padding: 8px;
 }
 .text__cUiys {
@@ -111,6 +111,24 @@
   line-height: 1.5;
   min-width: 0;
 }
+.img {
+  position: relative;
+  object-fit: cover;
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+}
+.img > picture > img {
+  object-fit: cover;
+}
+.img > .__wab_img-spacer > img {
+  object-fit: cover;
+}
+@media (min-width: 700px) {
+  .img {
+    max-width: 400px;
+  }
+}
 .freeBox__wrEd8 {
   display: flex;
   position: relative;
@@ -122,6 +140,41 @@
   max-width: 100%;
   min-width: 0;
   padding: 8px;
+}
+.link {
+  flex-direction: row;
+  display: flex;
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  cursor: pointer;
+  padding: 8px;
+}
+.link > :global(.__wab_flex-container) {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: calc(0px - 10px);
+  width: calc(100% + 10px);
+}
+.link > :global(.__wab_flex-container) > *,
+.link > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.link > :global(.__wab_flex-container) > picture > img,
+.link > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
+  margin-left: 10px;
+}
+.svg__cwMa {
+  position: relative;
+  object-fit: cover;
+  max-width: 100%;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.text__m09Xo {
+  font-size: 20px;
+  text-decoration-line: underline;
 }
 .freeBox__tc74K {
   flex-direction: row;
@@ -163,63 +216,11 @@
   padding-left: 0px;
   font-size: 18px;
   text-decoration-line: underline;
+  align-self: flex-end;
 }
 @media (min-width: 700px) {
   .text__hS2Be {
     font-size: 16px;
-  }
-}
-.link {
-  flex-direction: row;
-  display: flex;
-  position: relative;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  cursor: pointer;
-  padding: 8px;
-}
-.link > :global(.__wab_flex-container) {
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-left: calc(0px - 10px);
-  width: calc(100% + 10px);
-}
-.link > :global(.__wab_flex-container) > *,
-.link > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.link > :global(.__wab_flex-container) > picture > img,
-.link > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
-  margin-left: 10px;
-}
-.svg__cwMa {
-  position: relative;
-  object-fit: cover;
-  max-width: 100%;
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-}
-.text__m09Xo {
-  font-size: 20px;
-  text-decoration-line: underline;
-}
-.img {
-  position: relative;
-  object-fit: cover;
-  max-width: 100%;
-  width: 100%;
-  min-width: 0;
-}
-.img > picture > img {
-  object-fit: cover;
-}
-.img > .__wab_img-spacer > img {
-  object-fit: cover;
-}
-@media (min-width: 700px) {
-  .img {
-    max-width: 400px;
   }
 }
 .separator__veGxi:global(.__wab_instance) {
@@ -272,7 +273,7 @@
 }
 .separator__elFUv:global(.__wab_instance) {
   position: relative;
-  margin-top: calc(20px + 5px) !important;
+  margin-top: calc(20px + 0px) !important;
 }
 .shoppingCart:global(.__wab_instance) {
   position: relative;
@@ -314,7 +315,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  margin-top: calc(0px + 5px) !important;
+  margin-top: calc(0px + 0px) !important;
   min-width: 0;
   padding: 8px;
 }

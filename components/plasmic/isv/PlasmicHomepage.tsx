@@ -50,8 +50,8 @@ import plasmic_plasmic_kit_q_4_color_tokens_css from "../plasmic_kit_q_4_color_t
 import projectcss from "./plasmic_isv.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
 import sty from "./PlasmicHomepage.module.css"; // plasmic-import: nz4OkXyiCp9B/css
 
-import ClockIcon from "./icons/PlasmicIcon__Clock"; // plasmic-import: QYb9XxFjU/icon
 import PinIcon from "./icons/PlasmicIcon__Pin"; // plasmic-import: LZ6zTV9o3/icon
+import ClockIcon from "./icons/PlasmicIcon__Clock"; // plasmic-import: QYb9XxFjU/icon
 import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: q1TlDUyNqop/icon
 import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: k5kwo7sOrBj/icon
 
@@ -70,8 +70,8 @@ export const PlasmicHomepage__ArgProps = new Array<ArgPropType>("totalPrice");
 
 export type PlasmicHomepage__OverridesType = {
   root?: p.Flex<"div">;
-  link?: p.Flex<"a"> & Partial<LinkProps>;
   img?: p.Flex<typeof p.PlasmicImg>;
+  link?: p.Flex<"a"> & Partial<LinkProps>;
   options?: p.Flex<"div">;
   shoppingCart?: p.Flex<typeof ShoppingCart>;
   emptyMessage?: p.Flex<typeof EmptyMessage>;
@@ -166,30 +166,33 @@ function PlasmicHomepage__RenderFunc(props: {
                 </div>
               </div>
             ) : null}
+
+            <p.PlasmicImg
+              data-plasmic-name={"img"}
+              data-plasmic-override={overrides.img}
+              alt={""}
+              className={classNames(sty.img)}
+              displayHeight={"auto" as const}
+              displayMaxHeight={"none" as const}
+              displayMaxWidth={
+                hasVariant(globalVariants, "screen", "desktop")
+                  ? ("400px" as const)
+                  : ("100%" as const)
+              }
+              displayMinHeight={"0" as const}
+              displayMinWidth={"0" as const}
+              displayWidth={"100%" as const}
+              loading={"lazy" as const}
+              src={{
+                src: "/plasmic/isv/images/invernoCrente.jpeg",
+                fullWidth: 1268,
+                fullHeight: 1600,
+                aspectRatio: undefined
+              }}
+            />
+
             {true ? (
               <div className={classNames(projectcss.all, sty.freeBox__wrEd8)}>
-                {true ? (
-                  <p.Stack
-                    as={"div"}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.freeBox__tc74K)}
-                  >
-                    <ClockIcon
-                      className={classNames(projectcss.all, sty.svg__gJ7Hc)}
-                      role={"img"}
-                    />
-
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__hS2Be
-                      )}
-                    >
-                      {"30 de julho às 18:00"}
-                    </div>
-                  </p.Stack>
-                ) : null}
                 {true ? (
                   <p.Stack
                     as={p.PlasmicLink}
@@ -224,32 +227,30 @@ function PlasmicHomepage__RenderFunc(props: {
                     </div>
                   </p.Stack>
                 ) : null}
+                {true ? (
+                  <p.Stack
+                    as={"div"}
+                    hasGap={true}
+                    className={classNames(projectcss.all, sty.freeBox__tc74K)}
+                  >
+                    <ClockIcon
+                      className={classNames(projectcss.all, sty.svg__gJ7Hc)}
+                      role={"img"}
+                    />
+
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__hS2Be
+                      )}
+                    >
+                      {"30 de julho às 18:00"}
+                    </div>
+                  </p.Stack>
+                ) : null}
               </div>
             ) : null}
-
-            <p.PlasmicImg
-              data-plasmic-name={"img"}
-              data-plasmic-override={overrides.img}
-              alt={""}
-              className={classNames(sty.img)}
-              displayHeight={"auto" as const}
-              displayMaxHeight={"none" as const}
-              displayMaxWidth={
-                hasVariant(globalVariants, "screen", "desktop")
-                  ? ("400px" as const)
-                  : ("100%" as const)
-              }
-              displayMinHeight={"0" as const}
-              displayMinWidth={"0" as const}
-              displayWidth={"100%" as const}
-              loading={"lazy" as const}
-              src={{
-                src: "/plasmic/isv/images/invernoCrente.jpeg",
-                fullWidth: 1268,
-                fullHeight: 1600,
-                aspectRatio: undefined
-              }}
-            />
           </p.Stack>
 
           <Separator
@@ -376,16 +377,16 @@ function PlasmicHomepage__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "link",
     "img",
+    "link",
     "options",
     "shoppingCart",
     "emptyMessage",
     "payBtn",
     "loading"
   ],
-  link: ["link"],
   img: ["img"],
+  link: ["link"],
   options: ["options"],
   shoppingCart: ["shoppingCart"],
   emptyMessage: ["emptyMessage"],
@@ -397,8 +398,8 @@ type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  link: "a";
   img: typeof p.PlasmicImg;
+  link: "a";
   options: "div";
   shoppingCart: typeof ShoppingCart;
   emptyMessage: typeof EmptyMessage;
@@ -463,8 +464,8 @@ export const PlasmicHomepage = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    link: makeNodeComponent("link"),
     img: makeNodeComponent("img"),
+    link: makeNodeComponent("link"),
     options: makeNodeComponent("options"),
     shoppingCart: makeNodeComponent("shoppingCart"),
     emptyMessage: makeNodeComponent("emptyMessage"),
