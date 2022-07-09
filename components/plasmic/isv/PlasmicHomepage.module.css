@@ -294,6 +294,7 @@
   height: auto;
   max-width: 800px;
   font-size: 20px;
+  color: var(--token-0kI3JlBolqyCq);
 }
 .freeBox__xeh4E {
   width: auto;
@@ -304,6 +305,7 @@
 }
 .slotTargetTotalPrice {
   font-size: 22px;
+  color: var(--token-0kI3JlBolqyCq);
 }
 .freeBox__kJ0 {
   flex-direction: column;

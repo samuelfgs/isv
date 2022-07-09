@@ -8,7 +8,7 @@
   max-width: 100%;
   position: relative;
   min-width: 0;
-  padding: 8px;
+  padding: 0px;
 }
 .freeBox__w6BA {
   flex-direction: row;
@@ -94,7 +94,7 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
-  padding: 8px;
+  padding: 0px;
 }
 .lineItems > :global(.__wab_flex-container) {
   flex-direction: column;
