@@ -204,6 +204,16 @@
           "id": "TTU77nTGk",
           "name": "CartIcon",
           "moduleFilePath": "plasmic/isv/icons/PlasmicIcon__Cart.tsx"
+        },
+        {
+          "id": "QYb9XxFjU",
+          "name": "ClockIcon",
+          "moduleFilePath": "plasmic/isv/icons/PlasmicIcon__Clock.tsx"
+        },
+        {
+          "id": "LZ6zTV9o3",
+          "name": "PinIcon",
+          "moduleFilePath": "plasmic/isv/icons/PlasmicIcon__Pin.tsx"
         }
       ],
       "images": [
@@ -226,9 +236,82 @@
           "id": "6fdtcID3G",
           "name": "loading-buffer.gif",
           "filePath": "../public/plasmic/isv/images/loadingBuffergif.gif"
+        },
+        {
+          "id": "-h_mTZmt5",
+          "name": "inverno-crente",
+          "filePath": "../public/plasmic/isv/images/invernoCrente.jpeg"
         }
       ],
       "indirect": false,
+      "globalContextsFilePath": "",
+      "codeComponents": []
+    },
+    {
+      "projectId": "caTPwKxj5ZrD9LQ7DMdK4Z",
+      "projectApiToken": "vXGGQpdi9fhcncabBdg8DcMRUbkz0iRW6HS1jzQufQR6QH0MasPwr9SX7ap4SsK3xXwwXmzZtglWGe0Rm2nw",
+      "projectName": "plasmic-basic-components",
+      "version": "3.0.0",
+      "cssFilePath": "plasmic/plasmic_basic_components/plasmic_plasmic_basic_components.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "codeComponents": [
+        {
+          "id": "CMDBvOhaI4s",
+          "name": "Iframe",
+          "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
+        },
+        {
+          "id": "RhitNJW5Zu-",
+          "name": "Video",
+          "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
+        },
+        {
+          "id": "PKldDYkH42",
+          "name": "Embed",
+          "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
+        }
+      ],
+      "jsBundleThemes": []
+    },
+    {
+      "projectId": "95xp9cYcv7HrNWpFWWhbcv",
+      "projectApiToken": "X9RF4QUgEjfqAlBk6Nl7OhgXLqkhClEfwbGYrPzja9eIAqXGaTkltUmNaeX46ylhQdL0q5oCn6BzRE43wsMyg",
+      "projectName": "[PlasmicKit] Q4 Color Tokens",
+      "version": "2.2.1",
+      "cssFilePath": "plasmic/plasmic_kit_q_4_color_tokens/plasmic_plasmic_kit_q_4_color_tokens.module.css",
+      "components": [],
+      "icons": [],
+      "images": [
+        {
+          "id": "pAcQ-9j-MkaY",
+          "name": "image",
+          "filePath": "../public/plasmic/plasmic_kit_q_4_color_tokens/images/image.svg"
+        }
+      ],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "codeComponents": []
+    },
+    {
+      "projectId": "r6wqTHP8pUBDqvkAaarh3E",
+      "projectApiToken": "tcKOQoHLnieyOEcPMxGQFklEzwSvDvxqNrEPG1R5bskUOIg633l9lbP6y0tDbJK48lhPcZgzytZVZrNelTTA",
+      "projectName": "Copy of [PlasmicKit] Q4 Color Tokens",
+      "version": "0.0.1",
+      "cssFilePath": "plasmic/copy_of_plasmic_kit_q_4_color_tokens/plasmic_copy_of_plasmic_kit_q_4_color_tokens.module.css",
+      "components": [],
+      "icons": [],
+      "images": [
+        {
+          "id": "bSXI1Z8uktJBvH",
+          "name": "image",
+          "filePath": "../public/plasmic/copy_of_plasmic_kit_q_4_color_tokens/images/image.svg"
+        }
+      ],
+      "indirect": true,
       "globalContextsFilePath": "",
       "codeComponents": []
     }

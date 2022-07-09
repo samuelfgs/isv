@@ -7,8 +7,9 @@
   height: auto;
   max-width: 100%;
   position: relative;
+  box-shadow: 0px 4px 16px 3px var(--token-nCwSK3FzK8qFe);
   min-width: 0;
-  padding: 8px;
+  padding: 0px;
 }
 .freeBox__j4S6X {
   display: flex;
@@ -20,7 +21,7 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
-  padding: 8px;
+  padding: 0px;
 }
 .freeBox__rBsbD {
   display: flex;
@@ -42,16 +43,9 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  border-top-width: 1px;
-  border-right-width: 1px;
-  border-bottom-width: 0px;
-  border-left-width: 1px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  background: #c8c8c8;
+  background: var(--token-ThnFxYwNOaz4P);
   min-width: 0;
   padding: 8px 20px;
-  border-style: solid;
 }
 .freeBox__gCuoj {
   width: 100%;
@@ -60,6 +54,9 @@
   display: flex;
   flex-direction: row;
   min-width: 0;
+}
+.slotTargetTitle {
+  color: var(--token-9MkmzesVuXPDf0);
 }
 .freeBox__uinhy {
   display: flex;
@@ -70,13 +67,8 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  border-top-width: 0px;
-  border-right-width: 1px;
-  border-bottom-width: 0px;
-  border-left-width: 1px;
   min-width: 0;
   padding: 8px 20px;
-  border-style: solid;
 }
 .freeBox___0YXaw {
   width: 100%;
@@ -95,14 +87,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  border-left-width: 1px;
-  border-left-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-right-width: 1px;
-  border-right-style: solid;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  background: var(--token-GT3Ewogw5DWgo);
   min-width: 0;
   padding: 0px;
 }
@@ -113,21 +98,15 @@
   max-width: 800px;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   min-width: 0;
   padding: 8px 20px;
 }
-.freeBox__tMUta {
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  min-width: 0;
-  padding: 8px;
+.slotTargetPrice {
+  color: var(--token-0nux_H4urWELK);
 }
 .quantity:global(.__wab_instance) {
   max-width: 100%;
+  align-self: center;
 }

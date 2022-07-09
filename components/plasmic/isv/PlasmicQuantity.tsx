@@ -39,6 +39,8 @@ import TextInput from "../../TextInput"; // plasmic-import: io4iBrhj0am/componen
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
+import plasmic_copy_of_plasmic_kit_q_4_color_tokens_css from "../copy_of_plasmic_kit_q_4_color_tokens/plasmic_copy_of_plasmic_kit_q_4_color_tokens.module.css"; // plasmic-import: r6wqTHP8pUBDqvkAaarh3E/projectcss
+import plasmic_plasmic_kit_q_4_color_tokens_css from "../plasmic_kit_q_4_color_tokens/plasmic_plasmic_kit_q_4_color_tokens.module.css"; // plasmic-import: 95xp9cYcv7HrNWpFWWhbcv/projectcss
 import projectcss from "./plasmic_isv.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
 import sty from "./PlasmicQuantity.module.css"; // plasmic-import: VGSmBro-ef/css
 
@@ -98,6 +100,8 @@ function PlasmicQuantity__RenderFunc(props: {
         projectcss.root_reset,
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
+        plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
+        plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
         sty.root
       )}
     >
@@ -105,6 +109,7 @@ function PlasmicQuantity__RenderFunc(props: {
         data-plasmic-name={"minusButton"}
         data-plasmic-override={overrides.minusButton}
         className={classNames("__wab_instance", sty.minusButton)}
+        color={"blue" as const}
         size={"compact" as const}
       >
         <div
@@ -129,6 +134,7 @@ function PlasmicQuantity__RenderFunc(props: {
         data-plasmic-name={"plusButton"}
         data-plasmic-override={overrides.plusButton}
         className={classNames("__wab_instance", sty.plusButton)}
+        color={"blue" as const}
         size={"compact" as const}
       >
         <div

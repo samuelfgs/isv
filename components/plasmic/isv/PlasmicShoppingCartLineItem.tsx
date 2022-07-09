@@ -38,6 +38,8 @@ import Quantity from "../../Quantity"; // plasmic-import: VGSmBro-ef/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
+import plasmic_copy_of_plasmic_kit_q_4_color_tokens_css from "../copy_of_plasmic_kit_q_4_color_tokens/plasmic_copy_of_plasmic_kit_q_4_color_tokens.module.css"; // plasmic-import: r6wqTHP8pUBDqvkAaarh3E/projectcss
+import plasmic_plasmic_kit_q_4_color_tokens_css from "../plasmic_kit_q_4_color_tokens/plasmic_plasmic_kit_q_4_color_tokens.module.css"; // plasmic-import: 95xp9cYcv7HrNWpFWWhbcv/projectcss
 import projectcss from "./plasmic_isv.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
 import sty from "./PlasmicShoppingCartLineItem.module.css"; // plasmic-import: cnD_NnksTl/css
 
@@ -109,6 +111,8 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
           projectcss.root_reset,
           projectcss.plasmic_default_styles,
           projectcss.plasmic_mixins,
+          plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
+          plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
           sty.root,
           { [sty.rooteven]: hasVariant(variants, "even", "even") }
         )}

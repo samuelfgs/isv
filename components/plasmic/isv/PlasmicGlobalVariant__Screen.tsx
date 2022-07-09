@@ -23,7 +23,7 @@ export function ScreenVariantProvider(props: React.PropsWithChildren) {
 }
 
 export const useScreenVariants = p.createUseScreenVariants(true, {
-  desktop: "(min-width:641px)",
+  desktop: "(min-width:700px)",
 });
 
 export default ScreenContext;

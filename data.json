@@ -1,14 +1,74 @@
 [
   {
     "id": 1,
-    "name": "Combo 1",
-    "description": "1 Caldo\nBebida a vontade\n1 Sobremesa",
-    "price": 10
+    "name": "Combo Japa - Philadelphia",
+    "description": "1 Temaki Philadelphia\n1 Hot roll\n1 Bebida\n1 Docinho",
+    "price": 20
   },
   {
     "id": 2,
-    "name": "Combo 2",
-    "description": "Caldo a vontade\nBebida a vontade\n1 Sobremesa",
+    "name": "Combo Japa - Grelhado",
+    "description": "1 Temaki Grelhado\n1 Hot roll\n1 Bebida\n1 Docinho",
     "price": 20
+  },
+  {
+    "id": 3,
+    "name": "Combo Pastel - Pizza",
+    "description": "1 Pastel de Pizza\n1 Caldo de cana ou Bebida\n1 Docinho",
+    "price": 10
+  },
+  {
+    "id": 4,
+    "name": "Combo Pastel - Carne",
+    "description": "1 Pastel de Carne\n1 Caldo de cana ou Bebida\n1 Docinho",
+    "price": 10
+  },
+  {
+    "id": 5,
+    "name": "Combo Pastel - Frango com Catupiry",
+    "description": "1 Pastel de Frango com Catupiry\n1 Caldo de cana ou Bebida\n1 Docinho",
+    "price": 10
+  },
+  {
+    "id": 6,
+    "name": "Combo X-Burguer",
+    "description": "1 X-Burguer\nBatata Frita\n1 Bebida\n1 Docinho",
+    "price": 16
+  },
+  {
+    "id": 7,
+    "name": "Combo X-Bacon",
+    "description": "1 X-Bacon\nBatata Frita\n1 Bebida\n1 Docinho",
+    "price": 16
+  },
+  {
+    "id": 8,
+    "name": "Combo de Sopa",
+    "description": "1 Sopa de Ervilha\n1 Bebida\n1 Docinho",
+    "price": 10
+  },
+  {
+    "id": 9,
+    "name": "Pedaco de Bolo",
+    "description": "",
+    "price": 4
+  },
+  {
+    "id": 10,
+    "name": "Docinho",
+    "description": "",
+    "price": 2.50
+  },
+  {
+    "id": 11,
+    "name": "Copo de Bebida",
+    "description": "",
+    "price": 3.00
+  },
+  {
+    "id": 12,
+    "name": "Espaço Kids",
+    "description": "",
+    "price": 5
   }
 ]

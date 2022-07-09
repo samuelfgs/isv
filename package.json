@@ -12,6 +12,7 @@
     "@plasmicapp/cli": "^0.1.183",
     "@plasmicapp/host": "^1.0.68",
     "@plasmicapp/react-web": "^0.2.100",
+    "@plasmicpkgs/plasmic-basic-components": "^0.0.74",
     "@plasmicpkgs/plasmic-nav": "^0.0.37",
     "@types/lodash": "^4.14.182",
     "@types/mercadopago": "^1.5.6",

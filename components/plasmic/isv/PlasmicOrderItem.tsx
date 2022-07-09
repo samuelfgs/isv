@@ -38,6 +38,8 @@ import Quantity from "../../Quantity"; // plasmic-import: VGSmBro-ef/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
+import plasmic_copy_of_plasmic_kit_q_4_color_tokens_css from "../copy_of_plasmic_kit_q_4_color_tokens/plasmic_copy_of_plasmic_kit_q_4_color_tokens.module.css"; // plasmic-import: r6wqTHP8pUBDqvkAaarh3E/projectcss
+import plasmic_plasmic_kit_q_4_color_tokens_css from "../plasmic_kit_q_4_color_tokens/plasmic_plasmic_kit_q_4_color_tokens.module.css"; // plasmic-import: 95xp9cYcv7HrNWpFWWhbcv/projectcss
 import projectcss from "./plasmic_isv.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
 import sty from "./PlasmicOrderItem.module.css"; // plasmic-import: XSxN5kXvF2/css
 
@@ -100,6 +102,8 @@ function PlasmicOrderItem__RenderFunc(props: {
         projectcss.root_reset,
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
+        plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
+        plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
         sty.root
       )}
     >
@@ -111,7 +115,8 @@ function PlasmicOrderItem__RenderFunc(props: {
                 <div className={classNames(projectcss.all, sty.freeBox__gCuoj)}>
                   {p.renderPlasmicSlot({
                     defaultContents: "Combo 1",
-                    value: args.title
+                    value: args.title,
+                    className: classNames(sty.slotTargetTitle)
                   })}
                 </div>
               </div>
@@ -133,21 +138,18 @@ function PlasmicOrderItem__RenderFunc(props: {
               <div className={classNames(projectcss.all, sty.freeBox__nUoI)}>
                 {p.renderPlasmicSlot({
                   defaultContents: "R$ 20,00",
-                  value: args.price
+                  value: args.price,
+                  className: classNames(sty.slotTargetPrice)
                 })}
+
+                <Quantity
+                  data-plasmic-name={"quantity"}
+                  data-plasmic-override={overrides.quantity}
+                  className={classNames("__wab_instance", sty.quantity)}
+                />
               </div>
             </div>
           </div>
-
-          {true ? (
-            <div className={classNames(projectcss.all, sty.freeBox__tMUta)}>
-              <Quantity
-                data-plasmic-name={"quantity"}
-                data-plasmic-override={overrides.quantity}
-                className={classNames("__wab_instance", sty.quantity)}
-              />
-            </div>
-          ) : null}
         </div>
       ) : null}
     </div>

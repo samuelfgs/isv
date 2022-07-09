@@ -7,13 +7,13 @@
   height: auto;
   max-width: 100%;
   position: relative;
-  background: #e7e7e7;
+  background: var(--token-kVCuj439vJX4L);
   min-width: 0;
   padding: 8px;
 }
 .rooteven {
   background: #ffffff;
-  border: 1px solid #e7e7e7;
+  border: 1px solid var(--token-GT3Ewogw5DWgo);
 }
 .freeBox__sv7Tj {
   display: flex;
