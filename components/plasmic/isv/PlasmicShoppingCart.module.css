@@ -44,14 +44,16 @@
   max-width: 800px;
   text-align: center;
   font-weight: 700;
+  font-size: 25px;
 }
 .svg {
   position: relative;
   object-fit: cover;
   max-width: 100%;
-  width: 1em;
+  width: 25px;
+  height: 25px;
+  color: var(--token-0kI3JlBolqyCq);
   flex-shrink: 0;
-  height: 1em;
 }
 .freeBox__dK8WR {
   display: flex;
