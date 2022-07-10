@@ -44,7 +44,6 @@ function Quantity_(props: QuantityProps, ref: HTMLElementRefOf<"div">) {
   // to do whatever works for you.
   
   const { onChangeQuantity, quantity, ...rest } = props;
-  console.log("dale", quantity);
   return <PlasmicQuantity 
     root={{ ref }} 
     plusButton={{

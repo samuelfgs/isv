@@ -7,7 +7,7 @@
   transition-property: background;
   transition-duration: 0.1s;
   border-radius: 6px;
-  padding: 12px 20px;
+  padding: 12px 6px;
   border-width: 0px;
 }
 .root > :global(.__wab_flex-container) {
@@ -24,7 +24,7 @@
   margin-left: 8px;
 }
 .rootshowStartIcon {
-  padding-left: 16px;
+  padding: 12px 8px;
 }
 .rootcolor_green {
   background: #30a46c;
@@ -258,7 +258,7 @@
 .slotTargetChildren {
   color: #ededec;
   font-weight: 500;
-  white-space: pre;
+  white-space: pre-wrap;
 }
 .slotTargetChildrencolor_green {
   color: #ffffff;

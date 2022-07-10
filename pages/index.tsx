@@ -24,8 +24,6 @@ function Homepage() {
   const [appState, setAppState] = React.useState<AppState>(AppState.home);
   const [selectedItem, setSelectedItem] = React.useState<string>();
 
-  console.log("dale", cart);
-
   // const goToCheckout = async () => {
   //   setIsLoading(true);
   //   const items = cart.lineItems.map(item => ({
@@ -56,6 +54,9 @@ function Homepage() {
               setAppState(AppState.addItem);
               setSelectedItem(id);
             }
+          }}
+          cartButton={{
+            isEmpty: cart.lineItems.length === 0
           }}
         />
       ) : appState === AppState.addItem ? (

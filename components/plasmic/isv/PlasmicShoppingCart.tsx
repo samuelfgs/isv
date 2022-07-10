@@ -207,7 +207,11 @@ function PlasmicShoppingCart__RenderFunc(props: {
           </div>
         ) : null}
         {true ? (
-          <div className={classNames(projectcss.all, sty.freeBox__avSb)}>
+          <p.Stack
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox__avSb)}
+          >
             {(hasVariant(variants, "isEmpty", "isEmpty") ? true : true) ? (
               <div
                 className={classNames(projectcss.all, sty.freeBox__bZiN9, {
@@ -275,9 +279,24 @@ function PlasmicShoppingCart__RenderFunc(props: {
                     />
                   }
                 >
-                  {hasVariant(variants, "isEmpty", "isEmpty")
-                    ? "Adicionar"
-                    : "Continuar comprando"}
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___528Rb,
+                      {
+                        [sty.textisEmpty___528RbyqkGv]: hasVariant(
+                          variants,
+                          "isEmpty",
+                          "isEmpty"
+                        )
+                      }
+                    )}
+                  >
+                    {hasVariant(variants, "isEmpty", "isEmpty")
+                      ? "Adicionar"
+                      : "Adicionar mais"}
+                  </div>
                 </Button>
 
                 {(hasVariant(variants, "isEmpty", "isEmpty") ? true : true) ? (
@@ -299,12 +318,27 @@ function PlasmicShoppingCart__RenderFunc(props: {
                     }
                     showStartIcon={true}
                   >
-                    {"Finalizar compra"}
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__nNaap,
+                        {
+                          [sty.textisEmpty__nNaapYqkGv]: hasVariant(
+                            variants,
+                            "isEmpty",
+                            "isEmpty"
+                          )
+                        }
+                      )}
+                    >
+                      {"Finalizar compra"}
+                    </div>
                   </Button>
                 ) : null}
               </div>
             ) : null}
-          </div>
+          </p.Stack>
         ) : null}
       </p.Stack>
     ) : null

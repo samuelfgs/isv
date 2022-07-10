@@ -144,7 +144,7 @@ function PlasmicMenuItem__RenderFunc(props: {
                         data-plasmic-override={overrides.img}
                         alt={""}
                         className={classNames(sty.img)}
-                        displayHeight={"auto" as const}
+                        displayHeight={"80%" as const}
                         displayMaxHeight={"none" as const}
                         displayMaxWidth={"none" as const}
                         displayMinHeight={"0" as const}
@@ -164,7 +164,8 @@ function PlasmicMenuItem__RenderFunc(props: {
                       {p.renderPlasmicSlot({
                         defaultContents:
                           "1 Caldo\nBebida a vontade\n1 Sobremesa",
-                        value: args.description
+                        value: args.description,
+                        className: classNames(sty.slotTargetDescription)
                       })}
 
                       {p.renderPlasmicSlot({
