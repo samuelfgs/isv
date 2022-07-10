@@ -22,6 +22,9 @@ export default async function handler(
       payer: {
         name,
         email
+      },
+      back_urls: {
+        success: `${process.env.HOST!}/success`
       }
     });
 

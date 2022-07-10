@@ -198,6 +198,19 @@
           "scheme": "blackbox",
           "componentType": "component",
           "plumeType": "text-input"
+        },
+        {
+          "id": "E9GSJtAUla",
+          "name": "Success",
+          "type": "managed",
+          "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
+          "renderModuleFilePath": "plasmic/isv/PlasmicSuccess.tsx",
+          "importSpec": {
+            "modulePath": "../pages/success.tsx"
+          },
+          "cssFilePath": "plasmic/isv/PlasmicSuccess.module.css",
+          "scheme": "blackbox",
+          "componentType": "page"
         }
       ],
       "icons": [
@@ -245,6 +258,11 @@
           "id": "lKoMckLAP",
           "name": "ChevronLeftIcon",
           "moduleFilePath": "plasmic/isv/icons/PlasmicIcon__ChevronLeft.tsx"
+        },
+        {
+          "id": "1HIO6KdHI",
+          "name": "CheckCircleIcon",
+          "moduleFilePath": "plasmic/isv/icons/PlasmicIcon__CheckCircle.tsx"
         }
       ],
       "images": [
