@@ -34,7 +34,9 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
+import Header from "../../Header"; // plasmic-import: oeaZd66p84/component
 import ShoppingCartLineItem from "../../ShoppingCartLineItem"; // plasmic-import: cnD_NnksTl/component
+import Button from "../../Button"; // plasmic-import: dTivG-jH3lW/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -43,7 +45,9 @@ import plasmic_plasmic_kit_q_4_color_tokens_css from "../plasmic_kit_q_4_color_t
 import projectcss from "./plasmic_isv.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
 import sty from "./PlasmicShoppingCart.module.css"; // plasmic-import: 2L-PECr0xw/css
 
-import CartIcon from "./icons/PlasmicIcon__Cart"; // plasmic-import: TTU77nTGk/icon
+import PlusIcon from "./icons/PlasmicIcon__Plus"; // plasmic-import: TZ5ExugZ2/icon
+import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: k5kwo7sOrBj/icon
+import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: q1TlDUyNqop/icon
 
 export type PlasmicShoppingCart__VariantMembers = {
   isEmpty: "isEmpty";
@@ -58,17 +62,26 @@ export const PlasmicShoppingCart__VariantProps = new Array<VariantPropType>(
   "isEmpty"
 );
 
-export type PlasmicShoppingCart__ArgsType = {};
+export type PlasmicShoppingCart__ArgsType = {
+  totalPrice?: React.ReactNode;
+};
+
 type ArgPropType = keyof PlasmicShoppingCart__ArgsType;
-export const PlasmicShoppingCart__ArgProps = new Array<ArgPropType>();
+export const PlasmicShoppingCart__ArgProps = new Array<ArgPropType>(
+  "totalPrice"
+);
 
 export type PlasmicShoppingCart__OverridesType = {
   root?: p.Flex<"div">;
-  svg?: p.Flex<"svg">;
+  header?: p.Flex<typeof Header>;
   lineItems?: p.Flex<"div">;
+  backBtn?: p.Flex<typeof Button>;
+  svg?: p.Flex<"svg">;
+  checkoutBtn?: p.Flex<typeof Button>;
 };
 
 export interface DefaultShoppingCartProps {
+  totalPrice?: React.ReactNode;
   isEmpty?: SingleBooleanChoiceArg<"isEmpty">;
   className?: string;
 }
@@ -92,43 +105,30 @@ function PlasmicShoppingCart__RenderFunc(props: {
 
   return (
     true ? (
-      <div
+      <p.Stack
+        as={"div"}
         data-plasmic-name={"root"}
         data-plasmic-override={overrides.root}
         data-plasmic-root={true}
         data-plasmic-for-node={forNode}
+        hasGap={true}
         className={classNames(
           projectcss.all,
           projectcss.root_reset,
           projectcss.plasmic_default_styles,
           projectcss.plasmic_mixins,
+          projectcss.plasmic_tokens,
           plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
           plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
-          sty.root
+          sty.root,
+          { [sty.rootisEmpty]: hasVariant(variants, "isEmpty", "isEmpty") }
         )}
       >
-        <p.Stack
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__w6BA)}
-        >
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text___2UupG
-            )}
-          >
-            {"Carrinho"}
-          </div>
-
-          <CartIcon
-            data-plasmic-name={"svg"}
-            data-plasmic-override={overrides.svg}
-            className={classNames(projectcss.all, sty.svg)}
-            role={"img"}
-          />
-        </p.Stack>
+        <Header
+          data-plasmic-name={"header"}
+          data-plasmic-override={overrides.header}
+          className={classNames("__wab_instance", sty.header)}
+        />
 
         {(hasVariant(variants, "isEmpty", "isEmpty") ? true : true) ? (
           <div
@@ -160,60 +160,175 @@ function PlasmicShoppingCart__RenderFunc(props: {
             ) : null}
           </div>
         ) : null}
-        {(hasVariant(variants, "isEmpty", "isEmpty") ? true : true) ? (
-          <p.Stack
-            as={"div"}
-            data-plasmic-name={"lineItems"}
-            data-plasmic-override={overrides.lineItems}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.lineItems, {
-              [sty.lineItemsisEmpty]: hasVariant(variants, "isEmpty", "isEmpty")
-            })}
-          >
-            {true ? (
-              <ShoppingCartLineItem
-                className={classNames(
-                  "__wab_instance",
-                  sty.shoppingCartLineItem__tSkQ
-                )}
-              />
+        {true ? (
+          <div className={classNames(projectcss.all, sty.freeBox__unGtd)}>
+            {(hasVariant(variants, "isEmpty", "isEmpty") ? true : true) ? (
+              <p.Stack
+                as={"div"}
+                data-plasmic-name={"lineItems"}
+                data-plasmic-override={overrides.lineItems}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.lineItems, {
+                  [sty.lineItemsisEmpty]: hasVariant(
+                    variants,
+                    "isEmpty",
+                    "isEmpty"
+                  )
+                })}
+              >
+                {true ? (
+                  <ShoppingCartLineItem
+                    className={classNames(
+                      "__wab_instance",
+                      sty.shoppingCartLineItem__tSkQ
+                    )}
+                    even={true}
+                  />
+                ) : null}
+                {true ? (
+                  <ShoppingCartLineItem
+                    className={classNames(
+                      "__wab_instance",
+                      sty.shoppingCartLineItem__fCQA
+                    )}
+                  />
+                ) : null}
+                {true ? (
+                  <ShoppingCartLineItem
+                    className={classNames(
+                      "__wab_instance",
+                      sty.shoppingCartLineItem__trP6
+                    )}
+                    even={true}
+                  />
+                ) : null}
+              </p.Stack>
             ) : null}
-            {true ? (
-              <ShoppingCartLineItem
-                className={classNames(
-                  "__wab_instance",
-                  sty.shoppingCartLineItem__fCQA
-                )}
-                even={true}
-              />
-            ) : null}
-            {true ? (
-              <ShoppingCartLineItem
-                className={classNames(
-                  "__wab_instance",
-                  sty.shoppingCartLineItem__trP6
-                )}
-              />
-            ) : null}
-          </p.Stack>
+          </div>
         ) : null}
-      </div>
+        {true ? (
+          <div className={classNames(projectcss.all, sty.freeBox__avSb)}>
+            {(hasVariant(variants, "isEmpty", "isEmpty") ? true : true) ? (
+              <div
+                className={classNames(projectcss.all, sty.freeBox__bZiN9, {
+                  [sty.freeBoxisEmpty__bZiN9YqkGv]: hasVariant(
+                    variants,
+                    "isEmpty",
+                    "isEmpty"
+                  )
+                })}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__riere
+                  )}
+                >
+                  {"Total: R$ "}
+                </div>
+
+                <div
+                  className={classNames(projectcss.all, sty.freeBox___6PIpe)}
+                >
+                  {p.renderPlasmicSlot({
+                    defaultContents: "20,00",
+                    value: args.totalPrice,
+                    className: classNames(sty.slotTargetTotalPrice)
+                  })}
+                </div>
+              </div>
+            ) : null}
+            {true ? (
+              <div
+                className={classNames(projectcss.all, sty.freeBox__dhXtS, {
+                  [sty.freeBoxisEmpty__dhXtSyqkGv]: hasVariant(
+                    variants,
+                    "isEmpty",
+                    "isEmpty"
+                  )
+                })}
+              >
+                <Button
+                  data-plasmic-name={"backBtn"}
+                  data-plasmic-override={overrides.backBtn}
+                  className={classNames("__wab_instance", sty.backBtn, {
+                    [sty.backBtnisEmpty]: hasVariant(
+                      variants,
+                      "isEmpty",
+                      "isEmpty"
+                    )
+                  })}
+                  color={"softBlue" as const}
+                  isDisabled={
+                    hasVariant(variants, "isEmpty", "isEmpty")
+                      ? true
+                      : undefined
+                  }
+                  showStartIcon={true}
+                  startIcon={
+                    <PlusIcon
+                      data-plasmic-name={"svg"}
+                      data-plasmic-override={overrides.svg}
+                      className={classNames(projectcss.all, sty.svg)}
+                      role={"img"}
+                    />
+                  }
+                >
+                  {hasVariant(variants, "isEmpty", "isEmpty")
+                    ? "Adicionar"
+                    : "Continuar comprando"}
+                </Button>
+
+                {(hasVariant(variants, "isEmpty", "isEmpty") ? true : true) ? (
+                  <Button
+                    data-plasmic-name={"checkoutBtn"}
+                    data-plasmic-override={overrides.checkoutBtn}
+                    className={classNames("__wab_instance", sty.checkoutBtn, {
+                      [sty.checkoutBtnisEmpty]: hasVariant(
+                        variants,
+                        "isEmpty",
+                        "isEmpty"
+                      )
+                    })}
+                    color={"blue" as const}
+                    isDisabled={
+                      hasVariant(variants, "isEmpty", "isEmpty")
+                        ? true
+                        : undefined
+                    }
+                    showStartIcon={true}
+                  >
+                    {"Finalizar compra"}
+                  </Button>
+                ) : null}
+              </div>
+            ) : null}
+          </div>
+        ) : null}
+      </p.Stack>
     ) : null
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "svg", "lineItems"],
+  root: ["root", "header", "lineItems", "backBtn", "svg", "checkoutBtn"],
+  header: ["header"],
+  lineItems: ["lineItems"],
+  backBtn: ["backBtn", "svg"],
   svg: ["svg"],
-  lineItems: ["lineItems"]
+  checkoutBtn: ["checkoutBtn"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  svg: "svg";
+  header: typeof Header;
   lineItems: "div";
+  backBtn: typeof Button;
+  svg: "svg";
+  checkoutBtn: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -273,8 +388,11 @@ export const PlasmicShoppingCart = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    svg: makeNodeComponent("svg"),
+    header: makeNodeComponent("header"),
     lineItems: makeNodeComponent("lineItems"),
+    backBtn: makeNodeComponent("backBtn"),
+    svg: makeNodeComponent("svg"),
+    checkoutBtn: makeNodeComponent("checkoutBtn"),
 
     // Metadata about props expected for PlasmicShoppingCart
     internalVariantProps: PlasmicShoppingCart__VariantProps,

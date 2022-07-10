@@ -35,7 +35,6 @@ import {
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
 import Button from "../../Button"; // plasmic-import: dTivG-jH3lW/component
-import TextInput from "../../TextInput"; // plasmic-import: io4iBrhj0am/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -46,7 +45,6 @@ import sty from "./PlasmicQuantity.module.css"; // plasmic-import: VGSmBro-ef/cs
 
 import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: q1TlDUyNqop/icon
 import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: k5kwo7sOrBj/icon
-import SearchsvgIcon from "./icons/PlasmicIcon__Searchsvg"; // plasmic-import: AUsPFN29Z5Y/icon
 
 export type PlasmicQuantity__VariantMembers = {};
 
@@ -54,19 +52,22 @@ export type PlasmicQuantity__VariantsArgs = {};
 type VariantPropType = keyof PlasmicQuantity__VariantsArgs;
 export const PlasmicQuantity__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicQuantity__ArgsType = {};
+export type PlasmicQuantity__ArgsType = {
+  quantity?: React.ReactNode;
+};
+
 type ArgPropType = keyof PlasmicQuantity__ArgsType;
-export const PlasmicQuantity__ArgProps = new Array<ArgPropType>();
+export const PlasmicQuantity__ArgProps = new Array<ArgPropType>("quantity");
 
 export type PlasmicQuantity__OverridesType = {
   root?: p.Flex<"div">;
   minusButton?: p.Flex<typeof Button>;
-  textInput?: p.Flex<typeof TextInput>;
+  freeBox?: p.Flex<"div">;
   plusButton?: p.Flex<typeof Button>;
-  textbox?: p.Flex<typeof TextInput>;
 };
 
 export interface DefaultQuantityProps {
+  quantity?: React.ReactNode;
   className?: string;
 }
 
@@ -100,6 +101,7 @@ function PlasmicQuantity__RenderFunc(props: {
         projectcss.root_reset,
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
+        projectcss.plasmic_tokens,
         plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
         plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
         sty.root
@@ -123,12 +125,17 @@ function PlasmicQuantity__RenderFunc(props: {
         </div>
       </Button>
 
-      <TextInput
-        data-plasmic-name={"textInput"}
-        data-plasmic-override={overrides.textInput}
-        className={classNames("__wab_instance", sty.textInput)}
-        defaultValue={"0" as const}
-      />
+      <div
+        data-plasmic-name={"freeBox"}
+        data-plasmic-override={overrides.freeBox}
+        className={classNames(projectcss.all, sty.freeBox)}
+      >
+        {p.renderPlasmicSlot({
+          defaultContents: "0",
+          value: args.quantity,
+          className: classNames(sty.slotTargetQuantity)
+        })}
+      </div>
 
       <Button
         data-plasmic-name={"plusButton"}
@@ -152,9 +159,9 @@ function PlasmicQuantity__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "minusButton", "textInput", "textbox", "plusButton"],
+  root: ["root", "minusButton", "freeBox", "plusButton"],
   minusButton: ["minusButton"],
-  textInput: ["textInput", "textbox"],
+  freeBox: ["freeBox"],
   plusButton: ["plusButton"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -163,7 +170,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   minusButton: typeof Button;
-  textInput: typeof TextInput;
+  freeBox: "div";
   plusButton: typeof Button;
 };
 
@@ -225,7 +232,7 @@ export const PlasmicQuantity = Object.assign(
   {
     // Helper components rendering sub-elements
     minusButton: makeNodeComponent("minusButton"),
-    textInput: makeNodeComponent("textInput"),
+    freeBox: makeNodeComponent("freeBox"),
     plusButton: makeNodeComponent("plusButton"),
 
     // Metadata about props expected for PlasmicQuantity

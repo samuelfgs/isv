@@ -34,12 +34,12 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
+import Header from "../../Header"; // plasmic-import: oeaZd66p84/component
 import Separator from "../../Separator"; // plasmic-import: wUTVsB-fca/component
-import OrderItem from "../../OrderItem"; // plasmic-import: XSxN5kXvF2/component
-import ShoppingCart from "../../ShoppingCart"; // plasmic-import: 2L-PECr0xw/component
-import EmptyMessage from "../../EmptyMessage"; // plasmic-import: jepsdtzBQs/component
-import Button from "../../Button"; // plasmic-import: dTivG-jH3lW/component
-import Loading from "../../Loading"; // plasmic-import: 3JMpsqmVnQ/component
+import { ContentfulFetcher } from "../../contentful"; // plasmic-import: AIFoPRZ0EI/codeComponent
+import MenuItem from "../../MenuItem"; // plasmic-import: XSxN5kXvF2/component
+import { ContentfulRichText } from "../../contentful"; // plasmic-import: U_PL4X9jnS/codeComponent
+import CartButton from "../../CartButton"; // plasmic-import: xK4LVBS1m4/component
 
 import { useScreenVariants as useScreenVariantsrLyYkqyGlc01Z } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: rLyYkqyGLC01z/globalVariant
 
@@ -52,8 +52,6 @@ import sty from "./PlasmicHomepage.module.css"; // plasmic-import: nz4OkXyiCp9B/
 
 import PinIcon from "./icons/PlasmicIcon__Pin"; // plasmic-import: LZ6zTV9o3/icon
 import ClockIcon from "./icons/PlasmicIcon__Clock"; // plasmic-import: QYb9XxFjU/icon
-import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: q1TlDUyNqop/icon
-import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: k5kwo7sOrBj/icon
 
 export type PlasmicHomepage__VariantMembers = {};
 
@@ -61,22 +59,21 @@ export type PlasmicHomepage__VariantsArgs = {};
 type VariantPropType = keyof PlasmicHomepage__VariantsArgs;
 export const PlasmicHomepage__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicHomepage__ArgsType = {
-  totalPrice?: React.ReactNode;
-};
-
+export type PlasmicHomepage__ArgsType = {};
 type ArgPropType = keyof PlasmicHomepage__ArgsType;
-export const PlasmicHomepage__ArgProps = new Array<ArgPropType>("totalPrice");
+export const PlasmicHomepage__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHomepage__OverridesType = {
   root?: p.Flex<"div">;
+  header?: p.Flex<typeof Header>;
   img?: p.Flex<typeof p.PlasmicImg>;
   link?: p.Flex<"a"> & Partial<LinkProps>;
+  separator?: p.Flex<typeof Separator>;
   options?: p.Flex<"div">;
-  shoppingCart?: p.Flex<typeof ShoppingCart>;
-  emptyMessage?: p.Flex<typeof EmptyMessage>;
-  payBtn?: p.Flex<typeof Button>;
-  loading?: p.Flex<typeof Loading>;
+  contentfulFetcher?: p.Flex<typeof ContentfulFetcher>;
+  menuItem?: p.Flex<typeof MenuItem>;
+  contentfulRichText?: p.Flex<typeof ContentfulRichText>;
+  cartButton?: p.Flex<typeof CartButton>;
 };
 
 export interface DefaultHomepageProps {}
@@ -125,27 +122,18 @@ function PlasmicHomepage__RenderFunc(props: {
             projectcss.root_reset,
             projectcss.plasmic_default_styles,
             projectcss.plasmic_mixins,
+            projectcss.plasmic_tokens,
             plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
             plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
             sty.root
           )}
         >
           {true ? (
-            <p.Stack
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__fhZpR)}
-            >
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__s5ZB
-                )}
-              >
-                {"IGREJA EM SÃO VICENTE"}
-              </div>
-            </p.Stack>
+            <Header
+              data-plasmic-name={"header"}
+              data-plasmic-override={overrides.header}
+              className={classNames("__wab_instance", sty.header)}
+            />
           ) : null}
 
           <p.Stack
@@ -254,120 +242,120 @@ function PlasmicHomepage__RenderFunc(props: {
           </p.Stack>
 
           <Separator
-            className={classNames("__wab_instance", sty.separator__veGxi)}
+            data-plasmic-name={"separator"}
+            data-plasmic-override={overrides.separator}
+            className={classNames("__wab_instance", sty.separator)}
           />
 
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__hEwy6
-            )}
-          >
-            {"Escolha o combo"}
-          </div>
-
-          <p.Stack
-            as={"div"}
-            data-plasmic-name={"options"}
-            data-plasmic-override={overrides.options}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.options)}
-          >
-            <OrderItem
-              className={classNames("__wab_instance", sty.orderItem__hq7V5)}
-              price={
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___4O5Ur
-                  )}
-                >
-                  {"R$ 10,00"}
-                </div>
-              }
-            />
-
-            <OrderItem
-              className={classNames("__wab_instance", sty.orderItem__hjyHf)}
-              description={"Caldo a vontade\nBebida a vontade\n1 Sobremesa"}
-              title={"Combo 2"}
-            />
-          </p.Stack>
-
-          <Separator
-            className={classNames("__wab_instance", sty.separator__elFUv)}
-          />
-
-          {true ? (
-            <ShoppingCart
-              data-plasmic-name={"shoppingCart"}
-              data-plasmic-override={overrides.shoppingCart}
-              className={classNames("__wab_instance", sty.shoppingCart)}
-            />
-          ) : null}
-          {true ? (
-            <div className={classNames(projectcss.all, sty.freeBox__a2Eq7)}>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__nzQLq
-                )}
-              >
-                {"Total: R$"}
-              </div>
-
-              <div className={classNames(projectcss.all, sty.freeBox__xeh4E)}>
-                {p.renderPlasmicSlot({
-                  defaultContents: "90.00",
-                  value: args.totalPrice,
-                  className: classNames(sty.slotTargetTotalPrice)
-                })}
-              </div>
-            </div>
-          ) : null}
           {true ? (
             <p.Stack
               as={"div"}
               hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__kJ0)}
+              className={classNames(projectcss.all, sty.freeBox__dg52T)}
             >
-              <EmptyMessage
-                data-plasmic-name={"emptyMessage"}
-                data-plasmic-override={overrides.emptyMessage}
-                className={classNames("__wab_instance", sty.emptyMessage)}
-                isEmpty={true}
-              />
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__hEwy6
+                )}
+              >
+                {"Cardápio"}
+              </div>
 
-              {true ? (
-                <Button
-                  data-plasmic-name={"payBtn"}
-                  data-plasmic-override={overrides.payBtn}
-                  className={classNames("__wab_instance", sty.payBtn)}
-                  color={"blue" as const}
+              <p.Stack
+                as={"div"}
+                data-plasmic-name={"options"}
+                data-plasmic-override={overrides.options}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.options)}
+              >
+                <ContentfulFetcher
+                  data-plasmic-name={"contentfulFetcher"}
+                  data-plasmic-override={overrides.contentfulFetcher}
+                  className={classNames(
+                    "__wab_instance",
+                    sty.contentfulFetcher
+                  )}
+                  contentType={"eventMenuItem" as const}
+                  limit={1000 as const}
+                  noLayout={true}
+                  order={"" as const}
                 >
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__xwAkv
+                  <ph.DataCtxReader>
+                    {$ctx => (
+                      <>
+                        {(() => {
+                          try {
+                            return $ctx.contentfulItems ?? [];
+                          } catch (e) {
+                            if (e instanceof TypeError) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })().map((currentItem, currentIndex) => (
+                          <MenuItem
+                            data-plasmic-name={"menuItem"}
+                            data-plasmic-override={overrides.menuItem}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.menuItem
+                            )}
+                            description={
+                              <ContentfulRichText
+                                data-plasmic-name={"contentfulRichText"}
+                                data-plasmic-override={
+                                  overrides.contentfulRichText
+                                }
+                                className={classNames(
+                                  "__wab_instance",
+                                  sty.contentfulRichText
+                                )}
+                                richText={currentItem.fields.description}
+                              />
+                            }
+                            id={currentItem.sys.id}
+                            image={currentItem.fields.image.fields.file.url}
+                            price={(() => {
+                              try {
+                                return (
+                                  "R$: " + currentItem.fields.price.toFixed(2)
+                                );
+                              } catch (e) {
+                                if (e instanceof TypeError) {
+                                  return "R$ 20,00";
+                                }
+                                throw e;
+                              }
+                            })()}
+                            title={(() => {
+                              try {
+                                return currentItem.fields.name;
+                              } catch (e) {
+                                if (e instanceof TypeError) {
+                                  return "Combo 1";
+                                }
+                                throw e;
+                              }
+                            })()}
+                          />
+                        ))}
+                      </>
                     )}
-                  >
-                    {"Finalizar"}
-                  </div>
-                </Button>
-              ) : null}
+                  </ph.DataCtxReader>
+                </ContentfulFetcher>
+              </p.Stack>
             </p.Stack>
           ) : null}
-
-          <Loading
-            data-plasmic-name={"loading"}
-            data-plasmic-override={overrides.loading}
-            className={classNames("__wab_instance", sty.loading)}
-            hide={true}
-          />
+          {true ? (
+            <CartButton
+              data-plasmic-name={"cartButton"}
+              data-plasmic-override={overrides.cartButton}
+              className={classNames("__wab_instance", sty.cartButton)}
+              isEmpty={true}
+            />
+          ) : null}
         </p.Stack>
       </div>
     </React.Fragment>
@@ -377,34 +365,40 @@ function PlasmicHomepage__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "header",
     "img",
     "link",
+    "separator",
     "options",
-    "shoppingCart",
-    "emptyMessage",
-    "payBtn",
-    "loading"
+    "contentfulFetcher",
+    "menuItem",
+    "contentfulRichText",
+    "cartButton"
   ],
+  header: ["header"],
   img: ["img"],
   link: ["link"],
-  options: ["options"],
-  shoppingCart: ["shoppingCart"],
-  emptyMessage: ["emptyMessage"],
-  payBtn: ["payBtn"],
-  loading: ["loading"]
+  separator: ["separator"],
+  options: ["options", "contentfulFetcher", "menuItem", "contentfulRichText"],
+  contentfulFetcher: ["contentfulFetcher", "menuItem", "contentfulRichText"],
+  menuItem: ["menuItem", "contentfulRichText"],
+  contentfulRichText: ["contentfulRichText"],
+  cartButton: ["cartButton"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  header: typeof Header;
   img: typeof p.PlasmicImg;
   link: "a";
+  separator: typeof Separator;
   options: "div";
-  shoppingCart: typeof ShoppingCart;
-  emptyMessage: typeof EmptyMessage;
-  payBtn: typeof Button;
-  loading: typeof Loading;
+  contentfulFetcher: typeof ContentfulFetcher;
+  menuItem: typeof MenuItem;
+  contentfulRichText: typeof ContentfulRichText;
+  cartButton: typeof CartButton;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -464,13 +458,15 @@ export const PlasmicHomepage = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    header: makeNodeComponent("header"),
     img: makeNodeComponent("img"),
     link: makeNodeComponent("link"),
+    separator: makeNodeComponent("separator"),
     options: makeNodeComponent("options"),
-    shoppingCart: makeNodeComponent("shoppingCart"),
-    emptyMessage: makeNodeComponent("emptyMessage"),
-    payBtn: makeNodeComponent("payBtn"),
-    loading: makeNodeComponent("loading"),
+    contentfulFetcher: makeNodeComponent("contentfulFetcher"),
+    menuItem: makeNodeComponent("menuItem"),
+    contentfulRichText: makeNodeComponent("contentfulRichText"),
+    cartButton: makeNodeComponent("cartButton"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,

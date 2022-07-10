@@ -21,8 +21,8 @@ import { HTMLElementRefOf } from "@plasmicapp/react-web";
 // You can also stop extending from DefaultQuantityProps altogether and have
 // total control over the props for your component.
 export interface QuantityProps extends DefaultQuantityProps {
-  quantity: number;
   onChangeQuantity: (q: number) => void;
+  quantity: number;
 }
 
 const isNumeric = (num: string) => !isNaN(+num);
@@ -42,20 +42,15 @@ function Quantity_(props: QuantityProps, ref: HTMLElementRefOf<"div">) {
   //
   // By default, we are just piping all QuantityProps here, but feel free
   // to do whatever works for you.
-
-  const { quantity, onChangeQuantity, ...rest } = props;
+  
+  const { onChangeQuantity, quantity, ...rest } = props;
+  console.log("dale", quantity);
   return <PlasmicQuantity 
     root={{ ref }} 
     plusButton={{
       onClick: () => onChangeQuantity?.(quantity + 1)
     }}
-    textInput={{
-      value: quantity,
-      onChange: (e) => {
-        if (isNumeric(e.target.value))
-          onChangeQuantity?.(+e.target.value);
-      }
-    }}
+    quantity={quantity || "0"}
     minusButton={{
       onClick: () => onChangeQuantity?.(Math.max(0, quantity - 1))
     }}

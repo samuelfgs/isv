@@ -9,13 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^15.13.1",
     "@plasmicapp/cli": "^0.1.183",
     "@plasmicapp/host": "^1.0.68",
+    "@plasmicapp/query": "^0.1.51",
     "@plasmicapp/react-web": "^0.2.100",
     "@plasmicpkgs/plasmic-basic-components": "^0.0.74",
     "@plasmicpkgs/plasmic-nav": "^0.0.37",
     "@types/lodash": "^4.14.182",
     "@types/mercadopago": "^1.5.6",
+    "contentful": "^9.1.32",
     "lodash": "^4.17.21",
     "mercadopago": "^1.5.13",
     "next": "12.2.0",

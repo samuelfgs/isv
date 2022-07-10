@@ -13,7 +13,12 @@
 }
 .rooteven {
   background: #ffffff;
-  border: 1px solid var(--token-GT3Ewogw5DWgo);
+  border-top-width: 1px;
+  border-right-width: 0px;
+  border-bottom-width: 1px;
+  border-left-width: 0px;
+  border-style: solid;
+  border-color: var(--token-GT3Ewogw5DWgo);
 }
 .freeBox__sv7Tj {
   display: flex;
@@ -65,7 +70,7 @@
 .slotTargetIndex {
   font-weight: 700;
 }
-.text {
+.text___8BjoR {
   position: relative;
   width: auto;
   height: auto;
@@ -111,6 +116,48 @@
 .slotTargetPrice {
   font-weight: 600;
   color: #535353;
+}
+.optionValues {
+  flex-direction: column;
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px 8px 8px 16px;
+}
+.optionValues > :global(.__wab_flex-container) {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  min-width: 0;
+  margin-top: calc(0px - 8px);
+  height: calc(100% + 8px);
+}
+.optionValues > :global(.__wab_flex-container) > *,
+.optionValues > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.optionValues > :global(.__wab_flex-container) > picture > img,
+.optionValues
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-top: 8px;
+}
+.text__zwko6 {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+  min-width: 0;
+}
+.text__rvi0T {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+  min-width: 0;
 }
 .freeBox__i53 {
   display: flex;

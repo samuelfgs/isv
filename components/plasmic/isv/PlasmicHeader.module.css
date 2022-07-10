@@ -4,43 +4,31 @@
   width: 100%;
   height: auto;
   max-width: 100%;
+  background: var(--token-ThnFxYwNOaz4P);
   position: relative;
   min-width: 0;
-  padding: 0px;
+  padding: 8px 20px;
 }
 .root > :global(.__wab_flex-container) {
   flex-direction: row;
   justify-content: flex-start;
   align-items: stretch;
   min-width: 0;
-  margin-left: calc(0px - 5px);
-  width: calc(100% + 5px);
+  margin-left: calc(0px - 20px);
+  width: calc(100% + 20px);
 }
 .root > :global(.__wab_flex-container) > *,
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
 .root > :global(.__wab_flex-container) > picture > img,
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
-  margin-left: 5px;
+  margin-left: 20px;
 }
-.freeBox__cg6Zb {
-  width: auto;
-  height: auto;
-  max-width: 800px;
-  display: flex;
-  flex-direction: row;
-}
-.slotTargetType {
-  font-size: 14px;
-}
-.freeBox__ogT1W {
-  position: relative;
+.text {
   width: 100%;
   height: auto;
   max-width: 800px;
-  display: flex;
-  flex-direction: row;
+  font-family: "Iceland";
+  font-size: 30px;
+  color: #ffffff;
   min-width: 0;
-}
-.slotTargetValue {
-  font-size: 14px;
 }

@@ -1,5 +1,14 @@
 import React from "react";
-import options from "./data.json";
+import options from "../data.json";
+
+export function ensure<T>(x: T | null | undefined): T {
+  if (x === null || x === undefined) {
+    debugger;
+    throw new Error(`Value must not be undefined or null`);
+  } else {
+    return x;
+  }
+}
 
 export type LineItem = {
   id: number;

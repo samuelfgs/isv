@@ -1,62 +1,33 @@
 .root {
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  position: relative;
-  min-width: 0;
-  padding: 0px;
-}
-.freeBox__w6BA {
-  flex-direction: row;
   display: flex;
   width: 100%;
-  height: auto;
+  height: 100%;
   max-width: 100%;
+  position: relative;
   min-width: 0;
-  padding: 8px;
+  min-height: 0;
 }
-.freeBox__w6BA > :global(.__wab_flex-container) {
-  flex-direction: row;
-  justify-content: center;
+.root > :global(.__wab_flex-container) {
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   min-width: 0;
-  margin-left: calc(0px - 15px);
-  width: calc(100% + 15px);
+  min-height: 0;
+  margin-top: calc(0px - 0px);
+  height: calc(100% + 0px);
 }
-.freeBox__w6BA > :global(.__wab_flex-container) > *,
-.freeBox__w6BA > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.freeBox__w6BA > :global(.__wab_flex-container) > picture > img,
-.freeBox__w6BA
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-left: 15px;
+.root > :global(.__wab_flex-container) > *,
+.root > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.root > :global(.__wab_flex-container) > picture > img,
+.root > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
+  margin-top: 0px;
 }
-.text___2UupG {
-  position: relative;
-  width: auto;
-  height: auto;
-  max-width: 800px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 25px;
-}
-.svg {
-  position: relative;
-  object-fit: cover;
+.header:global(.__wab_instance) {
   max-width: 100%;
-  width: 25px;
-  height: 25px;
-  color: var(--token-0kI3JlBolqyCq);
-  flex-shrink: 0;
+  position: relative;
 }
 .freeBox__dK8WR {
-  display: flex;
   position: relative;
   flex-direction: column;
   align-items: center;
@@ -65,6 +36,7 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
+  display: none;
   padding: 8px;
 }
 .freeBoxisEmpty__dK8WRyqkGv {
@@ -86,6 +58,18 @@
 .textisEmpty__w92VjyqkGv {
   display: block;
 }
+.freeBox__unGtd {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  margin-bottom: 200px;
+  min-width: 0;
+}
 .lineItems {
   flex-direction: column;
   display: flex;
@@ -94,7 +78,7 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
-  padding: 0px;
+  padding: 20px 0px 0px;
 }
 .lineItems > :global(.__wab_flex-container) {
   flex-direction: column;
@@ -125,4 +109,103 @@
 }
 .shoppingCartLineItem__trP6:global(.__wab_instance) {
   position: relative;
+}
+.freeBox__avSb {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  top: auto;
+  left: 0px;
+  bottom: 0px;
+  z-index: 1;
+  box-shadow: 0px -2px 16px 0px #00000033;
+  min-width: 0;
+  padding: 8px;
+}
+.freeBox__bZiN9 {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.freeBoxisEmpty__bZiN9YqkGv {
+  display: none;
+}
+.text__riere {
+  width: auto;
+  height: auto;
+  max-width: 800px;
+  text-align: center;
+  font-size: 20px;
+}
+.freeBox___6PIpe {
+  width: auto;
+  height: auto;
+  max-width: 800px;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+.slotTargetTotalPrice {
+  font-size: 20px;
+  text-align: center;
+}
+.freeBox__dhXtS {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px 20px;
+}
+.freeBoxisEmpty__dhXtSyqkGv {
+  align-items: center;
+  justify-content: center;
+}
+.backBtn:global(.__wab_instance) {
+  max-width: 100%;
+}
+.svg {
+  position: relative;
+  object-fit: cover;
+  width: 1em;
+  height: 1em;
+}
+.svg___3T3Dd {
+  position: relative;
+  object-fit: cover;
+  width: 1em;
+  height: 1em;
+}
+.checkoutBtn:global(.__wab_instance) {
+  max-width: 100%;
+}
+.checkoutBtnisEmpty:global(.__wab_instance) {
+  display: none;
+}
+.svg__kfdZs {
+  position: relative;
+  object-fit: cover;
+  width: 1em;
+  height: 1em;
+}
+.svg__djAh {
+  position: relative;
+  object-fit: cover;
+  width: 1em;
+  height: 1em;
 }

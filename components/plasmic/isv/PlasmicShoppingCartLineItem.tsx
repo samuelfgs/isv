@@ -70,7 +70,7 @@ export const PlasmicShoppingCartLineItem__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicShoppingCartLineItem__OverridesType = {
   root?: p.Flex<"div">;
-  text?: p.Flex<"div">;
+  optionValues?: p.Flex<"div">;
   quantity?: p.Flex<typeof Quantity>;
 };
 
@@ -111,6 +111,7 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
           projectcss.root_reset,
           projectcss.plasmic_default_styles,
           projectcss.plasmic_mixins,
+          projectcss.plasmic_tokens,
           plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
           plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
           sty.root,
@@ -118,7 +119,11 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
         )}
       >
         {true ? (
-          <div className={classNames(projectcss.all, sty.freeBox__sv7Tj)}>
+          <div
+            className={classNames(projectcss.all, sty.freeBox__sv7Tj, {
+              [sty.freeBoxeven__sv7TjeuiD]: hasVariant(variants, "even", "even")
+            })}
+          >
             {true ? (
               <p.Stack
                 as={"div"}
@@ -142,12 +147,10 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
                 </div>
 
                 <div
-                  data-plasmic-name={"text"}
-                  data-plasmic-override={overrides.text}
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.text
+                    sty.text___8BjoR
                   )}
                 >
                   {"-"}
@@ -190,6 +193,35 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
             ) : null}
           </div>
         ) : null}
+
+        <p.Stack
+          as={"div"}
+          data-plasmic-name={"optionValues"}
+          data-plasmic-override={overrides.optionValues}
+          hasGap={true}
+          className={classNames(projectcss.all, sty.optionValues)}
+        >
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__zwko6
+            )}
+          >
+            {"Temaki Philadelphia"}
+          </div>
+
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__rvi0T
+            )}
+          >
+            {"Caldo de Cana"}
+          </div>
+        </p.Stack>
+
         {true ? (
           <div
             className={classNames(projectcss.all, sty.freeBox__i53, {
@@ -211,8 +243,8 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "text", "quantity"],
-  text: ["text"],
+  root: ["root", "optionValues", "quantity"],
+  optionValues: ["optionValues"],
   quantity: ["quantity"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -220,7 +252,7 @@ type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  text: "div";
+  optionValues: "div";
   quantity: typeof Quantity;
 };
 
@@ -281,7 +313,7 @@ export const PlasmicShoppingCartLineItem = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    text: makeNodeComponent("text"),
+    optionValues: makeNodeComponent("optionValues"),
     quantity: makeNodeComponent("quantity"),
 
     // Metadata about props expected for PlasmicShoppingCartLineItem

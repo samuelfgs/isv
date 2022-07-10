@@ -1,0 +1,29 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  position: relative;
+  min-width: 0;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--token-GT3Ewogw5DWgo);
+}
+.rootisSelected {
+  background: var(--token-GT3Ewogw5DWgo);
+}
+.rootisFirstRow {
+  border-bottom-width: 1px;
+  border-bottom-color: var(--token-GT3Ewogw5DWgo);
+  border-top: 1px solid var(--token-GT3Ewogw5DWgo);
+}
+.freeBox {
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  min-width: 0;
+}

@@ -96,6 +96,7 @@ function PlasmicLoading__RenderFunc(props: {
           projectcss.root_reset,
           projectcss.plasmic_default_styles,
           projectcss.plasmic_mixins,
+          projectcss.plasmic_tokens,
           plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
           plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
           sty.root,

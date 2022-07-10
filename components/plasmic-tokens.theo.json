@@ -5541,6 +5541,16 @@
       }
     },
     {
+      "name": "primary",
+      "type": "color",
+      "value": "#006ADC",
+      "category": "color",
+      "meta": {
+        "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
+        "id": "--wRfAfgK"
+      }
+    },
+    {
       "name": "purple1",
       "type": "color",
       "value": "#FEFCFE",

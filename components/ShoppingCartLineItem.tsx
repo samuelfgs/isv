@@ -24,6 +24,8 @@ export interface ShoppingCartLineItemProps
   extends DefaultShoppingCartLineItemProps {
     quantity: number;
     onChangeQuantity: (q: number) => void;
+    product: any;
+    selectedValues: string[];
 }
 
 function ShoppingCartLineItem_(
@@ -44,13 +46,27 @@ function ShoppingCartLineItem_(
   //
   // By default, we are just piping all ShoppingCartLineItemProps here, but feel free
   // to do whatever works for you.
-  const { quantity, onChangeQuantity, ...rest } = props;
+  const { quantity, onChangeQuantity, product, selectedValues, ...rest } = props;
   return (
     <PlasmicShoppingCartLineItem root={{ ref }} {...rest}
       quantity={{
         quantity,
         onChangeQuantity
-      }} 
+      }}
+      optionValues={{
+        children: (
+          selectedValues
+            .map((optionValueId) => 
+              <div>
+                {product?.fields.options
+                  .flatMap((option: any) => option.fields.values)
+                  .find((optionValue: any) => optionValue.sys.id === optionValueId)
+                  ?.fields.label
+                }
+              </div>
+            )
+          )
+      }}
     />
   );
 }

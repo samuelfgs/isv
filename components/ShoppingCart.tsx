@@ -6,46 +6,48 @@ import {
   DefaultShoppingCartProps
 } from "./plasmic/isv/PlasmicShoppingCart";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
-import { Cart, formatPrice, getQuantityItem, handleQuantityChange, LineItem } from "../common";
 import ShoppingCartLineItem from "./ShoppingCartLineItem";
+import { addToCart, Cart, LineItem } from "../lib/cart";
+import { formatPrice } from "../lib/common";
 
-// Your component props start with props for variants and slots you defined
-// in Plasmic, but you can add more here, like event handlers that you can
-// attach to named nodes in your component.
-//
-// If you don't want to expose certain variants or slots as a prop, you can use
-// Omit to hide them:
-//
-// interface ShoppingCartProps extends Omit<DefaultShoppingCartProps, "hideProps1"|"hideProp2"> {
-//   // etc.
-// }
-//
-// You can also stop extending from DefaultShoppingCartProps altogether and have
-// total control over the props for your component.
 export interface ShoppingCartProps extends DefaultShoppingCartProps {
-  lineItems: LineItem[];
-  cart: Cart,
-  setCart: React.Dispatch<React.SetStateAction<Cart>>
+  cart: Cart;
+  setCart: React.Dispatch<React.SetStateAction<Cart>>;
+  onBack: () => void;
+  onCheckout: () => void;
 }
 
 function ShoppingCart_(props: ShoppingCartProps, ref: HTMLElementRefOf<"div">) {
-  const { lineItems, cart, setCart, ...rest } = props;
+
+  const { cart, setCart, onBack, onCheckout, ...rest } = props;
+  console.log("dale", "shopping cart", cart);
+
+
   return <PlasmicShoppingCart 
     root={{ ref }} 
     {...rest} 
     lineItems={{
-      children: lineItems.map((item, i) => (
+      children: cart.lineItems.map((item, i) => (
         <ShoppingCartLineItem
           index={i+1}
-          name={item.item.name}
-          price={`R$ ${formatPrice(item.item.price)}`}
+          name={item.product.fields.name}
+          price={`R$ ${formatPrice(item.product.fields.price)}`}
           even={i%2 === 1}
-          quantity={getQuantityItem(item.item, cart)}
-          onChangeQuantity={handleQuantityChange(item.item, cart, setCart)}
+          quantity={item.quantity}
+          onChangeQuantity={(newQuantity) => addToCart(item.productId, item.variantId, newQuantity, item.product, setCart)}
+          selectedValues={JSON.parse(item.variantId)}
+          product={item.product}
         />
       )
     )}}
-    isEmpty={lineItems.length === 0}
+    isEmpty={cart.lineItems.length === 0}
+    totalPrice={cart.totalPrice.toFixed(2)}
+    backBtn={{
+      onClick: onBack
+    }}
+    checkoutBtn={{
+      onClick: onCheckout
+    }}
   />;
 }
 
