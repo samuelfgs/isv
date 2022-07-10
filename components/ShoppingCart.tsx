@@ -12,13 +12,22 @@ import { formatPrice } from "../lib/common";
 
 export interface ShoppingCartProps extends DefaultShoppingCartProps {
   cart: Cart;
+  isLoading: boolean;
   setCart: React.Dispatch<React.SetStateAction<Cart>>;
   onBack: () => void;
-  onCheckout: () => void;
+  onCheckout: (name: string, email: string) => void;
+}
+
+function isValidEmail(email: string) {
+  return /\S+@\S+\.\S+/.test(email);
 }
 
 function ShoppingCart_(props: ShoppingCartProps, ref: HTMLElementRefOf<"div">) {
-  const { cart, setCart, onBack, onCheckout, ...rest } = props;
+  const { cart, setCart, onBack, onCheckout, isLoading, ...rest } = props;
+  const [ invalidState, setInvalidState ] = React.useState(false);
+  const [ name, setName ] = React.useState<string>();
+  const [ email, setEmail ] = React.useState<string>();
+
   return <PlasmicShoppingCart 
     root={{ ref }} 
     {...rest} 
@@ -42,7 +51,33 @@ function ShoppingCart_(props: ShoppingCartProps, ref: HTMLElementRefOf<"div">) {
       onClick: onBack
     }}
     checkoutBtn={{
-      onClick: onCheckout
+      onClick: () => {
+        if (!name || !email || !isValidEmail(email)) {
+          setInvalidState(true);
+        } else {
+          onCheckout(name, email);
+        }
+      }
+    }}
+    nameInput={{
+      value: name,
+      onChange: (e) => {
+        setName(e.target.value);
+        setInvalidState(false);
+      }
+    }}
+    emailInput={{
+      value: email,
+      onChange: (e) => {
+        setEmail(e.target.value);
+        setInvalidState(false);
+      }
+    }}
+    loading={{
+      hide: !isLoading
+    }}
+    invalidData={{
+      render: (props, Component) => invalidState ? <Component {...props} /> : null
     }}
   />;
 }

@@ -184,6 +184,20 @@
           "cssFilePath": "plasmic/isv/PlasmicHeader.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "ZCE1TfqnzIq",
+          "name": "TextInput",
+          "type": "managed",
+          "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
+          "renderModuleFilePath": "plasmic/isv/PlasmicTextInput.tsx",
+          "importSpec": {
+            "modulePath": "TextInput.tsx"
+          },
+          "cssFilePath": "plasmic/isv/PlasmicTextInput.module.css",
+          "scheme": "blackbox",
+          "componentType": "component",
+          "plumeType": "text-input"
         }
       ],
       "icons": [
@@ -263,6 +277,16 @@
           "id": "dvkQxWo6G",
           "name": "temaki",
           "filePath": "../public/plasmic/isv/images/temaki.png"
+        },
+        {
+          "id": "AyatUxkb5",
+          "name": "74H8.gif",
+          "filePath": "../public/plasmic/isv/images/_74H8Gif.gif"
+        },
+        {
+          "id": "aeGyFcPRf",
+          "name": "ZZ5H (1).gif",
+          "filePath": "../public/plasmic/isv/images/zz5H1Gif.gif"
         }
       ],
       "indirect": false,

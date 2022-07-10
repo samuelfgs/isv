@@ -7,7 +7,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { items, name, email } = JSON.parse(req.body);
   mercadopago.configure(process.env.IS_PROD === "true" ? {
     client_id: process.env.CLIENT_ID!,
     client_secret: process.env.CLIENT_SECRET!
@@ -16,14 +15,8 @@ export default async function handler(
   });
   
   const response = await mercadopago
-    .preferences
-    .create({ 
-      items,
-      payer: {
-        name,
-        email
-      }
-    });
+    .merchant_orders
+    .findById(23883329680)
 
   res.status(200).json({ ...response.body })
 }

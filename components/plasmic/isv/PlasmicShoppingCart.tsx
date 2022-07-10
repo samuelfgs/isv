@@ -36,7 +36,9 @@ import {
 } from "@plasmicapp/react-web";
 import Header from "../../Header"; // plasmic-import: oeaZd66p84/component
 import ShoppingCartLineItem from "../../ShoppingCartLineItem"; // plasmic-import: cnD_NnksTl/component
+import TextInput from "../../TextInput"; // plasmic-import: ZCE1TfqnzIq/component
 import Button from "../../Button"; // plasmic-import: dTivG-jH3lW/component
+import Loading from "../../Loading"; // plasmic-import: 3JMpsqmVnQ/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -45,9 +47,10 @@ import plasmic_plasmic_kit_q_4_color_tokens_css from "../plasmic_kit_q_4_color_t
 import projectcss from "./plasmic_isv.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
 import sty from "./PlasmicShoppingCart.module.css"; // plasmic-import: 2L-PECr0xw/css
 
+import SearchsvgIcon from "./icons/PlasmicIcon__Searchsvg"; // plasmic-import: AUsPFN29Z5Y/icon
+import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: q1TlDUyNqop/icon
 import PlusIcon from "./icons/PlasmicIcon__Plus"; // plasmic-import: TZ5ExugZ2/icon
 import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: k5kwo7sOrBj/icon
-import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: q1TlDUyNqop/icon
 
 export type PlasmicShoppingCart__VariantMembers = {
   isEmpty: "isEmpty";
@@ -75,9 +78,13 @@ export type PlasmicShoppingCart__OverridesType = {
   root?: p.Flex<"div">;
   header?: p.Flex<typeof Header>;
   lineItems?: p.Flex<"div">;
+  invalidData?: p.Flex<"div">;
+  nameInput?: p.Flex<typeof TextInput>;
+  emailInput?: p.Flex<typeof TextInput>;
   backBtn?: p.Flex<typeof Button>;
   svg?: p.Flex<"svg">;
   checkoutBtn?: p.Flex<typeof Button>;
+  loading?: p.Flex<typeof Loading>;
 };
 
 export interface DefaultShoppingCartProps {
@@ -245,6 +252,66 @@ function PlasmicShoppingCart__RenderFunc(props: {
             ) : null}
             {true ? (
               <div
+                data-plasmic-name={"invalidData"}
+                data-plasmic-override={overrides.invalidData}
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.invalidData
+                )}
+              >
+                {"Dados inválidos"}
+              </div>
+            ) : null}
+
+            <p.Stack
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox__az7FN)}
+            >
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__hPl3V
+                )}
+              >
+                {"Nome"}
+              </div>
+
+              <TextInput
+                data-plasmic-name={"nameInput"}
+                data-plasmic-override={overrides.nameInput}
+                className={classNames("__wab_instance", sty.nameInput)}
+                placeholder={"" as const}
+              />
+            </p.Stack>
+
+            <p.Stack
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox__dy3J8)}
+            >
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__ltFxi
+                )}
+              >
+                {"Email"}
+              </div>
+
+              <TextInput
+                data-plasmic-name={"emailInput"}
+                data-plasmic-override={overrides.emailInput}
+                className={classNames("__wab_instance", sty.emailInput)}
+                type={"email" as const}
+              />
+            </p.Stack>
+
+            {true ? (
+              <div
                 className={classNames(projectcss.all, sty.freeBox__dhXtS, {
                   [sty.freeBoxisEmpty__dhXtSyqkGv]: hasVariant(
                     variants,
@@ -340,18 +407,40 @@ function PlasmicShoppingCart__RenderFunc(props: {
             ) : null}
           </p.Stack>
         ) : null}
+
+        <Loading
+          data-plasmic-name={"loading"}
+          data-plasmic-override={overrides.loading}
+          className={classNames("__wab_instance", sty.loading)}
+          hide={true}
+        />
       </p.Stack>
     ) : null
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "lineItems", "backBtn", "svg", "checkoutBtn"],
+  root: [
+    "root",
+    "header",
+    "lineItems",
+    "invalidData",
+    "nameInput",
+    "emailInput",
+    "backBtn",
+    "svg",
+    "checkoutBtn",
+    "loading"
+  ],
   header: ["header"],
   lineItems: ["lineItems"],
+  invalidData: ["invalidData"],
+  nameInput: ["nameInput"],
+  emailInput: ["emailInput"],
   backBtn: ["backBtn", "svg"],
   svg: ["svg"],
-  checkoutBtn: ["checkoutBtn"]
+  checkoutBtn: ["checkoutBtn"],
+  loading: ["loading"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -360,9 +449,13 @@ type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;
   lineItems: "div";
+  invalidData: "div";
+  nameInput: typeof TextInput;
+  emailInput: typeof TextInput;
   backBtn: typeof Button;
   svg: "svg";
   checkoutBtn: typeof Button;
+  loading: typeof Loading;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -424,9 +517,13 @@ export const PlasmicShoppingCart = Object.assign(
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
     lineItems: makeNodeComponent("lineItems"),
+    invalidData: makeNodeComponent("invalidData"),
+    nameInput: makeNodeComponent("nameInput"),
+    emailInput: makeNodeComponent("emailInput"),
     backBtn: makeNodeComponent("backBtn"),
     svg: makeNodeComponent("svg"),
     checkoutBtn: makeNodeComponent("checkoutBtn"),
+    loading: makeNodeComponent("loading"),
 
     // Metadata about props expected for PlasmicShoppingCart
     internalVariantProps: PlasmicShoppingCart__VariantProps,

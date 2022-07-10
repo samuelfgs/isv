@@ -178,6 +178,122 @@
   font-size: 20px;
   text-align: center;
 }
+.invalidData {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+  text-align: center;
+  color: var(--token-A2_corQeQXhDp);
+  min-width: 0;
+  display: block;
+}
+.freeBox__az7FN {
+  flex-direction: row;
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 0px 10px;
+}
+.freeBox__az7FN > :global(.__wab_flex-container) {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  margin-left: calc(0px - 10px);
+  width: calc(100% + 10px);
+}
+.freeBox__az7FN > :global(.__wab_flex-container) > *,
+.freeBox__az7FN > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__az7FN > :global(.__wab_flex-container) > picture > img,
+.freeBox__az7FN
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: 10px;
+}
+.text__hPl3V {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 800px;
+  min-width: 50px;
+  font-size: 14px;
+}
+.nameInput:global(.__wab_instance) {
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+.svg__ppYda {
+  position: relative;
+  object-fit: cover;
+  width: 1em;
+  height: 1em;
+}
+.svg__yRnjY {
+  position: relative;
+  object-fit: cover;
+  width: 1em;
+  height: 1em;
+}
+.freeBox__dy3J8 {
+  flex-direction: row;
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 0px 10px;
+}
+.freeBox__dy3J8 > :global(.__wab_flex-container) {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  margin-left: calc(0px - 10px);
+  width: calc(100% + 10px);
+}
+.freeBox__dy3J8 > :global(.__wab_flex-container) > *,
+.freeBox__dy3J8 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__dy3J8 > :global(.__wab_flex-container) > picture > img,
+.freeBox__dy3J8
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: 10px;
+}
+.text__ltFxi {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 800px;
+  min-width: 50px;
+  font-size: 14px;
+}
+.emailInput:global(.__wab_instance) {
+  max-width: 100%;
+  position: relative;
+}
+.svg__onlLc {
+  position: relative;
+  object-fit: cover;
+  width: 1em;
+  height: 1em;
+}
+.svg__clsjS {
+  position: relative;
+  object-fit: cover;
+  width: 1em;
+  height: 1em;
+}
 .freeBox__dhXtS {
   display: flex;
   flex-direction: row;
@@ -235,4 +351,15 @@
   object-fit: cover;
   width: 1em;
   height: 1em;
+}
+.loading:global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  z-index: 1;
+  position: fixed;
+  min-width: 0;
+  min-height: 0;
 }

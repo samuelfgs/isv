@@ -32,7 +32,7 @@ function Homepage() {
   const [appState, setAppState] = React.useState<AppState>(AppState.home);
   const [selectedItem, setSelectedItem] = React.useState<string>();
 
-  const goToCheckout = async () => {
+  const goToCheckout = async (name: string, email: string) => {
     setIsLoading(true);
     const items = cart.lineItems.map(item => ({
       id: JSON.stringify({
@@ -40,17 +40,21 @@ function Homepage() {
         variantId: JSON.parse(item.variantId)
       }),
       title: item.product.fields.name,
-      unit_price: item.product.fields.price,
+      unit_price: 0.5,
       quantity: item.quantity
     }));
 
     const response = await fetch("/api/admin", {
       method: "post",
-      body: JSON.stringify(items)
+      body: JSON.stringify({
+        items,
+        name,
+        email
+      })
     });
 
     const data = await response.json();
-    const link = data.sandbox_init_point;
+    const link = data.init_point;
     router.push(link);
   }
   const ref = React.createRef<HTMLDivElement>();
@@ -123,6 +127,7 @@ function Homepage() {
           setCart={setCart}
           onBack={() => setAppState(AppState.home)}
           onCheckout={goToCheckout}
+          isLoading={isLoading}
         />
       ) : null}
     </>

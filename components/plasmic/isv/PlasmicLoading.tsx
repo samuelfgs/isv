@@ -59,6 +59,7 @@ export const PlasmicLoading__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicLoading__OverridesType = {
   root?: p.Flex<"div">;
+  freeBox?: p.Flex<"div">;
   img?: p.Flex<typeof p.PlasmicImg>;
 };
 
@@ -103,34 +104,43 @@ function PlasmicLoading__RenderFunc(props: {
           { [sty.roothide]: hasVariant(variants, "hide", "hide") }
         )}
       >
-        <p.PlasmicImg
-          data-plasmic-name={"img"}
-          data-plasmic-override={overrides.img}
-          alt={""}
-          className={classNames(sty.img, {
-            [sty.imghide]: hasVariant(variants, "hide", "hide")
-          })}
-          displayHeight={"auto" as const}
-          displayMaxHeight={"none" as const}
-          displayMaxWidth={"100%" as const}
-          displayMinHeight={"0" as const}
-          displayMinWidth={"0" as const}
-          displayWidth={"auto" as const}
-          loading={"lazy" as const}
-          src={{
-            src: "/plasmic/isv/images/loadingBuffergif.gif",
-            fullWidth: 498,
-            fullHeight: 498,
-            aspectRatio: undefined
-          }}
-        />
+        {true ? (
+          <div
+            data-plasmic-name={"freeBox"}
+            data-plasmic-override={overrides.freeBox}
+            className={classNames(projectcss.all, sty.freeBox)}
+          >
+            <p.PlasmicImg
+              data-plasmic-name={"img"}
+              data-plasmic-override={overrides.img}
+              alt={""}
+              className={classNames(sty.img, {
+                [sty.imghide]: hasVariant(variants, "hide", "hide")
+              })}
+              displayHeight={"150px" as const}
+              displayMaxHeight={"none" as const}
+              displayMaxWidth={"100%" as const}
+              displayMinHeight={"0" as const}
+              displayMinWidth={"0" as const}
+              displayWidth={"150px" as const}
+              loading={"lazy" as const}
+              src={{
+                src: "/plasmic/isv/images/zz5H1Gif.gif",
+                fullWidth: 256,
+                fullHeight: 256,
+                aspectRatio: undefined
+              }}
+            />
+          </div>
+        ) : null}
       </div>
     ) : null
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "img"],
+  root: ["root", "freeBox", "img"],
+  freeBox: ["freeBox", "img"],
   img: ["img"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -138,6 +148,7 @@ type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  freeBox: "div";
   img: typeof p.PlasmicImg;
 };
 
@@ -198,6 +209,7 @@ export const PlasmicLoading = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    freeBox: makeNodeComponent("freeBox"),
     img: makeNodeComponent("img"),
 
     // Metadata about props expected for PlasmicLoading
