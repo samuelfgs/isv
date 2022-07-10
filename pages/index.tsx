@@ -99,7 +99,7 @@ function Homepage() {
               setSelectedItem(id);
               const product = products?.items.find((product: any) => product.sys.id === id);
               if (id && (product?.fields.options ?? []).length === 0) {
-                addToCart(id, JSON.stringify([]), 1, product, setCart);
+                addToCart(id, JSON.stringify([]), product, cart, setCart);
                 setAppState(AppState.checkout);
               } else {
                 setAppState(AppState.addItem);
@@ -117,7 +117,7 @@ function Homepage() {
           onBack={() => setAppState(AppState.home)}
           onAdd={(productId, variantId, entry) => {
             if (productId) {
-              addToCart(productId, variantId, 1, entry, setCart)
+              addToCart(productId, variantId, entry, cart, setCart)
             }
             setAppState(AppState.checkout)
           }}

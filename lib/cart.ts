@@ -13,7 +13,7 @@ export type Cart = {
   email: string;
 }
 
-export const addToCart = (productId: string, variantId: string, quantity: number, product: any, setCart: React.Dispatch<React.SetStateAction<Cart>>) => 
+export const updateCart = (productId: string, variantId: string, quantity: number, product: any, setCart: React.Dispatch<React.SetStateAction<Cart>>) => 
   setCart(cart => {
     const lineItem = cart.lineItems.find(item => item.productId === productId && item.variantId === variantId);
     if (lineItem) {
@@ -32,3 +32,8 @@ export const addToCart = (productId: string, variantId: string, quantity: number
     }
     return {...cart};
   })
+
+export const addToCart = (productId: string, variantId: string, product: any, cart: Cart, setCart: React.Dispatch<React.SetStateAction<Cart>>) => {
+  const lineItem = cart.lineItems.find(item => item.productId === productId && item.variantId === variantId);
+  updateCart(productId, variantId, (lineItem?.quantity ?? 0) + 1, product, setCart);
+}

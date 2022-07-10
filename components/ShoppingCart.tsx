@@ -7,7 +7,7 @@ import {
 } from "./plasmic/isv/PlasmicShoppingCart";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 import ShoppingCartLineItem from "./ShoppingCartLineItem";
-import { addToCart, Cart, LineItem } from "../lib/cart";
+import { addToCart, Cart, LineItem, updateCart } from "../lib/cart";
 import { formatPrice } from "../lib/common";
 
 export interface ShoppingCartProps extends DefaultShoppingCartProps {
@@ -39,7 +39,7 @@ function ShoppingCart_(props: ShoppingCartProps, ref: HTMLElementRefOf<"div">) {
           price={`R$ ${formatPrice(item.product.fields.price * item.quantity)}`}
           even={i%2 === 1}
           quantity={item.quantity}
-          onChangeQuantity={(newQuantity) => addToCart(item.productId, item.variantId, newQuantity, item.product, setCart)}
+          onChangeQuantity={(newQuantity) => updateCart(item.productId, item.variantId, newQuantity, item.product, setCart)}
           selectedValues={JSON.parse(item.variantId)}
           product={item.product}
         />
