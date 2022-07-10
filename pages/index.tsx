@@ -73,7 +73,7 @@ function Homepage() {
   });
 
   React.useEffect(() => {
-    if (appState === AppState.home) {
+    if (appState === AppState.home && cart.lineItems.length > 0) {
       const menuOffset = document.getElementById("menu")?.offsetTop ?? 0;
       window.scrollTo({
         top: menuOffset,
