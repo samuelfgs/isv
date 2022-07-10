@@ -8,7 +8,10 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const items = JSON.parse(req.body);
-  mercadopago.configure({
+  mercadopago.configure(process.env.IS_PROD === "true" ? {
+    client_id: process.env.CLIENT_ID!,
+    client_secret: process.env.CLIENT_SECRET!
+  } : {
     access_token: process.env.TEST_ACCESS_TOKEN!
   });
   
