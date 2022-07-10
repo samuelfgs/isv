@@ -61,7 +61,6 @@ export type PlasmicSuccess__OverridesType = {
   svg?: p.Flex<"svg">;
   text?: p.Flex<"div">;
   h2?: p.Flex<"h2">;
-  link?: p.Flex<"a"> & Partial<LinkProps>;
 };
 
 export interface DefaultSuccessProps {}
@@ -110,11 +109,24 @@ function PlasmicSuccess__RenderFunc(props: {
             sty.root
           )}
         >
-          <Header
-            data-plasmic-name={"header"}
-            data-plasmic-override={overrides.header}
-            className={classNames("__wab_instance", sty.header)}
-          />
+          {true ? (
+            <p.PlasmicLink
+              className={classNames(
+                projectcss.all,
+                projectcss.a,
+                sty.link__b44Od
+              )}
+              component={Link}
+              href={"/" as const}
+              platform={"nextjs"}
+            >
+              <Header
+                data-plasmic-name={"header"}
+                data-plasmic-override={overrides.header}
+                className={classNames("__wab_instance", sty.header)}
+              />
+            </p.PlasmicLink>
+          ) : null}
 
           <div className={classNames(projectcss.all, sty.freeBox__jsI9F)}>
             <div className={classNames(projectcss.all, sty.freeBox__lxcmU)}>
@@ -155,20 +167,20 @@ function PlasmicSuccess__RenderFunc(props: {
               </div>
             </div>
 
-            <p.PlasmicLink
-              data-plasmic-name={"link"}
-              data-plasmic-override={overrides.link}
-              className={classNames(
-                projectcss.all,
-                projectcss.a,
-                projectcss.__wab_text,
-                sty.link
-              )}
-              component={Link}
-              platform={"nextjs"}
-            >
-              {"Baixar comprovante"}
-            </p.PlasmicLink>
+            {true ? (
+              <p.PlasmicLink
+                className={classNames(
+                  projectcss.all,
+                  projectcss.a,
+                  projectcss.__wab_text,
+                  sty.link__wmkFi
+                )}
+                component={Link}
+                platform={"nextjs"}
+              >
+                {"Baixar comprovante"}
+              </p.PlasmicLink>
+            ) : null}
           </div>
         </div>
       </div>
@@ -177,12 +189,11 @@ function PlasmicSuccess__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "svg", "text", "h2", "link"],
+  root: ["root", "header", "svg", "text", "h2"],
   header: ["header"],
   svg: ["svg"],
   text: ["text", "h2"],
-  h2: ["h2"],
-  link: ["link"]
+  h2: ["h2"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -193,7 +204,6 @@ type NodeDefaultElementType = {
   svg: "svg";
   text: "div";
   h2: "h2";
-  link: "a";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -257,7 +267,6 @@ export const PlasmicSuccess = Object.assign(
     svg: makeNodeComponent("svg"),
     text: makeNodeComponent("text"),
     h2: makeNodeComponent("h2"),
-    link: makeNodeComponent("link"),
 
     // Metadata about props expected for PlasmicSuccess
     internalVariantProps: PlasmicSuccess__VariantProps,
