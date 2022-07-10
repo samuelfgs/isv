@@ -252,6 +252,7 @@ function PlasmicHomepage__RenderFunc(props: {
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__dg52T)}
+              id={"menu" as const}
             >
               <div
                 className={classNames(
@@ -280,7 +281,7 @@ function PlasmicHomepage__RenderFunc(props: {
                   contentType={"eventMenuItem" as const}
                   limit={1000 as const}
                   noLayout={true}
-                  order={"" as const}
+                  order={"sys.createdAt" as const}
                 >
                   <ph.DataCtxReader>
                     {$ctx => (

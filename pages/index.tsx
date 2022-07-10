@@ -4,11 +4,15 @@ import * as React from "react";
 import OrderItem from "../components/OrderItem";
 import { PlasmicHomepage } from "../components/plasmic/isv/PlasmicHomepage";
 import options from "../data.json";
-import useSWR from "swr";
+import useSWR, { useSWRConfig } from "swr";
 import { useRouter } from 'next/router'
 import AddItem from "../components/AddItem";
 import { addToCart, Cart } from "../lib/cart";
 import ShoppingCart from "../components/ShoppingCart";
+import { usePlasmicQueryData } from "@plasmicapp/query";
+import { CredentialsContext } from "../components/contentful";
+import { ensure } from "../lib/common";
+import * as Contentful from "contentful";
 
 enum AppState {
   home,
@@ -17,46 +21,89 @@ enum AppState {
 };
 
 function Homepage() {
-  const [cart, setCart] = React.useState<Cart>({lineItems: [], totalPrice: 0});
+  const [cart, setCart] = React.useState<Cart>({
+    lineItems: [], 
+    totalPrice: 0,
+    totalQuantity: 0
+});
   const [isLoading, setIsLoading] = React.useState(false);
   const router = useRouter();
 
   const [appState, setAppState] = React.useState<AppState>(AppState.home);
   const [selectedItem, setSelectedItem] = React.useState<string>();
 
-  // const goToCheckout = async () => {
-  //   setIsLoading(true);
-  //   const items = cart.lineItems.map(item => ({
-  //     id: item.item.id,
-  //     title: item.item.name,
-  //     description: item.item.description,
-  //     unit_price: item.item.price,
-  //     quantity: item.quantity
-  //   }));
+  const goToCheckout = async () => {
+    setIsLoading(true);
+    const items = cart.lineItems.map(item => ({
+      id: JSON.stringify({
+        productId: item.productId,
+        variantId: JSON.parse(item.variantId)
+      }),
+      title: item.product.fields.name,
+      unit_price: item.product.fields.price,
+      quantity: item.quantity
+    }));
 
-  //   const response = await fetch("/api/admin", {
-  //     method: "post",
-  //     body: JSON.stringify(items)
-  //   });
+    const response = await fetch("/api/admin", {
+      method: "post",
+      body: JSON.stringify(items)
+    });
 
-  //   const data = await response.json();
-    
-  //   const link = data.sandbox_init_point;
-  //   router.push(link);
-  // }
+    const data = await response.json();
+    const link = data.sandbox_init_point;
+    router.push(link);
+  }
+  const ref = React.createRef<HTMLDivElement>();
 
+  const creds = ensure(React.useContext(CredentialsContext));
+  const cacheKey = JSON.stringify({
+    creds,
+  });
+  const client = Contentful.createClient({
+    space: creds.space,
+    accessToken: creds.accessToken,
+  });
+  const { data: products } = usePlasmicQueryData<
+    any | null
+  >(`${cacheKey}/eventMenuItem/`, async () => {
+    const response = await client.getEntries({
+      content_type: 'eventMenuItem'
+    });
+    return response;
+  });
+
+  React.useEffect(() => {
+    if (appState === AppState.home) {
+      const menuOffset = document.getElementById("menu")?.offsetTop ?? 0;
+      window.scrollTo({
+        top: menuOffset,
+        behavior: "smooth"
+      })
+    }
+  }, [appState, ref]);
   return (
     <>
       {appState === AppState.home ? (
         <PlasmicHomepage
+          root={{
+            ref
+          }}
           menuItem={{
             onSelect: (id) => {
-              setAppState(AppState.addItem);
               setSelectedItem(id);
+              const product = products?.items.find((product: any) => product.sys.id === id);
+              if (id && (product?.fields.options ?? []).length === 0) {
+                addToCart(id, JSON.stringify([]), 1, product, setCart);
+                setAppState(AppState.checkout);
+              } else {
+                setAppState(AppState.addItem);
+              }
             }
           }}
           cartButton={{
-            isEmpty: cart.lineItems.length === 0
+            isEmpty: cart.lineItems.length === 0,
+            quantity: cart.totalQuantity,
+            onClick: () => setAppState(AppState.checkout)
           }}
         />
       ) : appState === AppState.addItem ? (
@@ -75,7 +122,7 @@ function Homepage() {
           cart={cart}
           setCart={setCart}
           onBack={() => setAppState(AppState.home)}
-          onCheckout={() => { }}
+          onCheckout={goToCheckout}
         />
       ) : null}
     </>

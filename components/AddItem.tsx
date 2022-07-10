@@ -39,15 +39,13 @@ function AddItem_(props: AddItemProps, ref: HTMLElementRefOf<"div">) {
     space: creds.space,
     accessToken: creds.accessToken,
   });
-  const { data, error: entryDataError } = usePlasmicQueryData<
+  const { data } = usePlasmicQueryData<
     any | null
   >(entryId ? `${cacheKey}/entry/${entryId}` : null, async () => {
     const response = await client.getEntry(`${entryId}`, { include: 2 });
     return response;
   });
 
-  console.log("dale", data, Object.keys(selectedValues).length, data?.fields.options.length);
-  
   return <PlasmicAddItem 
     root={{ ref }} 
     {...rest} 
@@ -65,6 +63,10 @@ function AddItem_(props: AddItemProps, ref: HTMLElementRefOf<"div">) {
     selectedOptionValues={{
       children: (
         Object.entries(selectedValues)
+          .sort((a, b) => 
+            data?.fields.options.findIndex((option: any) => option.sys.id === a[0]) - 
+            data?.fields.options.findIndex((option: any) => option.sys.id === b[0])
+          )
           .map(([optionId, optionValueId]) => 
             <div>
               {data?.fields.options

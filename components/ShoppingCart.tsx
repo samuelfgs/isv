@@ -18,11 +18,7 @@ export interface ShoppingCartProps extends DefaultShoppingCartProps {
 }
 
 function ShoppingCart_(props: ShoppingCartProps, ref: HTMLElementRefOf<"div">) {
-
   const { cart, setCart, onBack, onCheckout, ...rest } = props;
-  console.log("dale", "shopping cart", cart);
-
-
   return <PlasmicShoppingCart 
     root={{ ref }} 
     {...rest} 
@@ -31,7 +27,7 @@ function ShoppingCart_(props: ShoppingCartProps, ref: HTMLElementRefOf<"div">) {
         <ShoppingCartLineItem
           index={i+1}
           name={item.product.fields.name}
-          price={`R$ ${formatPrice(item.product.fields.price)}`}
+          price={`R$ ${formatPrice(item.product.fields.price * item.quantity)}`}
           even={i%2 === 1}
           quantity={item.quantity}
           onChangeQuantity={(newQuantity) => addToCart(item.productId, item.variantId, newQuantity, item.product, setCart)}

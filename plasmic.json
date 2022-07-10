@@ -184,19 +184,6 @@
           "cssFilePath": "plasmic/isv/PlasmicHeader.module.css",
           "scheme": "blackbox",
           "componentType": "component"
-        },
-        {
-          "id": "YCWt9QOvru",
-          "name": "OptionItem",
-          "type": "managed",
-          "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
-          "renderModuleFilePath": "plasmic/isv/PlasmicOptionItem.tsx",
-          "importSpec": {
-            "modulePath": "OptionItem.tsx"
-          },
-          "cssFilePath": "plasmic/isv/PlasmicOptionItem.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
         }
       ],
       "icons": [

@@ -20,7 +20,9 @@ import { HTMLElementRefOf } from "@plasmicapp/react-web";
 //
 // You can also stop extending from DefaultCartButtonProps altogether and have
 // total control over the props for your component.
-export interface CartButtonProps extends DefaultCartButtonProps {}
+export interface CartButtonProps extends DefaultCartButtonProps {
+  onClick: () => void;
+}
 
 function CartButton_(props: CartButtonProps, ref: HTMLElementRefOf<"div">) {
   // Use PlasmicCartButton to render this component as it was
@@ -37,7 +39,7 @@ function CartButton_(props: CartButtonProps, ref: HTMLElementRefOf<"div">) {
   //
   // By default, we are just piping all CartButtonProps here, but feel free
   // to do whatever works for you.
-
+  
   return <PlasmicCartButton root={{ ref }} {...props} />;
 }
 

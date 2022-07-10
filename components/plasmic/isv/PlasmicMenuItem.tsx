@@ -144,10 +144,10 @@ function PlasmicMenuItem__RenderFunc(props: {
                         data-plasmic-override={overrides.img}
                         alt={""}
                         className={classNames(sty.img)}
-                        displayHeight={"80%" as const}
+                        displayHeight={"150px" as const}
                         displayMaxHeight={"none" as const}
                         displayMaxWidth={"none" as const}
-                        displayMinHeight={"0" as const}
+                        displayMinHeight={"150px" as const}
                         displayMinWidth={"0" as const}
                         displayWidth={"100%" as const}
                         loading={"lazy" as const}

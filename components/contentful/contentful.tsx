@@ -263,7 +263,7 @@ export function ContentfulRichText({
   richText,
 }: ContentfulRichTextProps) {
   if (!richText) {
-    return <div>Please specify a valid path or select a field.</div>;
+    return <div className={className}></div>;
   }
 
   return (

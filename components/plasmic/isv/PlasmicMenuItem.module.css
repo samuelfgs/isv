@@ -111,8 +111,10 @@
 .img {
   object-fit: cover;
   width: 100%;
-  height: 80%;
+  height: 150px;
+  min-height: 150px;
   min-width: 0;
+  flex-shrink: 0;
   border-radius: 20%;
 }
 .img > picture > img {
@@ -128,12 +130,13 @@
   width: 100%;
   height: auto;
   max-width: 100%;
+  min-height: 150px;
   min-width: 0;
   padding: 8px;
 }
 .freeBox__qrX8 > :global(.__wab_flex-container) {
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
   min-width: 0;
   margin-top: calc(0px - 15px);
