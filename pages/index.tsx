@@ -42,7 +42,7 @@ function Homepage() {
         variantId: JSON.parse(item.variantId)
       }),
       title: item.product.fields.name,
-      unit_price: 0.4,
+      unit_price: item.product.fields.price,
       quantity: item.quantity
     }));
 
