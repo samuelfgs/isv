@@ -24,7 +24,9 @@ function Homepage() {
   const [cart, setCart] = React.useState<Cart>({
     lineItems: [], 
     totalPrice: 0,
-    totalQuantity: 0
+    totalQuantity: 0,
+    name: "",
+    email: "",
 });
   const [isLoading, setIsLoading] = React.useState(false);
   const router = useRouter();

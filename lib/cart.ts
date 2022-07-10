@@ -9,6 +9,8 @@ export type Cart = {
   lineItems: LineItem[];
   totalPrice: number;
   totalQuantity: number;
+  name: string;
+  email: string;
 }
 
 export const addToCart = (productId: string, variantId: string, quantity: number, product: any, setCart: React.Dispatch<React.SetStateAction<Cart>>) => 

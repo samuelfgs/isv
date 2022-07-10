@@ -25,8 +25,8 @@ function isValidEmail(email: string) {
 function ShoppingCart_(props: ShoppingCartProps, ref: HTMLElementRefOf<"div">) {
   const { cart, setCart, onBack, onCheckout, isLoading, ...rest } = props;
   const [ invalidState, setInvalidState ] = React.useState(false);
-  const [ name, setName ] = React.useState<string>();
-  const [ email, setEmail ] = React.useState<string>();
+  const [ name, setName ] = React.useState<string>(cart.name);
+  const [ email, setEmail ] = React.useState<string>(cart.email);
 
   return <PlasmicShoppingCart 
     root={{ ref }} 
@@ -63,6 +63,7 @@ function ShoppingCart_(props: ShoppingCartProps, ref: HTMLElementRefOf<"div">) {
       value: name,
       onChange: (e) => {
         setName(e.target.value);
+        setCart(c => ({ ...c, name: e.target.value }));
         setInvalidState(false);
       }
     }}
@@ -70,6 +71,7 @@ function ShoppingCart_(props: ShoppingCartProps, ref: HTMLElementRefOf<"div">) {
       value: email,
       onChange: (e) => {
         setEmail(e.target.value);
+        setCart(c => ({ ...c, email: e.target.value }));
         setInvalidState(false);
       }
     }}
