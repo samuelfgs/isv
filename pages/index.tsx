@@ -40,7 +40,7 @@ function Homepage() {
         variantId: JSON.parse(item.variantId)
       }),
       title: item.product.fields.name,
-      unit_price: 0.5,
+      unit_price: cart.totalPrice,
       quantity: item.quantity
     }));
 
