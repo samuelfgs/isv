@@ -283,7 +283,9 @@ function PlasmicShoppingCart__RenderFunc(props: {
                 data-plasmic-name={"nameInput"}
                 data-plasmic-override={overrides.nameInput}
                 className={classNames("__wab_instance", sty.nameInput)}
+                name={"name" as const}
                 placeholder={"" as const}
+                required={true}
               />
             </p.Stack>
 
@@ -306,6 +308,8 @@ function PlasmicShoppingCart__RenderFunc(props: {
                 data-plasmic-name={"emailInput"}
                 data-plasmic-override={overrides.emailInput}
                 className={classNames("__wab_instance", sty.emailInput)}
+                name={"email" as const}
+                required={true}
                 type={"email" as const}
               />
             </p.Stack>
