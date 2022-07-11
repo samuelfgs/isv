@@ -281,7 +281,7 @@ function PlasmicHomepage__RenderFunc(props: {
                   contentType={"eventMenuItem" as const}
                   limit={1000 as const}
                   noLayout={true}
-                  order={"sys.createdAt" as const}
+                  order={"fields.order" as const}
                 >
                   <ph.DataCtxReader>
                     {$ctx => (
