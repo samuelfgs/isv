@@ -58,7 +58,7 @@
 .textisEmpty__w92VjyqkGv {
   display: block;
 }
-.freeBox__unGtd {
+.freeBox__mLvYu {
   display: flex;
   position: relative;
   flex-direction: column;
@@ -67,13 +67,12 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  margin-bottom: 200px;
   min-width: 0;
+  padding: 8px;
 }
 .lineItems {
   flex-direction: column;
   display: flex;
-  position: relative;
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -110,6 +109,19 @@
 .shoppingCartLineItem__trP6:global(.__wab_instance) {
   position: relative;
 }
+.scrollSpace {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  margin-bottom: 300px;
+  min-width: 0;
+  padding: 8px;
+}
 .freeBox__avSb {
   flex-direction: column;
   display: flex;
@@ -119,10 +131,10 @@
   max-width: 100%;
   top: auto;
   left: 0px;
-  bottom: 0px;
   z-index: 1;
   box-shadow: 0px -2px 16px 0px #00000033;
   background: #ffffff;
+  bottom: 0px;
   min-width: 0;
   padding: 8px;
 }

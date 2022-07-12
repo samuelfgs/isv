@@ -68,6 +68,7 @@ export type PlasmicAddItem__OverridesType = {
   back?: p.Flex<"div">;
   addItemRow?: p.Flex<typeof AddItemRow>;
   repeatedAddItemRow?: p.Flex<typeof AddItemRow>;
+  scrollSpace?: p.Flex<"div">;
   selectedOptionValues?: p.Flex<"div">;
   button?: p.Flex<typeof Button>;
 };
@@ -306,6 +307,12 @@ function PlasmicAddItem__RenderFunc(props: {
                 </p.Stack>
               ) : null}
 
+              <div
+                data-plasmic-name={"scrollSpace"}
+                data-plasmic-override={overrides.scrollSpace}
+                className={classNames(projectcss.all, sty.scrollSpace)}
+              />
+
               <div className={classNames(projectcss.all, sty.freeBox___1Lzs)}>
                 <div className={classNames(projectcss.all, sty.freeBox__eJscO)}>
                   <div
@@ -402,6 +409,7 @@ const PlasmicDescendants = {
     "back",
     "addItemRow",
     "repeatedAddItemRow",
+    "scrollSpace",
     "selectedOptionValues",
     "button"
   ],
@@ -410,12 +418,14 @@ const PlasmicDescendants = {
     "back",
     "addItemRow",
     "repeatedAddItemRow",
+    "scrollSpace",
     "selectedOptionValues",
     "button"
   ],
   back: ["back"],
   addItemRow: ["addItemRow"],
   repeatedAddItemRow: ["repeatedAddItemRow"],
+  scrollSpace: ["scrollSpace"],
   selectedOptionValues: ["selectedOptionValues"],
   button: ["button"]
 } as const;
@@ -428,6 +438,7 @@ type NodeDefaultElementType = {
   back: "div";
   addItemRow: typeof AddItemRow;
   repeatedAddItemRow: typeof AddItemRow;
+  scrollSpace: "div";
   selectedOptionValues: "div";
   button: typeof Button;
 };
@@ -493,6 +504,7 @@ export const PlasmicAddItem = Object.assign(
     back: makeNodeComponent("back"),
     addItemRow: makeNodeComponent("addItemRow"),
     repeatedAddItemRow: makeNodeComponent("repeatedAddItemRow"),
+    scrollSpace: makeNodeComponent("scrollSpace"),
     selectedOptionValues: makeNodeComponent("selectedOptionValues"),
     button: makeNodeComponent("button"),
 

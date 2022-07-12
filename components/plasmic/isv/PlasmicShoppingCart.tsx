@@ -78,6 +78,7 @@ export type PlasmicShoppingCart__OverridesType = {
   root?: p.Flex<"div">;
   header?: p.Flex<typeof Header>;
   lineItems?: p.Flex<"div">;
+  scrollSpace?: p.Flex<"div">;
   invalidData?: p.Flex<"div">;
   nameInput?: p.Flex<typeof TextInput>;
   emailInput?: p.Flex<typeof TextInput>;
@@ -168,7 +169,7 @@ function PlasmicShoppingCart__RenderFunc(props: {
           </div>
         ) : null}
         {true ? (
-          <div className={classNames(projectcss.all, sty.freeBox__unGtd)}>
+          <div className={classNames(projectcss.all, sty.freeBox__mLvYu)}>
             {(hasVariant(variants, "isEmpty", "isEmpty") ? true : true) ? (
               <p.Stack
                 as={"div"}
@@ -211,6 +212,12 @@ function PlasmicShoppingCart__RenderFunc(props: {
                 ) : null}
               </p.Stack>
             ) : null}
+
+            <div
+              data-plasmic-name={"scrollSpace"}
+              data-plasmic-override={overrides.scrollSpace}
+              className={classNames(projectcss.all, sty.scrollSpace)}
+            />
           </div>
         ) : null}
         {true ? (
@@ -428,6 +435,7 @@ const PlasmicDescendants = {
     "root",
     "header",
     "lineItems",
+    "scrollSpace",
     "invalidData",
     "nameInput",
     "emailInput",
@@ -438,6 +446,7 @@ const PlasmicDescendants = {
   ],
   header: ["header"],
   lineItems: ["lineItems"],
+  scrollSpace: ["scrollSpace"],
   invalidData: ["invalidData"],
   nameInput: ["nameInput"],
   emailInput: ["emailInput"],
@@ -453,6 +462,7 @@ type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;
   lineItems: "div";
+  scrollSpace: "div";
   invalidData: "div";
   nameInput: typeof TextInput;
   emailInput: typeof TextInput;
@@ -521,6 +531,7 @@ export const PlasmicShoppingCart = Object.assign(
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
     lineItems: makeNodeComponent("lineItems"),
+    scrollSpace: makeNodeComponent("scrollSpace"),
     invalidData: makeNodeComponent("invalidData"),
     nameInput: makeNodeComponent("nameInput"),
     emailInput: makeNodeComponent("emailInput"),
