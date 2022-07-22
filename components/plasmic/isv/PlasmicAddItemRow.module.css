@@ -19,11 +19,23 @@
   border-bottom-color: var(--token-GT3Ewogw5DWgo);
   border-top: 1px solid var(--token-GT3Ewogw5DWgo);
 }
-.freeBox {
+.freeBox__jy49O {
   width: 100%;
   height: auto;
-  max-width: 800px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  min-width: 0;
+}
+.freeBox__lbV7J {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100px;
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
   min-width: 0;
 }

@@ -57,10 +57,14 @@ export const PlasmicAddItem__VariantProps = new Array<VariantPropType>();
 
 export type PlasmicAddItem__ArgsType = {
   entryId?: string;
+  total?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicAddItem__ArgsType;
-export const PlasmicAddItem__ArgProps = new Array<ArgPropType>("entryId");
+export const PlasmicAddItem__ArgProps = new Array<ArgPropType>(
+  "entryId",
+  "total"
+);
 
 export type PlasmicAddItem__OverridesType = {
   root?: p.Flex<"div">;
@@ -75,6 +79,7 @@ export type PlasmicAddItem__OverridesType = {
 
 export interface DefaultAddItemProps {
   entryId?: string;
+  total?: React.ReactNode;
   className?: string;
 }
 
@@ -88,12 +93,17 @@ function PlasmicAddItem__RenderFunc(props: {
   const { variants, overrides, forNode } = props;
 
   const $ctx = ph.useDataEnv?.() || {};
-  const args = Object.assign(
-    {
-      entryId: "4WXMcrW18jx8GFFDlcpPR1" as const
-    },
-    props.args
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {
+          entryId: "32BWpoxpsatNnwXoWeRhu1" as const
+        },
+        props.args
+      ),
+    [props.args]
   );
+
   const $props = args;
 
   return (
@@ -236,6 +246,45 @@ function PlasmicAddItem__RenderFunc(props: {
                               menuOptionValueId={
                                 currentOption.fields.values[0].sys.id
                               }
+                              price={
+                                (() => {
+                                  try {
+                                    return (
+                                      currentOption.fields.values[0].fields
+                                        .price !== undefined
+                                    );
+                                  } catch (e) {
+                                    if (e instanceof TypeError) {
+                                      return true;
+                                    }
+                                    throw e;
+                                  }
+                                })() ? (
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      projectcss.__wab_text,
+                                      sty.text__uSfS
+                                    )}
+                                  >
+                                    {(() => {
+                                      try {
+                                        return (
+                                          "R$: " +
+                                          currentOption.fields.values[0].fields.price.toFixed(
+                                            2
+                                          )
+                                        );
+                                      } catch (e) {
+                                        if (e instanceof TypeError) {
+                                          return "Enter some text";
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
+                                  </div>
+                                ) : null
+                              }
                             >
                               <div
                                 className={classNames(
@@ -279,6 +328,45 @@ function PlasmicAddItem__RenderFunc(props: {
                                 )}
                                 menuOptionId={currentOption.sys.id}
                                 menuOptionValueId={currentOptionValue.sys.id}
+                                price={
+                                  (() => {
+                                    try {
+                                      return (
+                                        currentOptionValue.fields.price !==
+                                        undefined
+                                      );
+                                    } catch (e) {
+                                      if (e instanceof TypeError) {
+                                        return true;
+                                      }
+                                      throw e;
+                                    }
+                                  })() ? (
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.__wab_text,
+                                        sty.text__eT6Gf
+                                      )}
+                                    >
+                                      {(() => {
+                                        try {
+                                          return (
+                                            "R$: " +
+                                            currentOptionValue.fields.price.toFixed(
+                                              2
+                                            )
+                                          );
+                                        } catch (e) {
+                                          if (e instanceof TypeError) {
+                                            return "Enter some text";
+                                          }
+                                          throw e;
+                                        }
+                                      })()}
+                                    </div>
+                                  ) : null
+                                }
                               >
                                 <div
                                   className={classNames(
@@ -335,27 +423,27 @@ function PlasmicAddItem__RenderFunc(props: {
                   </div>
 
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__cQd1X
-                    )}
+                    className={classNames(projectcss.all, sty.freeBox__cQd1X)}
                   >
-                    {(() => {
-                      try {
-                        return (
-                          "R$ " +
-                          $ctx.contentfulEventmenuitemItem.fields.price.toFixed(
-                            2
-                          )
-                        );
-                      } catch (e) {
-                        if (e instanceof TypeError) {
-                          return "R$ 20,00";
+                    {p.renderPlasmicSlot({
+                      defaultContents: (() => {
+                        try {
+                          return (
+                            "R$ " +
+                            $ctx.contentfulEventmenuitemItem.fields.price.toFixed(
+                              2
+                            )
+                          );
+                        } catch (e) {
+                          if (e instanceof TypeError) {
+                            return "R$ 20,00";
+                          }
+                          throw e;
                         }
-                        throw e;
-                      }
-                    })()}
+                      })(),
+                      value: args.total,
+                      className: classNames(sty.slotTargetTotal)
+                    })}
                   </div>
                 </div>
 
@@ -473,12 +561,16 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
-    const { variants, args, overrides } = deriveRenderOpts(props, {
-      name: nodeName,
-      descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicAddItem__ArgProps,
-      internalVariantPropNames: PlasmicAddItem__VariantProps
-    });
+    const { variants, args, overrides } = React.useMemo(
+      () =>
+        deriveRenderOpts(props, {
+          name: nodeName,
+          descendantNames: [...PlasmicDescendants[nodeName]],
+          internalArgPropNames: PlasmicAddItem__ArgProps,
+          internalVariantPropNames: PlasmicAddItem__VariantProps
+        }),
+      [props, nodeName]
+    );
 
     return PlasmicAddItem__RenderFunc({
       variants,

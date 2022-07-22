@@ -88,11 +88,16 @@ function PlasmicHomepage__RenderFunc(props: {
   const { variants, overrides, forNode } = props;
 
   const $ctx = ph.useDataEnv?.() || {};
-  const args = Object.assign(
-    {},
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
 
-    props.args
+        props.args
+      ),
+    [props.args]
   );
+
   const $props = args;
 
   const globalVariants = ensureGlobalVariants({
@@ -318,18 +323,32 @@ function PlasmicHomepage__RenderFunc(props: {
                             }
                             id={currentItem.sys.id}
                             image={currentItem.fields.image.fields.file.url}
-                            price={(() => {
-                              try {
-                                return (
-                                  "R$: " + currentItem.fields.price.toFixed(2)
-                                );
-                              } catch (e) {
-                                if (e instanceof TypeError) {
-                                  return "R$ 20,00";
+                            price={
+                              (() => {
+                                try {
+                                  return currentItem.fields.price !== 0;
+                                } catch (e) {
+                                  if (e instanceof TypeError) {
+                                    return true;
+                                  }
+                                  throw e;
                                 }
-                                throw e;
-                              }
-                            })()}
+                              })()
+                                ? (() => {
+                                    try {
+                                      return (
+                                        "R$: " +
+                                        currentItem.fields.price.toFixed(2)
+                                      );
+                                    } catch (e) {
+                                      if (e instanceof TypeError) {
+                                        return "R$ 20,00";
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                : null
+                            }
                             title={(() => {
                               try {
                                 return currentItem.fields.name;
@@ -432,12 +451,16 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
-    const { variants, args, overrides } = deriveRenderOpts(props, {
-      name: nodeName,
-      descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicHomepage__ArgProps,
-      internalVariantPropNames: PlasmicHomepage__VariantProps
-    });
+    const { variants, args, overrides } = React.useMemo(
+      () =>
+        deriveRenderOpts(props, {
+          name: nodeName,
+          descendantNames: [...PlasmicDescendants[nodeName]],
+          internalArgPropNames: PlasmicHomepage__ArgProps,
+          internalVariantPropNames: PlasmicHomepage__VariantProps
+        }),
+      [props, nodeName]
+    );
 
     return PlasmicHomepage__RenderFunc({
       variants,

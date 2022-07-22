@@ -10,6 +10,7 @@ import { usePlasmicQueryData } from "@plasmicapp/query";
 import { CredentialsContext } from "./contentful";
 import { ensure } from "../lib/common";
 import * as Contentful from "contentful";
+import { getProductVariantPrice } from "../lib/cart";
 
 export interface AddItemProps extends DefaultAddItemProps {
   onBack: () => void;
@@ -45,6 +46,11 @@ function AddItem_(props: AddItemProps, ref: HTMLElementRefOf<"div">) {
     const response = await client.getEntry(`${entryId}`, { include: 2 });
     return response;
   });
+
+
+  const totalPrice = data
+    ? "R$ " + (getProductVariantPrice(data, JSON.stringify(Object.values(selectedValues)))).toFixed(2)
+    : 0;
 
   return <PlasmicAddItem 
     root={{ ref }} 
@@ -82,6 +88,7 @@ function AddItem_(props: AddItemProps, ref: HTMLElementRefOf<"div">) {
       isDisabled: Object.keys(selectedValues).length !== data?.fields.options.length,
       onClick: () => onAdd(entryId, JSON.stringify(Object.values(selectedValues).sort()), data)
     }}
+    total={totalPrice}
   />;
 }
 

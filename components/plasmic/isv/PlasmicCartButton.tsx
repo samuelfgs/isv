@@ -85,11 +85,16 @@ function PlasmicCartButton__RenderFunc(props: {
   const { variants, overrides, forNode } = props;
 
   const $ctx = ph.useDataEnv?.() || {};
-  const args = Object.assign(
-    {},
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
 
-    props.args
+        props.args
+      ),
+    [props.args]
   );
+
   const $props = args;
 
   return (
@@ -176,12 +181,16 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
-    const { variants, args, overrides } = deriveRenderOpts(props, {
-      name: nodeName,
-      descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicCartButton__ArgProps,
-      internalVariantPropNames: PlasmicCartButton__VariantProps
-    });
+    const { variants, args, overrides } = React.useMemo(
+      () =>
+        deriveRenderOpts(props, {
+          name: nodeName,
+          descendantNames: [...PlasmicDescendants[nodeName]],
+          internalArgPropNames: PlasmicCartButton__ArgProps,
+          internalVariantPropNames: PlasmicCartButton__VariantProps
+        }),
+      [props, nodeName]
+    );
 
     return PlasmicCartButton__RenderFunc({
       variants,

@@ -62,24 +62,26 @@ export type PlasmicAddItemRow__ArgsType = {
   children?: React.ReactNode;
   menuOptionId?: string;
   menuOptionValueId?: string;
+  price?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicAddItemRow__ArgsType;
 export const PlasmicAddItemRow__ArgProps = new Array<ArgPropType>(
   "children",
   "menuOptionId",
-  "menuOptionValueId"
+  "menuOptionValueId",
+  "price"
 );
 
 export type PlasmicAddItemRow__OverridesType = {
   root?: p.Flex<"div">;
-  freeBox?: p.Flex<"div">;
 };
 
 export interface DefaultAddItemRowProps {
   children?: React.ReactNode;
   menuOptionId?: string;
   menuOptionValueId?: string;
+  price?: React.ReactNode;
   isSelected?: SingleBooleanChoiceArg<"isSelected">;
   isFirstRow?: SingleBooleanChoiceArg<"isFirstRow">;
   className?: string;
@@ -95,11 +97,16 @@ function PlasmicAddItemRow__RenderFunc(props: {
   const { variants, overrides, forNode } = props;
 
   const $ctx = ph.useDataEnv?.() || {};
-  const args = Object.assign(
-    {},
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
 
-    props.args
+        props.args
+      ),
+    [props.args]
   );
+
   const $props = args;
 
   return (
@@ -135,15 +142,13 @@ function PlasmicAddItemRow__RenderFunc(props: {
         data-menuOptionValue-id={args.menuOptionValueId}
       >
         <div
-          data-plasmic-name={"freeBox"}
-          data-plasmic-override={overrides.freeBox}
-          className={classNames(projectcss.all, sty.freeBox, {
-            [sty.freeBoxisFirstRow]: hasVariant(
+          className={classNames(projectcss.all, sty.freeBox__jy49O, {
+            [sty.freeBoxisFirstRow__jy49O0CdlZ]: hasVariant(
               variants,
               "isFirstRow",
               "isFirstRow"
             ),
-            [sty.freeBoxisSelected]: hasVariant(
+            [sty.freeBoxisSelected__jy49OkWo4T]: hasVariant(
               variants,
               "isSelected",
               "isSelected"
@@ -154,6 +159,13 @@ function PlasmicAddItemRow__RenderFunc(props: {
             defaultContents: "Pastel de Pizza",
             value: args.children
           })}
+
+          <div className={classNames(projectcss.all, sty.freeBox__lbV7J)}>
+            {p.renderPlasmicSlot({
+              defaultContents: "R$ 0,00",
+              value: args.price
+            })}
+          </div>
         </div>
       </div>
     ) : null
@@ -161,15 +173,13 @@ function PlasmicAddItemRow__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "freeBox"],
-  freeBox: ["freeBox"]
+  root: ["root"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  freeBox: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -202,12 +212,16 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
-    const { variants, args, overrides } = deriveRenderOpts(props, {
-      name: nodeName,
-      descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicAddItemRow__ArgProps,
-      internalVariantPropNames: PlasmicAddItemRow__VariantProps
-    });
+    const { variants, args, overrides } = React.useMemo(
+      () =>
+        deriveRenderOpts(props, {
+          name: nodeName,
+          descendantNames: [...PlasmicDescendants[nodeName]],
+          internalArgPropNames: PlasmicAddItemRow__ArgProps,
+          internalVariantPropNames: PlasmicAddItemRow__VariantProps
+        }),
+      [props, nodeName]
+    );
 
     return PlasmicAddItemRow__RenderFunc({
       variants,
@@ -229,7 +243,6 @@ export const PlasmicAddItemRow = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    freeBox: makeNodeComponent("freeBox"),
 
     // Metadata about props expected for PlasmicAddItemRow
     internalVariantProps: PlasmicAddItemRow__VariantProps,

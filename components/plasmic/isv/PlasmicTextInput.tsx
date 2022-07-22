@@ -120,12 +120,17 @@ function PlasmicTextInput__RenderFunc(props: {
   const { variants, overrides, forNode } = props;
 
   const $ctx = ph.useDataEnv?.() || {};
-  const args = Object.assign(
-    {
-      type: "text" as const
-    },
-    props.args
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {
+          type: "text" as const
+        },
+        props.args
+      ),
+    [props.args]
   );
+
   const $props = args;
 
   const [isRootFocusVisibleWithin, triggerRootFocusVisibleWithinProps] =
@@ -364,12 +369,16 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
-    const { variants, args, overrides } = deriveRenderOpts(props, {
-      name: nodeName,
-      descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicTextInput__ArgProps,
-      internalVariantPropNames: PlasmicTextInput__VariantProps
-    });
+    const { variants, args, overrides } = React.useMemo(
+      () =>
+        deriveRenderOpts(props, {
+          name: nodeName,
+          descendantNames: [...PlasmicDescendants[nodeName]],
+          internalArgPropNames: PlasmicTextInput__ArgProps,
+          internalVariantPropNames: PlasmicTextInput__VariantProps
+        }),
+      [props, nodeName]
+    );
 
     return PlasmicTextInput__RenderFunc({
       variants,

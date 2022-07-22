@@ -13,16 +13,26 @@ export type Cart = {
   email: string;
 }
 
+export const getProductVariantPrice = (product: any, variantId: string) => {
+  let total = product.fields.price;
+  const selectedOptionValues = JSON.parse(variantId);
+  selectedOptionValues.forEach((val: any) => {
+    total += product.fields.options.flatMap((opt: any) => opt.fields.values).find((optVal: any) => optVal.sys.id === val)?.fields.price ?? 0;
+  });
+  return total;
+}
+
 export const updateCart = (productId: string, variantId: string, quantity: number, product: any, setCart: React.Dispatch<React.SetStateAction<Cart>>) => 
   setCart(cart => {
     const lineItem = cart.lineItems.find(item => item.productId === productId && item.variantId === variantId);
+    const price = getProductVariantPrice(product, variantId);
     if (lineItem) {
       cart.totalQuantity += quantity - lineItem.quantity;
-      cart.totalPrice += product.fields.price * (quantity - lineItem.quantity);
+      cart.totalPrice += price * (quantity - lineItem.quantity);
       lineItem.quantity = quantity;
     } else {
       cart.totalQuantity += quantity;
-      cart.totalPrice += product.fields.price * quantity;
+      cart.totalPrice += price * quantity;
       cart.lineItems.push({
         productId,
         variantId,
