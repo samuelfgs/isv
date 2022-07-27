@@ -7,7 +7,7 @@ import options from "../data.json";
 import useSWR, { useSWRConfig } from "swr";
 import { useRouter } from 'next/router'
 import AddItem from "../components/AddItem";
-import { addToCart, Cart } from "../lib/cart";
+import { addToCart, Cart, getProductVariantPrice } from "../lib/cart";
 import ShoppingCart from "../components/ShoppingCart";
 import { usePlasmicQueryData } from "@plasmicapp/query";
 import { CredentialsContext } from "../components/contentful";
@@ -42,7 +42,7 @@ function Homepage() {
         variantId: JSON.parse(item.variantId)
       }),
       title: item.product.fields.name,
-      unit_price: item.product.fields.price,
+      unit_price: getProductVariantPrice(item.product, item.variantId),
       quantity: item.quantity
     }));
 
