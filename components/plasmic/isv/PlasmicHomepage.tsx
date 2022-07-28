@@ -238,7 +238,7 @@ function PlasmicHomepage__RenderFunc(props: {
                         sty.text__hS2Be
                       )}
                     >
-                      {"30 de julho às 18:00"}
+                      {"30 de julho às 19:00"}
                     </div>
                   </p.Stack>
                 ) : null}
