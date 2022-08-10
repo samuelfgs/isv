@@ -9,8 +9,8 @@ export const goToCheckout = async (name: string, email: string, router: NextRout
       productId: item.productId,
       variantId: JSON.parse(item.variantId)
     }),
-    title: item.product.fields.name,
-    unit_price: getProductVariantPrice(item.product, item.variantId),
+    title: item.product.product.fields.name,
+    unit_price: getProductVariantPrice(item.product),
     quantity: item.quantity
   }));
 
