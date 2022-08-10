@@ -211,6 +211,45 @@
           "cssFilePath": "plasmic/isv/PlasmicSuccess.module.css",
           "scheme": "blackbox",
           "componentType": "page"
+        },
+        {
+          "id": "zVycdQpbjx",
+          "name": "VariantSelectorAddItemRow",
+          "type": "managed",
+          "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
+          "renderModuleFilePath": "plasmic/isv/PlasmicVariantSelectorAddItemRow.tsx",
+          "importSpec": {
+            "modulePath": "VariantSelectorAddItemRow.tsx"
+          },
+          "cssFilePath": "plasmic/isv/PlasmicVariantSelectorAddItemRow.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "hCmOmN_odDK",
+          "name": "AddItemOption",
+          "type": "managed",
+          "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
+          "renderModuleFilePath": "plasmic/isv/PlasmicAddItemOption.tsx",
+          "importSpec": {
+            "modulePath": "AddItemOption.tsx"
+          },
+          "cssFilePath": "plasmic/isv/PlasmicAddItemOption.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "YP00OeXrv1",
+          "name": "ScrollSpace",
+          "type": "managed",
+          "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
+          "renderModuleFilePath": "plasmic/isv/PlasmicScrollSpace.tsx",
+          "importSpec": {
+            "modulePath": "ScrollSpace.tsx"
+          },
+          "cssFilePath": "plasmic/isv/PlasmicScrollSpace.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

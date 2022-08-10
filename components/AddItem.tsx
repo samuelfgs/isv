@@ -6,78 +6,64 @@ import {
   DefaultAddItemProps
 } from "./plasmic/isv/PlasmicAddItem";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
-import { usePlasmicQueryData } from "@plasmicapp/query";
-import { CredentialsContext } from "./contentful";
-import { ensure } from "../lib/common";
-import * as Contentful from "contentful";
-import { getProductVariantPrice } from "../lib/cart";
+import { fetchContentfulEntry } from "./contentful";
+import { addToCart, getProductVariantPrice } from "../lib/cart";
+import { addProductState, AppPage, OptionType, state } from "../lib/state-management";
+import { useSnapshot } from "valtio";
 
 export interface AddItemProps extends DefaultAddItemProps {
-  onBack: () => void;
-  onAdd: (productId: string | undefined, variantId: string, entry: any) => void;
 }
 
 function AddItem_(props: AddItemProps, ref: HTMLElementRefOf<"div">) {
-  const { onBack, onAdd, ...rest } = props;
-  const entryId = props.entryId;
+  const { ...rest } = props;
+  const refFooter = React.createRef<HTMLDivElement>();
 
-  const [selectedValues, setSelectedValues] = React.useState<Record<string, string>>({})
+  const productStateSnap = useSnapshot(addProductState);
+  useSnapshot(state).appPage;
 
-  const onOptionSelect = (optionId: string | undefined, optionValueId: string | undefined ) => {
-    if (optionId && optionValueId) {
-      setSelectedValues(curr => ({
-        ...curr,
-        [optionId]: optionValueId
-      }));
-    }
+  const product = fetchContentfulEntry(productStateSnap.productId);
+  if (productStateSnap.product === undefined && product) {
+    addProductState.product = product;
+    addProductState.optionsType = Object.fromEntries(product.fields.options.map((option: any) => 
+      [option.sys.id as string, option.fields.maximum !== undefined ? OptionType.multi : OptionType.single]
+    )) as Record<string, OptionType>;
+    addProductState.sumOfOptionValuesQuantity = Object.fromEntries(product.fields.options.map((option: any) => 
+      [option.sys.id as string, 0]
+    )) as Record<string, number>;
   }
-  
-  const creds = ensure(React.useContext(CredentialsContext));
-  const cacheKey = JSON.stringify({
-    creds,
-  });
-  const client = Contentful.createClient({
-    space: creds.space,
-    accessToken: creds.accessToken,
-  });
-  const { data } = usePlasmicQueryData<
-    any | null
-  >(entryId ? `${cacheKey}/entry/${entryId}` : null, async () => {
-    const response = await client.getEntry(`${entryId}`, { include: 2 });
-    return response;
-  });
 
-
-  const totalPrice = data
-    ? "R$ " + (getProductVariantPrice(data, JSON.stringify(Object.values(selectedValues)))).toFixed(2)
+  React.useEffect(() => {
+    window.scrollTo({top: 0})
+  }, [])
+  const totalPrice = productStateSnap.product
+    ? "R$ " + (getProductVariantPrice(productStateSnap)).toFixed(2)
     : 0;
+
+  const isReady = (Object.entries(productStateSnap.sumOfOptionValuesQuantity).every(([optionId, quantity]) => 
+    (productStateSnap.product?.fields.options.find((option: any) => option.sys.id === optionId).fields.maximum ?? 1)
+    === quantity
+  ));
+
 
   return <PlasmicAddItem 
     root={{ ref }} 
     {...rest} 
     back={{
-      wrap: (node) => <div onClick={() => onBack()}>{node}</div>
-    }}
-    addItemRow={{
-      onSelect: onOptionSelect,
-      selectedValues
-    }}
-    repeatedAddItemRow={{
-      onSelect: onOptionSelect,
-      selectedValues
+      wrap: (node) => <div onClick={() => state.appPage = AppPage.home}>{node}</div>
     }}
     selectedOptionValues={{
       children: (
-        Object.entries(selectedValues)
-          .sort((a, b) => 
-            data?.fields.options.findIndex((option: any) => option.sys.id === a[0]) - 
-            data?.fields.options.findIndex((option: any) => option.sys.id === b[0])
+        Object.entries(productStateSnap.optionValues)
+          .sort(([_a, {optionId: optionIdA }], [_b, {optionId: optionIdB}]) => 
+            product?.fields.options.findIndex((option: any) => option.sys.id === optionIdA) - 
+            product?.fields.options.findIndex((option: any) => option.sys.id === optionIdB)
           )
-          .map(([optionId, optionValueId]) => 
+          .map(([_, { optionId, valueId, quantity }]) => 
             <div>
-              {data?.fields.options
+              {productStateSnap.optionsType[optionId] === OptionType.multi ? `${quantity}x ` : ''}
+              {product?.fields.options
                 .find((option: any) => option.sys.id === optionId)
-                ?.fields.values.find((optionValue: any) => optionValue.sys.id === optionValueId)
+                ?.fields.values.find((currOptionValue: any) => currOptionValue.sys.id === valueId)
                 ?.fields.label
               }
             </div>
@@ -85,9 +71,18 @@ function AddItem_(props: AddItemProps, ref: HTMLElementRefOf<"div">) {
       )
     }}
     button={{
-      isDisabled: Object.keys(selectedValues).length !== data?.fields.options.length,
-      onClick: () => onAdd(entryId, JSON.stringify(Object.values(selectedValues).sort()), data)
+      isDisabled: !isReady,
+      onClick: () => {
+        if (productStateSnap.productId) {
+          addToCart();
+        }
+        state.appPage = AppPage.checkout;
+      }
     }}
+    scrollSpace={{
+      height: (document.getElementById("footer")?.getClientRects()[0].height ?? 200) + 50
+    }}
+    footer={{ref: refFooter}}
     total={totalPrice}
   />;
 }

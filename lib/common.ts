@@ -53,3 +53,13 @@ export const getQuantityItem = (item: typeof options[0], cart: Cart) => {
 export const getTotalPrice = (cart: Cart) => cart.lineItems.reduce((total, item) => total += item.quantity * item.item.price, 0) ?? 0;
 
 export const formatPrice = (price: number) => price.toFixed(2);
+
+export interface Product {
+  product: any;
+  productId: string;
+  optionValues: Record<string, {
+    optionId: string;
+    valueId: string;
+    quantity?: number;
+  }>;
+};

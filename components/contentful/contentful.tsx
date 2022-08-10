@@ -275,3 +275,43 @@ export function ContentfulRichText({
   );
 }
 
+export const fetchContentfulEntry = (entryId: string | undefined) => {
+  const creds = ensure(React.useContext(CredentialsContext));
+  const cacheKey = JSON.stringify({
+    creds,
+  });
+  const client = Contentful.createClient({
+    space: creds.space,
+    accessToken: creds.accessToken,
+  });
+
+  const { data } = usePlasmicQueryData<
+    any | null
+  >(entryId ? `${cacheKey}/entry/${entryId}` : null, async () => {
+    const response = await client.getEntry(`${entryId}`, { include: 2 });
+    return response;
+  });
+
+  return data;
+}
+
+export const fetchContentfulEntries = (contentTypeName: string | undefined) => {
+  const creds = ensure(React.useContext(CredentialsContext));
+  const cacheKey = JSON.stringify({
+    creds,
+  });
+  const client = Contentful.createClient({
+    space: creds.space,
+    accessToken: creds.accessToken,
+  });
+  const { data } = usePlasmicQueryData<
+    any | null
+  >(`${cacheKey}/${contentTypeName}/`, async () => {
+    if (!contentTypeName) return undefined;
+    const response = await client.getEntries({
+      content_type: contentTypeName
+    });
+    return response;
+  });
+  return data
+}

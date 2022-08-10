@@ -117,7 +117,7 @@ function PlasmicMenuItem__RenderFunc(props: {
         plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
         sty.root
       )}
-      data-menuItem-id={args.id}
+      data-menuitem-id={args.id}
     >
       {true ? (
         <div className={classNames(projectcss.all, sty.freeBox__j4S6X)}>

@@ -6,6 +6,7 @@ import {
   DefaultShoppingCartLineItemProps
 } from "./plasmic/isv/PlasmicShoppingCartLineItem";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
+import { Product } from "../lib/common";
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
@@ -24,15 +25,14 @@ export interface ShoppingCartLineItemProps
   extends DefaultShoppingCartLineItemProps {
     quantity: number;
     onChangeQuantity: (q: number) => void;
-    product: any;
-    selectedValues: string[];
+    product: Product;
 }
 
 function ShoppingCartLineItem_(
   props: ShoppingCartLineItemProps,
   ref: HTMLElementRefOf<"div">
 ) {
-  const { quantity, onChangeQuantity, product, selectedValues, ...rest } = props;
+  const { quantity, onChangeQuantity, product, ...rest } = props;
   return (
     <PlasmicShoppingCartLineItem root={{ ref }} {...rest}
       quantity={{
@@ -41,17 +41,26 @@ function ShoppingCartLineItem_(
       }}
       optionValues={{
         children: (
-          selectedValues
-            .map((optionValueId) => 
+          Object.entries(product.optionValues)
+            .sort(([_a, {optionId: optionIdA }], [_b, {optionId: optionIdB}]) => 
+              product.product?.fields.options.findIndex((option: any) => option.sys.id === optionIdA) - 
+              product.product?.fields.options.findIndex((option: any) => option.sys.id === optionIdB)
+            )
+            .map(([_, { optionId, valueId, quantity }]) => 
               <div>
-                {product?.fields.options
-                  .flatMap((option: any) => option.fields.values)
-                  .find((optionValue: any) => optionValue.sys.id === optionValueId)
+                {product.product?.fields.options
+                  .find((option: any) => option.sys.id === optionId)?.fields.maximum !== undefined
+                  ? `${quantity}x `
+                  : ``
+                }
+                {product.product?.fields.options
+                  .find((option: any) => option.sys.id === optionId)
+                  ?.fields.values.find((currOptionValue: any) => currOptionValue.sys.id === valueId)
                   ?.fields.label
                 }
               </div>
             )
-          )
+        )
       }}
     />
   );

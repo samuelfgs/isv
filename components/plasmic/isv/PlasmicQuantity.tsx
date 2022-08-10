@@ -46,11 +46,21 @@ import sty from "./PlasmicQuantity.module.css"; // plasmic-import: VGSmBro-ef/cs
 import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: q1TlDUyNqop/icon
 import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: k5kwo7sOrBj/icon
 
-export type PlasmicQuantity__VariantMembers = {};
+export type PlasmicQuantity__VariantMembers = {
+  initialState: "initialState";
+  disablePlusButton: "disablePlusButton";
+};
 
-export type PlasmicQuantity__VariantsArgs = {};
+export type PlasmicQuantity__VariantsArgs = {
+  initialState?: SingleBooleanChoiceArg<"initialState">;
+  disablePlusButton?: SingleBooleanChoiceArg<"disablePlusButton">;
+};
+
 type VariantPropType = keyof PlasmicQuantity__VariantsArgs;
-export const PlasmicQuantity__VariantProps = new Array<VariantPropType>();
+export const PlasmicQuantity__VariantProps = new Array<VariantPropType>(
+  "initialState",
+  "disablePlusButton"
+);
 
 export type PlasmicQuantity__ArgsType = {
   quantity?: React.ReactNode;
@@ -68,6 +78,8 @@ export type PlasmicQuantity__OverridesType = {
 
 export interface DefaultQuantityProps {
   quantity?: React.ReactNode;
+  initialState?: SingleBooleanChoiceArg<"initialState">;
+  disablePlusButton?: SingleBooleanChoiceArg<"disablePlusButton">;
   className?: string;
 }
 
@@ -109,44 +121,77 @@ function PlasmicQuantity__RenderFunc(props: {
         projectcss.plasmic_tokens,
         plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
         plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
-        sty.root
+        sty.root,
+        {
+          [sty.rootinitialState]: hasVariant(
+            variants,
+            "initialState",
+            "initialState"
+          )
+        }
       )}
     >
-      <Button
-        data-plasmic-name={"minusButton"}
-        data-plasmic-override={overrides.minusButton}
-        className={classNames("__wab_instance", sty.minusButton)}
-        color={"blue" as const}
-        size={"compact" as const}
-      >
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__rytN
-          )}
+      {(hasVariant(variants, "initialState", "initialState") ? true : true) ? (
+        <Button
+          data-plasmic-name={"minusButton"}
+          data-plasmic-override={overrides.minusButton}
+          className={classNames("__wab_instance", sty.minusButton, {
+            [sty.minusButtoninitialState]: hasVariant(
+              variants,
+              "initialState",
+              "initialState"
+            )
+          })}
+          color={"blue" as const}
+          size={"compact" as const}
         >
-          {"-"}
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__rytN
+            )}
+          >
+            {"-"}
+          </div>
+        </Button>
+      ) : null}
+      {(hasVariant(variants, "initialState", "initialState") ? true : true) ? (
+        <div
+          data-plasmic-name={"freeBox"}
+          data-plasmic-override={overrides.freeBox}
+          className={classNames(projectcss.all, sty.freeBox, {
+            [sty.freeBoxinitialState]: hasVariant(
+              variants,
+              "initialState",
+              "initialState"
+            )
+          })}
+        >
+          {p.renderPlasmicSlot({
+            defaultContents: "0",
+            value: args.quantity,
+            className: classNames(sty.slotTargetQuantity)
+          })}
         </div>
-      </Button>
-
-      <div
-        data-plasmic-name={"freeBox"}
-        data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox)}
-      >
-        {p.renderPlasmicSlot({
-          defaultContents: "0",
-          value: args.quantity,
-          className: classNames(sty.slotTargetQuantity)
-        })}
-      </div>
+      ) : null}
 
       <Button
         data-plasmic-name={"plusButton"}
         data-plasmic-override={overrides.plusButton}
-        className={classNames("__wab_instance", sty.plusButton)}
+        className={classNames("__wab_instance", sty.plusButton, {
+          [sty.plusButtondisablePlusButton]: hasVariant(
+            variants,
+            "disablePlusButton",
+            "disablePlusButton"
+          )
+        })}
         color={"blue" as const}
+        isDisabled={
+          hasVariant(variants, "disablePlusButton", "disablePlusButton")
+            ? true
+            : undefined
+        }
         size={"compact" as const}
       >
         <div

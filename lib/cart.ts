@@ -1,8 +1,12 @@
+import { Product } from "./common";
+import { addProductState, state } from "./state-management";
+import { isEqual } from "lodash";
+
 export type LineItem = {
   productId: string;
   variantId: string;
   quantity: number;
-  product: any;
+  product: Product;
 }
 
 export type Cart = {
@@ -13,37 +17,44 @@ export type Cart = {
   email: string;
 }
 
-export const getProductVariantPrice = (product: any, variantId: string) => {
-  let total = product.fields.price;
-  const selectedOptionValues = JSON.parse(variantId);
-  selectedOptionValues.forEach((val: any) => {
-    total += product.fields.options.flatMap((opt: any) => opt.fields.values).find((optVal: any) => optVal.sys.id === val)?.fields.price ?? 0;
+export const getProductVariantPrice = (product: Product) => {
+  let total = product.product?.fields?.price;
+  if (total === undefined) {
+    return 0;
+  }
+  Object.values(product.optionValues).forEach(({ valueId: optionValueId, quantity}) => {
+    total += (
+      (product.product.fields.options.flatMap((opt: any) => opt.fields.values).find((optVal: any) => optVal.sys.id === optionValueId)?.fields.price ?? 0)
+      * (quantity ?? 1)
+    );
   });
   return total;
 }
 
-export const updateCart = (productId: string, variantId: string, quantity: number, product: any, setCart: React.Dispatch<React.SetStateAction<Cart>>) => 
-  setCart(cart => {
-    const lineItem = cart.lineItems.find(item => item.productId === productId && item.variantId === variantId);
-    const price = getProductVariantPrice(product, variantId);
-    if (lineItem) {
-      cart.totalQuantity += quantity - lineItem.quantity;
-      cart.totalPrice += price * (quantity - lineItem.quantity);
-      lineItem.quantity = quantity;
-    } else {
-      cart.totalQuantity += quantity;
-      cart.totalPrice += price * quantity;
-      cart.lineItems.push({
-        productId,
-        variantId,
-        product,
-        quantity
-      })
-    }
-    return {...cart};
-  })
+export const updateCart = (product: Product, quantity: number) => {
+  const lineItem = state.cart.lineItems.find(item => 
+    item.productId === addProductState.productId && isEqual(item.product.optionValues, addProductState.optionValues)
+  );
+  const price = getProductVariantPrice(product);
+  if (lineItem) {
+    state.cart.totalQuantity += quantity - lineItem.quantity;
+    state.cart.totalPrice += price * (quantity - lineItem.quantity);
+    lineItem.quantity = quantity;
+  } else {
+    state.cart.totalQuantity += quantity;
+    state.cart.totalPrice += price * quantity;
+    state.cart.lineItems.push({
+      productId: product.productId,
+      variantId: JSON.stringify(product.optionValues),
+      product: JSON.parse(JSON.stringify(product)),
+      quantity
+    })
+  }
+}
 
-export const addToCart = (productId: string, variantId: string, product: any, cart: Cart, setCart: React.Dispatch<React.SetStateAction<Cart>>) => {
-  const lineItem = cart.lineItems.find(item => item.productId === productId && item.variantId === variantId);
-  updateCart(productId, variantId, (lineItem?.quantity ?? 0) + 1, product, setCart);
+export const addToCart = () => {
+  const lineItem = state.cart.lineItems.find(item => 
+    item.productId === addProductState.productId && isEqual(item.product.optionValues, addProductState.optionValues)
+  );
+  updateCart(addProductState, (lineItem?.quantity ?? 0) + 1);
 }

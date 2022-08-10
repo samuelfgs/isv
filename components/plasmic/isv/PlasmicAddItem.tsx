@@ -35,7 +35,8 @@ import {
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
 import { ContentfulFetcher } from "../../contentful"; // plasmic-import: AIFoPRZ0EI/codeComponent
-import AddItemRow from "../../AddItemRow"; // plasmic-import: VyP48T0NTA/component
+import AddItemOption from "../../AddItemOption"; // plasmic-import: hCmOmN_odDK/component
+import ScrollSpace from "../../ScrollSpace"; // plasmic-import: YP00OeXrv1/component
 import Button from "../../Button"; // plasmic-import: dTivG-jH3lW/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -70,9 +71,9 @@ export type PlasmicAddItem__OverridesType = {
   root?: p.Flex<"div">;
   contentfulFetcher?: p.Flex<typeof ContentfulFetcher>;
   back?: p.Flex<"div">;
-  addItemRow?: p.Flex<typeof AddItemRow>;
-  repeatedAddItemRow?: p.Flex<typeof AddItemRow>;
-  scrollSpace?: p.Flex<"div">;
+  addItemOption?: p.Flex<typeof AddItemOption>;
+  scrollSpace?: p.Flex<typeof ScrollSpace>;
+  footer?: p.Flex<"div">;
   selectedOptionValues?: p.Flex<"div">;
   button?: p.Flex<typeof Button>;
 };
@@ -97,7 +98,7 @@ function PlasmicAddItem__RenderFunc(props: {
     () =>
       Object.assign(
         {
-          entryId: "32BWpoxpsatNnwXoWeRhu1" as const
+          entryId: "3fyN1VIDXA7pfvc8krzKCx" as const
         },
         props.args
       ),
@@ -191,7 +192,7 @@ function PlasmicAddItem__RenderFunc(props: {
                     ? (() => {
                         try {
                           return (
-                            $ctx.contentfulEventmenuitemItem.fields?.options ??
+                            $ctx.contentfulEventmenuitemItem?.fields.options ??
                             []
                           );
                         } catch (e) {
@@ -200,208 +201,41 @@ function PlasmicAddItem__RenderFunc(props: {
                           }
                           throw e;
                         }
-                      })().map((currentOption, currentIndex) => (
-                        <p.Stack
-                          as={"div"}
-                          hasGap={true}
+                      })().map((currentItem, currentIndex) => (
+                        <div
                           className={classNames(
                             projectcss.all,
-                            sty.freeBox___6DDi9
+                            sty.freeBox___6Pw6B
                           )}
                         >
-                          <div
+                          <AddItemOption
+                            data-plasmic-name={"addItemOption"}
+                            data-plasmic-override={overrides.addItemOption}
                             className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__nUAqh
+                              "__wab_instance",
+                              sty.addItemOption
                             )}
-                          >
-                            {(() => {
-                              try {
-                                return currentOption.fields.label;
-                              } catch (e) {
-                                if (e instanceof TypeError) {
-                                  return "Sabor do Pastel";
-                                }
-                                throw e;
-                              }
-                            })()}
-                          </div>
-
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__gWWdM
-                            )}
-                          >
-                            <AddItemRow
-                              data-plasmic-name={"addItemRow"}
-                              data-plasmic-override={overrides.addItemRow}
-                              className={classNames(
-                                "__wab_instance",
-                                sty.addItemRow
-                              )}
-                              isFirstRow={true}
-                              menuOptionId={currentOption.sys.id}
-                              menuOptionValueId={
-                                currentOption.fields.values[0].sys.id
-                              }
-                              price={
-                                (() => {
-                                  try {
-                                    return (
-                                      currentOption.fields.values[0].fields
-                                        .price !== undefined
-                                    );
-                                  } catch (e) {
-                                    if (e instanceof TypeError) {
-                                      return true;
-                                    }
-                                    throw e;
-                                  }
-                                })() ? (
-                                  <div
-                                    className={classNames(
-                                      projectcss.all,
-                                      projectcss.__wab_text,
-                                      sty.text__uSfS
-                                    )}
-                                  >
-                                    {(() => {
-                                      try {
-                                        return (
-                                          "R$: " +
-                                          currentOption.fields.values[0].fields.price.toFixed(
-                                            2
-                                          )
-                                        );
-                                      } catch (e) {
-                                        if (e instanceof TypeError) {
-                                          return "Enter some text";
-                                        }
-                                        throw e;
-                                      }
-                                    })()}
-                                  </div>
-                                ) : null
-                              }
-                            >
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text__yQiHh
-                                )}
-                              >
-                                {(() => {
-                                  try {
-                                    return currentOption.fields.values[0].fields
-                                      .label;
-                                  } catch (e) {
-                                    if (e instanceof TypeError) {
-                                      return "Enter some text";
-                                    }
-                                    throw e;
-                                  }
-                                })()}
-                              </div>
-                            </AddItemRow>
-
-                            {(() => {
-                              try {
-                                return currentOption.fields.values.slice(1);
-                              } catch (e) {
-                                if (e instanceof TypeError) {
-                                  return [];
-                                }
-                                throw e;
-                              }
-                            })().map((currentOptionValue, currentIndex) => (
-                              <AddItemRow
-                                data-plasmic-name={"repeatedAddItemRow"}
-                                data-plasmic-override={
-                                  overrides.repeatedAddItemRow
-                                }
-                                className={classNames(
-                                  "__wab_instance",
-                                  sty.repeatedAddItemRow
-                                )}
-                                menuOptionId={currentOption.sys.id}
-                                menuOptionValueId={currentOptionValue.sys.id}
-                                price={
-                                  (() => {
-                                    try {
-                                      return (
-                                        currentOptionValue.fields.price !==
-                                        undefined
-                                      );
-                                    } catch (e) {
-                                      if (e instanceof TypeError) {
-                                        return true;
-                                      }
-                                      throw e;
-                                    }
-                                  })() ? (
-                                    <div
-                                      className={classNames(
-                                        projectcss.all,
-                                        projectcss.__wab_text,
-                                        sty.text__eT6Gf
-                                      )}
-                                    >
-                                      {(() => {
-                                        try {
-                                          return (
-                                            "R$: " +
-                                            currentOptionValue.fields.price.toFixed(
-                                              2
-                                            )
-                                          );
-                                        } catch (e) {
-                                          if (e instanceof TypeError) {
-                                            return "Enter some text";
-                                          }
-                                          throw e;
-                                        }
-                                      })()}
-                                    </div>
-                                  ) : null
-                                }
-                              >
-                                <div
-                                  className={classNames(
-                                    projectcss.all,
-                                    projectcss.__wab_text,
-                                    sty.text___3By
-                                  )}
-                                >
-                                  {(() => {
-                                    try {
-                                      return currentOptionValue.fields.label;
-                                    } catch (e) {
-                                      if (e instanceof TypeError) {
-                                        return "Enter some text";
-                                      }
-                                      throw e;
-                                    }
-                                  })()}
-                                </div>
-                              </AddItemRow>
-                            ))}
-                          </div>
-                        </p.Stack>
+                            id={currentItem.sys.id}
+                          />
+                        </div>
                       ))
                     : null}
                 </p.Stack>
               ) : null}
 
-              <div
+              <ScrollSpace
                 data-plasmic-name={"scrollSpace"}
                 data-plasmic-override={overrides.scrollSpace}
-                className={classNames(projectcss.all, sty.scrollSpace)}
+                className={classNames("__wab_instance", sty.scrollSpace)}
+                height={200 as const}
               />
 
-              <div className={classNames(projectcss.all, sty.freeBox___1Lzs)}>
+              <div
+                data-plasmic-name={"footer"}
+                data-plasmic-override={overrides.footer}
+                className={classNames(projectcss.all, sty.footer)}
+                id={"footer" as const}
+              >
                 <div className={classNames(projectcss.all, sty.freeBox__eJscO)}>
                   <div
                     className={classNames(
@@ -495,25 +329,25 @@ const PlasmicDescendants = {
     "root",
     "contentfulFetcher",
     "back",
-    "addItemRow",
-    "repeatedAddItemRow",
+    "addItemOption",
     "scrollSpace",
+    "footer",
     "selectedOptionValues",
     "button"
   ],
   contentfulFetcher: [
     "contentfulFetcher",
     "back",
-    "addItemRow",
-    "repeatedAddItemRow",
+    "addItemOption",
     "scrollSpace",
+    "footer",
     "selectedOptionValues",
     "button"
   ],
   back: ["back"],
-  addItemRow: ["addItemRow"],
-  repeatedAddItemRow: ["repeatedAddItemRow"],
+  addItemOption: ["addItemOption"],
   scrollSpace: ["scrollSpace"],
+  footer: ["footer", "selectedOptionValues", "button"],
   selectedOptionValues: ["selectedOptionValues"],
   button: ["button"]
 } as const;
@@ -524,9 +358,9 @@ type NodeDefaultElementType = {
   root: "div";
   contentfulFetcher: typeof ContentfulFetcher;
   back: "div";
-  addItemRow: typeof AddItemRow;
-  repeatedAddItemRow: typeof AddItemRow;
-  scrollSpace: "div";
+  addItemOption: typeof AddItemOption;
+  scrollSpace: typeof ScrollSpace;
+  footer: "div";
   selectedOptionValues: "div";
   button: typeof Button;
 };
@@ -594,9 +428,9 @@ export const PlasmicAddItem = Object.assign(
     // Helper components rendering sub-elements
     contentfulFetcher: makeNodeComponent("contentfulFetcher"),
     back: makeNodeComponent("back"),
-    addItemRow: makeNodeComponent("addItemRow"),
-    repeatedAddItemRow: makeNodeComponent("repeatedAddItemRow"),
+    addItemOption: makeNodeComponent("addItemOption"),
     scrollSpace: makeNodeComponent("scrollSpace"),
+    footer: makeNodeComponent("footer"),
     selectedOptionValues: makeNodeComponent("selectedOptionValues"),
     button: makeNodeComponent("button"),
 

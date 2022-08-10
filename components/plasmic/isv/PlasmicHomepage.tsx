@@ -70,7 +70,7 @@ export type PlasmicHomepage__OverridesType = {
   link?: p.Flex<"a"> & Partial<LinkProps>;
   separator?: p.Flex<typeof Separator>;
   options?: p.Flex<"div">;
-  contentfulFetcher?: p.Flex<typeof ContentfulFetcher>;
+  event?: p.Flex<typeof ContentfulFetcher>;
   menuItem?: p.Flex<typeof MenuItem>;
   contentfulRichText?: p.Flex<typeof ContentfulRichText>;
   cartButton?: p.Flex<typeof CartButton>;
@@ -277,90 +277,93 @@ function PlasmicHomepage__RenderFunc(props: {
                 className={classNames(projectcss.all, sty.options)}
               >
                 <ContentfulFetcher
-                  data-plasmic-name={"contentfulFetcher"}
-                  data-plasmic-override={overrides.contentfulFetcher}
-                  className={classNames(
-                    "__wab_instance",
-                    sty.contentfulFetcher
-                  )}
-                  contentType={"eventMenuItem" as const}
+                  data-plasmic-name={"event"}
+                  data-plasmic-override={overrides.event}
+                  className={classNames("__wab_instance", sty.event)}
+                  contentType={"event" as const}
+                  entryID={"2z9KGzRedQqhYeZsNxpljv" as const}
                   limit={1000 as const}
                   noLayout={true}
-                  order={"fields.order" as const}
                 >
                   <ph.DataCtxReader>
                     {$ctx => (
                       <>
-                        {(() => {
-                          try {
-                            return $ctx.contentfulItems ?? [];
-                          } catch (e) {
-                            if (e instanceof TypeError) {
-                              return [];
-                            }
-                            throw e;
-                          }
-                        })().map((currentItem, currentIndex) => (
-                          <MenuItem
-                            data-plasmic-name={"menuItem"}
-                            data-plasmic-override={overrides.menuItem}
-                            className={classNames(
-                              "__wab_instance",
-                              sty.menuItem
-                            )}
-                            description={
-                              <ContentfulRichText
-                                data-plasmic-name={"contentfulRichText"}
-                                data-plasmic-override={
-                                  overrides.contentfulRichText
+                        {true
+                          ? (() => {
+                              try {
+                                return (
+                                  $ctx.contentfulEventItem.fields.menu ?? []
+                                ).sort(
+                                  (a, b) => a.fields.order - b.fields.order
+                                );
+                              } catch (e) {
+                                if (e instanceof TypeError) {
+                                  return [];
                                 }
+                                throw e;
+                              }
+                            })().map((currentItem, currentIndex) => (
+                              <MenuItem
+                                data-plasmic-name={"menuItem"}
+                                data-plasmic-override={overrides.menuItem}
                                 className={classNames(
                                   "__wab_instance",
-                                  sty.contentfulRichText
+                                  sty.menuItem
                                 )}
-                                richText={currentItem.fields.description}
-                              />
-                            }
-                            id={currentItem.sys.id}
-                            image={currentItem.fields.image.fields.file.url}
-                            price={
-                              (() => {
-                                try {
-                                  return currentItem.fields.price !== 0;
-                                } catch (e) {
-                                  if (e instanceof TypeError) {
-                                    return true;
-                                  }
-                                  throw e;
+                                description={
+                                  <ContentfulRichText
+                                    data-plasmic-name={"contentfulRichText"}
+                                    data-plasmic-override={
+                                      overrides.contentfulRichText
+                                    }
+                                    className={classNames(
+                                      "__wab_instance",
+                                      sty.contentfulRichText
+                                    )}
+                                    richText={currentItem.fields.description}
+                                  />
                                 }
-                              })()
-                                ? (() => {
+                                id={currentItem.sys.id}
+                                image={currentItem.fields.image.fields.file.url}
+                                price={
+                                  (() => {
                                     try {
-                                      return (
-                                        "R$: " +
-                                        currentItem.fields.price.toFixed(2)
-                                      );
+                                      return currentItem.fields.price !== 0;
                                     } catch (e) {
                                       if (e instanceof TypeError) {
-                                        return "R$ 20,00";
+                                        return true;
                                       }
                                       throw e;
                                     }
                                   })()
-                                : null
-                            }
-                            title={(() => {
-                              try {
-                                return currentItem.fields.name;
-                              } catch (e) {
-                                if (e instanceof TypeError) {
-                                  return "Combo 1";
+                                    ? (() => {
+                                        try {
+                                          return (
+                                            "R$: " +
+                                            currentItem.fields.price.toFixed(2)
+                                          );
+                                        } catch (e) {
+                                          if (e instanceof TypeError) {
+                                            return "R$ 20,00";
+                                          }
+                                          throw e;
+                                        }
+                                      })()
+                                    : null
                                 }
-                                throw e;
-                              }
-                            })()}
-                          />
-                        ))}
+                                title={(() => {
+                                  try {
+                                    return currentItem.fields.name;
+                                  } catch (e) {
+                                    if (e instanceof TypeError) {
+                                      return "Combo 1";
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              />
+                            ))
+                          : null}
                       </>
                     )}
                   </ph.DataCtxReader>
@@ -390,7 +393,7 @@ const PlasmicDescendants = {
     "link",
     "separator",
     "options",
-    "contentfulFetcher",
+    "event",
     "menuItem",
     "contentfulRichText",
     "cartButton"
@@ -399,8 +402,8 @@ const PlasmicDescendants = {
   img: ["img"],
   link: ["link"],
   separator: ["separator"],
-  options: ["options", "contentfulFetcher", "menuItem", "contentfulRichText"],
-  contentfulFetcher: ["contentfulFetcher", "menuItem", "contentfulRichText"],
+  options: ["options", "event", "menuItem", "contentfulRichText"],
+  event: ["event", "menuItem", "contentfulRichText"],
   menuItem: ["menuItem", "contentfulRichText"],
   contentfulRichText: ["contentfulRichText"],
   cartButton: ["cartButton"]
@@ -415,7 +418,7 @@ type NodeDefaultElementType = {
   link: "a";
   separator: typeof Separator;
   options: "div";
-  contentfulFetcher: typeof ContentfulFetcher;
+  event: typeof ContentfulFetcher;
   menuItem: typeof MenuItem;
   contentfulRichText: typeof ContentfulRichText;
   cartButton: typeof CartButton;
@@ -487,7 +490,7 @@ export const PlasmicHomepage = Object.assign(
     link: makeNodeComponent("link"),
     separator: makeNodeComponent("separator"),
     options: makeNodeComponent("options"),
-    contentfulFetcher: makeNodeComponent("contentfulFetcher"),
+    event: makeNodeComponent("event"),
     menuItem: makeNodeComponent("menuItem"),
     contentfulRichText: makeNodeComponent("contentfulRichText"),
     cartButton: makeNodeComponent("cartButton"),

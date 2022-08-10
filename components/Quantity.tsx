@@ -45,7 +45,7 @@ function Quantity_(props: QuantityProps, ref: HTMLElementRefOf<"div">) {
   
   const { onChangeQuantity, quantity, ...rest } = props;
   return <PlasmicQuantity 
-    root={{ ref }} 
+    root={{ ref }}
     plusButton={{
       onClick: () => onChangeQuantity?.(quantity + 1)
     }}

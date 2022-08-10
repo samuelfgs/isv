@@ -9,38 +9,39 @@ import { HTMLElementRefOf } from "@plasmicapp/react-web";
 import ShoppingCartLineItem from "./ShoppingCartLineItem";
 import { addToCart, Cart, getProductVariantPrice, LineItem, updateCart } from "../lib/cart";
 import { formatPrice } from "../lib/common";
+import { useSnapshot } from "valtio";
+import { AppPage, state } from "../lib/state-management";
+import { goToCheckout } from "../lib/checkout";
+import { useRouter } from "next/router";
 
-export interface ShoppingCartProps extends DefaultShoppingCartProps {
-  cart: Cart;
-  isLoading: boolean;
-  setCart: React.Dispatch<React.SetStateAction<Cart>>;
-  onBack: () => void;
-  onCheckout: (name: string, email: string) => void;
-}
+export interface ShoppingCartProps extends DefaultShoppingCartProps {}
 
 function isValidEmail(email: string) {
   return /\S+@\S+\.\S+/.test(email);
 }
 
 function ShoppingCart_(props: ShoppingCartProps, ref: HTMLElementRefOf<"div">) {
-  const { cart, setCart, onBack, onCheckout, isLoading, ...rest } = props;
   const [ invalidState, setInvalidState ] = React.useState(false);
+
+  const { cart, isCheckoutLoading } = useSnapshot(state);
+
   const [ name, setName ] = React.useState<string>(cart.name);
   const [ email, setEmail ] = React.useState<string>(cart.email);
+  
+  const router = useRouter();
 
   return <PlasmicShoppingCart 
     root={{ ref }} 
-    {...rest} 
+    {...props} 
     lineItems={{
       children: cart.lineItems.map((item, i) => (
         <ShoppingCartLineItem
           index={i+1}
-          name={item.product.fields.name}
-          price={`R$ ${formatPrice(getProductVariantPrice(item.product, item.variantId) * item.quantity)}`}
+          name={item.product.product.fields.name}
+          price={`R$ ${formatPrice(getProductVariantPrice(item.product) * item.quantity)}`}
           even={i%2 === 1}
           quantity={item.quantity}
-          onChangeQuantity={(newQuantity) => updateCart(item.productId, item.variantId, newQuantity, item.product, setCart)}
-          selectedValues={JSON.parse(item.variantId)}
+          onChangeQuantity={(newQuantity) => updateCart(item.product, newQuantity)}
           product={item.product}
         />
       )
@@ -48,14 +49,14 @@ function ShoppingCart_(props: ShoppingCartProps, ref: HTMLElementRefOf<"div">) {
     isEmpty={cart.lineItems.length === 0}
     totalPrice={cart.totalPrice.toFixed(2)}
     backBtn={{
-      onClick: onBack
+      onClick: () => state.appPage = AppPage.home
     }}
     checkoutBtn={{
       onClick: () => {
         if (!name || !email || !isValidEmail(email)) {
           setInvalidState(true);
         } else {
-          onCheckout(name, email);
+          goToCheckout(name, email, router);
         }
       }
     }}
@@ -63,7 +64,7 @@ function ShoppingCart_(props: ShoppingCartProps, ref: HTMLElementRefOf<"div">) {
       value: name,
       onChange: (e) => {
         setName(e.target.value);
-        setCart(c => ({ ...c, name: e.target.value }));
+        state.cart.name = e.target.value;
         setInvalidState(false);
       }
     }}
@@ -71,12 +72,12 @@ function ShoppingCart_(props: ShoppingCartProps, ref: HTMLElementRefOf<"div">) {
       value: email,
       onChange: (e) => {
         setEmail(e.target.value);
-        setCart(c => ({ ...c, email: e.target.value }));
+        state.cart.email = e.target.value;
         setInvalidState(false);
       }
     }}
     loading={{
-      hide: !isLoading
+      hide: !isCheckoutLoading
     }}
     invalidData={{
       render: (props, Component) => invalidState ? <Component {...props} /> : null

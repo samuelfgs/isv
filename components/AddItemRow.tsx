@@ -5,55 +5,80 @@ import {
   PlasmicAddItemRow,
   DefaultAddItemRowProps
 } from "./plasmic/isv/PlasmicAddItemRow";
-import { HTMLElementRefOf } from "@plasmicapp/react-web";
-import { useDataEnv  } from "@plasmicapp/host";
+import { fetchContentfulEntry } from "./contentful";
+import { useSnapshot } from "valtio";
+import { addProductState, OptionType } from "../lib/state-management";
 
-// Your component props start with props for variants and slots you defined
-// in Plasmic, but you can add more here, like event handlers that you can
-// attach to named nodes in your component.
-//
-// If you don't want to expose certain variants or slots as a prop, you can use
-// Omit to hide them:
-//
-// interface AddItemRowProps extends Omit<DefaultAddItemRowProps, "hideProps1"|"hideProp2"> {
-//   // etc.
-// }
-//
-// You can also stop extending from DefaultAddItemRowProps altogether and have
-// total control over the props for your component.
 export interface AddItemRowProps extends DefaultAddItemRowProps {
-  onSelect: (optionId: string | undefined, optionValueId: string | undefined) => void;
-  selectedValues: Record<string, string>;
 }
 
 function AddItemRow_(props: AddItemRowProps) {
+  const { ...rest } = props;
+  
   const ref = React.createRef<HTMLDivElement>();
-  const { onSelect, selectedValues, ...rest } = props;
-
-  const [isSelected, setIsSelected] = React.useState(false);
-  const [optionId, setOptionId] = React.useState<string | undefined>();
-  const [optionValueId, setOptionValueId] = React.useState<string | undefined>();
-
+  const [optionId, setOptionId] = React.useState<string>("");
+  const [optionValueId, setOptionValueId] = React.useState<string>("");
+  
   React.useEffect(() => {
     if (ref.current) {
-      setOptionId(ref.current?.attributes.getNamedItem("data-menuoption-id")?.value);
-      setOptionValueId(ref.current?.attributes.getNamedItem("data-menuoptionvalue-id")?.value);
+      setOptionId(ref.current.attributes.getNamedItem("data-menuoption-id")?.value ?? "");
+      setOptionValueId(ref.current.attributes.getNamedItem("data-menuoptionvalue-id")?.value ?? "");
     }
   }, [ref])
+  const optionEntry = fetchContentfulEntry(optionId);
+  const { optionValues, optionsType, sumOfOptionValuesQuantity } = useSnapshot(addProductState);
+  const optionType = optionsType[optionId];
+  const isSelected = optionValues[optionValueId] !== undefined;
+  const quantity = isSelected ? optionValues[optionValueId]!.quantity : undefined;
 
-  React.useEffect(() => {
-    if (optionId && optionValueId && selectedValues[optionId ?? ""] === optionValueId) {
-      setIsSelected(true)
-    } else {
-      setIsSelected(false);
-    }
-  }, [optionId, optionValueId, selectedValues])
+  console.log(optionEntry);
   return <PlasmicAddItemRow 
     root={{
       ref,
-      onClick: () => onSelect(optionId, optionValueId)
+      onClick: () => {
+        if (optionType === OptionType.single) {
+          if (addProductState.selectedOptionValue[optionId] in addProductState.optionValues) {
+            delete addProductState.optionValues[
+              addProductState.selectedOptionValue[optionId]
+            ];
+          }
+          addProductState.optionValues[optionValueId] = {
+            optionId,
+            valueId: optionValueId,
+            quantity: 1,
+          }
+          addProductState.selectedOptionValue[optionId] = optionValueId;
+          addProductState.sumOfOptionValuesQuantity[optionId] = 1;
+        }
+      }
     }} 
     isSelected={isSelected}
+    showQuantity={
+      optionType === OptionType.multi
+      ? (quantity! > 0 ? "notInitial" : "initial")
+      : undefined
+    }
+    showPrice={optionEntry?.fields.values.find((val: any) => val.sys.id === optionValueId)?.fields.price !== undefined}
+    quantity={{
+      quantity,
+      disablePlusButton: optionEntry?.fields.maximum === sumOfOptionValuesQuantity[optionId],
+      onChangeQuantity: (newQuantity) => {
+        if (!(optionValueId in addProductState.optionValues)) {
+          addProductState.optionValues[optionValueId] = {
+            optionId,
+            valueId: optionValueId,
+            quantity: newQuantity
+          }
+          addProductState.sumOfOptionValuesQuantity[optionId] += newQuantity;
+        }
+        addProductState.sumOfOptionValuesQuantity[optionId] += newQuantity - addProductState.optionValues[optionValueId].quantity!;
+        if (newQuantity === 0) {
+          delete addProductState.optionValues[optionValueId];
+        } else {
+          addProductState.optionValues[optionValueId].quantity = newQuantity;
+        }
+      }
+    }}
     {...rest} 
   />;
 }

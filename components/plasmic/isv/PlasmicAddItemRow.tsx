@@ -34,6 +34,7 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
+import Quantity from "../../Quantity"; // plasmic-import: VGSmBro-ef/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -45,17 +46,23 @@ import sty from "./PlasmicAddItemRow.module.css"; // plasmic-import: VyP48T0NTA/
 export type PlasmicAddItemRow__VariantMembers = {
   isSelected: "isSelected";
   isFirstRow: "isFirstRow";
+  showPrice: "showPrice";
+  showQuantity: "notInitial" | "initial";
 };
 
 export type PlasmicAddItemRow__VariantsArgs = {
   isSelected?: SingleBooleanChoiceArg<"isSelected">;
   isFirstRow?: SingleBooleanChoiceArg<"isFirstRow">;
+  showPrice?: SingleBooleanChoiceArg<"showPrice">;
+  showQuantity?: MultiChoiceArg<"notInitial" | "initial">;
 };
 
 type VariantPropType = keyof PlasmicAddItemRow__VariantsArgs;
 export const PlasmicAddItemRow__VariantProps = new Array<VariantPropType>(
   "isSelected",
-  "isFirstRow"
+  "isFirstRow",
+  "showPrice",
+  "showQuantity"
 );
 
 export type PlasmicAddItemRow__ArgsType = {
@@ -63,6 +70,7 @@ export type PlasmicAddItemRow__ArgsType = {
   menuOptionId?: string;
   menuOptionValueId?: string;
   price?: React.ReactNode;
+  price2?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicAddItemRow__ArgsType;
@@ -70,11 +78,13 @@ export const PlasmicAddItemRow__ArgProps = new Array<ArgPropType>(
   "children",
   "menuOptionId",
   "menuOptionValueId",
-  "price"
+  "price",
+  "price2"
 );
 
 export type PlasmicAddItemRow__OverridesType = {
   root?: p.Flex<"div">;
+  quantity?: p.Flex<typeof Quantity>;
 };
 
 export interface DefaultAddItemRowProps {
@@ -82,8 +92,11 @@ export interface DefaultAddItemRowProps {
   menuOptionId?: string;
   menuOptionValueId?: string;
   price?: React.ReactNode;
+  price2?: React.ReactNode;
   isSelected?: SingleBooleanChoiceArg<"isSelected">;
   isFirstRow?: SingleBooleanChoiceArg<"isFirstRow">;
+  showPrice?: SingleBooleanChoiceArg<"showPrice">;
+  showQuantity?: MultiChoiceArg<"notInitial" | "initial">;
   className?: string;
 }
 
@@ -138,8 +151,8 @@ function PlasmicAddItemRow__RenderFunc(props: {
             )
           }
         )}
-        data-menuOption-id={args.menuOptionId}
-        data-menuOptionValue-id={args.menuOptionValueId}
+        data-menuoption-id={args.menuOptionId}
+        data-menuoptionvalue-id={args.menuOptionValueId}
       >
         <div
           className={classNames(projectcss.all, sty.freeBox__jy49O, {
@@ -152,20 +165,129 @@ function PlasmicAddItemRow__RenderFunc(props: {
               variants,
               "isSelected",
               "isSelected"
-            )
+            ),
+            [sty.freeBoxshowPrice__jy49OuK411]: hasVariant(
+              variants,
+              "showPrice",
+              "showPrice"
+            ),
+            [sty.freeBoxshowQuantity_notInitial_showPrice__jy49ObtqIwUK411]:
+              hasVariant(variants, "showQuantity", "notInitial") &&
+              hasVariant(variants, "showPrice", "showPrice")
           })}
         >
-          {p.renderPlasmicSlot({
-            defaultContents: "Pastel de Pizza",
-            value: args.children
-          })}
+          {true ? (
+            <div
+              className={classNames(projectcss.all, sty.freeBox___9XzJs, {
+                [sty.freeBoxshowPrice___9XzJSuK411]: hasVariant(
+                  variants,
+                  "showPrice",
+                  "showPrice"
+                ),
+                [sty.freeBoxshowQuantity_initial___9XzJsnzcw9]: hasVariant(
+                  variants,
+                  "showQuantity",
+                  "initial"
+                ),
+                [sty.freeBoxshowQuantity_initial_showPrice___9XzJsnzcw9UK411]:
+                  hasVariant(variants, "showQuantity", "initial") &&
+                  hasVariant(variants, "showPrice", "showPrice"),
+                [sty.freeBoxshowQuantity_notInitial___9XzJSbtqIw]: hasVariant(
+                  variants,
+                  "showQuantity",
+                  "notInitial"
+                ),
+                [sty.freeBoxshowQuantity_notInitial_showPrice___9XzJSbtqIwUK411]:
+                  hasVariant(variants, "showQuantity", "notInitial") &&
+                  hasVariant(variants, "showPrice", "showPrice")
+              })}
+            >
+              {p.renderPlasmicSlot({
+                defaultContents: "Pastel de Pizza",
+                value: args.children
+              })}
 
-          <div className={classNames(projectcss.all, sty.freeBox__lbV7J)}>
-            {p.renderPlasmicSlot({
-              defaultContents: "R$ 0,00",
-              value: args.price
-            })}
-          </div>
+              {(
+                hasVariant(variants, "showQuantity", "initial") &&
+                hasVariant(variants, "showPrice", "showPrice")
+                  ? true
+                  : hasVariant(variants, "showQuantity", "notInitial") &&
+                    hasVariant(variants, "showPrice", "showPrice")
+                  ? true
+                  : false
+              )
+                ? p.renderPlasmicSlot({
+                    defaultContents: "+ R$ 0,00",
+                    value: args.price2
+                  })
+                : null}
+            </div>
+          ) : null}
+          {(
+            hasVariant(variants, "showQuantity", "initial") &&
+            hasVariant(variants, "showPrice", "showPrice")
+              ? true
+              : hasVariant(variants, "showQuantity", "notInitial") &&
+                hasVariant(variants, "showPrice", "showPrice")
+              ? true
+              : hasVariant(variants, "showPrice", "showPrice")
+              ? true
+              : true
+          ) ? (
+            <p.Stack
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox__lbV7J, {
+                [sty.freeBoxshowPrice__lbV7JuK411]: hasVariant(
+                  variants,
+                  "showPrice",
+                  "showPrice"
+                ),
+                [sty.freeBoxshowQuantity_initial_showPrice__lbV7Jnzcw9UK411]:
+                  hasVariant(variants, "showQuantity", "initial") &&
+                  hasVariant(variants, "showPrice", "showPrice"),
+                [sty.freeBoxshowQuantity_notInitial_showPrice__lbV7JbtqIwUK411]:
+                  hasVariant(variants, "showQuantity", "notInitial") &&
+                  hasVariant(variants, "showPrice", "showPrice")
+              })}
+            >
+              {true
+                ? p.renderPlasmicSlot({
+                    defaultContents: "+ R$ 0,00",
+                    value: args.price
+                  })
+                : null}
+            </p.Stack>
+          ) : null}
+          {(
+            hasVariant(variants, "showQuantity", "initial")
+              ? true
+              : hasVariant(variants, "showQuantity", "notInitial")
+              ? true
+              : true
+          ) ? (
+            <Quantity
+              data-plasmic-name={"quantity"}
+              data-plasmic-override={overrides.quantity}
+              className={classNames("__wab_instance", sty.quantity, {
+                [sty.quantityshowQuantity_initial]: hasVariant(
+                  variants,
+                  "showQuantity",
+                  "initial"
+                ),
+                [sty.quantityshowQuantity_notInitial]: hasVariant(
+                  variants,
+                  "showQuantity",
+                  "notInitial"
+                )
+              })}
+              initialState={
+                hasVariant(variants, "showQuantity", "initial")
+                  ? true
+                  : undefined
+              }
+            />
+          ) : null}
         </div>
       </div>
     ) : null
@@ -173,13 +295,15 @@ function PlasmicAddItemRow__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root"]
+  root: ["root", "quantity"],
+  quantity: ["quantity"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  quantity: typeof Quantity;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -243,6 +367,7 @@ export const PlasmicAddItemRow = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    quantity: makeNodeComponent("quantity"),
 
     // Metadata about props expected for PlasmicAddItemRow
     internalVariantProps: PlasmicAddItemRow__VariantProps,
