@@ -63,3 +63,20 @@ export interface Product {
     quantity?: number;
   }>;
 };
+
+export const getProductionOptionValues = (product: Product) =>
+  Object.entries(product.optionValues)
+    .sort(([_a, {optionId: optionIdA }], [_b, {optionId: optionIdB}]) => 
+      product.product?.fields.options.findIndex((option: any) => option.sys.id === optionIdA) - 
+      product.product?.fields.options.findIndex((option: any) => option.sys.id === optionIdB)
+    )
+    .map(([_, { optionId, valueId, quantity }]) => ({
+      quantity: product.product?.fields.options
+        .find((option: any) => option.sys.id === optionId)?.fields.maximum !== undefined
+        ? quantity
+        : undefined,
+        optionValueName: product.product?.fields.options
+            .find((option: any) => option.sys.id === optionId)
+            ?.fields.values.find((currOptionValue: any) => currOptionValue.sys.id === valueId)
+            ?.fields.label
+    }))

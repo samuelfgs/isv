@@ -4,7 +4,7 @@ import { isEqual } from "lodash";
 
 export type LineItem = {
   productId: string;
-  variantId: string;
+  variantId: string; //stringfied optionValues
   quantity: number;
   product: Product;
 }

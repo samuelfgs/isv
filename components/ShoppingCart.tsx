@@ -7,7 +7,7 @@ import {
 } from "./plasmic/isv/PlasmicShoppingCart";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 import ShoppingCartLineItem from "./ShoppingCartLineItem";
-import { addToCart, Cart, getProductVariantPrice, LineItem, updateCart } from "../lib/cart";
+import { getProductVariantPrice, updateCart } from "../lib/cart";
 import { formatPrice } from "../lib/common";
 import { useSnapshot } from "valtio";
 import { AppPage, state } from "../lib/state-management";

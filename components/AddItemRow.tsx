@@ -31,7 +31,6 @@ function AddItemRow_(props: AddItemRowProps) {
   const isSelected = optionValues[optionValueId] !== undefined;
   const quantity = isSelected ? optionValues[optionValueId]!.quantity : undefined;
 
-  console.log(optionEntry);
   return <PlasmicAddItemRow 
     root={{
       ref,

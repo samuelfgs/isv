@@ -14,17 +14,14 @@ function Index() {
   if (appPage === AppPage.home && addProductState.product !== undefined) {
     resetAddProductState();
   }
-  console.log(cart);
   return (
-    <>
-      {appPage === AppPage.home ? (
-        <Homepage />
-      ) : appPage === AppPage.addItem ? (
-        <AddItem entryId={productId} key={cart.lineItems.length} />
-      ) : appPage === AppPage.checkout ? (
-        <ShoppingCart />
-      ) : null}
-    </>
+    appPage === AppPage.home ? (
+      <Homepage />
+    ) : appPage === AppPage.addItem ? (
+      <AddItem entryId={productId} key={cart.lineItems.length} />
+    ) : appPage === AppPage.checkout ? (
+      <ShoppingCart />
+    ) : null
   );
 }
 
