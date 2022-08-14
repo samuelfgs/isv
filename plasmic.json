@@ -147,19 +147,6 @@
           "componentType": "component"
         },
         {
-          "id": "ePzZ4YqBZo",
-          "name": "AddItem",
-          "type": "managed",
-          "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
-          "renderModuleFilePath": "plasmic/isv/PlasmicAddItem.tsx",
-          "importSpec": {
-            "modulePath": "AddItem.tsx"
-          },
-          "cssFilePath": "plasmic/isv/PlasmicAddItem.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "VyP48T0NTA",
           "name": "AddItemRow",
           "type": "managed",
@@ -250,6 +237,45 @@
           "cssFilePath": "plasmic/isv/PlasmicScrollSpace.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "ePzZ4YqBZo",
+          "name": "AddItem2",
+          "type": "managed",
+          "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
+          "renderModuleFilePath": "plasmic/isv/PlasmicAddItem2.tsx",
+          "importSpec": {
+            "modulePath": "AddItem2.tsx"
+          },
+          "cssFilePath": "plasmic/isv/PlasmicAddItem2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "vHTuRfYzkk",
+          "name": "AddItem",
+          "type": "managed",
+          "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
+          "renderModuleFilePath": "plasmic/isv/PlasmicAddItem.tsx",
+          "importSpec": {
+            "modulePath": "../pages/product/[id].tsx"
+          },
+          "cssFilePath": "plasmic/isv/PlasmicAddItem.module.css",
+          "scheme": "blackbox",
+          "componentType": "page"
+        },
+        {
+          "id": "jvNNS1u1VD",
+          "name": "Checkout",
+          "type": "managed",
+          "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
+          "renderModuleFilePath": "plasmic/isv/PlasmicCheckout.tsx",
+          "importSpec": {
+            "modulePath": "../pages/checkout.tsx"
+          },
+          "cssFilePath": "plasmic/isv/PlasmicCheckout.module.css",
+          "scheme": "blackbox",
+          "componentType": "page"
         }
       ],
       "icons": [
@@ -451,6 +477,6 @@
   "nextjsConfig": {
     "pagesDir": "../pages"
   },
-  "cliVersion": "0.1.184",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.184/dist/plasmic.schema.json"
+  "cliVersion": "0.1.185",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.185/dist/plasmic.schema.json"
 }

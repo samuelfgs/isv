@@ -9,15 +9,15 @@ import {
 } from "./plasmic/isv/PlasmicHomepage";
 import { useSnapshot } from "valtio";
 import { addProductState, AppPage, state } from "../lib/state-management";
-import { Product } from "../lib/common";
+import { useRouter } from "next/router";
 
-export interface HomepageProps extends DefaultHomepageProps {
-}
+export interface HomepageProps extends DefaultHomepageProps { }
 
 function Homepage(props: HomepageProps) {
   const ref = React.createRef<HTMLDivElement>();
   const { cart } = useSnapshot(state);
   const products = fetchContentfulEntries('eventMenuItem');
+  const router = useRouter();
 
   React.useEffect(() => {
     if (cart.lineItems.length > 0) {
@@ -42,16 +42,18 @@ function Homepage(props: HomepageProps) {
           addProductState.productId = id;
           addProductState.optionValues = {};
           addToCart();
-          state.appPage = AppPage.checkout;
+          router.push(`/checkout`);
         } else {
-          state.appPage = AppPage.addItem;
+          router.push(`/product/${id}`);
         }
       }
     }}
     cartButton={{
       isEmpty: cart.lineItems.length === 0,
       quantity: cart.totalQuantity,
-      onClick: () => state.appPage = AppPage.checkout
+      onClick: () => {
+        router.push(`/checkout`);
+      }
     }}
   />
 }

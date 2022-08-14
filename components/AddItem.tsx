@@ -10,6 +10,7 @@ import { fetchContentfulEntry } from "./contentful";
 import { addToCart, getProductVariantPrice } from "../lib/cart";
 import { addProductState, AppPage, OptionType, state } from "../lib/state-management";
 import { useSnapshot } from "valtio";
+import { useRouter } from "next/router";
 
 export interface AddItemProps extends DefaultAddItemProps {
 }
@@ -19,7 +20,7 @@ function AddItem_(props: AddItemProps, ref: HTMLElementRefOf<"div">) {
   const refFooter = React.createRef<HTMLDivElement>();
 
   const productStateSnap = useSnapshot(addProductState);
-  useSnapshot(state).appPage;
+  const router = useRouter();
 
   const product = fetchContentfulEntry(productStateSnap.productId);
   if (productStateSnap.product === undefined && product) {
@@ -49,7 +50,7 @@ function AddItem_(props: AddItemProps, ref: HTMLElementRefOf<"div">) {
     root={{ ref }} 
     {...rest} 
     back={{
-      wrap: (node) => <div onClick={() => state.appPage = AppPage.home}>{node}</div>
+      wrap: (node) => <div onClick={() => router.push("/")}>{node}</div>
     }}
     selectedOptionValues={{
       children: (
@@ -76,7 +77,7 @@ function AddItem_(props: AddItemProps, ref: HTMLElementRefOf<"div">) {
         if (productStateSnap.productId) {
           addToCart();
         }
-        state.appPage = AppPage.checkout;
+        router.push("/checkout");
       }
     }}
     scrollSpace={{

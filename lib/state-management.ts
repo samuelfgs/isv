@@ -1,5 +1,5 @@
 import App from "next/app";
-import { proxy } from "valtio";
+import { proxy, subscribe } from "valtio";
 import { Cart } from "./cart";
 import { Product } from "./common";
 
@@ -11,11 +11,15 @@ export enum AppPage {
 
 export interface AppState {
   cart: Cart;
-  appPage: AppPage;
   isCheckoutLoading: boolean;
 };
 
-export const state = proxy<AppState>({
+const initializePersistentState = (key: string, defaultValue: any) => {
+  const persistentData = typeof window !== "undefined" && window.sessionStorage.getItem(key);
+  return persistentData ? JSON.stringify(persistentData) : defaultValue;
+}
+
+export const state = proxy<AppState>(initializePersistentState("isv-app-state", {
   cart: {
     lineItems: [],
     totalPrice: 0,
@@ -23,9 +27,12 @@ export const state = proxy<AppState>({
     name: "",
     email: ""
   },
-  appPage: AppPage.home,
   isCheckoutLoading: false,
-});
+}));
+
+subscribe(state, () => {
+  localStorage.setItem('isv-app-state', JSON.stringify(state))
+})
 
 export enum OptionType {
   single,
@@ -38,7 +45,8 @@ interface AddProductState extends Product {
   selectedOptionValue: Record<string, string>;
   isReady: boolean;
 }
-export const addProductState = proxy<AddProductState>({
+
+export const addProductState = proxy<AddProductState>(initializePersistentState("isv-product-state", {
   product: undefined,
   productId: "",
   optionValues: {},
@@ -46,6 +54,10 @@ export const addProductState = proxy<AddProductState>({
   optionsType: {},
   selectedOptionValue: {},
   isReady: false,
+}));
+
+subscribe(state, () => {
+  localStorage.setItem('isv-product-state', JSON.stringify(addProductState))
 })
 
 export const getAddProductStateVariantId = () => 

@@ -295,8 +295,13 @@ export const fetchContentfulEntry = (entryId: string | undefined) => {
   return data;
 }
 
+const creds = {
+  accessToken: "ZhMf0iObSvHFPx861zNK4VNL6kOrURuEQh5R24_QdvE" as const,
+  environment: "master" as const,
+  space: "1qzqoknl91s3" as const,
+};
+
 export const fetchContentfulEntries = (contentTypeName: string | undefined) => {
-  const creds = ensure(React.useContext(CredentialsContext));
   const cacheKey = JSON.stringify({
     creds,
   });
