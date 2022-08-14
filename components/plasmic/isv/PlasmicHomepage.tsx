@@ -177,9 +177,9 @@ function PlasmicHomepage__RenderFunc(props: {
               displayWidth={"100%" as const}
               loading={"lazy" as const}
               src={{
-                src: "/plasmic/isv/images/invernoCrente.jpeg",
-                fullWidth: 1268,
-                fullHeight: 1600,
+                src: "/plasmic/isv/images/whatsAppImage20220811At11243AMjpeg.jpeg",
+                fullWidth: 540,
+                fullHeight: 540,
                 aspectRatio: undefined
               }}
             />
@@ -238,7 +238,7 @@ function PlasmicHomepage__RenderFunc(props: {
                         sty.text__hS2Be
                       )}
                     >
-                      {"30 de julho às 19:00"}
+                      {"20 de agosto às 19:00"}
                     </div>
                   </p.Stack>
                 ) : null}
