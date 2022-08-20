@@ -5,18 +5,23 @@
 // Plasmic Project: 7Kb5LCV89tNWBn4m3y5e9q
 import * as React from "react";
 import { ContentfulCredentialsProvider } from "../../contentful"; // plasmic-import: DhIDLXCb2A/codeComponent
+import { EmbedCss } from "@plasmicpkgs/plasmic-embed-css"; // plasmic-import: qF0uJxFztB/codeComponent
 
 export interface GlobalContextsProviderProps {
   children?: React.ReactElement;
   contentfulCredentialsProviderProps?: Partial<
     Omit<React.ComponentProps<typeof ContentfulCredentialsProvider>, "children">
   >;
+
+  embedCssProps?: Partial<
+    Omit<React.ComponentProps<typeof EmbedCss>, "children">
+  >;
 }
 
 export default function GlobalContextsProvider(
   props: GlobalContextsProviderProps
 ) {
-  const { children, contentfulCredentialsProviderProps } = props;
+  const { children, contentfulCredentialsProviderProps, embedCssProps } = props;
 
   return (
     <ContentfulCredentialsProvider
@@ -40,7 +45,16 @@ export default function GlobalContextsProvider(
           : ("1qzqoknl91s3" as const)
       }
     >
-      {children}
+      <EmbedCss
+        {...embedCssProps}
+        css={
+          embedCssProps && "css" in embedCssProps
+            ? embedCssProps.css!
+            : ("@media print {\n  @page { margin: 0; }\n  body { margin: 0 0.6cm; }\n}" as const)
+        }
+      >
+        {children}
+      </EmbedCss>
     </ContentfulCredentialsProvider>
   );
 }

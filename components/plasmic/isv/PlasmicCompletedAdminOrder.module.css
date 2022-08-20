@@ -1,0 +1,126 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  background: var(--token-9FlE6IJ6kJLuX);
+  min-width: 0;
+  min-height: 0;
+}
+.header:global(.__wab_instance) {
+  max-width: 100%;
+  position: relative;
+}
+.freeBox___4Zd1S {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 8px;
+}
+.freeBox___2Cd8S {
+  flex-direction: column;
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.freeBox___2Cd8S > :global(.__wab_flex-container) {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  margin-top: calc(0px - 50px);
+  height: calc(100% + 50px);
+}
+.freeBox___2Cd8S > :global(.__wab_flex-container) > *,
+.freeBox___2Cd8S > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox___2Cd8S > :global(.__wab_flex-container) > picture > img,
+.freeBox___2Cd8S
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-top: 50px;
+}
+.freeBox__txSgs {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.svg__xvXht {
+  object-fit: cover;
+  max-width: 100%;
+  width: 150px;
+  height: 150px;
+  color: var(--token-GDRRKUQBtHsOGH);
+  flex-shrink: 0;
+}
+.text__xrfub {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+  text-align: center;
+  min-width: 0;
+}
+.h2 {
+  color: var(--token-GDRRKUQBtHsOGH);
+}
+.printBtn:global(.__wab_instance) {
+  max-width: 100%;
+  position: relative;
+}
+.svg___02JbQ {
+  position: relative;
+  object-fit: cover;
+  width: 30px;
+  height: 30px;
+}
+.text__d8YUm {
+  font-size: 30px;
+}
+.svg__xqTu {
+  position: relative;
+  object-fit: cover;
+  width: 1em;
+  height: 1em;
+}
+.homeBtn:global(.__wab_instance) {
+  max-width: 100%;
+  position: relative;
+}
+.svg__scmKv {
+  position: relative;
+  object-fit: cover;
+  width: 30px;
+  height: 30px;
+}
+.text___7IiDf {
+  font-size: 30px;
+}
+.svg__zZbSa {
+  position: relative;
+  object-fit: cover;
+  width: 1em;
+  height: 1em;
+}

@@ -34,6 +34,7 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
+import Header from "../../Header"; // plasmic-import: oeaZd66p84/component
 import { ContentfulFetcher } from "../../contentful"; // plasmic-import: AIFoPRZ0EI/codeComponent
 import AddItemOption from "../../AddItemOption"; // plasmic-import: hCmOmN_odDK/component
 import ScrollSpace from "../../ScrollSpace"; // plasmic-import: YP00OeXrv1/component
@@ -69,6 +70,7 @@ export const PlasmicAddItem__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicAddItem__OverridesType = {
   root?: p.Flex<"div">;
+  header?: p.Flex<typeof Header>;
   contentfulFetcher?: p.Flex<typeof ContentfulFetcher>;
   back?: p.Flex<"div">;
   addItemOption?: p.Flex<typeof AddItemOption>;
@@ -105,7 +107,7 @@ function PlasmicAddItem__RenderFunc(props: {
 
   return (
     <React.Fragment>
-      {}
+      <Head></Head>
 
       <style>{`
         body {
@@ -130,6 +132,12 @@ function PlasmicAddItem__RenderFunc(props: {
             sty.root
           )}
         >
+          <Header
+            data-plasmic-name={"header"}
+            data-plasmic-override={overrides.header}
+            className={classNames("__wab_instance", sty.header)}
+          />
+
           <ContentfulFetcher
             data-plasmic-name={"contentfulFetcher"}
             data-plasmic-override={overrides.contentfulFetcher}
@@ -215,6 +223,7 @@ function PlasmicAddItem__RenderFunc(props: {
                                 projectcss.all,
                                 sty.freeBox___6Pw6B
                               )}
+                              key={currentIndex}
                             >
                               <AddItemOption
                                 data-plasmic-name={"addItemOption"}
@@ -348,6 +357,7 @@ function PlasmicAddItem__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "header",
     "contentfulFetcher",
     "back",
     "addItemOption",
@@ -356,6 +366,7 @@ const PlasmicDescendants = {
     "selectedOptionValues",
     "button"
   ],
+  header: ["header"],
   contentfulFetcher: [
     "contentfulFetcher",
     "back",
@@ -377,6 +388,7 @@ type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  header: typeof Header;
   contentfulFetcher: typeof ContentfulFetcher;
   back: "div";
   addItemOption: typeof AddItemOption;
@@ -447,6 +459,7 @@ export const PlasmicAddItem = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    header: makeNodeComponent("header"),
     contentfulFetcher: makeNodeComponent("contentfulFetcher"),
     back: makeNodeComponent("back"),
     addItemOption: makeNodeComponent("addItemOption"),

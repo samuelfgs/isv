@@ -275,6 +275,15 @@ export function ContentfulRichText({
   );
 }
 
+export const getContentfulEntry = async function<T>(entryId: string, creds: ContentfulCredentialsProviderProps) {
+  const client = Contentful.createClient({
+    space: creds.space,
+    accessToken: creds.accessToken,
+  });
+  const response = await client.getEntry<T>(`${entryId}`, { include: 2 });
+  return response;
+}
+
 export const fetchContentfulEntry = (entryId: string | undefined) => {
   const creds = ensure(React.useContext(CredentialsContext));
   const cacheKey = JSON.stringify({
@@ -302,9 +311,7 @@ const creds = {
 };
 
 export const fetchContentfulEntries = (contentTypeName: string | undefined) => {
-  const cacheKey = JSON.stringify({
-    creds,
-  });
+  const cacheKey = JSON.stringify({creds});
   const client = Contentful.createClient({
     space: creds.space,
     accessToken: creds.accessToken,

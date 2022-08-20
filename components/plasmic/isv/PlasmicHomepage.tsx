@@ -106,7 +106,7 @@ function PlasmicHomepage__RenderFunc(props: {
 
   return (
     <React.Fragment>
-      {}
+      <Head></Head>
 
       <style>{`
         body {
@@ -325,6 +325,7 @@ function PlasmicHomepage__RenderFunc(props: {
                                 }
                                 id={currentItem.sys.id}
                                 image={currentItem.fields.image.fields.file.url}
+                                key={currentIndex}
                                 price={
                                   (() => {
                                     try {

@@ -12,6 +12,7 @@ export enum AppPage {
 export interface AppState {
   cart: Cart;
   isCheckoutLoading: boolean;
+  isAdmin: boolean;
 };
 
 const initializePersistentState = (key: string, defaultValue: any) => {
@@ -28,11 +29,24 @@ export const state = proxy<AppState>(initializePersistentState("isv-app-state", 
     email: ""
   },
   isCheckoutLoading: false,
+  isAdmin: false,
 }));
 
 subscribe(state, () => {
   localStorage.setItem('isv-app-state', JSON.stringify(state))
 })
+
+export const resetAppState = () => {
+  state.cart = {
+    lineItems: [],
+    totalPrice: 0,
+    totalQuantity: 0,
+    name: "",
+    email: ""
+  }
+  state.isCheckoutLoading = false;
+  state.isAdmin = false;
+}
 
 export enum OptionType {
   single,
@@ -70,4 +84,10 @@ export const resetAddProductState = () => {
   addProductState.optionsType = {};
   addProductState.selectedOptionValue = {};
   addProductState.isReady = false;
+}
+
+
+export const resetGlobalStates = () => {
+  resetAppState();
+  resetAddProductState();
 }

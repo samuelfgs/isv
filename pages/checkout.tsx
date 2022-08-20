@@ -20,11 +20,11 @@ function isValidEmail(email: string) {
 function Checkout() {
   const [ invalidState, setInvalidState ] = React.useState(false);
 
-  const { cart, isCheckoutLoading } = useSnapshot(state);
+  const { cart, isCheckoutLoading, isAdmin } = useSnapshot(state);
 
   const [ name, setName ] = React.useState<string>(cart.name);
   const [ email, setEmail ] = React.useState<string>(cart.email);
-  
+  const [ payment, setPayment ] = React.useState<string | undefined>("Dinheiro");
   const router = useRouter();
 
   return <PlasmicCheckout
@@ -48,10 +48,13 @@ function Checkout() {
     }}
     checkoutBtn={{
       onClick: () => {
-        if (!name || !email || !isValidEmail(email)) {
+        if (
+          (!isAdmin && (!name || !email || !isValidEmail(email))) ||
+          (isAdmin && !payment)
+        ) {
           setInvalidState(true);
         } else {
-          goToCheckout(name, email, router);
+          goToCheckout(name, email, payment, router);
         }
       }
     }}
@@ -71,12 +74,20 @@ function Checkout() {
         setInvalidState(false);
       }
     }}
+    paymentInput={{
+      value: payment,
+      onChange: (e) => {
+        setPayment(e ?? undefined);
+        setInvalidState(false);
+      }
+    }}
     loading={{
       hide: !isCheckoutLoading
     }}
     invalidData={{
       render: (props, Component) => invalidState ? <Component {...props} /> : null
     }}
+    isAdmin={isAdmin}
   />;
 }
 

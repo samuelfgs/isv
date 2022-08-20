@@ -4,7 +4,7 @@ import { getProductVariantPrice } from "./cart";
 import { getProductionOptionValues } from "./common";
 import { state } from "./state-management";
 
-export const goToCheckout = async (name: string, email: string, router: NextRouter) => {
+export const goToCheckout = async (name: string, email: string, payment: string | undefined, router: NextRouter) => {
   state.isCheckoutLoading = true;
   const items = state.cart.lineItems.map(item => ({
     id: JSON.stringify({
@@ -24,10 +24,12 @@ export const goToCheckout = async (name: string, email: string, router: NextRout
     name,
     email,
     total_price: state.cart.totalPrice,
-    status: 0,
+    status: state.isAdmin ? 1 : 0,
+    payment: state.isAdmin ? payment : "App",
     line_items: state.cart.lineItems.map(lineItem => ({
       productId: lineItem.productId,
       variantId: JSON.parse(lineItem.variantId),
+      quantity: lineItem.quantity
     }))
   });
   if (supabaseResponse.status !== 200) {
@@ -41,17 +43,21 @@ export const goToCheckout = async (name: string, email: string, router: NextRout
     return ;
   }
 
-  const response = await fetch("/api/admin", {
-    method: "post",
-    body: JSON.stringify({
-      items,
-      name,
-      email,
-      id: `${newOrder[0].id}`,
-    })
-  });
-
-  const data = await response.json();
-  const link = data.init_point;
-  router.push(link);
+  if (!state.isAdmin) { // Mercado pago
+    const response = await fetch("/api/admin", {
+      method: "post",
+      body: JSON.stringify({
+        items,
+        name,
+        email,
+        id: `${newOrder[0].id}`,
+      })
+    });
+  
+    const data = await response.json();
+    const link = data.init_point;
+    router.push(link);
+  } else {
+    router.push(`/print-order/${newOrder[0].id}`)
+  }
 }

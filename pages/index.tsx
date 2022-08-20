@@ -4,18 +4,19 @@ import ShoppingCart from "../components/ShoppingCart";
 import { useSnapshot } from "valtio";
 import { addProductState, AppPage, resetAddProductState, state } from "../lib/state-management";
 import Homepage from "../components/Homepage";
+import Header from "../components/Header";
 
 function Index() {
   if (addProductState.product !== undefined) {
     resetAddProductState();
   }
+  const { isAdmin } = useSnapshot(state);
 
-  return <Homepage />
-    // ) : appPage === AppPage.addItem ? (
-    //   <AddItem entryId={productId} key={cart.lineItems.length} />
-    // ) : appPage === AppPage.checkout ? (
-    //   <ShoppingCart />
-    // ) : null
+  return isAdmin ? <Homepage /> : 
+  <>
+    <Header />
+      <h1>Compras encerradas</h1>
+    </>
 }
 
 export default Index;

@@ -2,9 +2,9 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import {
-  PlasmicAddItem2,
-  DefaultAddItem2Props
-} from "./plasmic/isv/PlasmicAddItem2";
+  PlasmicPrintOrder,
+  DefaultPrintOrderProps
+} from "./plasmic/isv/PlasmicPrintOrder";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 
 // Your component props start with props for variants and slots you defined
@@ -14,32 +14,39 @@ import { HTMLElementRefOf } from "@plasmicapp/react-web";
 // If you don't want to expose certain variants or slots as a prop, you can use
 // Omit to hide them:
 //
-// interface AddItem2Props extends Omit<DefaultAddItem2Props, "hideProps1"|"hideProp2"> {
+// interface PrintOrderProps extends Omit<DefaultPrintOrderProps, "hideProps1"|"hideProp2"> {
 //   // etc.
 // }
 //
-// You can also stop extending from DefaultAddItem2Props altogether and have
+// You can also stop extending from DefaultPrintOrderProps altogether and have
 // total control over the props for your component.
-export interface AddItem2Props extends DefaultAddItem2Props {}
+export interface PrintOrderProps extends DefaultPrintOrderProps {
+  name?: string;
+}
 
-function AddItem2_(props: AddItem2Props, ref: HTMLElementRefOf<"div">) {
-  // Use PlasmicAddItem2 to render this component as it was
+function PrintOrder_(props: PrintOrderProps, ref: HTMLElementRefOf<"div">) {
+  // Use PlasmicPrintOrder to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You
   // can also install whatever React hooks you need here to manage state or
   // fetch data.
   //
-  // Props you can pass into PlasmicAddItem2 are:
+  // Props you can pass into PlasmicPrintOrder are:
   // 1. Variants you want to activate,
   // 2. Contents for slots you want to fill,
   // 3. Overrides for any named node in the component to attach behavior and data,
   // 4. Props to set on the root node.
   //
-  // By default, we are just piping all AddItem2Props here, but feel free
+  // By default, we are just piping all PrintOrderProps here, but feel free
   // to do whatever works for you.
-
-  return <PlasmicAddItem2 root={{ ref }} {...props} />;
+  const { name, ...rest } = props;
+  return <PlasmicPrintOrder root={{ ref }} {...rest}
+    name={{
+      render: (props, Component) => !!name ? <Component {...props} /> : null
+    }}
+    nameSlot={name}
+  />;
 }
 
-const AddItem2 = React.forwardRef(AddItem2_);
-export default AddItem2;
+const PrintOrder = React.forwardRef(PrintOrder_);
+export default PrintOrder;

@@ -1,6 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
+import qs from "qs";
+import { useSelectParams } from '../../../components/supabase';
 
 export const supabase = createClient(
   process.env.SUPABASE_URL ?? "",
@@ -8,29 +10,32 @@ export const supabase = createClient(
 )
 
 const parseQueryParam = (param: string | string[] | undefined, parse?: boolean) =>
-  typeof param === 'string' ? [param] : Array.isArray(param) ? param : [];
+  typeof param === 'string' ? [param] : Array.isArray(param) ? param : undefined;
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const params = parseQueryParam(req.query.catchall);
-  if (params.length === 0) {
+  if (!params || params.length === 0) {
     res.status(403).send("Missing table");
     return ;
   }
   const table = params[0];
-  console.log("dale2", table);
 
   if (req.method === "GET") {
-    const select = parseQueryParam(req.query.select);
-    const order = parseQueryParam(req.query.select);
+    const params = qs.parse(qs.stringify(req.query ?? "{}")) as useSelectParams;
+    const { columns, order, filter } = params;
+    console.log("dale2", table, columns, order, filter, typeof columns);
 
-    let query = supabase.
-      from(table)
-      .select(select.join(", "));
+    let query = supabase
+      .from(table)
+      .select(columns ? columns : "*");
+    if (filter) {
+      query.filter(filter.column, filter.operator, filter.value)
+    }
     if (order) {
-      query = query.order(order.join(","));
+      query = query.order(order);
     }
       
     const { data, error } = await query;

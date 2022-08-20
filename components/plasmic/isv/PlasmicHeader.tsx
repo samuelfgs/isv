@@ -42,11 +42,21 @@ import plasmic_plasmic_kit_q_4_color_tokens_css from "../plasmic_kit_q_4_color_t
 import projectcss from "./plasmic_isv.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
 import sty from "./PlasmicHeader.module.css"; // plasmic-import: oeaZd66p84/css
 
-export type PlasmicHeader__VariantMembers = {};
+export type PlasmicHeader__VariantMembers = {
+  isAdmin: "isAdmin";
+  hideHeader: "hideHeader";
+};
 
-export type PlasmicHeader__VariantsArgs = {};
+export type PlasmicHeader__VariantsArgs = {
+  isAdmin?: SingleBooleanChoiceArg<"isAdmin">;
+  hideHeader?: SingleBooleanChoiceArg<"hideHeader">;
+};
+
 type VariantPropType = keyof PlasmicHeader__VariantsArgs;
-export const PlasmicHeader__VariantProps = new Array<VariantPropType>();
+export const PlasmicHeader__VariantProps = new Array<VariantPropType>(
+  "isAdmin",
+  "hideHeader"
+);
 
 export type PlasmicHeader__ArgsType = {};
 type ArgPropType = keyof PlasmicHeader__ArgsType;
@@ -54,10 +64,11 @@ export const PlasmicHeader__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHeader__OverridesType = {
   root?: p.Flex<"div">;
-  text?: p.Flex<"div">;
 };
 
 export interface DefaultHeaderProps {
+  isAdmin?: SingleBooleanChoiceArg<"isAdmin">;
+  hideHeader?: SingleBooleanChoiceArg<"hideHeader">;
   className?: string;
 }
 
@@ -85,13 +96,11 @@ function PlasmicHeader__RenderFunc(props: {
 
   return (
     true ? (
-      <p.Stack
-        as={"div"}
+      <div
         data-plasmic-name={"root"}
         data-plasmic-override={overrides.root}
         data-plasmic-root={true}
         data-plasmic-for-node={forNode}
-        hasGap={true}
         className={classNames(
           projectcss.all,
           projectcss.root_reset,
@@ -103,32 +112,75 @@ function PlasmicHeader__RenderFunc(props: {
           sty.root
         )}
       >
-        <div
-          data-plasmic-name={"text"}
-          data-plasmic-override={overrides.text}
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text
-          )}
-        >
-          {"IGREJA EM SÃO VICENTE"}
-        </div>
-      </p.Stack>
+        {(hasVariant(variants, "isAdmin", "isAdmin") ? true : true) ? (
+          <div
+            className={classNames(projectcss.all, sty.freeBox__qbnXe, {
+              [sty.freeBoxisAdmin__qbnXe1KjFr]: hasVariant(
+                variants,
+                "isAdmin",
+                "isAdmin"
+              )
+            })}
+          >
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__b70Yv
+              )}
+            >
+              {"ADMIN ACCOUNT"}
+            </div>
+          </div>
+        ) : null}
+        {(hasVariant(variants, "hideHeader", "hideHeader") ? true : true) ? (
+          <p.Stack
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox___9LywB, {
+              [sty.freeBoxhideHeader___9LywBQhGLc]: hasVariant(
+                variants,
+                "hideHeader",
+                "hideHeader"
+              )
+            })}
+          >
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__q840C,
+                {
+                  [sty.texthideHeader__q840CQhGLc]: hasVariant(
+                    variants,
+                    "hideHeader",
+                    "hideHeader"
+                  ),
+                  [sty.textisAdmin__q840C1KjFr]: hasVariant(
+                    variants,
+                    "isAdmin",
+                    "isAdmin"
+                  )
+                }
+              )}
+            >
+              {"IGREJA EM SÃO VICENTE"}
+            </div>
+          </p.Stack>
+        ) : null}
+      </div>
     ) : null
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "text"],
-  text: ["text"]
+  root: ["root"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  text: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -192,7 +244,6 @@ export const PlasmicHeader = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    text: makeNodeComponent("text"),
 
     // Metadata about props expected for PlasmicHeader
     internalVariantProps: PlasmicHeader__VariantProps,

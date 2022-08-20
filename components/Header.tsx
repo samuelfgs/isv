@@ -3,6 +3,8 @@
 import * as React from "react";
 import { PlasmicHeader, DefaultHeaderProps } from "./plasmic/isv/PlasmicHeader";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
+import { useSnapshot } from "valtio";
+import { state } from "../lib/state-management";
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
@@ -35,7 +37,8 @@ function Header_(props: HeaderProps, ref: HTMLElementRefOf<"div">) {
   // By default, we are just piping all HeaderProps here, but feel free
   // to do whatever works for you.
 
-  return <PlasmicHeader root={{ ref }} {...props} />;
+  const snap = useSnapshot(state);
+  return <PlasmicHeader root={{ ref }} {...props} isAdmin={snap.isAdmin} />;
 }
 
 const Header = React.forwardRef(Header_);

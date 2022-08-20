@@ -21,68 +21,8 @@ function isValidEmail(email: string) {
 }
 
 function ShoppingCart_(props: ShoppingCartProps, ref: HTMLElementRefOf<"div">) {
-  const [ invalidState, setInvalidState ] = React.useState(false);
-
-  const { cart, isCheckoutLoading } = useSnapshot(state);
-
-  const [ name, setName ] = React.useState<string>(cart.name);
-  const [ email, setEmail ] = React.useState<string>(cart.email);
-  
-  const router = useRouter();
-
-  return <PlasmicShoppingCart 
-    root={{ ref }} 
-    {...props} 
-    lineItems={{
-      children: cart.lineItems.map((item, i) => (
-        <ShoppingCartLineItem
-          index={i+1}
-          name={item.product.product.fields.name}
-          price={`R$ ${formatPrice(getProductVariantPrice(item.product) * item.quantity)}`}
-          even={i%2 === 1}
-          quantity={item.quantity}
-          onChangeQuantity={(newQuantity) => updateCart(item.product, newQuantity)}
-          product={item.product}
-        />
-      )
-    )}}
-    isEmpty={cart.lineItems.length === 0}
-    totalPrice={cart.totalPrice.toFixed(2)}
-    backBtn={{
-      onClick: () => router.push("/")
-    }}
-    checkoutBtn={{
-      onClick: () => {
-        if (!name || !email || !isValidEmail(email)) {
-          setInvalidState(true);
-        } else {
-          goToCheckout(name, email, router);
-        }
-      }
-    }}
-    nameInput={{
-      value: name,
-      onChange: (e) => {
-        setName(e.target.value);
-        state.cart.name = e.target.value;
-        setInvalidState(false);
-      }
-    }}
-    emailInput={{
-      value: email,
-      onChange: (e) => {
-        setEmail(e.target.value);
-        state.cart.email = e.target.value;
-        setInvalidState(false);
-      }
-    }}
-    loading={{
-      hide: !isCheckoutLoading
-    }}
-    invalidData={{
-      render: (props, Component) => invalidState ? <Component {...props} /> : null
-    }}
-  />;
+  throw new Error("aasd");
+  return <h1>Ola</h1>
 }
 
 const ShoppingCart = React.forwardRef(ShoppingCart_);

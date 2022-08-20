@@ -214,6 +214,7 @@ function PlasmicAddItemOption__RenderFunc(props: {
                                 projectcss.all,
                                 sty.freeBox__xExz7
                               )}
+                              key={currentIndex}
                             >
                               {true ? (
                                 <AddItemRow

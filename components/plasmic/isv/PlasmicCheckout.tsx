@@ -37,6 +37,8 @@ import {
 import Header from "../../Header"; // plasmic-import: oeaZd66p84/component
 import ShoppingCartLineItem from "../../ShoppingCartLineItem"; // plasmic-import: cnD_NnksTl/component
 import TextInput from "../../TextInput"; // plasmic-import: ZCE1TfqnzIq/component
+import Select from "../../Select"; // plasmic-import: SLXk4W2FZwu/component
+import Select__Option from "../../Select__Option"; // plasmic-import: 55Afek_4-RC/component
 import Button from "../../Button"; // plasmic-import: dTivG-jH3lW/component
 import Loading from "../../Loading"; // plasmic-import: 3JMpsqmVnQ/component
 
@@ -54,23 +56,30 @@ import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: k5kwo7sOrBj
 
 export type PlasmicCheckout__VariantMembers = {
   isEmpty: "isEmpty";
+  isAdmin: "isAdmin";
 };
 
 export type PlasmicCheckout__VariantsArgs = {
   isEmpty?: SingleBooleanChoiceArg<"isEmpty">;
+  isAdmin?: SingleBooleanChoiceArg<"isAdmin">;
 };
 
 type VariantPropType = keyof PlasmicCheckout__VariantsArgs;
 export const PlasmicCheckout__VariantProps = new Array<VariantPropType>(
-  "isEmpty"
+  "isEmpty",
+  "isAdmin"
 );
 
 export type PlasmicCheckout__ArgsType = {
   totalPrice?: React.ReactNode;
+  formasDePagamento?: any;
 };
 
 type ArgPropType = keyof PlasmicCheckout__ArgsType;
-export const PlasmicCheckout__ArgProps = new Array<ArgPropType>("totalPrice");
+export const PlasmicCheckout__ArgProps = new Array<ArgPropType>(
+  "totalPrice",
+  "formasDePagamento"
+);
 
 export type PlasmicCheckout__OverridesType = {
   root?: p.Flex<"div">;
@@ -80,6 +89,8 @@ export type PlasmicCheckout__OverridesType = {
   invalidData?: p.Flex<"div">;
   nameInput?: p.Flex<typeof TextInput>;
   emailInput?: p.Flex<typeof TextInput>;
+  paymentInput?: p.Flex<typeof Select>;
+  option?: p.Flex<typeof Select__Option>;
   backBtn?: p.Flex<typeof Button>;
   svg?: p.Flex<"svg">;
   checkoutBtn?: p.Flex<typeof Button>;
@@ -101,8 +112,9 @@ function PlasmicCheckout__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {},
-
+        {
+          formasDePagamento: ["Dinheiro", "Pix", "Credito", "Debito"]
+        },
         props.args
       ),
     [props.args]
@@ -112,7 +124,7 @@ function PlasmicCheckout__RenderFunc(props: {
 
   return (
     <React.Fragment>
-      {}
+      <Head></Head>
 
       <style>{`
         body {
@@ -135,7 +147,10 @@ function PlasmicCheckout__RenderFunc(props: {
             plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
             plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
             sty.root,
-            { [sty.rootisEmpty]: hasVariant(variants, "isEmpty", "isEmpty") }
+            {
+              [sty.rootisAdmin]: hasVariant(variants, "isAdmin", "isAdmin"),
+              [sty.rootisEmpty]: hasVariant(variants, "isEmpty", "isEmpty")
+            }
           )}
         >
           <Header
@@ -235,6 +250,11 @@ function PlasmicCheckout__RenderFunc(props: {
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__e1Rk, {
+                [sty.freeBoxisAdmin__e1RkWWf5]: hasVariant(
+                  variants,
+                  "isAdmin",
+                  "isAdmin"
+                ),
                 [sty.freeBoxisEmpty__e1RkFod6B]: hasVariant(
                   variants,
                   "isEmpty",
@@ -242,8 +262,16 @@ function PlasmicCheckout__RenderFunc(props: {
                 )
               })}
             >
-              {true ? (
-                <div className={classNames(projectcss.all, sty.freeBox__xwlAe)}>
+              {(hasVariant(variants, "isAdmin", "isAdmin") ? true : true) ? (
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__xwlAe, {
+                    [sty.freeBoxisAdmin__xwlAEwWf5]: hasVariant(
+                      variants,
+                      "isAdmin",
+                      "isAdmin"
+                    )
+                  })}
+                >
                   <div
                     className={classNames(
                       projectcss.all,
@@ -274,6 +302,11 @@ function PlasmicCheckout__RenderFunc(props: {
                     projectcss.__wab_text,
                     sty.invalidData,
                     {
+                      [sty.invalidDataisAdmin]: hasVariant(
+                        variants,
+                        "isAdmin",
+                        "isAdmin"
+                      ),
                       [sty.invalidDataisEmpty]: hasVariant(
                         variants,
                         "isEmpty",
@@ -285,59 +318,206 @@ function PlasmicCheckout__RenderFunc(props: {
                   {"Dados inválidos"}
                 </div>
               ) : null}
-
-              <p.Stack
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__rW7Tu)}
-              >
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__ngWcr
-                  )}
+              {(hasVariant(variants, "isAdmin", "isAdmin") ? true : true) ? (
+                <p.Stack
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__rW7Tu, {
+                    [sty.freeBoxisAdmin__rW7TUwWf5]: hasVariant(
+                      variants,
+                      "isAdmin",
+                      "isAdmin"
+                    )
+                  })}
                 >
-                  {"Nome"}
-                </div>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__ngWcr,
+                      {
+                        [sty.textisAdmin__ngWcrwWf5]: hasVariant(
+                          variants,
+                          "isAdmin",
+                          "isAdmin"
+                        )
+                      }
+                    )}
+                  >
+                    {"Nome"}
+                  </div>
 
-                <TextInput
-                  data-plasmic-name={"nameInput"}
-                  data-plasmic-override={overrides.nameInput}
-                  className={classNames("__wab_instance", sty.nameInput)}
-                  name={"name" as const}
-                  placeholder={"" as const}
-                  required={true}
-                />
-              </p.Stack>
-
-              <p.Stack
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__nmWzQ)}
-              >
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__idsbd
-                  )}
+                  <TextInput
+                    data-plasmic-name={"nameInput"}
+                    data-plasmic-override={overrides.nameInput}
+                    className={classNames("__wab_instance", sty.nameInput)}
+                    name={"name" as const}
+                    placeholder={"" as const}
+                    required={true}
+                  />
+                </p.Stack>
+              ) : null}
+              {(hasVariant(variants, "isAdmin", "isAdmin") ? true : true) ? (
+                <p.Stack
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__uwY6I, {
+                    [sty.freeBoxisAdmin__uwY6IwWf5]: hasVariant(
+                      variants,
+                      "isAdmin",
+                      "isAdmin"
+                    )
+                  })}
                 >
-                  {"Email"}
-                </div>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__ntkgf,
+                      {
+                        [sty.textisAdmin__ntkgfwWf5]: hasVariant(
+                          variants,
+                          "isAdmin",
+                          "isAdmin"
+                        )
+                      }
+                    )}
+                  >
+                    {"Email"}
+                  </div>
 
-                <TextInput
-                  data-plasmic-name={"emailInput"}
-                  data-plasmic-override={overrides.emailInput}
-                  className={classNames("__wab_instance", sty.emailInput)}
-                  name={"email" as const}
-                  required={true}
-                  type={"email" as const}
-                />
-              </p.Stack>
+                  <TextInput
+                    data-plasmic-name={"emailInput"}
+                    data-plasmic-override={overrides.emailInput}
+                    className={classNames("__wab_instance", sty.emailInput)}
+                    name={"name" as const}
+                    placeholder={"" as const}
+                    required={true}
+                  />
+                </p.Stack>
+              ) : null}
+              {(hasVariant(variants, "isAdmin", "isAdmin") ? true : true) ? (
+                <p.Stack
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__nmWzQ, {
+                    [sty.freeBoxisAdmin__nmWzQwWf5]: hasVariant(
+                      variants,
+                      "isAdmin",
+                      "isAdmin"
+                    )
+                  })}
+                >
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__idsbd,
+                      {
+                        [sty.textisAdmin__idsbDwWf5]: hasVariant(
+                          variants,
+                          "isAdmin",
+                          "isAdmin"
+                        )
+                      }
+                    )}
+                  >
+                    {"Forma de Pagamento"}
+                  </div>
 
+                  {(
+                    hasVariant(variants, "isAdmin", "isAdmin") ? true : true
+                  ) ? (
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        sty.freeBox__cjmAg,
+                        {
+                          [sty.freeBoxisAdmin__cjmAGwWf5]: hasVariant(
+                            variants,
+                            "isAdmin",
+                            "isAdmin"
+                          )
+                        }
+                      )}
+                    >
+                      {(
+                        hasVariant(variants, "isAdmin", "isAdmin") ? true : true
+                      ) ? (
+                        <Select
+                          data-plasmic-name={"paymentInput"}
+                          data-plasmic-override={overrides.paymentInput}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.paymentInput,
+                            {
+                              [sty.paymentInputisAdmin]: hasVariant(
+                                variants,
+                                "isAdmin",
+                                "isAdmin"
+                              )
+                            }
+                          )}
+                          defaultValue={"Dinheiro" as const}
+                        >
+                          {(() => {
+                            try {
+                              return $props.formasDePagamento;
+                            } catch (e) {
+                              if (e instanceof TypeError) {
+                                return [];
+                              }
+                              throw e;
+                            }
+                          })().map((currentItem, currentIndex) => (
+                            <Select__Option
+                              data-plasmic-name={"option"}
+                              data-plasmic-override={overrides.option}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.option
+                              )}
+                              key={currentIndex}
+                              textValue={currentItem}
+                              value={(() => {
+                                try {
+                                  return currentItem;
+                                } catch (e) {
+                                  if (e instanceof TypeError) {
+                                    return "Pix";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            >
+                              {(() => {
+                                try {
+                                  return currentItem;
+                                } catch (e) {
+                                  if (e instanceof TypeError) {
+                                    return "Option 2";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </Select__Option>
+                          ))}
+                        </Select>
+                      ) : null}
+                    </div>
+                  ) : null}
+                </p.Stack>
+              ) : null}
               {true ? (
-                <div className={classNames(projectcss.all, sty.freeBox__h27MF)}>
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__h27MF, {
+                    [sty.freeBoxisAdmin__h27MFwWf5]: hasVariant(
+                      variants,
+                      "isAdmin",
+                      "isAdmin"
+                    )
+                  })}
+                >
                   <Button
                     data-plasmic-name={"backBtn"}
                     data-plasmic-override={overrides.backBtn}
@@ -407,6 +587,8 @@ const PlasmicDescendants = {
     "invalidData",
     "nameInput",
     "emailInput",
+    "paymentInput",
+    "option",
     "backBtn",
     "svg",
     "checkoutBtn",
@@ -418,6 +600,8 @@ const PlasmicDescendants = {
   invalidData: ["invalidData"],
   nameInput: ["nameInput"],
   emailInput: ["emailInput"],
+  paymentInput: ["paymentInput", "option"],
+  option: ["option"],
   backBtn: ["backBtn", "svg"],
   svg: ["svg"],
   checkoutBtn: ["checkoutBtn"],
@@ -434,6 +618,8 @@ type NodeDefaultElementType = {
   invalidData: "div";
   nameInput: typeof TextInput;
   emailInput: typeof TextInput;
+  paymentInput: typeof Select;
+  option: typeof Select__Option;
   backBtn: typeof Button;
   svg: "svg";
   checkoutBtn: typeof Button;
@@ -507,6 +693,8 @@ export const PlasmicCheckout = Object.assign(
     invalidData: makeNodeComponent("invalidData"),
     nameInput: makeNodeComponent("nameInput"),
     emailInput: makeNodeComponent("emailInput"),
+    paymentInput: makeNodeComponent("paymentInput"),
+    option: makeNodeComponent("option"),
     backBtn: makeNodeComponent("backBtn"),
     svg: makeNodeComponent("svg"),
     checkoutBtn: makeNodeComponent("checkoutBtn"),

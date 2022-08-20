@@ -3,6 +3,8 @@
 .plasmic_tokens {
   --token---wRfAfgK: var(--token-ThnFxYwNOaz4P);
   --plasmic-token-primary: var(--token---wRfAfgK);
+  --token-EZYhKp7Hw: 14px;
+  --plasmic-token-print-font-size: var(--token-EZYhKp7Hw);
 }
 
 .plasmic_default_styles {

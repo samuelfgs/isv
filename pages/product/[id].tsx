@@ -24,7 +24,6 @@ function AddItem({ id }: { id: string }) {
       );
     }, []);
   
-    console.log("dale", productStateSnap, product, id);
     if (productStateSnap.product === undefined && product) {
       addProductState.product = product;
       addProductState.optionsType = Object.fromEntries(product.fields.options.map((option: any) => 
@@ -52,6 +51,9 @@ function AddItem({ id }: { id: string }) {
       entryId={id}
       back={{
         wrap: (node) => <div onClick={() => router.push("/")}>{node}</div>
+      }}
+      header={{
+        hideHeader: true
       }}
       selectedOptionValues={{
         children: (
@@ -90,7 +92,6 @@ function AddItem({ id }: { id: string }) {
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
-  console.log("dale", "context", context);
   return {
     props: {
       id: context.params?.id
@@ -111,7 +112,6 @@ export async function getStaticPaths() {
   const response = await client.getEntries({
     content_type: "eventMenuItem"
   });
-  console.log("dale", response);
   return {
     paths: response.items.map((item: any) => ({ params: { id: item.sys.id }})),
     fallback: false, // can also be true or 'blocking'

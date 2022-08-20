@@ -29,7 +29,7 @@
   padding: 12px 8px;
 }
 .rootcolor_green {
-  background: #30a46c;
+  background: var(--token-GDRRKUQBtHsOGH);
 }
 .rootcolor_yellow {
   background: #f5d90a;

@@ -1,19 +1,45 @@
 import { usePlasmicQueryData } from "@plasmicapp/query";
 import { DataProvider, registerComponent, PlasmicCanvasContext } from '@plasmicapp/host';
 import React from 'react';
+import qs from "qs";
+import { FilterOperator } from "./types";
 
-
+export interface useSelectParams {
+  columns?: string,
+  order?: string,
+  filter?: {
+    column: string,
+    operator: FilterOperator,
+    value: any,
+  }
+};
 export class Supabase {
 
-  static useSelect(table: string, select?: string, order?: string) {
-    const key = JSON.stringify({table, select, order});
-    return usePlasmicQueryData(key, async () => 
-      await (await fetch(`/api/supabase/${table}?select=${select}&order=${order}`)).json()
+  static useSelect(table: string, params?: useSelectParams) {
+    const { columns, order, filter } = params ?? {};
+    const key = JSON.stringify({table, columns, order, filter});
+    return usePlasmicQueryData(key, async () => {
+      const params = {
+        ...(columns ? { columns } : {}),
+        ...(order ? { order } : {}),
+        ...(filter ? { filter } : {})
+      }
+      return await (await fetch(`/api/supabase/${table}?${qs.stringify(params)}`)).json()
+    }
     );
   }
 
+  static async select(table: string, params?: useSelectParams) {
+    const { columns, order, filter } = params ?? {};
+    const params2 = {
+      ...(columns ? { columns } : {}),
+      ...(order ? { order } : {}),
+      ...(filter ? { filter } : {})
+    }
+    return await (await fetch(`/api/supabase/${table}?${qs.stringify(params2)}`)).json()
+  }
+
   static async insert(table: string, data: any) {
-    console.log("dale", data);
     return await fetch(`/api/supabase/${table}`, {
       method: "POST",
       body: JSON.stringify(data)
@@ -21,18 +47,16 @@ export class Supabase {
   }
 }
 
-interface SupabaseFetcherProps {
+interface SupabaseFetcherProps extends useSelectParams {
   table: string;
-  select: string;
-  order: string;
   queryName: string;
   children: React.ReactNode;
 }
 
 export const SupabaseFetcher = (props: SupabaseFetcherProps) => {
-  const { table, select, order, queryName, children } = props;
+  const { table, columns, order, queryName, children, filter } = props;
 
-  const { data, error, isLoading } = Supabase.useSelect(table, select, order);
+  const { data, error, isLoading } = Supabase.useSelect(table, {columns, order, filter});
   const inStudio = !!React.useContext(PlasmicCanvasContext);
   
   if (error) {
