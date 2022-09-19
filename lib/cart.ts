@@ -18,10 +18,10 @@ export type Cart = {
 }
 
 export const getProductVariantPrice = (product: Product) => {
-  let total = product.product?.fields?.price;
-  if (total === undefined) {
+  if (product === undefined) {
     return 0;
   }
+  let total = product.product?.fields?.price ?? 0;
   Object.values(product.optionValues).forEach(({ valueId: optionValueId, quantity}) => {
     total += (
       (product.product.fields.options.flatMap((opt: any) => opt.fields.values).find((optVal: any) => optVal.sys.id === optionValueId)?.fields.price ?? 0)
@@ -33,7 +33,7 @@ export const getProductVariantPrice = (product: Product) => {
 
 export const updateCart = (product: Product, quantity: number) => {
   const lineItem = state.cart.lineItems.find(item => 
-    item.productId === addProductState.productId && isEqual(item.product.optionValues, addProductState.optionValues)
+    item.productId === product.productId && isEqual(item.product.optionValues, product.optionValues)
   );
   const price = getProductVariantPrice(product);
   if (lineItem) {
@@ -49,6 +49,10 @@ export const updateCart = (product: Product, quantity: number) => {
       product: JSON.parse(JSON.stringify(product)),
       quantity
     })
+  }
+  if (lineItem && quantity === 0) {
+    state.cart.lineItems.splice(state.cart.lineItems.indexOf(lineItem), 1);
+    return ;
   }
 }
 

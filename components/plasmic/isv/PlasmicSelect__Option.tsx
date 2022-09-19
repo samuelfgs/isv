@@ -103,7 +103,10 @@ function PlasmicSelect__Option__RenderFunc(props: {
     [props.args]
   );
 
-  const $props = args;
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   const superContexts = {
     Select: React.useContext(SUPER__PlasmicSelect.Context)
@@ -183,7 +186,6 @@ function useBehavior<P extends pp.BaseSelectOptionProps>(
       root: "root",
       labelContainer: "labelContainer"
     },
-
     ref
   );
 }

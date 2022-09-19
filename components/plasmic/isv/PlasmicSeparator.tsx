@@ -81,7 +81,10 @@ function PlasmicSeparator__RenderFunc(props: {
     [props.args]
   );
 
-  const $props = args;
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   return (
     true ? (

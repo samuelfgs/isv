@@ -46,7 +46,8 @@ function AddItem({ id }: { id: string }) {
       === quantity
     ));
   
-  
+    console.log("dale", totalPrice);
+    
     return <PlasmicAddItem
       entryId={id}
       back={{

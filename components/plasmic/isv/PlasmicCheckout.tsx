@@ -120,7 +120,10 @@ function PlasmicCheckout__RenderFunc(props: {
     [props.args]
   );
 
-  const $props = args;
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   return (
     <React.Fragment>
@@ -702,7 +705,15 @@ export const PlasmicCheckout = Object.assign(
 
     // Metadata about props expected for PlasmicCheckout
     internalVariantProps: PlasmicCheckout__VariantProps,
-    internalArgProps: PlasmicCheckout__ArgProps
+    internalArgProps: PlasmicCheckout__ArgProps,
+
+    // Page metadata
+    pageMetadata: {
+      title: "",
+      description: "",
+      ogImageSrc: "",
+      canonical: ""
+    }
   }
 );
 

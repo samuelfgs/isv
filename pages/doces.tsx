@@ -9,13 +9,14 @@ import orders from "./backup.json";
 
 export const Page = () => {
     const creds = ensure(React.useContext(CredentialsContext));
-    const { data : data2 } = usePlasmicQueryData(null, async () => {
+    const { data : data2 } = usePlasmicQueryData("um2", async () => {
         const data = await Supabase.select("orders");
         console.log("dale3", data);
         const idToProduct = new Map<string, any>();
         const parsedData: LineItem[] = [];
         let cnt = 0;
         let orders = 0;
+        let total_price = 0;
         for (const order of data) {
             const mercadoPago = await (await fetch(`https://api.mercadopago.com/v1/payments/search?external_reference=${order.id}`, {
                 headers: {
@@ -39,11 +40,16 @@ export const Page = () => {
                         }
                     });
                 }
+                console.log("dale9", order);
+                if (mercadoPago.results[0].status === "approved") {
+                    console.log("dale99", mercadoPago);
+                    total_price += mercadoPago.results[0].transaction_amount;
+                }
             }
             cnt += 1;
             console.log("dale", cnt, data.length, parsedData.length, orders)
         }
-        return parsedData;
+        return total_price;
     });
     const data = orders;
     console.log("dale5", data);
@@ -62,7 +68,7 @@ export const Page = () => {
         map.get(key)!.cnt += 1;
     }
     console.log(map);
-    return <JSONPretty data={data} />
+    return <><strong>Total: </strong> R$ {data2} </>
 }
 
 export default Page;

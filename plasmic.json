@@ -477,6 +477,11 @@
           "id": "IHS4Mk05U",
           "name": "WhatsApp Image 2022-08-11 at 1.12.43 AM.jpeg",
           "filePath": "../public/plasmic/isv/images/whatsAppImage20220811At11243AMjpeg.jpeg"
+        },
+        {
+          "id": "fts3EZmjW",
+          "name": "9b9fc0dc-db09-439e-82f8-515e41f87444.jpeg",
+          "filePath": "../public/plasmic/isv/images/_9B9Fc0DcDb09439E82F8515E41F87444Jpeg.jpeg"
         }
       ],
       "indirect": false,
@@ -496,6 +501,16 @@
           "id": "U_PL4X9jnS",
           "name": "ContentfulRichText",
           "componentImportPath": "./components/contentful"
+        },
+        {
+          "id": "bOGaFEH71V",
+          "name": "PlasmicHead",
+          "componentImportPath": "@plasmicapp/react-web"
+        },
+        {
+          "id": "d-YREdbq03",
+          "name": "Fetcher",
+          "componentImportPath": "@plasmicapp/data-sources"
         }
       ]
     },

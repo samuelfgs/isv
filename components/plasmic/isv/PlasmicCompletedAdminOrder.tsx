@@ -90,7 +90,10 @@ function PlasmicCompletedAdminOrder__RenderFunc(props: {
     [props.args]
   );
 
-  const $props = args;
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   return (
     <React.Fragment>
@@ -312,7 +315,15 @@ export const PlasmicCompletedAdminOrder = Object.assign(
 
     // Metadata about props expected for PlasmicCompletedAdminOrder
     internalVariantProps: PlasmicCompletedAdminOrder__VariantProps,
-    internalArgProps: PlasmicCompletedAdminOrder__ArgProps
+    internalArgProps: PlasmicCompletedAdminOrder__ArgProps,
+
+    // Page metadata
+    pageMetadata: {
+      title: "",
+      description: "",
+      ogImageSrc: "",
+      canonical: ""
+    }
   }
 );
 

@@ -120,7 +120,10 @@ function PlasmicAddItemRow__RenderFunc(props: {
     [props.args]
   );
 
-  const $props = args;
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   return (
     true ? (

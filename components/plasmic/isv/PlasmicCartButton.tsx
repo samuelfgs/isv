@@ -95,7 +95,10 @@ function PlasmicCartButton__RenderFunc(props: {
     [props.args]
   );
 
-  const $props = args;
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   return (
     (hasVariant(variants, "isEmpty", "isEmpty") ? true : true) ? (

@@ -114,7 +114,10 @@ function PlasmicPrintOrder__RenderFunc(props: {
     [props.args]
   );
 
-  const $props = args;
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   return (
     <div
@@ -183,7 +186,16 @@ function PlasmicPrintOrder__RenderFunc(props: {
         ) : null}
 
         <div className={classNames(projectcss.all, sty.freeBox__kBuec)}>
-          {$props.lineItems.map((currentItem, currentIndex) => (
+          {(() => {
+            try {
+              return $props.lineItems;
+            } catch (e) {
+              if (e instanceof TypeError) {
+                return [];
+              }
+              throw e;
+            }
+          })().map((currentItem, currentIndex) => (
             <div
               className={classNames(projectcss.all, sty.freeBox__vrtXo)}
               key={currentIndex}

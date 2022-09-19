@@ -96,14 +96,17 @@ function PlasmicAddItem__RenderFunc(props: {
     () =>
       Object.assign(
         {
-          entryId: "3fyN1VIDXA7pfvc8krzKCx" as const
+          entryId: "mHfexEU5q4uAOdRq2w7zu" as const
         },
         props.args
       ),
     [props.args]
   );
 
-  const $props = args;
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   return (
     <React.Fragment>
@@ -149,7 +152,7 @@ function PlasmicAddItem__RenderFunc(props: {
           >
             <ph.DataCtxReader>
               {$ctx => (
-                <>
+                <React.Fragment>
                   <div
                     className={classNames(projectcss.all, sty.freeBox__t5NS)}
                   >
@@ -232,7 +235,16 @@ function PlasmicAddItem__RenderFunc(props: {
                                   "__wab_instance",
                                   sty.addItemOption
                                 )}
-                                id={currentItem.sys.id}
+                                id={(() => {
+                                  try {
+                                    return currentItem.sys.id;
+                                  } catch (e) {
+                                    if (e instanceof TypeError) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()}
                               />
                             </div>
                           ))
@@ -344,7 +356,7 @@ function PlasmicAddItem__RenderFunc(props: {
                       </div>
                     ) : null}
                   </div>
-                </>
+                </React.Fragment>
               )}
             </ph.DataCtxReader>
           </ContentfulFetcher>
@@ -470,7 +482,15 @@ export const PlasmicAddItem = Object.assign(
 
     // Metadata about props expected for PlasmicAddItem
     internalVariantProps: PlasmicAddItem__VariantProps,
-    internalArgProps: PlasmicAddItem__ArgProps
+    internalArgProps: PlasmicAddItem__ArgProps,
+
+    // Page metadata
+    pageMetadata: {
+      title: "",
+      description: "",
+      ogImageSrc: "",
+      canonical: ""
+    }
   }
 );
 

@@ -12,11 +12,7 @@ function Index() {
   }
   const { isAdmin } = useSnapshot(state);
 
-  return isAdmin ? <Homepage /> : 
-  <>
-    <Header />
-      <h1>Compras encerradas</h1>
-    </>
+  return <Homepage />
 }
 
 export default Index;

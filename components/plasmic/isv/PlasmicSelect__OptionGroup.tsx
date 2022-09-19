@@ -103,7 +103,10 @@ function PlasmicSelect__OptionGroup__RenderFunc(props: {
     [props.args]
   );
 
-  const $props = args;
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   const superContexts = {
     Select: React.useContext(SUPER__PlasmicSelect.Context)
@@ -191,7 +194,6 @@ function useBehavior<P extends pp.BaseSelectOptionGroupProps>(props: P) {
     isFirstVariant: { group: "isFirst", variant: "isFirst" },
     optionsSlot: "children",
     titleSlot: "title",
-
     root: "root",
     separator: "separator",
     titleContainer: "titleContainer",

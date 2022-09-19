@@ -101,7 +101,10 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
     [props.args]
   );
 
-  const $props = args;
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   const superContexts = {
     Select: React.useContext(SUPER__PlasmicSelect.Context)
@@ -215,7 +218,6 @@ function useBehavior<P extends pp.BaseTriggeredOverlayProps>(
       contentSlot: "children",
       root: "root"
     },
-
     ref
   );
 }

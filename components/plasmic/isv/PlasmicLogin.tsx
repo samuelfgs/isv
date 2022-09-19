@@ -90,7 +90,10 @@ function PlasmicLogin__RenderFunc(props: {
     [props.args]
   );
 
-  const $props = args;
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   return (
     <React.Fragment>
@@ -295,7 +298,15 @@ export const PlasmicLogin = Object.assign(
 
     // Metadata about props expected for PlasmicLogin
     internalVariantProps: PlasmicLogin__VariantProps,
-    internalArgProps: PlasmicLogin__ArgProps
+    internalArgProps: PlasmicLogin__ArgProps,
+
+    // Page metadata
+    pageMetadata: {
+      title: "",
+      description: "",
+      ogImageSrc: "",
+      canonical: ""
+    }
   }
 );
 

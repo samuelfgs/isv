@@ -85,7 +85,10 @@ function PlasmicSuccess__RenderFunc(props: {
     [props.args]
   );
 
-  const $props = args;
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   return (
     <React.Fragment>
@@ -122,7 +125,7 @@ function PlasmicSuccess__RenderFunc(props: {
                 sty.link__b44Od
               )}
               component={Link}
-              href={"/" as const}
+              href={`/`}
               platform={"nextjs"}
             >
               <Header
@@ -279,7 +282,15 @@ export const PlasmicSuccess = Object.assign(
 
     // Metadata about props expected for PlasmicSuccess
     internalVariantProps: PlasmicSuccess__VariantProps,
-    internalArgProps: PlasmicSuccess__ArgProps
+    internalArgProps: PlasmicSuccess__ArgProps,
+
+    // Page metadata
+    pageMetadata: {
+      title: "",
+      description: "",
+      ogImageSrc: "",
+      canonical: ""
+    }
   }
 );
 

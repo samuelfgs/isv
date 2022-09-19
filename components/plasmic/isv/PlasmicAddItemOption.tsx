@@ -93,7 +93,10 @@ function PlasmicAddItemOption__RenderFunc(props: {
     [props.args]
   );
 
-  const $props = args;
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   return (
     true ? (
@@ -136,7 +139,7 @@ function PlasmicAddItemOption__RenderFunc(props: {
           >
             <ph.DataCtxReader>
               {$ctx => (
-                <>
+                <React.Fragment>
                   {true ? (
                     <div
                       className={classNames(
@@ -224,10 +227,27 @@ function PlasmicAddItemOption__RenderFunc(props: {
                                     "__wab_instance",
                                     sty.addItemRow
                                   )}
-                                  menuOptionId={
-                                    $ctx.contentfulMenuitemoptionItem.sys.id
-                                  }
-                                  menuOptionValueId={currentOptionValue.sys.id}
+                                  menuOptionId={(() => {
+                                    try {
+                                      return $ctx.contentfulMenuitemoptionItem
+                                        .sys.id;
+                                    } catch (e) {
+                                      if (e instanceof TypeError) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                  menuOptionValueId={(() => {
+                                    try {
+                                      return currentOptionValue.sys.id;
+                                    } catch (e) {
+                                      if (e instanceof TypeError) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
                                   price={
                                     (() => {
                                       try {
@@ -332,7 +352,7 @@ function PlasmicAddItemOption__RenderFunc(props: {
                         : null}
                     </div>
                   ) : null}
-                </>
+                </React.Fragment>
               )}
             </ph.DataCtxReader>
           </ContentfulFetcher>

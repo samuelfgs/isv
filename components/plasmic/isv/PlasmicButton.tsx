@@ -162,7 +162,10 @@ function PlasmicButton__RenderFunc(props: {
     [props.args]
   );
 
-  const $props = args;
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   const [isRootFocusVisibleWithin, triggerRootFocusVisibleWithinProps] =
     useTrigger("useFocusVisibleWithin", {
@@ -586,7 +589,6 @@ function useBehavior<P extends pp.BaseButtonProps>(
       endIconSlot: "endIcon",
       root: "root"
     },
-
     ref
   );
 

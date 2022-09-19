@@ -45,7 +45,6 @@ function AddItem_(props: AddItemProps, ref: HTMLElementRefOf<"div">) {
     === quantity
   ));
 
-
   return <PlasmicAddItem 
     root={{ ref }} 
     {...rest} 
