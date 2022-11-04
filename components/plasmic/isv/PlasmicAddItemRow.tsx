@@ -125,6 +125,8 @@ function PlasmicAddItemRow__RenderFunc(props: {
     ...variants
   };
 
+  const currentUser = p.useCurrentUser?.() || {};
+
   return (
     true ? (
       <div

@@ -103,6 +103,8 @@ function PlasmicHomepage__RenderFunc(props: {
     ...variants
   };
 
+  const currentUser = p.useCurrentUser?.() || {};
+
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsrLyYkqyGlc01Z()
   });
@@ -180,9 +182,9 @@ function PlasmicHomepage__RenderFunc(props: {
               displayWidth={"100%" as const}
               loading={"lazy" as const}
               src={{
-                src: "/plasmic/isv/images/_9B9Fc0DcDb09439E82F8515E41F87444Jpeg.jpeg",
-                fullWidth: 720,
-                fullHeight: 1280,
+                src: "/plasmic/isv/images/screenShot20221104At134344Png.png",
+                fullWidth: 1006,
+                fullHeight: 1122,
                 aspectRatio: undefined
               }}
             />
@@ -241,7 +243,7 @@ function PlasmicHomepage__RenderFunc(props: {
                         sty.text__hS2Be
                       )}
                     >
-                      {"24 de setembro às 19:00"}
+                      {"12 de setembro às 19:00"}
                     </div>
                   </p.Stack>
                 ) : null}
@@ -284,7 +286,7 @@ function PlasmicHomepage__RenderFunc(props: {
                   data-plasmic-override={overrides.event}
                   className={classNames("__wab_instance", sty.event)}
                   contentType={"event" as const}
-                  entryID={"5iAPCpnnMVwGvjzKhoqxYO" as const}
+                  entryID={"6dmcTEVolAn8AUrYwF2w5R" as const}
                   limit={1000 as const}
                   noLayout={true}
                 >

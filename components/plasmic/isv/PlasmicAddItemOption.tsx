@@ -98,6 +98,8 @@ function PlasmicAddItemOption__RenderFunc(props: {
     ...variants
   };
 
+  const currentUser = p.useCurrentUser?.() || {};
+
   return (
     true ? (
       <p.Stack

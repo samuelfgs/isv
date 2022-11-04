@@ -93,6 +93,8 @@ function PlasmicLoading__RenderFunc(props: {
     ...variants
   };
 
+  const currentUser = p.useCurrentUser?.() || {};
+
   return (
     (hasVariant(variants, "hide", "hide") ? false : true) ? (
       <div

@@ -97,6 +97,8 @@ function PlasmicHeader__RenderFunc(props: {
     ...variants
   };
 
+  const currentUser = p.useCurrentUser?.() || {};
+
   return (
     true ? (
       <div

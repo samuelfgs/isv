@@ -482,6 +482,11 @@
           "id": "fts3EZmjW",
           "name": "9b9fc0dc-db09-439e-82f8-515e41f87444.jpeg",
           "filePath": "../public/plasmic/isv/images/_9B9Fc0DcDb09439E82F8515E41F87444Jpeg.jpeg"
+        },
+        {
+          "id": "TztA-smna",
+          "name": "Screen Shot 2022-11-04 at 13.43.44.png",
+          "filePath": "../public/plasmic/isv/images/screenShot20221104At134344Png.png"
         }
       ],
       "indirect": false,
@@ -624,6 +629,6 @@
   "nextjsConfig": {
     "pagesDir": "../pages"
   },
-  "cliVersion": "0.1.185",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.185/dist/plasmic.schema.json"
+  "cliVersion": "0.1.187",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.187/dist/plasmic.schema.json"
 }

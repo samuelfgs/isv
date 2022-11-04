@@ -460,10 +460,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@plasmicapp/cli@^0.1.183":
-  version "0.1.183"
-  resolved "https://registry.yarnpkg.com/@plasmicapp/cli/-/cli-0.1.183.tgz#053cf26902457386e87e4021a4e85cb7515761c5"
-  integrity sha512-8Xy7D1NKCn9K5sajfThQ/pMIZ5/QSpiQOY3DI00xbJZ7Zjjs4Ggy3sMYTVaxt6fkvmXBmy/uOmz+vPQWsSKBdA==
+"@plasmicapp/cli@^0.1.187":
+  version "0.1.187"
+  resolved "https://registry.yarnpkg.com/@plasmicapp/cli/-/cli-0.1.187.tgz#bb6f695aadabb3da0c5d7ff89fb58b6ca7b90b41"
+  integrity sha512-7fnVmFaFviNN1N/3Cj4+nknERYXicqEqLxtqdGhHQJIKgTk6XFGVCXhBw0dPpExIImXdZVJDt2rR4YIj6K9hNg==
   dependencies:
     "@babel/core" "^7.12.3"
     "@babel/generator" "^7.12.1"
@@ -515,12 +515,42 @@
     lodash "^4.17.19"
     prettier "^2.0.5"
 
+"@plasmicapp/data-sources-context@0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@plasmicapp/data-sources-context/-/data-sources-context-0.1.2.tgz#4041a9f2b854af36595824c95347c08739763aaa"
+  integrity sha512-N48qP44AFkQMpcLbBBDHbWxMYZKGcjxrb5qNne2765NZoGixEwbwlI9wjoe7Onal0Ctk4v0V2ritYFmwG3BSXg==
+
+"@plasmicapp/data-sources@^0.1.9":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@plasmicapp/data-sources/-/data-sources-0.1.10.tgz#cba6ff86ecba134c877ca959d9f2e5c07413fbbd"
+  integrity sha512-g2w++y711db2+4dIe898fxyCHPgRtnV8AOct5P2FNWSabgfUhMbLY0leHCHoeQ5jhylu/F/rDbT2Mrsrr6ShnQ==
+  dependencies:
+    "@plasmicapp/data-sources-context" "0.1.2"
+    "@plasmicapp/host" "1.0.81"
+    "@plasmicapp/query" "0.1.55"
+    isomorphic-unfetch "^3.1.0"
+
+"@plasmicapp/host@1.0.81":
+  version "1.0.81"
+  resolved "https://registry.yarnpkg.com/@plasmicapp/host/-/host-1.0.81.tgz#93e6e32d75f6df5954737b517d8326b29b1ef394"
+  integrity sha512-Mz3g9XYVXRjcy3M3hSICf9cA+ig6Uf8dbTLbH14bxmPKzLaCo7pVmLYr8iv0xy7ZoePIra2BXjUWEpuu3OkEqg==
+  dependencies:
+    window-or-global "^1.0.1"
+
 "@plasmicapp/host@^1.0.68":
   version "1.0.68"
   resolved "https://registry.yarnpkg.com/@plasmicapp/host/-/host-1.0.68.tgz#426f3b658fd8ff40639726036989bb4ece2db23f"
   integrity sha512-KLY+zUbLEU5cjt7KGsX2PcB8pcBxoAKZQm8gdAA+H6BTHKiWExL/bTSKx90Bqg2KEc2ctX0MFQQuJqQZRGOOtA==
   dependencies:
     window-or-global "^1.0.1"
+
+"@plasmicapp/query@0.1.55":
+  version "0.1.55"
+  resolved "https://registry.yarnpkg.com/@plasmicapp/query/-/query-0.1.55.tgz#2a43ffa38ad3970a6b7db74a670b832630d531dd"
+  integrity sha512-a6qVRU6pmkFVCZLN20TOn4qAzN98ylUjeZMGSSt/vDSv7QDNLIqJgpWfgCTUbCXrGKjzwOGu70WLtTD7YRVmaA==
+  dependencies:
+    react-ssr-prepass "^1.4.0"
+    swr ">1.0.0"
 
 "@plasmicapp/query@^0.1.51":
   version "0.1.51"
@@ -530,11 +560,13 @@
     react-ssr-prepass "^1.4.0"
     swr ">1.0.0"
 
-"@plasmicapp/react-web@^0.2.107":
-  version "0.2.107"
-  resolved "https://registry.yarnpkg.com/@plasmicapp/react-web/-/react-web-0.2.107.tgz#c3d7f5cfa32742f01f2e142dacdeeed03c87a5e8"
-  integrity sha512-ZkI+ujeU0lvONt9yIlLvOd8S12jEVQrynkYFKleAMWXSrCW+/NMGm6ypDK+/fmfj8c0XU1A3SpGBD0JyS/M2vg==
+"@plasmicapp/react-web@^0.2.119":
+  version "0.2.119"
+  resolved "https://registry.yarnpkg.com/@plasmicapp/react-web/-/react-web-0.2.119.tgz#5c1ee20f6da43022839a3107f5f3cbbbf865b75a"
+  integrity sha512-LlC6YR9eCSoLw3chYd0kIXtcxJLaaUUcMXZpcjcvdbLaglC5m1eKXH4oaknjv0f0WPcXwZ8A/bVd4zMpQ80lAA==
   dependencies:
+    "@plasmicapp/data-sources" "^0.1.9"
+    "@plasmicapp/data-sources-context" "0.1.2"
     "@react-aria/checkbox" "^3.5.0"
     "@react-aria/focus" "^3.7.0"
     "@react-aria/interactions" "^3.10.0"
@@ -556,6 +588,8 @@
     classnames "^2.2.6"
     dlv "^1.1.3"
     dset "^3.1.2"
+    fast-deep-equal "^3.1.3"
+    valtio "^1.6.3"
 
 "@plasmicpkgs/plasmic-basic-components@^0.0.74":
   version "0.0.74"
@@ -2974,6 +3008,14 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
 
+isomorphic-unfetch@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/isomorphic-unfetch/-/isomorphic-unfetch-3.1.0.tgz#87341d5f4f7b63843d468438128cb087b7c3e98f"
+  integrity sha512-geDJjpoZ8N0kWexiwkX8F9NkTsXhetLPVbZFQ+JTW239QNOwvB0gniuR1Wc6f0AMTn7/mFGyXvHTifrCp/GH8Q==
+  dependencies:
+    node-fetch "^2.6.1"
+    unfetch "^4.2.0"
+
 isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
@@ -3320,7 +3362,7 @@ next@12.2.0:
     "@next/swc-win32-ia32-msvc" "12.2.0"
     "@next/swc-win32-x64-msvc" "12.2.0"
 
-node-fetch@2.6.7:
+node-fetch@2.6.7, node-fetch@^2.6.1:
   version "2.6.7"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
   integrity sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==
@@ -4290,6 +4332,11 @@ unbox-primitive@^1.0.2:
     has-bigints "^1.0.2"
     has-symbols "^1.0.3"
     which-boxed-primitive "^1.0.2"
+
+unfetch@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/unfetch/-/unfetch-4.2.0.tgz#7e21b0ef7d363d8d9af0fb929a5555f6ef97a3be"
+  integrity sha512-F9p7yYCn6cIW9El1zi0HI6vqpeIvBsr3dSuRO6Xuppb1u5rXpCPmMvLSyECLhybr9isec8Ohl0hPekMVrEinDA==
 
 unique-string@^2.0.0:
   version "2.0.0"
