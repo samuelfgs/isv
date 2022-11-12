@@ -71,7 +71,7 @@ function CompletedAdminOrder() {
   return (
     isLoading ? null :
     <>
-      {data?.map(order => {
+      {data?.reverse().map(order => {
         return <PrintOrder
           id={order.id}
           name={order.name}
