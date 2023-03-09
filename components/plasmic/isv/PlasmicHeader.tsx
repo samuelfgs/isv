@@ -14,6 +14,7 @@ import * as React from "react";
 
 import Head from "next/head";
 import Link, { LinkProps } from "next/link";
+import { useRouter } from "next/router";
 
 import * as p from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/host";
@@ -72,6 +73,21 @@ export interface DefaultHeaderProps {
   className?: string;
 }
 
+const __wrapUserFunction =
+  globalThis.__PlasmicWrapUserFunction ?? ((loc, fn) => fn());
+const __wrapUserPromise =
+  globalThis.__PlasmicWrapUserPromise ??
+  (async (loc, promise) => {
+    return await promise;
+  });
+
+function useNextRouter() {
+  try {
+    return useRouter();
+  } catch {}
+  return undefined;
+}
+
 function PlasmicHeader__RenderFunc(props: {
   variants: PlasmicHeader__VariantsArgs;
   args: PlasmicHeader__ArgsType;
@@ -80,6 +96,7 @@ function PlasmicHeader__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
+  const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
   const args = React.useMemo(
@@ -97,7 +114,35 @@ function PlasmicHeader__RenderFunc(props: {
     ...variants
   };
 
+  const refsRef = React.useRef({});
+  const $refs = refsRef.current;
+
   const currentUser = p.useCurrentUser?.() || {};
+  const [$queries, setDollarQueries] = React.useState({});
+  const stateSpecs = React.useMemo(
+    () => [
+      {
+        path: "isAdmin",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.isAdmin
+          : undefined
+      },
+
+      {
+        path: "hideHeader",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.hideHeader
+          : undefined
+      }
+    ],
+
+    [$props, $ctx]
+  );
+  const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
 
   return (
     true ? (
@@ -117,11 +162,11 @@ function PlasmicHeader__RenderFunc(props: {
           sty.root
         )}
       >
-        {(hasVariant(variants, "isAdmin", "isAdmin") ? true : true) ? (
+        {(hasVariant($state, "isAdmin", "isAdmin") ? true : true) ? (
           <div
             className={classNames(projectcss.all, sty.freeBox__qbnXe, {
               [sty.freeBoxisAdmin__qbnXe1KjFr]: hasVariant(
-                variants,
+                $state,
                 "isAdmin",
                 "isAdmin"
               )
@@ -138,13 +183,13 @@ function PlasmicHeader__RenderFunc(props: {
             </div>
           </div>
         ) : null}
-        {(hasVariant(variants, "hideHeader", "hideHeader") ? true : true) ? (
+        {(hasVariant($state, "hideHeader", "hideHeader") ? true : true) ? (
           <p.Stack
             as={"div"}
             hasGap={true}
             className={classNames(projectcss.all, sty.freeBox___9LywB, {
               [sty.freeBoxhideHeader___9LywBQhGLc]: hasVariant(
-                variants,
+                $state,
                 "hideHeader",
                 "hideHeader"
               )
@@ -157,12 +202,12 @@ function PlasmicHeader__RenderFunc(props: {
                 sty.text__q840C,
                 {
                   [sty.texthideHeader__q840CQhGLc]: hasVariant(
-                    variants,
+                    $state,
                     "hideHeader",
                     "hideHeader"
                   ),
                   [sty.textisAdmin__q840C1KjFr]: hasVariant(
-                    variants,
+                    $state,
                     "isAdmin",
                     "isAdmin"
                   )

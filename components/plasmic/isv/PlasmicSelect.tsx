@@ -14,9 +14,11 @@ import * as React from "react";
 
 import Head from "next/head";
 import Link, { LinkProps } from "next/link";
+import { useRouter } from "next/router";
 
 import * as p from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/host";
+
 import * as pp from "@plasmicapp/react-web";
 import {
   hasVariant,
@@ -36,6 +38,7 @@ import {
 } from "@plasmicapp/react-web";
 import Select__Overlay from "../../Select__Overlay"; // plasmic-import: GW498bxNZUy/component
 import Select__Option from "../../Select__Option"; // plasmic-import: 55Afek_4-RC/component
+import Select__OptionGroup from "../../Select__OptionGroup"; // plasmic-import: 6jTXRcZVoW-/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -94,10 +97,11 @@ export type PlasmicSelect__ArgsType = {
   selectedContent?: React.ReactNode;
   placeholder?: React.ReactNode;
   children?: React.ReactNode;
-  value?: string;
+  value?: "Dynamic options";
   name?: string;
   "aria-label"?: string;
   "aria-labelledby"?: string;
+  options?: any;
 };
 
 type ArgPropType = keyof PlasmicSelect__ArgsType;
@@ -108,7 +112,8 @@ export const PlasmicSelect__ArgProps = new Array<ArgPropType>(
   "value",
   "name",
   "aria-label",
-  "aria-labelledby"
+  "aria-labelledby",
+  "options"
 );
 
 export type PlasmicSelect__OverridesType = {
@@ -123,6 +128,7 @@ export type PlasmicSelect__OverridesType = {
 export interface DefaultSelectProps extends pp.BaseSelectProps {
   "aria-label"?: string;
   "aria-labelledby"?: string;
+  options?: any;
   color?: SingleChoiceArg<
     | "softBlue"
     | "softCyan"
@@ -142,6 +148,21 @@ const PlasmicSelectContext = React.createContext<
   | { variants: PlasmicSelect__VariantsArgs; args: PlasmicSelect__ArgsType }
 >(undefined);
 
+const __wrapUserFunction =
+  globalThis.__PlasmicWrapUserFunction ?? ((loc, fn) => fn());
+const __wrapUserPromise =
+  globalThis.__PlasmicWrapUserPromise ??
+  (async (loc, promise) => {
+    return await promise;
+  });
+
+function useNextRouter() {
+  try {
+    return useRouter();
+  } catch {}
+  return undefined;
+}
+
 function PlasmicSelect__RenderFunc(props: {
   variants: PlasmicSelect__VariantsArgs;
   args: PlasmicSelect__ArgsType;
@@ -150,6 +171,7 @@ function PlasmicSelect__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
+  const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
   const args = React.useMemo(
@@ -167,7 +189,62 @@ function PlasmicSelect__RenderFunc(props: {
     ...variants
   };
 
+  const refsRef = React.useRef({});
+  const $refs = refsRef.current;
+
   const currentUser = p.useCurrentUser?.() || {};
+  const [$queries, setDollarQueries] = React.useState({});
+  const stateSpecs = React.useMemo(
+    () => [
+      {
+        path: "showPlaceholder",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.showPlaceholder
+          : undefined
+      },
+
+      {
+        path: "isOpen",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.isOpen
+          : undefined
+      },
+
+      {
+        path: "isDisabled",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.isDisabled
+          : undefined
+      },
+
+      {
+        path: "color",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.color
+          : undefined
+      },
+
+      {
+        path: "value",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "value",
+        onChangeProp: "onChange"
+      }
+    ],
+
+    [$props, $ctx]
+  );
+  const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
 
   const [isRootFocusVisibleWithin, triggerRootFocusVisibleWithinProps] =
     useTrigger("useFocusVisibleWithin", {
@@ -196,32 +273,28 @@ function PlasmicSelect__RenderFunc(props: {
           sty.root,
           {
             [sty.root___focusVisibleWithin]: triggers.focusVisibleWithin_root,
-            [sty.rootcolor_clear]: hasVariant(variants, "color", "clear"),
-            [sty.rootcolor_softBlue]: hasVariant(variants, "color", "softBlue"),
-            [sty.rootcolor_softCyan]: hasVariant(variants, "color", "softCyan"),
-            [sty.rootcolor_softGreen]: hasVariant(
-              variants,
-              "color",
-              "softGreen"
-            ),
+            [sty.rootcolor_clear]: hasVariant($state, "color", "clear"),
+            [sty.rootcolor_softBlue]: hasVariant($state, "color", "softBlue"),
+            [sty.rootcolor_softCyan]: hasVariant($state, "color", "softCyan"),
+            [sty.rootcolor_softGreen]: hasVariant($state, "color", "softGreen"),
             [sty.rootcolor_softOrange]: hasVariant(
-              variants,
+              $state,
               "color",
               "softOrange"
             ),
-            [sty.rootcolor_softPink]: hasVariant(variants, "color", "softPink"),
+            [sty.rootcolor_softPink]: hasVariant($state, "color", "softPink"),
             [sty.rootcolor_softPurple]: hasVariant(
-              variants,
+              $state,
               "color",
               "softPurple"
             ),
-            [sty.rootcolor_softRed]: hasVariant(variants, "color", "softRed"),
+            [sty.rootcolor_softRed]: hasVariant($state, "color", "softRed"),
             [sty.rootcolor_softYellow]: hasVariant(
-              variants,
+              $state,
               "color",
               "softYellow"
             ),
-            [sty.rootisOpen]: hasVariant(variants, "isOpen", "isOpen")
+            [sty.rootisOpen]: hasVariant($state, "isOpen", "isOpen")
           }
         )}
         data-plasmic-trigger-props={[triggerRootFocusVisibleWithinProps]}
@@ -236,87 +309,90 @@ function PlasmicSelect__RenderFunc(props: {
             {
               [sty.trigger___focusVisibleWithin]:
                 triggers.focusVisibleWithin_root,
-              [sty.triggercolor_clear]: hasVariant(variants, "color", "clear"),
+              [sty.triggercolor_clear]: hasVariant($state, "color", "clear"),
               [sty.triggercolor_softBlue]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "softBlue"
               ),
               [sty.triggercolor_softCyan]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "softCyan"
               ),
               [sty.triggercolor_softGray]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "softGray"
               ),
               [sty.triggercolor_softGreen]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "softGreen"
               ),
               [sty.triggercolor_softOrange]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "softOrange"
               ),
               [sty.triggercolor_softPink]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "softPink"
               ),
               [sty.triggercolor_softPurple]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "softPurple"
               ),
               [sty.triggercolor_softRed]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "softRed"
               ),
               [sty.triggercolor_softYellow]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "softYellow"
               ),
               [sty.triggerisDisabled]: hasVariant(
-                variants,
+                $state,
                 "isDisabled",
                 "isDisabled"
               ),
-              [sty.triggerisOpen]: hasVariant(variants, "isOpen", "isOpen")
+              [sty.triggerisOpen]: hasVariant($state, "isOpen", "isOpen")
             }
           )}
           disabled={
-            hasVariant(variants, "isDisabled", "isDisabled") ? true : undefined
+            hasVariant($state, "isDisabled", "isDisabled") ? true : undefined
           }
+          ref={ref => {
+            $refs["trigger"] = ref;
+          }}
         >
           <div
             data-plasmic-name={"contentContainer"}
             data-plasmic-override={overrides.contentContainer}
             className={classNames(projectcss.all, sty.contentContainer, {
               [sty.contentContainercolor_softBlue]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "softBlue"
               ),
               [sty.contentContainerisDisabled]: hasVariant(
-                variants,
+                $state,
                 "isDisabled",
                 "isDisabled"
               ),
               [sty.contentContainershowPlaceholder]: hasVariant(
-                variants,
+                $state,
                 "showPlaceholder",
                 "showPlaceholder"
               )
             })}
           >
             {(
-              hasVariant(variants, "showPlaceholder", "showPlaceholder")
+              hasVariant($state, "showPlaceholder", "showPlaceholder")
                 ? false
                 : true
             )
@@ -325,57 +401,57 @@ function PlasmicSelect__RenderFunc(props: {
                   value: args.selectedContent,
                   className: classNames(sty.slotTargetSelectedContent, {
                     [sty.slotTargetSelectedContentcolor_softBlue]: hasVariant(
-                      variants,
+                      $state,
                       "color",
                       "softBlue"
                     ),
                     [sty.slotTargetSelectedContentcolor_softCyan]: hasVariant(
-                      variants,
+                      $state,
                       "color",
                       "softCyan"
                     ),
                     [sty.slotTargetSelectedContentcolor_softGreen]: hasVariant(
-                      variants,
+                      $state,
                       "color",
                       "softGreen"
                     ),
                     [sty.slotTargetSelectedContentcolor_softOrange]: hasVariant(
-                      variants,
+                      $state,
                       "color",
                       "softOrange"
                     ),
                     [sty.slotTargetSelectedContentcolor_softPink]: hasVariant(
-                      variants,
+                      $state,
                       "color",
                       "softPink"
                     ),
                     [sty.slotTargetSelectedContentcolor_softPurple]: hasVariant(
-                      variants,
+                      $state,
                       "color",
                       "softPurple"
                     ),
                     [sty.slotTargetSelectedContentcolor_softRed]: hasVariant(
-                      variants,
+                      $state,
                       "color",
                       "softRed"
                     ),
                     [sty.slotTargetSelectedContentcolor_softYellow]: hasVariant(
-                      variants,
+                      $state,
                       "color",
                       "softYellow"
                     ),
                     [sty.slotTargetSelectedContentisDisabled]: hasVariant(
-                      variants,
+                      $state,
                       "isDisabled",
                       "isDisabled"
                     ),
                     [sty.slotTargetSelectedContentisOpen]: hasVariant(
-                      variants,
+                      $state,
                       "isOpen",
                       "isOpen"
                     ),
                     [sty.slotTargetSelectedContentshowPlaceholder]: hasVariant(
-                      variants,
+                      $state,
                       "showPlaceholder",
                       "showPlaceholder"
                     )
@@ -383,7 +459,7 @@ function PlasmicSelect__RenderFunc(props: {
                 })
               : null}
             {(
-              hasVariant(variants, "showPlaceholder", "showPlaceholder")
+              hasVariant($state, "showPlaceholder", "showPlaceholder")
                 ? true
                 : false
             )
@@ -392,64 +468,60 @@ function PlasmicSelect__RenderFunc(props: {
                   value: args.placeholder,
                   className: classNames(sty.slotTargetPlaceholder, {
                     [sty.slotTargetPlaceholdercolor_softBlue]: hasVariant(
-                      variants,
+                      $state,
                       "color",
                       "softBlue"
                     ),
                     [sty.slotTargetPlaceholdercolor_softBlue_showPlaceholder]:
                       hasVariant(
-                        variants,
+                        $state,
                         "showPlaceholder",
                         "showPlaceholder"
-                      ) && hasVariant(variants, "color", "softBlue"),
+                      ) && hasVariant($state, "color", "softBlue"),
                     [sty.slotTargetPlaceholdercolor_softGreen_showPlaceholder]:
                       hasVariant(
-                        variants,
+                        $state,
                         "showPlaceholder",
                         "showPlaceholder"
-                      ) && hasVariant(variants, "color", "softGreen"),
+                      ) && hasVariant($state, "color", "softGreen"),
                     [sty.slotTargetPlaceholdercolor_softOrange_showPlaceholder]:
                       hasVariant(
-                        variants,
+                        $state,
                         "showPlaceholder",
                         "showPlaceholder"
-                      ) && hasVariant(variants, "color", "softOrange"),
+                      ) && hasVariant($state, "color", "softOrange"),
                     [sty.slotTargetPlaceholdercolor_softPink_showPlaceholder]:
                       hasVariant(
-                        variants,
+                        $state,
                         "showPlaceholder",
                         "showPlaceholder"
-                      ) && hasVariant(variants, "color", "softPink"),
+                      ) && hasVariant($state, "color", "softPink"),
                     [sty.slotTargetPlaceholdershowPlaceholder]: hasVariant(
-                      variants,
+                      $state,
                       "showPlaceholder",
                       "showPlaceholder"
                     ),
                     [sty.slotTargetPlaceholdershowPlaceholder_color_softCyan]:
                       hasVariant(
-                        variants,
+                        $state,
                         "showPlaceholder",
                         "showPlaceholder"
-                      ) && hasVariant(variants, "color", "softCyan"),
+                      ) && hasVariant($state, "color", "softCyan"),
                     [sty.slotTargetPlaceholdershowPlaceholder_color_softPurple]:
-                      hasVariant(variants, "color", "softPurple") &&
-                      hasVariant(
-                        variants,
-                        "showPlaceholder",
-                        "showPlaceholder"
-                      ),
+                      hasVariant($state, "color", "softPurple") &&
+                      hasVariant($state, "showPlaceholder", "showPlaceholder"),
                     [sty.slotTargetPlaceholdershowPlaceholder_color_softRed]:
                       hasVariant(
-                        variants,
+                        $state,
                         "showPlaceholder",
                         "showPlaceholder"
-                      ) && hasVariant(variants, "color", "softRed"),
+                      ) && hasVariant($state, "color", "softRed"),
                     [sty.slotTargetPlaceholdershowPlaceholder_color_softYellow]:
                       hasVariant(
-                        variants,
+                        $state,
                         "showPlaceholder",
                         "showPlaceholder"
-                      ) && hasVariant(variants, "color", "softYellow")
+                      ) && hasVariant($state, "color", "softYellow")
                   })
                 })
               : null}
@@ -459,7 +531,7 @@ function PlasmicSelect__RenderFunc(props: {
             data-plasmic-name={"dropdownIcon"}
             data-plasmic-override={overrides.dropdownIcon}
             PlasmicIconType={
-              hasVariant(variants, "isOpen", "isOpen")
+              hasVariant($state, "isOpen", "isOpen")
                 ? ChevronUpsvgIcon
                 : ChevronDownsvgIcon
             }
@@ -467,67 +539,67 @@ function PlasmicSelect__RenderFunc(props: {
               [sty.dropdownIcon___focusVisibleWithin]:
                 triggers.focusVisibleWithin_root,
               [sty.dropdownIconcolor_softBlue]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "softBlue"
               ),
               [sty.dropdownIconcolor_softCyan]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "softCyan"
               ),
               [sty.dropdownIconcolor_softGray]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "softGray"
               ),
               [sty.dropdownIconcolor_softGreen]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "softGreen"
               ),
               [sty.dropdownIconcolor_softOrange]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "softOrange"
               ),
               [sty.dropdownIconcolor_softPink]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "softPink"
               ),
               [sty.dropdownIconcolor_softPurple]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "softPurple"
               ),
               [sty.dropdownIconcolor_softRed]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "softRed"
               ),
               [sty.dropdownIconcolor_softYellow]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "softYellow"
               ),
               [sty.dropdownIconisDisabled]: hasVariant(
-                variants,
+                $state,
                 "isDisabled",
                 "isDisabled"
               ),
-              [sty.dropdownIconisOpen]: hasVariant(variants, "isOpen", "isOpen")
+              [sty.dropdownIconisOpen]: hasVariant($state, "isOpen", "isOpen")
             })}
             role={"img"}
           />
         </button>
 
-        {(hasVariant(variants, "isOpen", "isOpen") ? true : false) ? (
+        {(hasVariant($state, "isOpen", "isOpen") ? true : false) ? (
           <Select__Overlay
             data-plasmic-name={"overlay"}
             data-plasmic-override={overrides.overlay}
             className={classNames("__wab_instance", sty.overlay, {
-              [sty.overlayisOpen]: hasVariant(variants, "isOpen", "isOpen")
+              [sty.overlayisOpen]: hasVariant($state, "isOpen", "isOpen")
             })}
             relativePlacement={"bottom" as const}
           >
@@ -536,7 +608,7 @@ function PlasmicSelect__RenderFunc(props: {
               data-plasmic-override={overrides.optionsContainer}
               className={classNames(projectcss.all, sty.optionsContainer, {
                 [sty.optionsContainerisOpen]: hasVariant(
-                  variants,
+                  $state,
                   "isOpen",
                   "isOpen"
                 )
@@ -580,47 +652,30 @@ function useBehavior<P extends pp.BaseSelectProps>(
   props: P,
   ref: pp.SelectRef
 ) {
-  if (!("children" in props)) {
-    props = {
-      ...props,
-      children: (
-        <React.Fragment>
-          <Select__Option
-            className={classNames("__wab_instance", sty.option__dkoYx)}
-            value={"value1" as const}
-          >
-            {"Option 1"}
-          </Select__Option>
-
-          <Select__Option
-            className={classNames("__wab_instance", sty.option___9TiQd)}
-            value={"value2" as const}
-          >
-            {"Option 2"}
-          </Select__Option>
-        </React.Fragment>
-      )
-    };
-  }
-
   return pp.useSelect(
     PlasmicSelect,
     props,
     {
-      isOpenVariant: { group: "isOpen", variant: "isOpen" },
-      placeholderVariant: {
-        group: "showPlaceholder",
-        variant: "showPlaceholder"
+      ...{
+        isOpenVariant: { group: "isOpen", variant: "isOpen" },
+        placeholderVariant: {
+          group: "showPlaceholder",
+          variant: "showPlaceholder"
+        },
+        isDisabledVariant: { group: "isDisabled", variant: "isDisabled" },
+        triggerContentSlot: "selectedContent",
+        optionsSlot: "children",
+        placeholderSlot: "placeholder",
+        root: "root",
+        trigger: "trigger",
+        overlay: "overlay",
+        optionsContainer: "optionsContainer"
       },
-      isDisabledVariant: { group: "isDisabled", variant: "isDisabled" },
-      triggerContentSlot: "selectedContent",
-      optionsSlot: "children",
-      placeholderSlot: "placeholder",
-      root: "root",
-      trigger: "trigger",
-      overlay: "overlay",
-      optionsContainer: "optionsContainer"
+      OptionComponent: Select__Option,
+      OptionGroupComponent: Select__OptionGroup,
+      itemsProp: "options"
     },
+
     ref
   );
 }

@@ -14,9 +14,11 @@ import * as React from "react";
 
 import Head from "next/head";
 import Link, { LinkProps } from "next/link";
+import { useRouter } from "next/router";
 
 import * as p from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/host";
+
 import * as pp from "@plasmicapp/react-web";
 import {
   hasVariant,
@@ -81,6 +83,21 @@ export interface DefaultSelect__OverlayProps
   children?: React.ReactNode;
 }
 
+const __wrapUserFunction =
+  globalThis.__PlasmicWrapUserFunction ?? ((loc, fn) => fn());
+const __wrapUserPromise =
+  globalThis.__PlasmicWrapUserPromise ??
+  (async (loc, promise) => {
+    return await promise;
+  });
+
+function useNextRouter() {
+  try {
+    return useRouter();
+  } catch {}
+  return undefined;
+}
+
 function PlasmicSelect__Overlay__RenderFunc(props: {
   variants: PlasmicSelect__Overlay__VariantsArgs;
   args: PlasmicSelect__Overlay__ArgsType;
@@ -89,6 +106,7 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
+  const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
   const args = React.useMemo(
@@ -106,7 +124,26 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
     ...variants
   };
 
+  const refsRef = React.useRef({});
+  const $refs = refsRef.current;
+
   const currentUser = p.useCurrentUser?.() || {};
+  const [$queries, setDollarQueries] = React.useState({});
+  const stateSpecs = React.useMemo(
+    () => [
+      {
+        path: "relativePlacement",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.relativePlacement
+          : undefined
+      }
+    ],
+
+    [$props, $ctx]
+  );
+  const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
 
   const superContexts = {
     Select: React.useContext(SUPER__PlasmicSelect.Context)
@@ -129,13 +166,13 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
         sty.root
       )}
     >
-      {(hasVariant(variants, "relativePlacement", "bottom") ? true : false) ? (
+      {(hasVariant($state, "relativePlacement", "bottom") ? true : false) ? (
         <div
           data-plasmic-name={"top"}
           data-plasmic-override={overrides.top}
           className={classNames(projectcss.all, sty.top, {
             [sty.toprelativePlacement_bottom]: hasVariant(
-              variants,
+              $state,
               "relativePlacement",
               "bottom"
             )
@@ -148,13 +185,13 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
         data-plasmic-override={overrides.middle}
         className={classNames(projectcss.all, sty.middle)}
       >
-        {(hasVariant(variants, "relativePlacement", "right") ? true : false) ? (
+        {(hasVariant($state, "relativePlacement", "right") ? true : false) ? (
           <div
             data-plasmic-name={"left"}
             data-plasmic-override={overrides.left}
             className={classNames(projectcss.all, sty.left, {
               [sty.leftrelativePlacement_right]: hasVariant(
-                variants,
+                $state,
                 "relativePlacement",
                 "right"
               )
@@ -173,13 +210,13 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
           })}
         </div>
 
-        {(hasVariant(variants, "relativePlacement", "left") ? true : false) ? (
+        {(hasVariant($state, "relativePlacement", "left") ? true : false) ? (
           <div
             data-plasmic-name={"right"}
             data-plasmic-override={overrides.right}
             className={classNames(projectcss.all, sty.right, {
               [sty.rightrelativePlacement_left]: hasVariant(
-                variants,
+                $state,
                 "relativePlacement",
                 "left"
               )
@@ -188,13 +225,13 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
         ) : null}
       </div>
 
-      {(hasVariant(variants, "relativePlacement", "top") ? true : false) ? (
+      {(hasVariant($state, "relativePlacement", "top") ? true : false) ? (
         <div
           data-plasmic-name={"bottom"}
           data-plasmic-override={overrides.bottom}
           className={classNames(projectcss.all, sty.bottom, {
             [sty.bottomrelativePlacement_top]: hasVariant(
-              variants,
+              $state,
               "relativePlacement",
               "top"
             )

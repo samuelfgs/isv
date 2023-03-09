@@ -14,6 +14,7 @@ import * as React from "react";
 
 import Head from "next/head";
 import Link, { LinkProps } from "next/link";
+import { useRouter } from "next/router";
 
 import * as p from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/host";
@@ -75,6 +76,21 @@ export interface DefaultCartButtonProps {
   className?: string;
 }
 
+const __wrapUserFunction =
+  globalThis.__PlasmicWrapUserFunction ?? ((loc, fn) => fn());
+const __wrapUserPromise =
+  globalThis.__PlasmicWrapUserPromise ??
+  (async (loc, promise) => {
+    return await promise;
+  });
+
+function useNextRouter() {
+  try {
+    return useRouter();
+  } catch {}
+  return undefined;
+}
+
 function PlasmicCartButton__RenderFunc(props: {
   variants: PlasmicCartButton__VariantsArgs;
   args: PlasmicCartButton__ArgsType;
@@ -83,6 +99,7 @@ function PlasmicCartButton__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
+  const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
   const args = React.useMemo(
@@ -100,10 +117,29 @@ function PlasmicCartButton__RenderFunc(props: {
     ...variants
   };
 
+  const refsRef = React.useRef({});
+  const $refs = refsRef.current;
+
   const currentUser = p.useCurrentUser?.() || {};
+  const [$queries, setDollarQueries] = React.useState({});
+  const stateSpecs = React.useMemo(
+    () => [
+      {
+        path: "isEmpty",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.isEmpty
+          : undefined
+      }
+    ],
+
+    [$props, $ctx]
+  );
+  const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
 
   return (
-    (hasVariant(variants, "isEmpty", "isEmpty") ? true : true) ? (
+    (hasVariant($state, "isEmpty", "isEmpty") ? true : true) ? (
       <div
         data-plasmic-name={"root"}
         data-plasmic-override={overrides.root}
@@ -118,7 +154,7 @@ function PlasmicCartButton__RenderFunc(props: {
           plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
           plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
           sty.root,
-          { [sty.rootisEmpty]: hasVariant(variants, "isEmpty", "isEmpty") }
+          { [sty.rootisEmpty]: hasVariant($state, "isEmpty", "isEmpty") }
         )}
       >
         <CartIcon

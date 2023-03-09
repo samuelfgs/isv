@@ -14,9 +14,11 @@ import * as React from "react";
 
 import Head from "next/head";
 import Link, { LinkProps } from "next/link";
+import { useRouter } from "next/router";
 
 import * as p from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/host";
+
 import * as pp from "@plasmicapp/react-web";
 import {
   hasVariant,
@@ -83,6 +85,21 @@ export type PlasmicSelect__Option__OverridesType = {
 
 export interface DefaultSelect__OptionProps extends pp.BaseSelectOptionProps {}
 
+const __wrapUserFunction =
+  globalThis.__PlasmicWrapUserFunction ?? ((loc, fn) => fn());
+const __wrapUserPromise =
+  globalThis.__PlasmicWrapUserPromise ??
+  (async (loc, promise) => {
+    return await promise;
+  });
+
+function useNextRouter() {
+  try {
+    return useRouter();
+  } catch {}
+  return undefined;
+}
+
 function PlasmicSelect__Option__RenderFunc(props: {
   variants: PlasmicSelect__Option__VariantsArgs;
   args: PlasmicSelect__Option__ArgsType;
@@ -91,6 +108,7 @@ function PlasmicSelect__Option__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
+  const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
   const args = React.useMemo(
@@ -108,7 +126,44 @@ function PlasmicSelect__Option__RenderFunc(props: {
     ...variants
   };
 
+  const refsRef = React.useRef({});
+  const $refs = refsRef.current;
+
   const currentUser = p.useCurrentUser?.() || {};
+  const [$queries, setDollarQueries] = React.useState({});
+  const stateSpecs = React.useMemo(
+    () => [
+      {
+        path: "isSelected",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.isSelected
+          : undefined
+      },
+
+      {
+        path: "isHighlighted",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.isHighlighted
+          : undefined
+      },
+
+      {
+        path: "isDisabled",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.isDisabled
+          : undefined
+      }
+    ],
+
+    [$props, $ctx]
+  );
+  const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
 
   const superContexts = {
     Select: React.useContext(SUPER__PlasmicSelect.Context)
@@ -130,17 +185,13 @@ function PlasmicSelect__Option__RenderFunc(props: {
         plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
         sty.root,
         {
-          [sty.rootisDisabled]: hasVariant(
-            variants,
-            "isDisabled",
-            "isDisabled"
-          ),
+          [sty.rootisDisabled]: hasVariant($state, "isDisabled", "isDisabled"),
           [sty.rootisHighlighted]: hasVariant(
-            variants,
+            $state,
             "isHighlighted",
             "isHighlighted"
           ),
-          [sty.rootisSelected]: hasVariant(variants, "isSelected", "isSelected")
+          [sty.rootisSelected]: hasVariant($state, "isSelected", "isSelected")
         }
       )}
     >
@@ -154,12 +205,12 @@ function PlasmicSelect__Option__RenderFunc(props: {
           value: args.children,
           className: classNames(sty.slotTargetChildren, {
             [sty.slotTargetChildrenisHighlighted]: hasVariant(
-              variants,
+              $state,
               "isHighlighted",
               "isHighlighted"
             ),
             [sty.slotTargetChildrenisSelected]: hasVariant(
-              variants,
+              $state,
               "isSelected",
               "isSelected"
             )

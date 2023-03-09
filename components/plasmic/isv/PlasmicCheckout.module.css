@@ -58,8 +58,8 @@
   display: none;
 }
 .lineItems {
-  flex-direction: column;
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -68,8 +68,8 @@
 }
 .lineItems > :global(.__wab_flex-container) {
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   min-width: 0;
   margin-top: calc(0px - 0px);
   height: calc(100% + 0px);
@@ -107,9 +107,9 @@
   padding: 8px;
 }
 .freeBox__e1Rk {
-  flex-direction: column;
   display: flex;
   position: fixed;
+  flex-direction: column;
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -124,8 +124,8 @@
 }
 .freeBox__e1Rk > :global(.__wab_flex-container) {
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
   min-width: 0;
   margin-top: calc(0px - 10px);
   height: calc(100% + 10px);
@@ -188,9 +188,9 @@
   display: block;
 }
 .freeBox__rW7Tu {
-  flex-direction: row;
   display: flex;
   position: relative;
+  flex-direction: row;
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -199,8 +199,8 @@
 }
 .freeBox__rW7Tu > :global(.__wab_flex-container) {
   flex-direction: row;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
   min-width: 0;
   margin-left: calc(0px - 10px);
   width: calc(100% + 10px);
@@ -245,9 +245,9 @@
   height: 1em;
 }
 .freeBox__uwY6I {
-  flex-direction: row;
   display: flex;
   position: relative;
+  flex-direction: row;
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -256,8 +256,8 @@
 }
 .freeBox__uwY6I > :global(.__wab_flex-container) {
   flex-direction: row;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
   min-width: 0;
   margin-left: calc(0px - 10px);
   width: calc(100% + 10px);
@@ -302,8 +302,8 @@
   height: 1em;
 }
 .freeBox__nmWzQ {
-  flex-direction: row;
   position: relative;
+  flex-direction: row;
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -313,8 +313,8 @@
 }
 .freeBox__nmWzQ > :global(.__wab_flex-container) {
   flex-direction: row;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
   min-width: 0;
   margin-left: calc(0px - 10px);
   width: calc(100% + 10px);

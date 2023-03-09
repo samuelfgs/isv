@@ -14,6 +14,7 @@ import * as React from "react";
 
 import Head from "next/head";
 import Link, { LinkProps } from "next/link";
+import { useRouter } from "next/router";
 
 import * as p from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/host";
@@ -70,6 +71,21 @@ export type PlasmicLogin__OverridesType = {
 
 export interface DefaultLoginProps {}
 
+const __wrapUserFunction =
+  globalThis.__PlasmicWrapUserFunction ?? ((loc, fn) => fn());
+const __wrapUserPromise =
+  globalThis.__PlasmicWrapUserPromise ??
+  (async (loc, promise) => {
+    return await promise;
+  });
+
+function useNextRouter() {
+  try {
+    return useRouter();
+  } catch {}
+  return undefined;
+}
+
 function PlasmicLogin__RenderFunc(props: {
   variants: PlasmicLogin__VariantsArgs;
   args: PlasmicLogin__ArgsType;
@@ -78,6 +94,7 @@ function PlasmicLogin__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
+  const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
   const args = React.useMemo(
@@ -95,7 +112,35 @@ function PlasmicLogin__RenderFunc(props: {
     ...variants
   };
 
+  const refsRef = React.useRef({});
+  const $refs = refsRef.current;
+
   const currentUser = p.useCurrentUser?.() || {};
+  const [$queries, setDollarQueries] = React.useState({});
+  const stateSpecs = React.useMemo(
+    () => [
+      {
+        path: "user.value",
+        type: "private",
+        variableType: "text",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => undefined
+          : undefined
+      },
+
+      {
+        path: "password.value",
+        type: "private",
+        variableType: "text",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => undefined
+          : undefined
+      }
+    ],
+
+    [$props, $ctx]
+  );
+  const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
 
   return (
     <React.Fragment>
@@ -165,6 +210,12 @@ function PlasmicLogin__RenderFunc(props: {
                     data-plasmic-name={"user"}
                     data-plasmic-override={overrides.user}
                     className={classNames("__wab_instance", sty.user)}
+                    onChange={(...args) => {
+                      p.generateStateOnChangeProp($state, ["user", "value"])(
+                        (e => e.target?.value).apply(null, args)
+                      );
+                    }}
+                    value={p.generateStateValueProp($state, ["user", "value"])}
                   />
                 </p.Stack>
               ) : null}
@@ -188,6 +239,18 @@ function PlasmicLogin__RenderFunc(props: {
                     data-plasmic-name={"password"}
                     data-plasmic-override={overrides.password}
                     className={classNames("__wab_instance", sty.password)}
+                    onChange={(...args) => {
+                      p.generateStateOnChangeProp($state, [
+                        "password",
+
+                        "value"
+                      ])((e => e.target?.value).apply(null, args));
+                    }}
+                    value={p.generateStateValueProp($state, [
+                      "password",
+
+                      "value"
+                    ])}
                   />
                 </p.Stack>
               ) : null}

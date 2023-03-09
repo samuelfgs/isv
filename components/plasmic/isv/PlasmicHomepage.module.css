@@ -1,7 +1,7 @@
 .root {
-  flex-direction: column;
   display: flex;
   position: relative;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   min-width: 0;
@@ -27,9 +27,9 @@
   position: relative;
 }
 .freeBox__wFFs9 {
-  flex-direction: column;
   display: flex;
   position: relative;
+  flex-direction: column;
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -38,8 +38,8 @@
 }
 .freeBox__wFFs9 > :global(.__wab_flex-container) {
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
   min-width: 0;
   margin-top: calc(0px - 0px);
   height: calc(100% + 0px);
@@ -107,9 +107,9 @@
   padding: 8px;
 }
 .link {
-  flex-direction: row;
   display: flex;
   position: relative;
+  flex-direction: row;
   width: auto;
   height: auto;
   max-width: 100%;
@@ -118,8 +118,8 @@
 }
 .link > :global(.__wab_flex-container) {
   flex-direction: row;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   margin-left: calc(0px - 10px);
   width: calc(100% + 10px);
 }
@@ -142,9 +142,9 @@
   text-decoration-line: underline;
 }
 .freeBox__tc74K {
-  flex-direction: row;
   display: flex;
   position: relative;
+  flex-direction: row;
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -153,8 +153,8 @@
 }
 .freeBox__tc74K > :global(.__wab_flex-container) {
   flex-direction: row;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   min-width: 0;
   margin-left: calc(0px - 10px);
   width: calc(100% + 10px);
@@ -192,9 +192,9 @@
   position: relative;
 }
 .freeBox__dg52T {
-  flex-direction: column;
   display: flex;
   position: relative;
+  flex-direction: column;
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -203,8 +203,8 @@
 }
 .freeBox__dg52T > :global(.__wab_flex-container) {
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
   min-width: 0;
   margin-top: calc(0px - 10px);
   height: calc(100% + 10px);
@@ -228,9 +228,9 @@
   min-width: 0;
 }
 .options {
-  flex-direction: column;
   display: flex;
   position: relative;
+  flex-direction: column;
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -239,8 +239,8 @@
 }
 .options > :global(.__wab_flex-container) {
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
   min-width: 0;
   margin-top: calc(0px - 25px);
   height: calc(100% + 25px);

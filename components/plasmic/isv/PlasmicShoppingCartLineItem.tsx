@@ -14,6 +14,7 @@ import * as React from "react";
 
 import Head from "next/head";
 import Link, { LinkProps } from "next/link";
+import { useRouter } from "next/router";
 
 import * as p from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/host";
@@ -82,6 +83,21 @@ export interface DefaultShoppingCartLineItemProps {
   className?: string;
 }
 
+const __wrapUserFunction =
+  globalThis.__PlasmicWrapUserFunction ?? ((loc, fn) => fn());
+const __wrapUserPromise =
+  globalThis.__PlasmicWrapUserPromise ??
+  (async (loc, promise) => {
+    return await promise;
+  });
+
+function useNextRouter() {
+  try {
+    return useRouter();
+  } catch {}
+  return undefined;
+}
+
 function PlasmicShoppingCartLineItem__RenderFunc(props: {
   variants: PlasmicShoppingCartLineItem__VariantsArgs;
   args: PlasmicShoppingCartLineItem__ArgsType;
@@ -90,6 +106,7 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
+  const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
   const args = React.useMemo(
@@ -107,7 +124,26 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
     ...variants
   };
 
+  const refsRef = React.useRef({});
+  const $refs = refsRef.current;
+
   const currentUser = p.useCurrentUser?.() || {};
+  const [$queries, setDollarQueries] = React.useState({});
+  const stateSpecs = React.useMemo(
+    () => [
+      {
+        path: "even",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.even
+          : undefined
+      }
+    ],
+
+    [$props, $ctx]
+  );
+  const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
 
   return (
     true ? (
@@ -125,13 +161,13 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
           plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
           plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
           sty.root,
-          { [sty.rooteven]: hasVariant(variants, "even", "even") }
+          { [sty.rooteven]: hasVariant($state, "even", "even") }
         )}
       >
         {true ? (
           <div
             className={classNames(projectcss.all, sty.freeBox__sv7Tj, {
-              [sty.freeBoxeven__sv7TjeuiD]: hasVariant(variants, "even", "even")
+              [sty.freeBoxeven__sv7TjeuiD]: hasVariant($state, "even", "even")
             })}
           >
             {true ? (
@@ -140,7 +176,7 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
                 hasGap={true}
                 className={classNames(projectcss.all, sty.freeBox__tPsW5, {
                   [sty.freeBoxeven__tPsW5EuiD]: hasVariant(
-                    variants,
+                    $state,
                     "even",
                     "even"
                   )
@@ -169,7 +205,7 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
                 <div
                   className={classNames(projectcss.all, sty.freeBox__bAMb3, {
                     [sty.freeBoxeven__bAMb3EuiD]: hasVariant(
-                      variants,
+                      $state,
                       "even",
                       "even"
                     )
@@ -193,7 +229,7 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
                   value: args.price,
                   className: classNames(sty.slotTargetPrice, {
                     [sty.slotTargetPriceeven]: hasVariant(
-                      variants,
+                      $state,
                       "even",
                       "even"
                     )
@@ -235,14 +271,14 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
         {true ? (
           <div
             className={classNames(projectcss.all, sty.freeBox__i53, {
-              [sty.freeBoxeven__i53EuiD]: hasVariant(variants, "even", "even")
+              [sty.freeBoxeven__i53EuiD]: hasVariant($state, "even", "even")
             })}
           >
             <Quantity
               data-plasmic-name={"quantity"}
               data-plasmic-override={overrides.quantity}
               className={classNames("__wab_instance", sty.quantity, {
-                [sty.quantityeven]: hasVariant(variants, "even", "even")
+                [sty.quantityeven]: hasVariant($state, "even", "even")
               })}
             />
           </div>

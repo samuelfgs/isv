@@ -14,9 +14,11 @@ import * as React from "react";
 
 import Head from "next/head";
 import Link, { LinkProps } from "next/link";
+import { useRouter } from "next/router";
 
 import * as p from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/host";
+
 import * as pp from "@plasmicapp/react-web";
 import {
   hasVariant,
@@ -83,6 +85,21 @@ export interface DefaultSelect__OptionGroupProps
   noTitle?: SingleBooleanChoiceArg<"noTitle">;
 }
 
+const __wrapUserFunction =
+  globalThis.__PlasmicWrapUserFunction ?? ((loc, fn) => fn());
+const __wrapUserPromise =
+  globalThis.__PlasmicWrapUserPromise ??
+  (async (loc, promise) => {
+    return await promise;
+  });
+
+function useNextRouter() {
+  try {
+    return useRouter();
+  } catch {}
+  return undefined;
+}
+
 function PlasmicSelect__OptionGroup__RenderFunc(props: {
   variants: PlasmicSelect__OptionGroup__VariantsArgs;
   args: PlasmicSelect__OptionGroup__ArgsType;
@@ -91,6 +108,7 @@ function PlasmicSelect__OptionGroup__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
+  const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
   const args = React.useMemo(
@@ -108,7 +126,35 @@ function PlasmicSelect__OptionGroup__RenderFunc(props: {
     ...variants
   };
 
+  const refsRef = React.useRef({});
+  const $refs = refsRef.current;
+
   const currentUser = p.useCurrentUser?.() || {};
+  const [$queries, setDollarQueries] = React.useState({});
+  const stateSpecs = React.useMemo(
+    () => [
+      {
+        path: "noTitle",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.noTitle
+          : undefined
+      },
+
+      {
+        path: "isFirst",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.isFirst
+          : undefined
+      }
+    ],
+
+    [$props, $ctx]
+  );
+  const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
 
   const superContexts = {
     Select: React.useContext(SUPER__PlasmicSelect.Context)
@@ -131,28 +177,28 @@ function PlasmicSelect__OptionGroup__RenderFunc(props: {
         sty.root
       )}
     >
-      {(hasVariant(variants, "isFirst", "isFirst") ? false : true) ? (
+      {(hasVariant($state, "isFirst", "isFirst") ? false : true) ? (
         <div
           data-plasmic-name={"separator"}
           data-plasmic-override={overrides.separator}
           className={classNames(projectcss.all, sty.separator, {
-            [sty.separatorisFirst]: hasVariant(variants, "isFirst", "isFirst"),
-            [sty.separatornoTitle]: hasVariant(variants, "noTitle", "noTitle")
+            [sty.separatorisFirst]: hasVariant($state, "isFirst", "isFirst"),
+            [sty.separatornoTitle]: hasVariant($state, "noTitle", "noTitle")
           })}
         />
       ) : null}
-      {(hasVariant(variants, "noTitle", "noTitle") ? false : true) ? (
+      {(hasVariant($state, "noTitle", "noTitle") ? false : true) ? (
         <div
           data-plasmic-name={"titleContainer"}
           data-plasmic-override={overrides.titleContainer}
           className={classNames(projectcss.all, sty.titleContainer, {
             [sty.titleContainerisFirst]: hasVariant(
-              variants,
+              $state,
               "isFirst",
               "isFirst"
             ),
             [sty.titleContainernoTitle]: hasVariant(
-              variants,
+              $state,
               "noTitle",
               "noTitle"
             )

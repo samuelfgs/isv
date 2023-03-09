@@ -14,6 +14,7 @@ import * as React from "react";
 
 import Head from "next/head";
 import Link, { LinkProps } from "next/link";
+import { useRouter } from "next/router";
 
 import * as p from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/host";
@@ -76,6 +77,21 @@ export interface DefaultPrintOrderProps {
   className?: string;
 }
 
+const __wrapUserFunction =
+  globalThis.__PlasmicWrapUserFunction ?? ((loc, fn) => fn());
+const __wrapUserPromise =
+  globalThis.__PlasmicWrapUserPromise ??
+  (async (loc, promise) => {
+    return await promise;
+  });
+
+function useNextRouter() {
+  try {
+    return useRouter();
+  } catch {}
+  return undefined;
+}
+
 function PlasmicPrintOrder__RenderFunc(props: {
   variants: PlasmicPrintOrder__VariantsArgs;
   args: PlasmicPrintOrder__ArgsType;
@@ -84,6 +100,7 @@ function PlasmicPrintOrder__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
+  const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
   const args = React.useMemo(
@@ -119,7 +136,11 @@ function PlasmicPrintOrder__RenderFunc(props: {
     ...variants
   };
 
+  const refsRef = React.useRef({});
+  const $refs = refsRef.current;
+
   const currentUser = p.useCurrentUser?.() || {};
+  const [$queries, setDollarQueries] = React.useState({});
 
   return (
     <div
@@ -188,16 +209,18 @@ function PlasmicPrintOrder__RenderFunc(props: {
         ) : null}
 
         <div className={classNames(projectcss.all, sty.freeBox__kBuec)}>
-          {(() => {
-            try {
-              return $props.lineItems;
-            } catch (e) {
-              if (e instanceof TypeError) {
-                return [];
+          {(
+            (() => {
+              try {
+                return $props.lineItems;
+              } catch (e) {
+                if (e instanceof TypeError) {
+                  return [];
+                }
+                throw e;
               }
-              throw e;
-            }
-          })().map((currentItem, currentIndex) => (
+            })() ?? []
+          ).map((currentItem, currentIndex) => (
             <div
               className={classNames(projectcss.all, sty.freeBox__vrtXo)}
               key={currentIndex}

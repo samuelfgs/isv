@@ -14,6 +14,7 @@ import * as React from "react";
 
 import Head from "next/head";
 import Link, { LinkProps } from "next/link";
+import { useRouter } from "next/router";
 
 import * as p from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/host";
@@ -78,6 +79,21 @@ export type PlasmicHomepage__OverridesType = {
 
 export interface DefaultHomepageProps {}
 
+const __wrapUserFunction =
+  globalThis.__PlasmicWrapUserFunction ?? ((loc, fn) => fn());
+const __wrapUserPromise =
+  globalThis.__PlasmicWrapUserPromise ??
+  (async (loc, promise) => {
+    return await promise;
+  });
+
+function useNextRouter() {
+  try {
+    return useRouter();
+  } catch {}
+  return undefined;
+}
+
 function PlasmicHomepage__RenderFunc(props: {
   variants: PlasmicHomepage__VariantsArgs;
   args: PlasmicHomepage__ArgsType;
@@ -86,6 +102,7 @@ function PlasmicHomepage__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
+  const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
   const args = React.useMemo(
@@ -103,7 +120,11 @@ function PlasmicHomepage__RenderFunc(props: {
     ...variants
   };
 
+  const refsRef = React.useRef({});
+  const $refs = refsRef.current;
+
   const currentUser = p.useCurrentUser?.() || {};
+  const [$queries, setDollarQueries] = React.useState({});
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsrLyYkqyGlc01Z()
@@ -243,7 +264,7 @@ function PlasmicHomepage__RenderFunc(props: {
                         sty.text__hS2Be
                       )}
                     >
-                      {"12 de setembro às 19:00"}
+                      {"11 de março às 19:00"}
                     </div>
                   </p.Stack>
                 ) : null}
@@ -286,25 +307,29 @@ function PlasmicHomepage__RenderFunc(props: {
                   data-plasmic-override={overrides.event}
                   className={classNames("__wab_instance", sty.event)}
                   contentType={"event" as const}
-                  entryID={"6dmcTEVolAn8AUrYwF2w5R" as const}
+                  entryID={"2x0D7WRBPcnlXlJgiZhpXo" as const}
                   limit={1000 as const}
                   noLayout={true}
                 >
                   <ph.DataCtxReader>
                     {$ctx =>
                       true
-                        ? (() => {
-                            try {
-                              return (
-                                $ctx.contentfulEventItem.fields.menu ?? []
-                              ).sort((a, b) => a.fields.order - b.fields.order);
-                            } catch (e) {
-                              if (e instanceof TypeError) {
-                                return [];
+                        ? (
+                            (() => {
+                              try {
+                                return (
+                                  $ctx.contentfulEventItem.fields.menu ?? []
+                                ).sort(
+                                  (a, b) => a.fields.order - b.fields.order
+                                );
+                              } catch (e) {
+                                if (e instanceof TypeError) {
+                                  return [];
+                                }
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })().map((currentItem, currentIndex) => (
+                            })() ?? []
+                          ).map((currentItem, currentIndex) => (
                             <MenuItem
                               data-plasmic-name={"menuItem"}
                               data-plasmic-override={overrides.menuItem}

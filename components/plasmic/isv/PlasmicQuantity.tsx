@@ -14,6 +14,7 @@ import * as React from "react";
 
 import Head from "next/head";
 import Link, { LinkProps } from "next/link";
+import { useRouter } from "next/router";
 
 import * as p from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/host";
@@ -83,6 +84,21 @@ export interface DefaultQuantityProps {
   className?: string;
 }
 
+const __wrapUserFunction =
+  globalThis.__PlasmicWrapUserFunction ?? ((loc, fn) => fn());
+const __wrapUserPromise =
+  globalThis.__PlasmicWrapUserPromise ??
+  (async (loc, promise) => {
+    return await promise;
+  });
+
+function useNextRouter() {
+  try {
+    return useRouter();
+  } catch {}
+  return undefined;
+}
+
 function PlasmicQuantity__RenderFunc(props: {
   variants: PlasmicQuantity__VariantsArgs;
   args: PlasmicQuantity__ArgsType;
@@ -91,6 +107,7 @@ function PlasmicQuantity__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
+  const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
   const args = React.useMemo(
@@ -108,7 +125,35 @@ function PlasmicQuantity__RenderFunc(props: {
     ...variants
   };
 
+  const refsRef = React.useRef({});
+  const $refs = refsRef.current;
+
   const currentUser = p.useCurrentUser?.() || {};
+  const [$queries, setDollarQueries] = React.useState({});
+  const stateSpecs = React.useMemo(
+    () => [
+      {
+        path: "initialState",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.initialState
+          : undefined
+      },
+
+      {
+        path: "disablePlusButton",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.disablePlusButton
+          : undefined
+      }
+    ],
+
+    [$props, $ctx]
+  );
+  const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
 
   return (
     <p.Stack
@@ -129,20 +174,20 @@ function PlasmicQuantity__RenderFunc(props: {
         sty.root,
         {
           [sty.rootinitialState]: hasVariant(
-            variants,
+            $state,
             "initialState",
             "initialState"
           )
         }
       )}
     >
-      {(hasVariant(variants, "initialState", "initialState") ? true : true) ? (
+      {(hasVariant($state, "initialState", "initialState") ? true : true) ? (
         <Button
           data-plasmic-name={"minusButton"}
           data-plasmic-override={overrides.minusButton}
           className={classNames("__wab_instance", sty.minusButton, {
             [sty.minusButtoninitialState]: hasVariant(
-              variants,
+              $state,
               "initialState",
               "initialState"
             )
@@ -161,13 +206,13 @@ function PlasmicQuantity__RenderFunc(props: {
           </div>
         </Button>
       ) : null}
-      {(hasVariant(variants, "initialState", "initialState") ? true : true) ? (
+      {(hasVariant($state, "initialState", "initialState") ? true : true) ? (
         <div
           data-plasmic-name={"freeBox"}
           data-plasmic-override={overrides.freeBox}
           className={classNames(projectcss.all, sty.freeBox, {
             [sty.freeBoxinitialState]: hasVariant(
-              variants,
+              $state,
               "initialState",
               "initialState"
             )
@@ -186,14 +231,14 @@ function PlasmicQuantity__RenderFunc(props: {
         data-plasmic-override={overrides.plusButton}
         className={classNames("__wab_instance", sty.plusButton, {
           [sty.plusButtondisablePlusButton]: hasVariant(
-            variants,
+            $state,
             "disablePlusButton",
             "disablePlusButton"
           )
         })}
         color={"blue" as const}
         isDisabled={
-          hasVariant(variants, "disablePlusButton", "disablePlusButton")
+          hasVariant($state, "disablePlusButton", "disablePlusButton")
             ? true
             : undefined
         }

@@ -86,9 +86,9 @@
   min-width: 0;
 }
 .freeBox__cw7B {
-  flex-direction: column;
   display: flex;
   position: relative;
+  flex-direction: column;
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -97,8 +97,8 @@
 }
 .freeBox__cw7B > :global(.__wab_flex-container) {
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
   min-width: 0;
   margin-top: calc(0px - 30px);
   height: calc(100% + 30px);
@@ -182,9 +182,9 @@
   font-weight: 600;
 }
 .selectedOptionValues {
-  flex-direction: column;
   display: flex;
   position: relative;
+  flex-direction: column;
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -193,8 +193,8 @@
 }
 .selectedOptionValues > :global(.__wab_flex-container) {
   flex-direction: column;
-  justify-content: flex-start;
   align-items: flex-start;
+  justify-content: flex-start;
   min-width: 0;
   margin-top: calc(0px - 8px);
   height: calc(100% + 8px);

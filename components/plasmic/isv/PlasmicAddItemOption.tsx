@@ -14,6 +14,7 @@ import * as React from "react";
 
 import Head from "next/head";
 import Link, { LinkProps } from "next/link";
+import { useRouter } from "next/router";
 
 import * as p from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/host";
@@ -73,6 +74,21 @@ export interface DefaultAddItemOptionProps {
   className?: string;
 }
 
+const __wrapUserFunction =
+  globalThis.__PlasmicWrapUserFunction ?? ((loc, fn) => fn());
+const __wrapUserPromise =
+  globalThis.__PlasmicWrapUserPromise ??
+  (async (loc, promise) => {
+    return await promise;
+  });
+
+function useNextRouter() {
+  try {
+    return useRouter();
+  } catch {}
+  return undefined;
+}
+
 function PlasmicAddItemOption__RenderFunc(props: {
   variants: PlasmicAddItemOption__VariantsArgs;
   args: PlasmicAddItemOption__ArgsType;
@@ -81,6 +97,7 @@ function PlasmicAddItemOption__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
+  const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
   const args = React.useMemo(
@@ -98,7 +115,11 @@ function PlasmicAddItemOption__RenderFunc(props: {
     ...variants
   };
 
+  const refsRef = React.useRef({});
+  const $refs = refsRef.current;
+
   const currentUser = p.useCurrentUser?.() || {};
+  const [$queries, setDollarQueries] = React.useState({});
 
   return (
     true ? (
@@ -201,19 +222,21 @@ function PlasmicAddItemOption__RenderFunc(props: {
                       className={classNames(projectcss.all, sty.freeBox__jeZf)}
                     >
                       {true
-                        ? (() => {
-                            try {
-                              return (
-                                $ctx.contentfulMenuitemoptionItem.fields
-                                  ?.values ?? []
-                              );
-                            } catch (e) {
-                              if (e instanceof TypeError) {
-                                return [];
+                        ? (
+                            (() => {
+                              try {
+                                return (
+                                  $ctx.contentfulMenuitemoptionItem.fields
+                                    ?.values ?? []
+                                );
+                              } catch (e) {
+                                if (e instanceof TypeError) {
+                                  return [];
+                                }
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })().map((currentOptionValue, currentIndex) => (
+                            })() ?? []
+                          ).map((currentOptionValue, currentIndex) => (
                             <div
                               className={classNames(
                                 projectcss.all,

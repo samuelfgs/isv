@@ -14,9 +14,11 @@ import * as React from "react";
 
 import Head from "next/head";
 import Link, { LinkProps } from "next/link";
+import { useRouter } from "next/router";
 
 import * as p from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/host";
+
 import * as pp from "@plasmicapp/react-web";
 import {
   hasVariant,
@@ -71,7 +73,7 @@ export type PlasmicTextInput__ArgsType = {
   placeholder?: string;
   endIcon?: React.ReactNode;
   startIcon?: React.ReactNode;
-  value?: any;
+  value?: string;
   name?: string;
   required?: boolean;
   "aria-label"?: string;
@@ -101,13 +103,28 @@ export type PlasmicTextInput__OverridesType = {
 
 export interface DefaultTextInputProps extends pp.BaseTextInputProps {
   placeholder?: string;
-  value?: any;
+  value?: string;
   name?: string;
   required?: boolean;
   "aria-label"?: string;
   "aria-labelledby"?: string;
   type?: string;
   color?: SingleChoiceArg<"dark">;
+}
+
+const __wrapUserFunction =
+  globalThis.__PlasmicWrapUserFunction ?? ((loc, fn) => fn());
+const __wrapUserPromise =
+  globalThis.__PlasmicWrapUserPromise ??
+  (async (loc, promise) => {
+    return await promise;
+  });
+
+function useNextRouter() {
+  try {
+    return useRouter();
+  } catch {}
+  return undefined;
 }
 
 function PlasmicTextInput__RenderFunc(props: {
@@ -118,6 +135,7 @@ function PlasmicTextInput__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
+  const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
   const args = React.useMemo(
@@ -136,7 +154,62 @@ function PlasmicTextInput__RenderFunc(props: {
     ...variants
   };
 
+  const refsRef = React.useRef({});
+  const $refs = refsRef.current;
+
   const currentUser = p.useCurrentUser?.() || {};
+  const [$queries, setDollarQueries] = React.useState({});
+  const stateSpecs = React.useMemo(
+    () => [
+      {
+        path: "showStartIcon",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.showStartIcon
+          : undefined
+      },
+
+      {
+        path: "showEndIcon",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.showEndIcon
+          : undefined
+      },
+
+      {
+        path: "isDisabled",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.isDisabled
+          : undefined
+      },
+
+      {
+        path: "color",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.color
+          : undefined
+      },
+
+      {
+        path: "value",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "value",
+        onChangeProp: "onChange"
+      }
+    ],
+
+    [$props, $ctx]
+  );
+  const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
 
   const [isRootFocusVisibleWithin, triggerRootFocusVisibleWithinProps] =
     useTrigger("useFocusVisibleWithin", {
@@ -164,14 +237,10 @@ function PlasmicTextInput__RenderFunc(props: {
         sty.root,
         {
           [sty.root___focusVisibleWithin]: triggers.focusVisibleWithin_root,
-          [sty.rootcolor_dark]: hasVariant(variants, "color", "dark"),
-          [sty.rootisDisabled]: hasVariant(
-            variants,
-            "isDisabled",
-            "isDisabled"
-          ),
+          [sty.rootcolor_dark]: hasVariant($state, "color", "dark"),
+          [sty.rootisDisabled]: hasVariant($state, "isDisabled", "isDisabled"),
           [sty.rootshowStartIcon]: hasVariant(
-            variants,
+            $state,
             "showStartIcon",
             "showStartIcon"
           )
@@ -179,9 +248,7 @@ function PlasmicTextInput__RenderFunc(props: {
       )}
       data-plasmic-trigger-props={[triggerRootFocusVisibleWithinProps]}
     >
-      {(
-        hasVariant(variants, "showStartIcon", "showStartIcon") ? true : true
-      ) ? (
+      {(hasVariant($state, "showStartIcon", "showStartIcon") ? true : true) ? (
         <div
           data-plasmic-name={"startIconContainer"}
           data-plasmic-override={overrides.startIconContainer}
@@ -189,17 +256,17 @@ function PlasmicTextInput__RenderFunc(props: {
             [sty.startIconContainer___focusVisibleWithin]:
               triggers.focusVisibleWithin_root,
             [sty.startIconContainercolor_dark]: hasVariant(
-              variants,
+              $state,
               "color",
               "dark"
             ),
             [sty.startIconContainerisDisabled]: hasVariant(
-              variants,
+              $state,
               "isDisabled",
               "isDisabled"
             ),
             [sty.startIconContainershowStartIcon]: hasVariant(
-              variants,
+              $state,
               "showStartIcon",
               "showStartIcon"
             )
@@ -216,12 +283,12 @@ function PlasmicTextInput__RenderFunc(props: {
             value: args.startIcon,
             className: classNames(sty.slotTargetStartIcon, {
               [sty.slotTargetStartIconcolor_dark]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "dark"
               ),
               [sty.slotTargetStartIconshowStartIcon]: hasVariant(
-                variants,
+                $state,
                 "showStartIcon",
                 "showStartIcon"
               )
@@ -237,40 +304,39 @@ function PlasmicTextInput__RenderFunc(props: {
         aria-labelledby={args["aria-labelledby"]}
         className={classNames(projectcss.all, projectcss.input, sty.input, {
           [sty.input___focusVisibleWithin]: triggers.focusVisibleWithin_root,
-          [sty.inputcolor_dark]: hasVariant(variants, "color", "dark"),
-          [sty.inputisDisabled]: hasVariant(
-            variants,
-            "isDisabled",
-            "isDisabled"
-          ),
+          [sty.inputcolor_dark]: hasVariant($state, "color", "dark"),
+          [sty.inputisDisabled]: hasVariant($state, "isDisabled", "isDisabled"),
           [sty.inputshowStartIcon]: hasVariant(
-            variants,
+            $state,
             "showStartIcon",
             "showStartIcon"
           )
         })}
         disabled={
-          hasVariant(variants, "isDisabled", "isDisabled") ? true : undefined
+          hasVariant($state, "isDisabled", "isDisabled") ? true : undefined
         }
         name={args.name}
         placeholder={args.placeholder}
+        ref={ref => {
+          $refs["input"] = ref;
+        }}
         required={args.required}
         type={args.type}
         value={args.value}
       />
 
-      {(hasVariant(variants, "showEndIcon", "showEndIcon") ? true : true) ? (
+      {(hasVariant($state, "showEndIcon", "showEndIcon") ? true : true) ? (
         <div
           data-plasmic-name={"endIconContainer"}
           data-plasmic-override={overrides.endIconContainer}
           className={classNames(projectcss.all, sty.endIconContainer, {
             [sty.endIconContainercolor_dark]: hasVariant(
-              variants,
+              $state,
               "color",
               "dark"
             ),
             [sty.endIconContainershowEndIcon]: hasVariant(
-              variants,
+              $state,
               "showEndIcon",
               "showEndIcon"
             )
@@ -287,12 +353,12 @@ function PlasmicTextInput__RenderFunc(props: {
             value: args.endIcon,
             className: classNames(sty.slotTargetEndIcon, {
               [sty.slotTargetEndIconcolor_dark]: hasVariant(
-                variants,
+                $state,
                 "color",
                 "dark"
               ),
               [sty.slotTargetEndIconshowEndIcon]: hasVariant(
-                variants,
+                $state,
                 "showEndIcon",
                 "showEndIcon"
               )

@@ -14,6 +14,7 @@ import * as React from "react";
 
 import Head from "next/head";
 import Link, { LinkProps } from "next/link";
+import { useRouter } from "next/router";
 
 import * as p from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/host";
@@ -94,6 +95,21 @@ export interface DefaultShoppingCartProps {
   className?: string;
 }
 
+const __wrapUserFunction =
+  globalThis.__PlasmicWrapUserFunction ?? ((loc, fn) => fn());
+const __wrapUserPromise =
+  globalThis.__PlasmicWrapUserPromise ??
+  (async (loc, promise) => {
+    return await promise;
+  });
+
+function useNextRouter() {
+  try {
+    return useRouter();
+  } catch {}
+  return undefined;
+}
+
 function PlasmicShoppingCart__RenderFunc(props: {
   variants: PlasmicShoppingCart__VariantsArgs;
   args: PlasmicShoppingCart__ArgsType;
@@ -102,6 +118,7 @@ function PlasmicShoppingCart__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
+  const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
   const args = React.useMemo(
@@ -119,7 +136,44 @@ function PlasmicShoppingCart__RenderFunc(props: {
     ...variants
   };
 
+  const refsRef = React.useRef({});
+  const $refs = refsRef.current;
+
   const currentUser = p.useCurrentUser?.() || {};
+  const [$queries, setDollarQueries] = React.useState({});
+  const stateSpecs = React.useMemo(
+    () => [
+      {
+        path: "isEmpty",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.isEmpty
+          : undefined
+      },
+
+      {
+        path: "nameInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => undefined
+          : undefined
+      },
+
+      {
+        path: "emailInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => undefined
+          : undefined
+      }
+    ],
+
+    [$props, $ctx]
+  );
+  const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
 
   return (
     true ? (
@@ -139,7 +193,7 @@ function PlasmicShoppingCart__RenderFunc(props: {
           plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
           plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
           sty.root,
-          { [sty.rootisEmpty]: hasVariant(variants, "isEmpty", "isEmpty") }
+          { [sty.rootisEmpty]: hasVariant($state, "isEmpty", "isEmpty") }
         )}
       >
         <Header
@@ -148,17 +202,17 @@ function PlasmicShoppingCart__RenderFunc(props: {
           className={classNames("__wab_instance", sty.header)}
         />
 
-        {(hasVariant(variants, "isEmpty", "isEmpty") ? true : true) ? (
+        {(hasVariant($state, "isEmpty", "isEmpty") ? true : true) ? (
           <div
             className={classNames(projectcss.all, sty.freeBox__dK8WR, {
               [sty.freeBoxisEmpty__dK8WRyqkGv]: hasVariant(
-                variants,
+                $state,
                 "isEmpty",
                 "isEmpty"
               )
             })}
           >
-            {(hasVariant(variants, "isEmpty", "isEmpty") ? true : true) ? (
+            {(hasVariant($state, "isEmpty", "isEmpty") ? true : true) ? (
               <div
                 className={classNames(
                   projectcss.all,
@@ -166,7 +220,7 @@ function PlasmicShoppingCart__RenderFunc(props: {
                   sty.text__w92Vj,
                   {
                     [sty.textisEmpty__w92VjyqkGv]: hasVariant(
-                      variants,
+                      $state,
                       "isEmpty",
                       "isEmpty"
                     )
@@ -180,7 +234,7 @@ function PlasmicShoppingCart__RenderFunc(props: {
         ) : null}
         {true ? (
           <div className={classNames(projectcss.all, sty.freeBox__mLvYu)}>
-            {(hasVariant(variants, "isEmpty", "isEmpty") ? true : true) ? (
+            {(hasVariant($state, "isEmpty", "isEmpty") ? true : true) ? (
               <p.Stack
                 as={"div"}
                 data-plasmic-name={"lineItems"}
@@ -188,7 +242,7 @@ function PlasmicShoppingCart__RenderFunc(props: {
                 hasGap={true}
                 className={classNames(projectcss.all, sty.lineItems, {
                   [sty.lineItemsisEmpty]: hasVariant(
-                    variants,
+                    $state,
                     "isEmpty",
                     "isEmpty"
                   )
@@ -236,11 +290,11 @@ function PlasmicShoppingCart__RenderFunc(props: {
             hasGap={true}
             className={classNames(projectcss.all, sty.freeBox__avSb)}
           >
-            {(hasVariant(variants, "isEmpty", "isEmpty") ? true : true) ? (
+            {(hasVariant($state, "isEmpty", "isEmpty") ? true : true) ? (
               <div
                 className={classNames(projectcss.all, sty.freeBox__bZiN9, {
                   [sty.freeBoxisEmpty__bZiN9YqkGv]: hasVariant(
-                    variants,
+                    $state,
                     "isEmpty",
                     "isEmpty"
                   )
@@ -301,8 +355,14 @@ function PlasmicShoppingCart__RenderFunc(props: {
                 data-plasmic-override={overrides.nameInput}
                 className={classNames("__wab_instance", sty.nameInput)}
                 name={"name" as const}
+                onChange={(...args) => {
+                  p.generateStateOnChangeProp($state, ["nameInput", "value"])(
+                    (e => e.target?.value).apply(null, args)
+                  );
+                }}
                 placeholder={"" as const}
                 required={true}
+                value={p.generateStateValueProp($state, ["nameInput", "value"])}
               />
             </p.Stack>
 
@@ -326,8 +386,18 @@ function PlasmicShoppingCart__RenderFunc(props: {
                 data-plasmic-override={overrides.emailInput}
                 className={classNames("__wab_instance", sty.emailInput)}
                 name={"email" as const}
+                onChange={(...args) => {
+                  p.generateStateOnChangeProp($state, ["emailInput", "value"])(
+                    (e => e.target?.value).apply(null, args)
+                  );
+                }}
                 required={true}
                 type={"email" as const}
+                value={p.generateStateValueProp($state, [
+                  "emailInput",
+
+                  "value"
+                ])}
               />
             </p.Stack>
 
@@ -335,7 +405,7 @@ function PlasmicShoppingCart__RenderFunc(props: {
               <div
                 className={classNames(projectcss.all, sty.freeBox__dhXtS, {
                   [sty.freeBoxisEmpty__dhXtSyqkGv]: hasVariant(
-                    variants,
+                    $state,
                     "isEmpty",
                     "isEmpty"
                   )
@@ -346,16 +416,14 @@ function PlasmicShoppingCart__RenderFunc(props: {
                   data-plasmic-override={overrides.backBtn}
                   className={classNames("__wab_instance", sty.backBtn, {
                     [sty.backBtnisEmpty]: hasVariant(
-                      variants,
+                      $state,
                       "isEmpty",
                       "isEmpty"
                     )
                   })}
                   color={"softBlue" as const}
                   isDisabled={
-                    hasVariant(variants, "isEmpty", "isEmpty")
-                      ? true
-                      : undefined
+                    hasVariant($state, "isEmpty", "isEmpty") ? true : undefined
                   }
                   showStartIcon={true}
                   startIcon={
@@ -374,33 +442,33 @@ function PlasmicShoppingCart__RenderFunc(props: {
                       sty.text___528Rb,
                       {
                         [sty.textisEmpty___528RbyqkGv]: hasVariant(
-                          variants,
+                          $state,
                           "isEmpty",
                           "isEmpty"
                         )
                       }
                     )}
                   >
-                    {hasVariant(variants, "isEmpty", "isEmpty")
+                    {hasVariant($state, "isEmpty", "isEmpty")
                       ? "Adicionar"
                       : "Adicionar mais"}
                   </div>
                 </Button>
 
-                {(hasVariant(variants, "isEmpty", "isEmpty") ? true : true) ? (
+                {(hasVariant($state, "isEmpty", "isEmpty") ? true : true) ? (
                   <Button
                     data-plasmic-name={"checkoutBtn"}
                     data-plasmic-override={overrides.checkoutBtn}
                     className={classNames("__wab_instance", sty.checkoutBtn, {
                       [sty.checkoutBtnisEmpty]: hasVariant(
-                        variants,
+                        $state,
                         "isEmpty",
                         "isEmpty"
                       )
                     })}
                     color={"blue" as const}
                     isDisabled={
-                      hasVariant(variants, "isEmpty", "isEmpty")
+                      hasVariant($state, "isEmpty", "isEmpty")
                         ? true
                         : undefined
                     }
@@ -413,7 +481,7 @@ function PlasmicShoppingCart__RenderFunc(props: {
                         sty.text__nNaap,
                         {
                           [sty.textisEmpty__nNaapYqkGv]: hasVariant(
-                            variants,
+                            $state,
                             "isEmpty",
                             "isEmpty"
                           )

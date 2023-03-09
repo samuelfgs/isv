@@ -14,6 +14,7 @@ import * as React from "react";
 
 import Head from "next/head";
 import Link, { LinkProps } from "next/link";
+import { useRouter } from "next/router";
 
 import * as p from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/host";
@@ -68,6 +69,21 @@ export interface DefaultLoadingProps {
   className?: string;
 }
 
+const __wrapUserFunction =
+  globalThis.__PlasmicWrapUserFunction ?? ((loc, fn) => fn());
+const __wrapUserPromise =
+  globalThis.__PlasmicWrapUserPromise ??
+  (async (loc, promise) => {
+    return await promise;
+  });
+
+function useNextRouter() {
+  try {
+    return useRouter();
+  } catch {}
+  return undefined;
+}
+
 function PlasmicLoading__RenderFunc(props: {
   variants: PlasmicLoading__VariantsArgs;
   args: PlasmicLoading__ArgsType;
@@ -76,6 +92,7 @@ function PlasmicLoading__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
+  const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
   const args = React.useMemo(
@@ -93,10 +110,29 @@ function PlasmicLoading__RenderFunc(props: {
     ...variants
   };
 
+  const refsRef = React.useRef({});
+  const $refs = refsRef.current;
+
   const currentUser = p.useCurrentUser?.() || {};
+  const [$queries, setDollarQueries] = React.useState({});
+  const stateSpecs = React.useMemo(
+    () => [
+      {
+        path: "hide",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.hide
+          : undefined
+      }
+    ],
+
+    [$props, $ctx]
+  );
+  const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
 
   return (
-    (hasVariant(variants, "hide", "hide") ? false : true) ? (
+    (hasVariant($state, "hide", "hide") ? false : true) ? (
       <div
         data-plasmic-name={"root"}
         data-plasmic-override={overrides.root}
@@ -111,7 +147,7 @@ function PlasmicLoading__RenderFunc(props: {
           plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
           plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
           sty.root,
-          { [sty.roothide]: hasVariant(variants, "hide", "hide") }
+          { [sty.roothide]: hasVariant($state, "hide", "hide") }
         )}
       >
         {true ? (
@@ -125,7 +161,7 @@ function PlasmicLoading__RenderFunc(props: {
               data-plasmic-override={overrides.img}
               alt={""}
               className={classNames(sty.img, {
-                [sty.imghide]: hasVariant(variants, "hide", "hide")
+                [sty.imghide]: hasVariant($state, "hide", "hide")
               })}
               displayHeight={"150px" as const}
               displayMaxHeight={"none" as const}

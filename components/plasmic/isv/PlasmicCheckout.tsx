@@ -14,6 +14,7 @@ import * as React from "react";
 
 import Head from "next/head";
 import Link, { LinkProps } from "next/link";
+import { useRouter } from "next/router";
 
 import * as p from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/host";
@@ -99,6 +100,21 @@ export type PlasmicCheckout__OverridesType = {
 
 export interface DefaultCheckoutProps {}
 
+const __wrapUserFunction =
+  globalThis.__PlasmicWrapUserFunction ?? ((loc, fn) => fn());
+const __wrapUserPromise =
+  globalThis.__PlasmicWrapUserPromise ??
+  (async (loc, promise) => {
+    return await promise;
+  });
+
+function useNextRouter() {
+  try {
+    return useRouter();
+  } catch {}
+  return undefined;
+}
+
 function PlasmicCheckout__RenderFunc(props: {
   variants: PlasmicCheckout__VariantsArgs;
   args: PlasmicCheckout__ArgsType;
@@ -107,6 +123,7 @@ function PlasmicCheckout__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
+  const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
   const args = React.useMemo(
@@ -125,7 +142,62 @@ function PlasmicCheckout__RenderFunc(props: {
     ...variants
   };
 
+  const refsRef = React.useRef({});
+  const $refs = refsRef.current;
+
   const currentUser = p.useCurrentUser?.() || {};
+  const [$queries, setDollarQueries] = React.useState({});
+  const stateSpecs = React.useMemo(
+    () => [
+      {
+        path: "isEmpty",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.isEmpty
+          : undefined
+      },
+
+      {
+        path: "isAdmin",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.isAdmin
+          : undefined
+      },
+
+      {
+        path: "nameInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => undefined
+          : undefined
+      },
+
+      {
+        path: "emailInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => undefined
+          : undefined
+      },
+
+      {
+        path: "paymentInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => "Dinheiro" as const
+          : undefined
+      }
+    ],
+
+    [$props, $ctx]
+  );
+  const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
 
   return (
     <React.Fragment>
@@ -153,8 +225,8 @@ function PlasmicCheckout__RenderFunc(props: {
             plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
             sty.root,
             {
-              [sty.rootisAdmin]: hasVariant(variants, "isAdmin", "isAdmin"),
-              [sty.rootisEmpty]: hasVariant(variants, "isEmpty", "isEmpty")
+              [sty.rootisAdmin]: hasVariant($state, "isAdmin", "isAdmin"),
+              [sty.rootisEmpty]: hasVariant($state, "isEmpty", "isEmpty")
             }
           )}
         >
@@ -164,17 +236,17 @@ function PlasmicCheckout__RenderFunc(props: {
             className={classNames("__wab_instance", sty.header)}
           />
 
-          {(hasVariant(variants, "isEmpty", "isEmpty") ? true : true) ? (
+          {(hasVariant($state, "isEmpty", "isEmpty") ? true : true) ? (
             <div
               className={classNames(projectcss.all, sty.freeBox__hwmO, {
                 [sty.freeBoxisEmpty__hwmOfod6B]: hasVariant(
-                  variants,
+                  $state,
                   "isEmpty",
                   "isEmpty"
                 )
               })}
             >
-              {(hasVariant(variants, "isEmpty", "isEmpty") ? true : true) ? (
+              {(hasVariant($state, "isEmpty", "isEmpty") ? true : true) ? (
                 <div
                   className={classNames(
                     projectcss.all,
@@ -182,7 +254,7 @@ function PlasmicCheckout__RenderFunc(props: {
                     sty.text__rbicr,
                     {
                       [sty.textisEmpty__rbicrfod6B]: hasVariant(
-                        variants,
+                        $state,
                         "isEmpty",
                         "isEmpty"
                       )
@@ -194,11 +266,11 @@ function PlasmicCheckout__RenderFunc(props: {
               ) : null}
             </div>
           ) : null}
-          {(hasVariant(variants, "isEmpty", "isEmpty") ? true : true) ? (
+          {(hasVariant($state, "isEmpty", "isEmpty") ? true : true) ? (
             <div
               className={classNames(projectcss.all, sty.freeBox__dJbT1, {
                 [sty.freeBoxisEmpty__dJbT1Fod6B]: hasVariant(
-                  variants,
+                  $state,
                   "isEmpty",
                   "isEmpty"
                 )
@@ -218,7 +290,7 @@ function PlasmicCheckout__RenderFunc(props: {
                       sty.shoppingCartLineItem__lC9Px,
                       {
                         [sty.shoppingCartLineItemisEmpty__lC9Pxfod6B]:
-                          hasVariant(variants, "isEmpty", "isEmpty")
+                          hasVariant($state, "isEmpty", "isEmpty")
                       }
                     )}
                     even={true}
@@ -250,28 +322,28 @@ function PlasmicCheckout__RenderFunc(props: {
               />
             </div>
           ) : null}
-          {(hasVariant(variants, "isEmpty", "isEmpty") ? true : true) ? (
+          {(hasVariant($state, "isEmpty", "isEmpty") ? true : true) ? (
             <p.Stack
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__e1Rk, {
                 [sty.freeBoxisAdmin__e1RkWWf5]: hasVariant(
-                  variants,
+                  $state,
                   "isAdmin",
                   "isAdmin"
                 ),
                 [sty.freeBoxisEmpty__e1RkFod6B]: hasVariant(
-                  variants,
+                  $state,
                   "isEmpty",
                   "isEmpty"
                 )
               })}
             >
-              {(hasVariant(variants, "isAdmin", "isAdmin") ? true : true) ? (
+              {(hasVariant($state, "isAdmin", "isAdmin") ? true : true) ? (
                 <div
                   className={classNames(projectcss.all, sty.freeBox__xwlAe, {
                     [sty.freeBoxisAdmin__xwlAEwWf5]: hasVariant(
-                      variants,
+                      $state,
                       "isAdmin",
                       "isAdmin"
                     )
@@ -308,12 +380,12 @@ function PlasmicCheckout__RenderFunc(props: {
                     sty.invalidData,
                     {
                       [sty.invalidDataisAdmin]: hasVariant(
-                        variants,
+                        $state,
                         "isAdmin",
                         "isAdmin"
                       ),
                       [sty.invalidDataisEmpty]: hasVariant(
-                        variants,
+                        $state,
                         "isEmpty",
                         "isEmpty"
                       )
@@ -323,13 +395,13 @@ function PlasmicCheckout__RenderFunc(props: {
                   {"Dados inválidos"}
                 </div>
               ) : null}
-              {(hasVariant(variants, "isAdmin", "isAdmin") ? true : true) ? (
+              {(hasVariant($state, "isAdmin", "isAdmin") ? true : true) ? (
                 <p.Stack
                   as={"div"}
                   hasGap={true}
                   className={classNames(projectcss.all, sty.freeBox__rW7Tu, {
                     [sty.freeBoxisAdmin__rW7TUwWf5]: hasVariant(
-                      variants,
+                      $state,
                       "isAdmin",
                       "isAdmin"
                     )
@@ -342,7 +414,7 @@ function PlasmicCheckout__RenderFunc(props: {
                       sty.text__ngWcr,
                       {
                         [sty.textisAdmin__ngWcrwWf5]: hasVariant(
-                          variants,
+                          $state,
                           "isAdmin",
                           "isAdmin"
                         )
@@ -357,18 +429,30 @@ function PlasmicCheckout__RenderFunc(props: {
                     data-plasmic-override={overrides.nameInput}
                     className={classNames("__wab_instance", sty.nameInput)}
                     name={"name" as const}
+                    onChange={(...args) => {
+                      p.generateStateOnChangeProp($state, [
+                        "nameInput",
+
+                        "value"
+                      ])((e => e.target?.value).apply(null, args));
+                    }}
                     placeholder={"" as const}
                     required={true}
+                    value={p.generateStateValueProp($state, [
+                      "nameInput",
+
+                      "value"
+                    ])}
                   />
                 </p.Stack>
               ) : null}
-              {(hasVariant(variants, "isAdmin", "isAdmin") ? true : true) ? (
+              {(hasVariant($state, "isAdmin", "isAdmin") ? true : true) ? (
                 <p.Stack
                   as={"div"}
                   hasGap={true}
                   className={classNames(projectcss.all, sty.freeBox__uwY6I, {
                     [sty.freeBoxisAdmin__uwY6IwWf5]: hasVariant(
-                      variants,
+                      $state,
                       "isAdmin",
                       "isAdmin"
                     )
@@ -381,7 +465,7 @@ function PlasmicCheckout__RenderFunc(props: {
                       sty.text__ntkgf,
                       {
                         [sty.textisAdmin__ntkgfwWf5]: hasVariant(
-                          variants,
+                          $state,
                           "isAdmin",
                           "isAdmin"
                         )
@@ -396,18 +480,30 @@ function PlasmicCheckout__RenderFunc(props: {
                     data-plasmic-override={overrides.emailInput}
                     className={classNames("__wab_instance", sty.emailInput)}
                     name={"name" as const}
+                    onChange={(...args) => {
+                      p.generateStateOnChangeProp($state, [
+                        "emailInput",
+
+                        "value"
+                      ])((e => e.target?.value).apply(null, args));
+                    }}
                     placeholder={"" as const}
                     required={true}
+                    value={p.generateStateValueProp($state, [
+                      "emailInput",
+
+                      "value"
+                    ])}
                   />
                 </p.Stack>
               ) : null}
-              {(hasVariant(variants, "isAdmin", "isAdmin") ? true : true) ? (
+              {(hasVariant($state, "isAdmin", "isAdmin") ? true : true) ? (
                 <p.Stack
                   as={"div"}
                   hasGap={true}
                   className={classNames(projectcss.all, sty.freeBox__nmWzQ, {
                     [sty.freeBoxisAdmin__nmWzQwWf5]: hasVariant(
-                      variants,
+                      $state,
                       "isAdmin",
                       "isAdmin"
                     )
@@ -420,7 +516,7 @@ function PlasmicCheckout__RenderFunc(props: {
                       sty.text__idsbd,
                       {
                         [sty.textisAdmin__idsbDwWf5]: hasVariant(
-                          variants,
+                          $state,
                           "isAdmin",
                           "isAdmin"
                         )
@@ -430,16 +526,14 @@ function PlasmicCheckout__RenderFunc(props: {
                     {"Forma de Pagamento"}
                   </div>
 
-                  {(
-                    hasVariant(variants, "isAdmin", "isAdmin") ? true : true
-                  ) ? (
+                  {(hasVariant($state, "isAdmin", "isAdmin") ? true : true) ? (
                     <div
                       className={classNames(
                         projectcss.all,
                         sty.freeBox__cjmAg,
                         {
                           [sty.freeBoxisAdmin__cjmAGwWf5]: hasVariant(
-                            variants,
+                            $state,
                             "isAdmin",
                             "isAdmin"
                           )
@@ -447,7 +541,7 @@ function PlasmicCheckout__RenderFunc(props: {
                       )}
                     >
                       {(
-                        hasVariant(variants, "isAdmin", "isAdmin") ? true : true
+                        hasVariant($state, "isAdmin", "isAdmin") ? true : true
                       ) ? (
                         <Select
                           data-plasmic-name={"paymentInput"}
@@ -457,24 +551,37 @@ function PlasmicCheckout__RenderFunc(props: {
                             sty.paymentInput,
                             {
                               [sty.paymentInputisAdmin]: hasVariant(
-                                variants,
+                                $state,
                                 "isAdmin",
                                 "isAdmin"
                               )
                             }
                           )}
-                          defaultValue={"Dinheiro" as const}
+                          onChange={(...args) => {
+                            p.generateStateOnChangeProp($state, [
+                              "paymentInput",
+
+                              "value"
+                            ])(args[0]);
+                          }}
+                          value={p.generateStateValueProp($state, [
+                            "paymentInput",
+
+                            "value"
+                          ])}
                         >
-                          {(() => {
-                            try {
-                              return $props.formasDePagamento;
-                            } catch (e) {
-                              if (e instanceof TypeError) {
-                                return [];
+                          {(
+                            (() => {
+                              try {
+                                return $props.formasDePagamento;
+                              } catch (e) {
+                                if (e instanceof TypeError) {
+                                  return [];
+                                }
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })().map((currentItem, currentIndex) => (
+                            })() ?? []
+                          ).map((currentItem, currentIndex) => (
                             <Select__Option
                               data-plasmic-name={"option"}
                               data-plasmic-override={overrides.option}
@@ -517,7 +624,7 @@ function PlasmicCheckout__RenderFunc(props: {
                 <div
                   className={classNames(projectcss.all, sty.freeBox__h27MF, {
                     [sty.freeBoxisAdmin__h27MFwWf5]: hasVariant(
-                      variants,
+                      $state,
                       "isAdmin",
                       "isAdmin"
                     )

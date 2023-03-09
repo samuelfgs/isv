@@ -1,6 +1,6 @@
 .root {
-  flex-direction: column;
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   max-width: 100%;
@@ -10,8 +10,8 @@
 }
 .root > :global(.__wab_flex-container) {
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
   min-width: 0;
   min-height: 0;
   margin-top: calc(0px - 0px);
@@ -71,8 +71,8 @@
   padding: 8px;
 }
 .lineItems {
-  flex-direction: column;
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -81,8 +81,8 @@
 }
 .lineItems > :global(.__wab_flex-container) {
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   min-width: 0;
   margin-top: calc(0px - 0px);
   height: calc(100% + 0px);
@@ -123,9 +123,9 @@
   padding: 8px;
 }
 .freeBox__avSb {
-  flex-direction: column;
   display: flex;
   position: fixed;
+  flex-direction: column;
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -140,8 +140,8 @@
 }
 .freeBox__avSb > :global(.__wab_flex-container) {
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
   min-width: 0;
   margin-top: calc(0px - 10px);
   height: calc(100% + 10px);
@@ -201,9 +201,9 @@
   display: block;
 }
 .freeBox__az7FN {
-  flex-direction: row;
   display: flex;
   position: relative;
+  flex-direction: row;
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -212,8 +212,8 @@
 }
 .freeBox__az7FN > :global(.__wab_flex-container) {
   flex-direction: row;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
   min-width: 0;
   margin-left: calc(0px - 10px);
   width: calc(100% + 10px);
@@ -255,9 +255,9 @@
   height: 1em;
 }
 .freeBox__dy3J8 {
-  flex-direction: row;
   display: flex;
   position: relative;
+  flex-direction: row;
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -266,8 +266,8 @@
 }
 .freeBox__dy3J8 > :global(.__wab_flex-container) {
   flex-direction: row;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
   min-width: 0;
   margin-left: calc(0px - 10px);
   width: calc(100% + 10px);

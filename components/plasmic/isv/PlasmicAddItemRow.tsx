@@ -14,6 +14,7 @@ import * as React from "react";
 
 import Head from "next/head";
 import Link, { LinkProps } from "next/link";
+import { useRouter } from "next/router";
 
 import * as p from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/host";
@@ -100,6 +101,21 @@ export interface DefaultAddItemRowProps {
   className?: string;
 }
 
+const __wrapUserFunction =
+  globalThis.__PlasmicWrapUserFunction ?? ((loc, fn) => fn());
+const __wrapUserPromise =
+  globalThis.__PlasmicWrapUserPromise ??
+  (async (loc, promise) => {
+    return await promise;
+  });
+
+function useNextRouter() {
+  try {
+    return useRouter();
+  } catch {}
+  return undefined;
+}
+
 function PlasmicAddItemRow__RenderFunc(props: {
   variants: PlasmicAddItemRow__VariantsArgs;
   args: PlasmicAddItemRow__ArgsType;
@@ -108,6 +124,7 @@ function PlasmicAddItemRow__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
+  const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
   const args = React.useMemo(
@@ -125,7 +142,53 @@ function PlasmicAddItemRow__RenderFunc(props: {
     ...variants
   };
 
+  const refsRef = React.useRef({});
+  const $refs = refsRef.current;
+
   const currentUser = p.useCurrentUser?.() || {};
+  const [$queries, setDollarQueries] = React.useState({});
+  const stateSpecs = React.useMemo(
+    () => [
+      {
+        path: "isSelected",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.isSelected
+          : undefined
+      },
+
+      {
+        path: "isFirstRow",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.isFirstRow
+          : undefined
+      },
+
+      {
+        path: "showPrice",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.showPrice
+          : undefined
+      },
+
+      {
+        path: "showQuantity",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.showQuantity
+          : undefined
+      }
+    ],
+
+    [$props, $ctx]
+  );
+  const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
 
   return (
     true ? (
@@ -145,15 +208,11 @@ function PlasmicAddItemRow__RenderFunc(props: {
           sty.root,
           {
             [sty.rootisFirstRow]: hasVariant(
-              variants,
+              $state,
               "isFirstRow",
               "isFirstRow"
             ),
-            [sty.rootisSelected]: hasVariant(
-              variants,
-              "isSelected",
-              "isSelected"
-            )
+            [sty.rootisSelected]: hasVariant($state, "isSelected", "isSelected")
           }
         )}
         data-menuoption-id={args.menuOptionId}
@@ -162,49 +221,49 @@ function PlasmicAddItemRow__RenderFunc(props: {
         <div
           className={classNames(projectcss.all, sty.freeBox__jy49O, {
             [sty.freeBoxisFirstRow__jy49O0CdlZ]: hasVariant(
-              variants,
+              $state,
               "isFirstRow",
               "isFirstRow"
             ),
             [sty.freeBoxisSelected__jy49OkWo4T]: hasVariant(
-              variants,
+              $state,
               "isSelected",
               "isSelected"
             ),
             [sty.freeBoxshowPrice__jy49OuK411]: hasVariant(
-              variants,
+              $state,
               "showPrice",
               "showPrice"
             ),
             [sty.freeBoxshowQuantity_notInitial_showPrice__jy49ObtqIwUK411]:
-              hasVariant(variants, "showQuantity", "notInitial") &&
-              hasVariant(variants, "showPrice", "showPrice")
+              hasVariant($state, "showQuantity", "notInitial") &&
+              hasVariant($state, "showPrice", "showPrice")
           })}
         >
           {true ? (
             <div
               className={classNames(projectcss.all, sty.freeBox___9XzJs, {
                 [sty.freeBoxshowPrice___9XzJSuK411]: hasVariant(
-                  variants,
+                  $state,
                   "showPrice",
                   "showPrice"
                 ),
                 [sty.freeBoxshowQuantity_initial___9XzJsnzcw9]: hasVariant(
-                  variants,
+                  $state,
                   "showQuantity",
                   "initial"
                 ),
                 [sty.freeBoxshowQuantity_initial_showPrice___9XzJsnzcw9UK411]:
-                  hasVariant(variants, "showQuantity", "initial") &&
-                  hasVariant(variants, "showPrice", "showPrice"),
+                  hasVariant($state, "showQuantity", "initial") &&
+                  hasVariant($state, "showPrice", "showPrice"),
                 [sty.freeBoxshowQuantity_notInitial___9XzJSbtqIw]: hasVariant(
-                  variants,
+                  $state,
                   "showQuantity",
                   "notInitial"
                 ),
                 [sty.freeBoxshowQuantity_notInitial_showPrice___9XzJSbtqIwUK411]:
-                  hasVariant(variants, "showQuantity", "notInitial") &&
-                  hasVariant(variants, "showPrice", "showPrice")
+                  hasVariant($state, "showQuantity", "notInitial") &&
+                  hasVariant($state, "showPrice", "showPrice")
               })}
             >
               {p.renderPlasmicSlot({
@@ -213,11 +272,11 @@ function PlasmicAddItemRow__RenderFunc(props: {
               })}
 
               {(
-                hasVariant(variants, "showQuantity", "initial") &&
-                hasVariant(variants, "showPrice", "showPrice")
+                hasVariant($state, "showQuantity", "initial") &&
+                hasVariant($state, "showPrice", "showPrice")
                   ? true
-                  : hasVariant(variants, "showQuantity", "notInitial") &&
-                    hasVariant(variants, "showPrice", "showPrice")
+                  : hasVariant($state, "showQuantity", "notInitial") &&
+                    hasVariant($state, "showPrice", "showPrice")
                   ? true
                   : false
               )
@@ -229,13 +288,13 @@ function PlasmicAddItemRow__RenderFunc(props: {
             </div>
           ) : null}
           {(
-            hasVariant(variants, "showQuantity", "initial") &&
-            hasVariant(variants, "showPrice", "showPrice")
+            hasVariant($state, "showQuantity", "initial") &&
+            hasVariant($state, "showPrice", "showPrice")
               ? true
-              : hasVariant(variants, "showQuantity", "notInitial") &&
-                hasVariant(variants, "showPrice", "showPrice")
+              : hasVariant($state, "showQuantity", "notInitial") &&
+                hasVariant($state, "showPrice", "showPrice")
               ? true
-              : hasVariant(variants, "showPrice", "showPrice")
+              : hasVariant($state, "showPrice", "showPrice")
               ? true
               : true
           ) ? (
@@ -244,16 +303,16 @@ function PlasmicAddItemRow__RenderFunc(props: {
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__lbV7J, {
                 [sty.freeBoxshowPrice__lbV7JuK411]: hasVariant(
-                  variants,
+                  $state,
                   "showPrice",
                   "showPrice"
                 ),
                 [sty.freeBoxshowQuantity_initial_showPrice__lbV7Jnzcw9UK411]:
-                  hasVariant(variants, "showQuantity", "initial") &&
-                  hasVariant(variants, "showPrice", "showPrice"),
+                  hasVariant($state, "showQuantity", "initial") &&
+                  hasVariant($state, "showPrice", "showPrice"),
                 [sty.freeBoxshowQuantity_notInitial_showPrice__lbV7JbtqIwUK411]:
-                  hasVariant(variants, "showQuantity", "notInitial") &&
-                  hasVariant(variants, "showPrice", "showPrice")
+                  hasVariant($state, "showQuantity", "notInitial") &&
+                  hasVariant($state, "showPrice", "showPrice")
               })}
             >
               {true
@@ -265,9 +324,9 @@ function PlasmicAddItemRow__RenderFunc(props: {
             </p.Stack>
           ) : null}
           {(
-            hasVariant(variants, "showQuantity", "initial")
+            hasVariant($state, "showQuantity", "initial")
               ? true
-              : hasVariant(variants, "showQuantity", "notInitial")
+              : hasVariant($state, "showQuantity", "notInitial")
               ? true
               : true
           ) ? (
@@ -276,20 +335,18 @@ function PlasmicAddItemRow__RenderFunc(props: {
               data-plasmic-override={overrides.quantity}
               className={classNames("__wab_instance", sty.quantity, {
                 [sty.quantityshowQuantity_initial]: hasVariant(
-                  variants,
+                  $state,
                   "showQuantity",
                   "initial"
                 ),
                 [sty.quantityshowQuantity_notInitial]: hasVariant(
-                  variants,
+                  $state,
                   "showQuantity",
                   "notInitial"
                 )
               })}
               initialState={
-                hasVariant(variants, "showQuantity", "initial")
-                  ? true
-                  : undefined
+                hasVariant($state, "showQuantity", "initial") ? true : undefined
               }
             />
           ) : null}
