@@ -203,9 +203,9 @@ function PlasmicHomepage__RenderFunc(props: {
               displayWidth={"100%" as const}
               loading={"lazy" as const}
               src={{
-                src: "/plasmic/isv/images/screenShot20221104At134344Png.png",
-                fullWidth: 1006,
-                fullHeight: 1122,
+                src: "/plasmic/isv/images/whatsAppImage20230309At012231Jpeg.jpeg",
+                fullWidth: 900,
+                fullHeight: 1600,
                 aspectRatio: undefined
               }}
             />
