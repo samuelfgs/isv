@@ -11,9 +11,8 @@
   "dependencies": {
     "@contentful/rich-text-html-renderer": "^15.13.1",
     "@plasmicapp/cli": "^0.1.187",
-    "@plasmicapp/host": "^1.0.110",
     "@plasmicapp/query": "^0.1.61",
-    "@plasmicapp/react-web": "^0.2.166",
+    "@plasmicapp/react-web": "^0.2.236",
     "@plasmicpkgs/plasmic-basic-components": "^0.0.74",
     "@plasmicpkgs/plasmic-embed-css": "^0.1.60",
     "@plasmicpkgs/plasmic-nav": "^0.0.37",

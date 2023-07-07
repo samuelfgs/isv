@@ -1,7 +1,8 @@
-import registerComponent, {
+import {
+  registerComponent,
   ComponentMeta,
-} from "@plasmicapp/host/registerComponent";
-import registerGlobalContext from "@plasmicapp/host/registerGlobalContext";
+  registerGlobalContext,
+} from "@plasmicapp/react-web/lib/host";
 import {
   ContentfulCredentialsProvider,
   ContentfulCredentialsProviderMeta,

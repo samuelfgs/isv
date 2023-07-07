@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import Script from 'next/script';
-import { PlasmicCanvasHost, registerComponent } from '@plasmicapp/host';
+import { PlasmicCanvasHost } from '@plasmicapp/react-web/lib/host';
 import { registerAll } from "../components/contentful";
 
 registerAll();

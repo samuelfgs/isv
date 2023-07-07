@@ -8,7 +8,6 @@ import {
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 import { addProductState } from "../lib/state-management";
 import { useSnapshot } from "valtio";
-import { useDataEnv } from "@plasmicapp/host";
 
 
 export interface AddItemOptionProps extends DefaultAddItemOptionProps {}

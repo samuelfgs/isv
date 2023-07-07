@@ -4,7 +4,7 @@ import { getProductVariantPrice } from "./cart";
 import { getProductionOptionValues } from "./common";
 import { state } from "./state-management";
 
-export const goToCheckout = async (name: string, email: string, payment: string | undefined, router: NextRouter) => {
+export const goToCheckout = async (name: string, email: string, payment: string | undefined, router: NextRouter, rest?: any) => {
   state.isCheckoutLoading = true;
   const items = state.cart.lineItems.map(item => ({
     id: JSON.stringify({
@@ -23,6 +23,7 @@ export const goToCheckout = async (name: string, email: string, payment: string 
   const supabaseResponse = await Supabase.insert("orders", {
     name,
     email,
+    ...rest,
     total_price: state.cart.totalPrice,
     status: state.isAdmin ? 1 : 0,
     payment: state.isAdmin ? payment : "App",

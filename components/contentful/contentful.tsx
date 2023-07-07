@@ -5,7 +5,7 @@ import {
   GlobalContextMeta,
   repeatedElement,
   useSelector,
-} from "@plasmicapp/host";
+} from "@plasmicapp/react-web/lib/host";
 import { usePlasmicQueryData } from "@plasmicapp/query";
 import * as Contentful from "contentful";
 import L from "lodash";

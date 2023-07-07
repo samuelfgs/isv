@@ -5,6 +5,18 @@
   --plasmic-token-primary: var(--token---wRfAfgK);
   --token-EZYhKp7Hw: 14px;
   --plasmic-token-print-font-size: var(--token-EZYhKp7Hw);
+  --token-BKeQBnzBy: 90px;
+  --plasmic-token-checkout-2-min-width: var(--token-BKeQBnzBy);
+}
+
+.plasmic_tokens {
+  --plsmc-standard-width: 800px;
+  --plsmc-wide-width: 1280px;
+  --plsmc-viewport-gap: 16px;
+  --plsmc-wide-chunk: calc(
+    ((var(--plsmc-wide-width) - var(--plsmc-standard-width)) / 2) -
+      var(--plsmc-viewport-gap)
+  );
 }
 
 .plasmic_default_styles {

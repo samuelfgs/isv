@@ -358,6 +358,19 @@
           "cssFilePath": "plasmic/isv/PlasmicPrintOrder.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "ltXxspJq1s-",
+          "name": "Checkout2",
+          "type": "managed",
+          "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
+          "renderModuleFilePath": "plasmic/isv/PlasmicCheckout2.tsx",
+          "importSpec": {
+            "modulePath": "../pages/checkout-2.tsx"
+          },
+          "cssFilePath": "plasmic/isv/PlasmicCheckout2.module.css",
+          "scheme": "blackbox",
+          "componentType": "page"
         }
       ],
       "icons": [
@@ -492,6 +505,11 @@
           "id": "OlwFUIoX2",
           "name": "WhatsApp Image 2023-03-09 at 01.22.31.jpeg",
           "filePath": "../public/plasmic/isv/images/whatsAppImage20230309At012231Jpeg.jpeg"
+        },
+        {
+          "id": "a-r4rD5jL",
+          "name": "lasagna2.png",
+          "filePath": "../public/plasmic/isv/images/lasagna2Png.png"
         }
       ],
       "indirect": false,
@@ -500,26 +518,31 @@
         {
           "id": "AIFoPRZ0EI",
           "name": "ContentfulFetcher",
+          "displayName": "ContentfulFetcher",
           "componentImportPath": "./components/contentful"
         },
         {
           "id": "DhIDLXCb2A",
           "name": "ContentfulCredentialsProvider",
+          "displayName": "Contentful CredentialsProvider",
           "componentImportPath": "./components/contentful"
         },
         {
           "id": "U_PL4X9jnS",
           "name": "ContentfulRichText",
+          "displayName": "ContentfulRichText",
           "componentImportPath": "./components/contentful"
         },
         {
           "id": "bOGaFEH71V",
           "name": "PlasmicHead",
+          "displayName": "hostless-plasmic-head",
           "componentImportPath": "@plasmicapp/react-web"
         },
         {
           "id": "d-YREdbq03",
           "name": "Fetcher",
+          "displayName": "plasmic-data-source-fetcher",
           "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
         }
       ]
@@ -539,21 +562,31 @@
         {
           "id": "CMDBvOhaI4s",
           "name": "Iframe",
+          "displayName": "hostless-iframe",
           "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
         },
         {
           "id": "RhitNJW5Zu-",
           "name": "Video",
+          "displayName": "hostless-html-video",
           "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
         },
         {
           "id": "PKldDYkH42",
           "name": "Embed",
+          "displayName": "hostless-embed",
           "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
         },
         {
           "id": "D4RbnlpRXg3",
           "name": "DataProvider",
+          "displayName": "hostless-data-provider",
+          "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
+        },
+        {
+          "id": "zlBHsvkFlN",
+          "name": "ConditionGuard",
+          "displayName": "hostless-condition-guard",
           "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
         }
       ],
@@ -614,6 +647,7 @@
         {
           "id": "qF0uJxFztB",
           "name": "EmbedCss",
+          "displayName": "global-embed-css",
           "componentImportPath": "@plasmicpkgs/plasmic-embed-css"
         }
       ],
@@ -634,6 +668,6 @@
   "nextjsConfig": {
     "pagesDir": "../pages"
   },
-  "cliVersion": "0.1.221",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.221/dist/plasmic.schema.json"
+  "cliVersion": "0.1.295",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.295/dist/plasmic.schema.json"
 }

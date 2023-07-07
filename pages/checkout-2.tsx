@@ -4,7 +4,7 @@ import * as React from "react";
 import { useRouter } from "next/router";
 import GlobalContextsProvider from "../components/plasmic/isv/PlasmicGlobalContextsProvider";
 import { ScreenVariantProvider } from "../components/plasmic/isv/PlasmicGlobalVariant__Screen";
-import { PlasmicCheckout } from "../components/plasmic/isv/PlasmicCheckout";
+import { PlasmicCheckout2 } from "../components/plasmic/isv/PlasmicCheckout2";
 import { useSnapshot } from "valtio";
 import { state } from "../lib/state-management";
 import ShoppingCartLineItem from "../components/ShoppingCartLineItem";
@@ -20,13 +20,22 @@ function Checkout() {
   const [ invalidState, setInvalidState ] = React.useState(false);
 
   const { cart, isCheckoutLoading, isAdmin } = useSnapshot(state);
-
-  const [ name, setName ] = React.useState<string>(cart.name);
-  const [ email, setEmail ] = React.useState<string>(cart.email);
+  const { name, email, address, number, bairro } = cart as any;
+  const { complemento, city, entrega } = cart as any;
+  React.useEffect(() => {
+    if (invalidState) {
+      setInvalidState(false);
+    }
+  }, [name, email, address, number, bairro])
   const [ payment, setPayment ] = React.useState<string | undefined>("Dinheiro");
   const router = useRouter();
 
-  return <PlasmicCheckout
+  const buildInput = (field: string, select?: boolean, defaultVal?: any) => ({
+    value: (cart as any)[field] ?? defaultVal,
+    onChange: (e: any) => (state as any).cart[field] = !select ? e.target.value : e,
+  });
+
+  return <PlasmicCheckout2
     lineItems={{
       children: cart.lineItems.map((item, i) => (
         <ShoppingCartLineItem
@@ -46,33 +55,35 @@ function Checkout() {
       onClick: () => router.push("/")
     }}
     checkoutBtn={{
+      isDisabled: cart.lineItems.length === 0,
       onClick: () => {
         if (
-          (!isAdmin && (!name || !email || !isValidEmail(email))) ||
+          (!isAdmin && 
+            (!name || !email || !isValidEmail(email) || !address || !number || !bairro)
+          ) ||
           (isAdmin && !payment)
         ) {
           setInvalidState(true);
         } else {
-          goToCheckout(name, email, payment, router);
+          goToCheckout(name, email, payment, router, { 
+            address,
+            number,
+            complemento,
+            bairro,
+            city,
+            entrega,
+          });
         }
       }
     }}
-    nameInput={{
-      value: name,
-      onChange: (e) => {
-        setName(e.target.value);
-        state.cart.name = e.target.value;
-        setInvalidState(false);
-      }
-    }}
-    emailInput={{
-      value: email,
-      onChange: (e) => {
-        setEmail(e.target.value);
-        state.cart.email = e.target.value;
-        setInvalidState(false);
-      }
-    }}
+    nameInput={buildInput("name")}
+    emailInput={buildInput("email")}
+    addressInput={buildInput("address")}
+    numberInput={buildInput("number")}
+    complementoInput={buildInput("complemento")}
+    bairroInput={buildInput("bairro")}
+    cityInput={buildInput("city", true, "sv")}
+    entregaInput={buildInput("entrega", true, "12:00")}
     paymentInput={{
       value: payment,
       onChange: (e) => {

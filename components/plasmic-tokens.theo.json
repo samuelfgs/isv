@@ -1221,6 +1221,16 @@
       }
     },
     {
+      "name": "checkout2MinWidth",
+      "type": "spacing",
+      "value": "90px",
+      "category": "spacing",
+      "meta": {
+        "projectId": "7Kb5LCV89tNWBn4m3y5e9q",
+        "id": "BKeQBnzBy"
+      }
+    },
+    {
       "name": "crimson1",
       "type": "color",
       "value": "#FFFCFD",

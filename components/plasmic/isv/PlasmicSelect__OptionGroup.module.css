@@ -38,13 +38,19 @@
   font-weight: 600;
 }
 .slotTargetTitle > :global(.__wab_text),
+.slotTargetTitle > :global(.__wab_expr_html_text),
 .slotTargetTitle > :global(.__wab_slot-string-wrapper),
 .slotTargetTitle > :global(.__wab_slot) > :global(.__wab_text),
+.slotTargetTitle > :global(.__wab_slot) > :global(.__wab_expr_html_text),
 .slotTargetTitle > :global(.__wab_slot) > :global(.__wab_slot-string-wrapper),
 .slotTargetTitle
   > :global(.__wab_slot)
   > :global(.__wab_slot)
   > :global(.__wab_text),
+.slotTargetTitle
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_expr_html_text),
 .slotTargetTitle
   > :global(.__wab_slot)
   > :global(.__wab_slot)
@@ -54,6 +60,11 @@
   > :global(.__wab_slot)
   > :global(.__wab_slot)
   > :global(.__wab_text),
+.slotTargetTitle
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_expr_html_text),
 .slotTargetTitle
   > :global(.__wab_slot)
   > :global(.__wab_slot)
