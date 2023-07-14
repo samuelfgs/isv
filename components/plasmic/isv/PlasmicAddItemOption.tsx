@@ -46,6 +46,8 @@ import plasmic_plasmic_kit_q_4_color_tokens_css from "../plasmic_kit_q_4_color_t
 import projectcss from "./plasmic_isv.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
 import sty from "./PlasmicAddItemOption.module.css"; // plasmic-import: hCmOmN_odDK/css
 
+createPlasmicElementProxy;
+
 export type PlasmicAddItemOption__VariantMembers = {};
 export type PlasmicAddItemOption__VariantsArgs = {};
 type VariantPropType = keyof PlasmicAddItemOption__VariantsArgs;

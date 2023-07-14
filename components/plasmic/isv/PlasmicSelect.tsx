@@ -51,6 +51,8 @@ import sty from "./PlasmicSelect.module.css"; // plasmic-import: SLXk4W2FZwu/css
 import ChevronDownsvgIcon from "./icons/PlasmicIcon__ChevronDownsvg"; // plasmic-import: m_B9I91Zzw1/icon
 import ChevronUpsvgIcon from "./icons/PlasmicIcon__ChevronUpsvg"; // plasmic-import: ShnTWKWEPf7/icon
 
+createPlasmicElementProxy;
+
 export type PlasmicSelect__VariantMembers = {
   showPlaceholder: "showPlaceholder";
   isOpen: "isOpen";

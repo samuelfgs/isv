@@ -44,6 +44,8 @@ import plasmic_plasmic_kit_q_4_color_tokens_css from "../plasmic_kit_q_4_color_t
 import projectcss from "./plasmic_isv.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
 import sty from "./PlasmicLoading.module.css"; // plasmic-import: 3JMpsqmVnQ/css
 
+createPlasmicElementProxy;
+
 export type PlasmicLoading__VariantMembers = {
   hide: "hide";
 };

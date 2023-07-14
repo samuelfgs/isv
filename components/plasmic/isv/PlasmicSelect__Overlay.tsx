@@ -47,6 +47,8 @@ import sty from "./PlasmicSelect__Overlay.module.css"; // plasmic-import: GW498b
 
 import SUPER__PlasmicSelect from "./PlasmicSelect"; // plasmic-import: SLXk4W2FZwu/render
 
+createPlasmicElementProxy;
+
 export type PlasmicSelect__Overlay__VariantMembers = {
   relativePlacement: "top" | "bottom" | "left" | "right";
 };

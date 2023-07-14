@@ -47,6 +47,8 @@ import sty from "./PlasmicSelect__Option.module.css"; // plasmic-import: 55Afek_
 
 import SUPER__PlasmicSelect from "./PlasmicSelect"; // plasmic-import: SLXk4W2FZwu/render
 
+createPlasmicElementProxy;
+
 export type PlasmicSelect__Option__VariantMembers = {
   isSelected: "isSelected";
   isHighlighted: "isHighlighted";

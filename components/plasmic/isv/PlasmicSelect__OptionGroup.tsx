@@ -48,6 +48,8 @@ import sty from "./PlasmicSelect__OptionGroup.module.css"; // plasmic-import: 6j
 
 import SUPER__PlasmicSelect from "./PlasmicSelect"; // plasmic-import: SLXk4W2FZwu/render
 
+createPlasmicElementProxy;
+
 export type PlasmicSelect__OptionGroup__VariantMembers = {
   noTitle: "noTitle";
   isFirst: "isFirst";

@@ -51,6 +51,8 @@ import SearchsvgIcon from "./icons/PlasmicIcon__Searchsvg"; // plasmic-import: A
 import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: q1TlDUyNqop/icon
 import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: k5kwo7sOrBj/icon
 
+createPlasmicElementProxy;
+
 export type PlasmicLogin__VariantMembers = {};
 export type PlasmicLogin__VariantsArgs = {};
 type VariantPropType = keyof PlasmicLogin__VariantsArgs;

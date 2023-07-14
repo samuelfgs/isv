@@ -48,6 +48,8 @@ import sty from "./PlasmicTextInput.module.css"; // plasmic-import: ZCE1TfqnzIq/
 import SearchsvgIcon from "./icons/PlasmicIcon__Searchsvg"; // plasmic-import: AUsPFN29Z5Y/icon
 import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: q1TlDUyNqop/icon
 
+createPlasmicElementProxy;
+
 export type PlasmicTextInput__VariantMembers = {
   showStartIcon: "showStartIcon";
   showEndIcon: "showEndIcon";

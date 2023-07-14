@@ -53,6 +53,8 @@ import ChevronLeftIcon from "./icons/PlasmicIcon__ChevronLeft"; // plasmic-impor
 import CartIcon from "./icons/PlasmicIcon__Cart"; // plasmic-import: TTU77nTGk/icon
 import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: k5kwo7sOrBj/icon
 
+createPlasmicElementProxy;
+
 export type PlasmicAddItem__VariantMembers = {};
 export type PlasmicAddItem__VariantsArgs = {};
 type VariantPropType = keyof PlasmicAddItem__VariantsArgs;

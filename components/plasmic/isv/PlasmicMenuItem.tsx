@@ -44,6 +44,8 @@ import plasmic_plasmic_kit_q_4_color_tokens_css from "../plasmic_kit_q_4_color_t
 import projectcss from "./plasmic_isv.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
 import sty from "./PlasmicMenuItem.module.css"; // plasmic-import: XSxN5kXvF2/css
 
+createPlasmicElementProxy;
+
 export type PlasmicMenuItem__VariantMembers = {};
 export type PlasmicMenuItem__VariantsArgs = {};
 type VariantPropType = keyof PlasmicMenuItem__VariantsArgs;

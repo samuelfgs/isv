@@ -46,6 +46,8 @@ import sty from "./PlasmicCartButton.module.css"; // plasmic-import: xK4LVBS1m4/
 
 import CartIcon from "./icons/PlasmicIcon__Cart"; // plasmic-import: TTU77nTGk/icon
 
+createPlasmicElementProxy;
+
 export type PlasmicCartButton__VariantMembers = {
   isEmpty: "isEmpty";
 };

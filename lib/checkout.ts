@@ -20,10 +20,12 @@ export const goToCheckout = async (name: string, email: string, payment: string 
     quantity: item.quantity
   }));
   
+  const external_id = `fjd${Math.floor(Math.random() * 112345678)}`;
   const supabaseResponse = await Supabase.insert("orders", {
     name,
     email,
     ...rest,
+    mercadopago_id: external_id,
     total_price: state.cart.totalPrice,
     status: state.isAdmin ? 1 : 0,
     payment: state.isAdmin ? payment : "App",
@@ -51,7 +53,7 @@ export const goToCheckout = async (name: string, email: string, payment: string 
         items,
         name,
         email,
-        id: `${newOrder[0].id}`,
+        id: external_id
       })
     });
   

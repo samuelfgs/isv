@@ -44,6 +44,8 @@ import plasmic_plasmic_kit_q_4_color_tokens_css from "../plasmic_kit_q_4_color_t
 import projectcss from "./plasmic_isv.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
 import sty from "./PlasmicHeader.module.css"; // plasmic-import: oeaZd66p84/css
 
+createPlasmicElementProxy;
+
 export type PlasmicHeader__VariantMembers = {
   isAdmin: "isAdmin";
   hideHeader: "hideHeader";

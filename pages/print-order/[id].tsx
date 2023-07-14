@@ -33,10 +33,12 @@ function CompletedAdminOrder() {
         value: orderId
       }
     });
+    const mercadoPago_id = data[0].mercadopago_id;
     const idToProduct = new Map<string, any>();
     const parsedData: LineItem[] = [];
     
-    const mercadoPago = await (await fetch(`https://api.mercadopago.com/v1/payments/search?external_reference=${orderId}`, {
+    console.log("dale", mercadoPago_id)
+    const mercadoPago = await (await fetch(`https://api.mercadopago.com/v1/payments/search?external_reference=${mercadoPago_id}`, {
       headers: {
         authorization: "Bearer APP_USR-4846877984480703-062812-0851d62aca9c156ee183c30017844081-154849269"
       }
@@ -59,12 +61,13 @@ function CompletedAdminOrder() {
       });
       console.log(parsedData);
     }
-    console.log("mercadopago3", mercadoPago.paging);
+    console.log("mercadopago3", mercadoPago);
     return {
       name: data[0].name,
       lineItems: parsedData,
       paid: mercadoPago.paging.total === 1,
       mercadoPagoLineItems,
+      mercadoPago,
     }
   });
 
@@ -72,7 +75,8 @@ function CompletedAdminOrder() {
   return (
     isLoading ? null :
     <>
-      {!data?.paid ? <h1>Nao foi pago</h1> : null}
+      {!data?.paid ? <h1>Nao foi pago</h1> : <h1>Pago</h1>}
+      <h1>{data?.mercadoPago}</h1>
       <JSONPretty data={data?.mercadoPagoLineItems} />
       <button onClick={() => handlePrint()}>Print</button>
       <PlasmicCompletedAdminOrder

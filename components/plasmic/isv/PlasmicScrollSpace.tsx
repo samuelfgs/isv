@@ -44,6 +44,8 @@ import plasmic_plasmic_kit_q_4_color_tokens_css from "../plasmic_kit_q_4_color_t
 import projectcss from "./plasmic_isv.module.css"; // plasmic-import: 7Kb5LCV89tNWBn4m3y5e9q/projectcss
 import sty from "./PlasmicScrollSpace.module.css"; // plasmic-import: YP00OeXrv1/css
 
+createPlasmicElementProxy;
+
 export type PlasmicScrollSpace__VariantMembers = {};
 export type PlasmicScrollSpace__VariantsArgs = {};
 type VariantPropType = keyof PlasmicScrollSpace__VariantsArgs;

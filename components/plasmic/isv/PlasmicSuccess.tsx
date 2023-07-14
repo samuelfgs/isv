@@ -47,6 +47,8 @@ import sty from "./PlasmicSuccess.module.css"; // plasmic-import: E9GSJtAUla/css
 
 import CheckCircleIcon from "./icons/PlasmicIcon__CheckCircle"; // plasmic-import: 1HIO6KdHI/icon
 
+createPlasmicElementProxy;
+
 export type PlasmicSuccess__VariantMembers = {};
 export type PlasmicSuccess__VariantsArgs = {};
 type VariantPropType = keyof PlasmicSuccess__VariantsArgs;

@@ -56,6 +56,8 @@ import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: q1T
 import PlusIcon from "./icons/PlasmicIcon__Plus"; // plasmic-import: TZ5ExugZ2/icon
 import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: k5kwo7sOrBj/icon
 
+createPlasmicElementProxy;
+
 export type PlasmicCheckout__VariantMembers = {
   isEmpty: "isEmpty";
   isAdmin: "isAdmin";

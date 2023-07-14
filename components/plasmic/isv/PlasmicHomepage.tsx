@@ -55,6 +55,8 @@ import sty from "./PlasmicHomepage.module.css"; // plasmic-import: nz4OkXyiCp9B/
 import ClockIcon from "./icons/PlasmicIcon__Clock"; // plasmic-import: QYb9XxFjU/icon
 import PinIcon from "./icons/PlasmicIcon__Pin"; // plasmic-import: LZ6zTV9o3/icon
 
+createPlasmicElementProxy;
+
 export type PlasmicHomepage__VariantMembers = {};
 export type PlasmicHomepage__VariantsArgs = {};
 type VariantPropType = keyof PlasmicHomepage__VariantsArgs;
@@ -182,7 +184,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 sty.text__vB8Rj
               )}
             >
-              {"Lasanha da Constru\u00e7\u00e3o"}
+              {"FEIJOADA da Constru\u00e7\u00e3o"}
             </div>
             <p.PlasmicImg
               data-plasmic-name={"img"}
@@ -201,7 +203,7 @@ function PlasmicHomepage__RenderFunc(props: {
               displayWidth={"100%" as const}
               loading={"lazy" as const}
               src={{
-                src: "/plasmic/isv/images/lasagna2Png.png",
+                src: "/plasmic/isv/images/feijoadapng.png",
                 fullWidth: 1024,
                 fullHeight: 1024,
                 aspectRatio: undefined
@@ -325,7 +327,7 @@ function PlasmicHomepage__RenderFunc(props: {
                   data-plasmic-override={overrides.event}
                   className={classNames("__wab_instance", sty.event)}
                   contentType={"event" as const}
-                  entryID={"2QsU1If3Z2gvAfHLaNqAiK" as const}
+                  entryID={"2gNbNR48VqDBxbunC3Hol9" as const}
                   limit={1000 as const}
                   noLayout={true}
                 >

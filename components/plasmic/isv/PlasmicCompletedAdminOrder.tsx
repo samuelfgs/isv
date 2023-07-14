@@ -51,6 +51,8 @@ import PrintIcon from "./icons/PlasmicIcon__Print"; // plasmic-import: 5JsroXw63
 import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: k5kwo7sOrBj/icon
 import HomeIcon from "./icons/PlasmicIcon__Home"; // plasmic-import: MP7-FtWLqM/icon
 
+createPlasmicElementProxy;
+
 export type PlasmicCompletedAdminOrder__VariantMembers = {};
 export type PlasmicCompletedAdminOrder__VariantsArgs = {};
 type VariantPropType = keyof PlasmicCompletedAdminOrder__VariantsArgs;

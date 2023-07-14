@@ -48,6 +48,8 @@ import sty from "./PlasmicQuantity.module.css"; // plasmic-import: VGSmBro-ef/cs
 import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: q1TlDUyNqop/icon
 import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: k5kwo7sOrBj/icon
 
+createPlasmicElementProxy;
+
 export type PlasmicQuantity__VariantMembers = {
   initialState: "initialState";
   disablePlusButton: "disablePlusButton";

@@ -510,6 +510,11 @@
           "id": "a-r4rD5jL",
           "name": "lasagna2.png",
           "filePath": "../public/plasmic/isv/images/lasagna2Png.png"
+        },
+        {
+          "id": "AEu1jbdmI",
+          "name": "feijoada.png",
+          "filePath": "../public/plasmic/isv/images/feijoadapng.png"
         }
       ],
       "indirect": false,
