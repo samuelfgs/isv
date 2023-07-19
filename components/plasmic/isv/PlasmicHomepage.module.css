@@ -76,14 +76,6 @@
   line-height: 1.5;
   min-width: 0;
 }
-.text__vB8Rj {
-  font-size: 30px;
-  text-decoration-line: underline;
-  padding-bottom: 20px;
-  font-family: "Iceland";
-  color: var(--token-H64AMzIdd6_f2);
-  text-transform: uppercase;
-}
 .img {
   position: relative;
   object-fit: cover;
@@ -103,13 +95,13 @@
   }
 }
 .freeBox__cwUK {
-  display: flex;
   position: relative;
   flex-direction: row;
   width: 100%;
   height: auto;
   max-width: 100%;
   min-width: 0;
+  display: none;
   padding: 8px;
 }
 .freeBox__cwUK > :global(.__wab_flex-container) {

@@ -13,7 +13,7 @@ export default async function handler(
   } : {
     access_token: process.env.TEST_ACCESS_TOKEN!
   });
-  
+
   const response = await mercadopago
     .preferences
     .create({ 

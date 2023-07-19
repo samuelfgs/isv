@@ -177,15 +177,6 @@ function PlasmicHomepage__RenderFunc(props: {
                 </div>
               </div>
             ) : null}
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__vB8Rj
-              )}
-            >
-              {"FEIJOADA da Constru\u00e7\u00e3o"}
-            </div>
             <p.PlasmicImg
               data-plasmic-name={"img"}
               data-plasmic-override={overrides.img}
@@ -203,9 +194,9 @@ function PlasmicHomepage__RenderFunc(props: {
               displayWidth={"100%" as const}
               loading={"lazy" as const}
               src={{
-                src: "/plasmic/isv/images/feijoadapng.png",
-                fullWidth: 1024,
-                fullHeight: 1024,
+                src: "/plasmic/isv/images/whatsAppImage20230718At2340301Jpeg.jpg",
+                fullWidth: 900,
+                fullHeight: 1600,
                 aspectRatio: undefined
               }}
             />
@@ -228,7 +219,7 @@ function PlasmicHomepage__RenderFunc(props: {
                     sty.text__xHyN7
                   )}
                 >
-                  {"09 de julho"}
+                  {"23 de julho"}
                 </div>
               </p.Stack>
             ) : null}
@@ -327,7 +318,7 @@ function PlasmicHomepage__RenderFunc(props: {
                   data-plasmic-override={overrides.event}
                   className={classNames("__wab_instance", sty.event)}
                   contentType={"event" as const}
-                  entryID={"2gNbNR48VqDBxbunC3Hol9" as const}
+                  entryID={"4pg4Auiy2ev6umwwEnLaJT" as const}
                   limit={1000 as const}
                   noLayout={true}
                 >
@@ -519,7 +510,7 @@ const PlasmicDescendants = {
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
-  (typeof PlasmicDescendants)[T][number];
+  typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;

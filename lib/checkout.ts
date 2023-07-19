@@ -20,7 +20,7 @@ export const goToCheckout = async (name: string, email: string, payment: string 
     quantity: item.quantity
   }));
   
-  const external_id = `fjd${Math.floor(Math.random() * 112345678)}`;
+  const external_id = `${Math.floor(Math.random() * 112345678)}`;
   const supabaseResponse = await Supabase.insert("orders", {
     name,
     email,
@@ -59,7 +59,7 @@ export const goToCheckout = async (name: string, email: string, payment: string 
   
     const data = await response.json();
     const link = data.init_point;
-    router.push(link);
+    // router.push(link);
   } else {
     router.push(`/print-order/${newOrder[0].id}`)
   }
