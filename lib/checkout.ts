@@ -59,7 +59,7 @@ export const goToCheckout = async (name: string, email: string, payment: string 
   
     const data = await response.json();
     const link = data.init_point;
-    // router.push(link);
+    router.push(link);
   } else {
     router.push(`/print-order/${newOrder[0].id}`)
   }
