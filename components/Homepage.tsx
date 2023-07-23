@@ -11,7 +11,9 @@ import { useSnapshot } from "valtio";
 import { addProductState, AppPage, state } from "../lib/state-management";
 import { useRouter } from "next/router";
 
-export interface HomepageProps extends DefaultHomepageProps { }
+export interface HomepageProps extends DefaultHomepageProps { 
+  closed?: boolean;
+}
 
 function Homepage(props: HomepageProps) {
   const ref = React.createRef<HTMLDivElement>();
@@ -29,6 +31,7 @@ function Homepage(props: HomepageProps) {
     }
   }, [ref]);
   return <PlasmicHomepage
+    {...props}
     root={{ ref }}
     menuItem={{
       onSelect: (id) => {

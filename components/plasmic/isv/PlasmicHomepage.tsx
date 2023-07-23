@@ -57,10 +57,16 @@ import PinIcon from "./icons/PlasmicIcon__Pin"; // plasmic-import: LZ6zTV9o3/ico
 
 createPlasmicElementProxy;
 
-export type PlasmicHomepage__VariantMembers = {};
-export type PlasmicHomepage__VariantsArgs = {};
+export type PlasmicHomepage__VariantMembers = {
+  closed: "closed";
+};
+export type PlasmicHomepage__VariantsArgs = {
+  closed?: SingleBooleanChoiceArg<"closed">;
+};
 type VariantPropType = keyof PlasmicHomepage__VariantsArgs;
-export const PlasmicHomepage__VariantProps = new Array<VariantPropType>();
+export const PlasmicHomepage__VariantProps = new Array<VariantPropType>(
+  "closed"
+);
 
 export type PlasmicHomepage__ArgsType = {};
 type ArgPropType = keyof PlasmicHomepage__ArgsType;
@@ -118,6 +124,24 @@ function PlasmicHomepage__RenderFunc(props: {
   const currentUser = p.useCurrentUser?.() || {};
 
   const [$queries, setDollarQueries] = React.useState({});
+
+  const stateSpecs = React.useMemo(
+    () => [
+      {
+        path: "closed",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.closed
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = p.useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries,
+    $refs
+  });
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsrLyYkqyGlc01Z()
@@ -301,10 +325,19 @@ function PlasmicHomepage__RenderFunc(props: {
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__hEwy6
+                  sty.text__hEwy6,
+                  {
+                    [sty.textclosed__hEwy6JsbhE]: hasVariant(
+                      $state,
+                      "closed",
+                      "closed"
+                    )
+                  }
                 )}
               >
-                {"Card\u00e1pio"}
+                {hasVariant($state, "closed", "closed")
+                  ? "VENDAS ENCERRADAS!"
+                  : "Card\u00e1pio"}
               </div>
               <p.Stack
                 as={"div"}
@@ -324,7 +357,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 >
                   <ph.DataCtxReader>
                     {$ctx =>
-                      true
+                      (hasVariant($state, "closed", "closed") ? true : true)
                         ? (
                             (() => {
                               try {
@@ -349,7 +382,14 @@ function PlasmicHomepage__RenderFunc(props: {
                               data-plasmic-override={overrides.menuItem}
                               className={classNames(
                                 "__wab_instance",
-                                sty.menuItem
+                                sty.menuItem,
+                                {
+                                  [sty.menuItemclosed]: hasVariant(
+                                    $state,
+                                    "closed",
+                                    "closed"
+                                  )
+                                }
                               )}
                               description={
                                 <ContentfulRichText
