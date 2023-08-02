@@ -26,6 +26,13 @@
 .header:global(.__wab_instance) {
   position: relative;
 }
+.event2:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
 .freeBox__wFFs9 {
   display: flex;
   position: relative;
@@ -301,13 +308,6 @@
   > picture
   > img {
   margin-top: 25px;
-}
-.event:global(.__wab_instance) {
-  max-width: 100%;
-  object-fit: cover;
-  position: relative;
-  width: 100%;
-  min-width: 0;
 }
 .menuItem:global(.__wab_instance) {
   max-width: 100%;

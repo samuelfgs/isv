@@ -12,7 +12,7 @@ function Index() {
   }
   const { isAdmin } = useSnapshot(state);
 
-  return <Homepage closed={true} />
+  return <Homepage />
 }
 
 export default Index;

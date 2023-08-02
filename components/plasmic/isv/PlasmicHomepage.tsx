@@ -37,8 +37,8 @@ import {
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
 import Header from "../../Header"; // plasmic-import: oeaZd66p84/component
-import Separator from "../../Separator"; // plasmic-import: wUTVsB-fca/component
 import { ContentfulFetcher } from "../../contentful"; // plasmic-import: AIFoPRZ0EI/codeComponent
+import Separator from "../../Separator"; // plasmic-import: wUTVsB-fca/component
 import MenuItem from "../../MenuItem"; // plasmic-import: XSxN5kXvF2/component
 import { ContentfulRichText } from "../../contentful"; // plasmic-import: U_PL4X9jnS/codeComponent
 import CartButton from "../../CartButton"; // plasmic-import: xK4LVBS1m4/component
@@ -75,11 +75,11 @@ export const PlasmicHomepage__ArgProps = new Array<ArgPropType>();
 export type PlasmicHomepage__OverridesType = {
   root?: p.Flex<"div">;
   header?: p.Flex<typeof Header>;
+  event2?: p.Flex<typeof ContentfulFetcher>;
   img?: p.Flex<typeof p.PlasmicImg>;
   link?: p.Flex<"a"> & Partial<LinkProps>;
   separator?: p.Flex<typeof Separator>;
   options?: p.Flex<"div">;
-  event?: p.Flex<typeof ContentfulFetcher>;
   menuItem?: p.Flex<typeof MenuItem>;
   contentfulRichText?: p.Flex<typeof ContentfulRichText>;
   cartButton?: p.Flex<typeof CartButton>;
@@ -173,344 +173,382 @@ function PlasmicHomepage__RenderFunc(props: {
             projectcss.plasmic_tokens,
             plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
             plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
-            sty.root
+            sty.root,
+            { [sty.rootclosed]: hasVariant($state, "closed", "closed") }
           )}
         >
           {true ? (
             <Header
               data-plasmic-name={"header"}
               data-plasmic-override={overrides.header}
-              className={classNames("__wab_instance", sty.header)}
+              className={classNames("__wab_instance", sty.header, {
+                [sty.headerclosed]: hasVariant($state, "closed", "closed")
+              })}
             />
           ) : null}
-          <p.Stack
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__wFFs9)}
+          <ContentfulFetcher
+            data-plasmic-name={"event2"}
+            data-plasmic-override={overrides.event2}
+            className={classNames("__wab_instance", sty.event2)}
+            contentType={"event" as const}
+            entryID={"41SPN2nFQ7NujDwQPeb8kx" as const}
+            limit={1000 as const}
+            noLayout={true}
           >
-            {true ? (
-              <div className={classNames(projectcss.all, sty.freeBox___8Tr6E)}>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__cUiys
-                  )}
-                >
-                  {"Inverno Crente"}
-                </div>
-              </div>
-            ) : null}
-            <p.PlasmicImg
-              data-plasmic-name={"img"}
-              data-plasmic-override={overrides.img}
-              alt={""}
-              className={classNames(sty.img)}
-              displayHeight={"auto" as const}
-              displayMaxHeight={"none" as const}
-              displayMaxWidth={
-                hasVariant(globalVariants, "screen", "desktop")
-                  ? ("400px" as const)
-                  : ("100%" as const)
-              }
-              displayMinHeight={"0" as const}
-              displayMinWidth={"0" as const}
-              displayWidth={"100%" as const}
-              loading={"lazy" as const}
-              src={{
-                src: "/plasmic/isv/images/whatsAppImage20230718At2340301Jpeg.jpg",
-                fullWidth: 900,
-                fullHeight: 1600,
-                aspectRatio: undefined
-              }}
-            />
-
-            {true ? (
-              <p.Stack
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__cwUK)}
-              >
-                <ClockIcon
-                  className={classNames(projectcss.all, sty.svg__oMGgd)}
-                  role={"img"}
-                />
-
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__xHyN7
-                  )}
-                >
-                  {"23 de julho"}
-                </div>
-              </p.Stack>
-            ) : null}
-            {true ? (
-              <div className={classNames(projectcss.all, sty.freeBox__wrEd8)}>
-                {true ? (
-                  <p.Stack
-                    as={p.PlasmicLink}
-                    data-plasmic-name={"link"}
-                    data-plasmic-override={overrides.link}
-                    hasGap={true}
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.a,
-                      sty.link
-                    )}
-                    component={Link}
-                    href={
-                      "https://www.google.com/maps/place/R.+Jardel+Fran%C3%A7a,+18+-+Cidade+N%C3%A1utica,+S%C3%A3o+Vicente+-+SP,+11340-340/@-23.952288,-46.411209,16z/data=!4m5!3m4!1s0x94ce1b90972cbc35:0xcd547d49f39bffe5!8m2!3d-23.9522879!4d-46.4112093" as const
-                    }
-                    platform={"nextjs"}
-                    target={"_blank" as const}
-                  >
-                    <PinIcon
-                      className={classNames(projectcss.all, sty.svg__cwMa)}
-                      role={"img"}
-                    />
-
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__m09Xo
-                      )}
-                    >
-                      {"Rua Jardel Fran\u00e7a, 18"}
-                    </div>
-                  </p.Stack>
-                ) : null}
-                {true ? (
+            <ph.DataCtxReader>
+              {$ctx => (
+                <React.Fragment>
                   <p.Stack
                     as={"div"}
                     hasGap={true}
-                    className={classNames(projectcss.all, sty.freeBox__tc74K)}
+                    className={classNames(projectcss.all, sty.freeBox__wFFs9)}
                   >
-                    <ClockIcon
-                      className={classNames(projectcss.all, sty.svg__gJ7Hc)}
-                      role={"img"}
+                    {true ? (
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox___8Tr6E
+                        )}
+                      >
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__cUiys
+                          )}
+                        >
+                          {"Inverno Crente"}
+                        </div>
+                      </div>
+                    ) : null}
+                    <p.PlasmicImg
+                      data-plasmic-name={"img"}
+                      data-plasmic-override={overrides.img}
+                      alt={""}
+                      className={classNames(sty.img, {
+                        [sty.imgclosed]: hasVariant($state, "closed", "closed")
+                      })}
+                      displayHeight={"auto" as const}
+                      displayMaxHeight={"none" as const}
+                      displayMaxWidth={
+                        hasVariant(globalVariants, "screen", "desktop")
+                          ? ("400px" as const)
+                          : ("100%" as const)
+                      }
+                      displayMinHeight={"0" as const}
+                      displayMinWidth={"0" as const}
+                      displayWidth={"100%" as const}
+                      loading={"lazy" as const}
+                      src={(() => {
+                        try {
+                          return $ctx.contentfulEventItem.fields.featuredImage
+                            .fields.file.url;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "https://site-assets.plasmic.app/8bf29b51f07b58079540871d3f8881e5.jpg";
+                          }
+                          throw e;
+                        }
+                      })()}
                     />
 
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__hS2Be
-                      )}
-                    >
-                      {"11 de mar\u00e7o \u00e0s 19:00"}
-                    </div>
-                  </p.Stack>
-                ) : null}
-              </div>
-            ) : null}
-          </p.Stack>
-          <Separator
-            data-plasmic-name={"separator"}
-            data-plasmic-override={overrides.separator}
-            className={classNames("__wab_instance", sty.separator)}
-          />
+                    {true ? (
+                      <p.Stack
+                        as={"div"}
+                        hasGap={true}
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__cwUK
+                        )}
+                      >
+                        <ClockIcon
+                          className={classNames(projectcss.all, sty.svg__oMGgd)}
+                          role={"img"}
+                        />
 
-          {true ? (
-            <p.Stack
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__dg52T)}
-              id={"menu" as const}
-            >
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__hEwy6,
-                  {
-                    [sty.textclosed__hEwy6JsbhE]: hasVariant(
-                      $state,
-                      "closed",
-                      "closed"
-                    )
-                  }
-                )}
-              >
-                {hasVariant($state, "closed", "closed")
-                  ? "VENDAS ENCERRADAS!"
-                  : "Card\u00e1pio"}
-              </div>
-              <p.Stack
-                as={"div"}
-                data-plasmic-name={"options"}
-                data-plasmic-override={overrides.options}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.options)}
-              >
-                <ContentfulFetcher
-                  data-plasmic-name={"event"}
-                  data-plasmic-override={overrides.event}
-                  className={classNames("__wab_instance", sty.event)}
-                  contentType={"event" as const}
-                  entryID={"4pg4Auiy2ev6umwwEnLaJT" as const}
-                  limit={1000 as const}
-                  noLayout={true}
-                >
-                  <ph.DataCtxReader>
-                    {$ctx =>
-                      (hasVariant($state, "closed", "closed") ? true : true)
-                        ? (
-                            (() => {
-                              try {
-                                return (
-                                  $ctx.contentfulEventItem.fields.menu ?? []
-                                ).sort(
-                                  (a, b) => a.fields.order - b.fields.order
-                                );
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return [];
-                                }
-                                throw e;
-                              }
-                            })() ?? []
-                          ).map((currentItem, currentIndex) => (
-                            <MenuItem
-                              data-plasmic-name={"menuItem"}
-                              data-plasmic-override={overrides.menuItem}
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__xHyN7
+                          )}
+                        >
+                          {"23 de julho"}
+                        </div>
+                      </p.Stack>
+                    ) : null}
+                    {true ? (
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__wrEd8
+                        )}
+                      >
+                        {true ? (
+                          <p.Stack
+                            as={p.PlasmicLink}
+                            data-plasmic-name={"link"}
+                            data-plasmic-override={overrides.link}
+                            hasGap={true}
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.a,
+                              sty.link
+                            )}
+                            component={Link}
+                            href={
+                              "https://www.google.com/maps/place/R.+Jardel+Fran%C3%A7a,+18+-+Cidade+N%C3%A1utica,+S%C3%A3o+Vicente+-+SP,+11340-340/@-23.952288,-46.411209,16z/data=!4m5!3m4!1s0x94ce1b90972cbc35:0xcd547d49f39bffe5!8m2!3d-23.9522879!4d-46.4112093" as const
+                            }
+                            platform={"nextjs"}
+                            target={"_blank" as const}
+                          >
+                            <PinIcon
                               className={classNames(
-                                "__wab_instance",
-                                sty.menuItem,
-                                {
-                                  [sty.menuItemclosed]: hasVariant(
-                                    $state,
-                                    "closed",
-                                    "closed"
-                                  )
-                                }
+                                projectcss.all,
+                                sty.svg__cwMa
                               )}
-                              description={
-                                <ContentfulRichText
-                                  data-plasmic-name={"contentfulRichText"}
-                                  data-plasmic-override={
-                                    overrides.contentfulRichText
-                                  }
-                                  className={classNames(
-                                    "__wab_instance",
-                                    sty.contentfulRichText
-                                  )}
-                                  richText={(() => {
-                                    try {
-                                      return currentItem.fields.description;
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })()}
-                                />
-                              }
-                              id={(() => {
+                              role={"img"}
+                            />
+
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__m09Xo
+                              )}
+                            >
+                              {"Rua Jardel Fran\u00e7a, 18"}
+                            </div>
+                          </p.Stack>
+                        ) : null}
+                        {true ? (
+                          <p.Stack
+                            as={"div"}
+                            hasGap={true}
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__tc74K
+                            )}
+                          >
+                            <ClockIcon
+                              className={classNames(
+                                projectcss.all,
+                                sty.svg__gJ7Hc
+                              )}
+                              role={"img"}
+                            />
+
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__hS2Be
+                              )}
+                            >
+                              {"11 de mar\u00e7o \u00e0s 19:00"}
+                            </div>
+                          </p.Stack>
+                        ) : null}
+                      </div>
+                    ) : null}
+                  </p.Stack>
+                  <Separator
+                    data-plasmic-name={"separator"}
+                    data-plasmic-override={overrides.separator}
+                    className={classNames("__wab_instance", sty.separator)}
+                  />
+
+                  {true ? (
+                    <p.Stack
+                      as={"div"}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.freeBox__dg52T)}
+                      id={"menu" as const}
+                    >
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__hEwy6,
+                          {
+                            [sty.textclosed__hEwy6JsbhE]: hasVariant(
+                              $state,
+                              "closed",
+                              "closed"
+                            )
+                          }
+                        )}
+                      >
+                        {hasVariant($state, "closed", "closed")
+                          ? "VENDAS ENCERRADAS!"
+                          : "Card\u00e1pio"}
+                      </div>
+                      <p.Stack
+                        as={"div"}
+                        data-plasmic-name={"options"}
+                        data-plasmic-override={overrides.options}
+                        hasGap={true}
+                        className={classNames(projectcss.all, sty.options)}
+                      >
+                        {(hasVariant($state, "closed", "closed") ? true : true)
+                          ? (
+                              (() => {
                                 try {
-                                  return currentItem.sys.id;
+                                  return (
+                                    $ctx.contentfulEventItem.fields.menu ?? []
+                                  ).sort(
+                                    (a, b) => a.fields.order - b.fields.order
+                                  );
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
                                     e?.plasmicType ===
                                       "PlasmicUndefinedDataError"
                                   ) {
-                                    return undefined;
+                                    return [];
                                   }
                                   throw e;
                                 }
-                              })()}
-                              image={(() => {
-                                try {
-                                  return currentItem.fields.image.fields.file
-                                    .url;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
+                              })() ?? []
+                            ).map((currentItem, currentIndex) => (
+                              <MenuItem
+                                data-plasmic-name={"menuItem"}
+                                data-plasmic-override={overrides.menuItem}
+                                className={classNames(
+                                  "__wab_instance",
+                                  sty.menuItem,
+                                  {
+                                    [sty.menuItemclosed]: hasVariant(
+                                      $state,
+                                      "closed",
+                                      "closed"
+                                    )
                                   }
-                                  throw e;
-                                }
-                              })()}
-                              key={currentIndex}
-                              price={
-                                (() => {
-                                  try {
-                                    return (
-                                      currentItem.fields.price !== undefined
-                                    );
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return true;
+                                )}
+                                description={
+                                  <ContentfulRichText
+                                    data-plasmic-name={"contentfulRichText"}
+                                    data-plasmic-override={
+                                      overrides.contentfulRichText
                                     }
-                                    throw e;
-                                  }
-                                })() ? (
-                                  <React.Fragment>
-                                    {(() => {
+                                    className={classNames(
+                                      "__wab_instance",
+                                      sty.contentfulRichText
+                                    )}
+                                    richText={(() => {
                                       try {
-                                        return `R$ ${currentItem.fields.price.toFixed(
-                                          2
-                                        )}`;
+                                        return currentItem.fields.description;
                                       } catch (e) {
                                         if (
                                           e instanceof TypeError ||
                                           e?.plasmicType ===
                                             "PlasmicUndefinedDataError"
                                         ) {
-                                          return "R$ 20,00";
+                                          return undefined;
                                         }
                                         throw e;
                                       }
                                     })()}
-                                  </React.Fragment>
-                                ) : null
-                              }
-                              title={
-                                <React.Fragment>
-                                  {(() => {
+                                  />
+                                }
+                                id={(() => {
+                                  try {
+                                    return currentItem.sys.id;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                                image={(() => {
+                                  try {
+                                    return currentItem.fields.image.fields.file
+                                      .url;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                                key={currentIndex}
+                                price={
+                                  (() => {
                                     try {
-                                      return currentItem.fields.name;
+                                      return (
+                                        currentItem.fields.price !== undefined
+                                      );
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||
                                         e?.plasmicType ===
                                           "PlasmicUndefinedDataError"
                                       ) {
-                                        return "Combo 1";
+                                        return true;
                                       }
                                       throw e;
                                     }
-                                  })()}
-                                </React.Fragment>
-                              }
-                            />
-                          ))
-                        : null
-                    }
-                  </ph.DataCtxReader>
-                </ContentfulFetcher>
-              </p.Stack>
-            </p.Stack>
-          ) : null}
+                                  })() ? (
+                                    <React.Fragment>
+                                      {(() => {
+                                        try {
+                                          return `R$ ${currentItem.fields.price.toFixed(
+                                            2
+                                          )}`;
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return "R$ 20,00";
+                                          }
+                                          throw e;
+                                        }
+                                      })()}
+                                    </React.Fragment>
+                                  ) : null
+                                }
+                                title={
+                                  <React.Fragment>
+                                    {(() => {
+                                      try {
+                                        return currentItem.fields.name;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return "Combo 1";
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
+                                  </React.Fragment>
+                                }
+                              />
+                            ))
+                          : null}
+                      </p.Stack>
+                    </p.Stack>
+                  ) : null}
+                </React.Fragment>
+              )}
+            </ph.DataCtxReader>
+          </ContentfulFetcher>
           {true ? (
             <CartButton
               data-plasmic-name={"cartButton"}
@@ -529,21 +567,29 @@ const PlasmicDescendants = {
   root: [
     "root",
     "header",
+    "event2",
     "img",
     "link",
     "separator",
     "options",
-    "event",
     "menuItem",
     "contentfulRichText",
     "cartButton"
   ],
   header: ["header"],
+  event2: [
+    "event2",
+    "img",
+    "link",
+    "separator",
+    "options",
+    "menuItem",
+    "contentfulRichText"
+  ],
   img: ["img"],
   link: ["link"],
   separator: ["separator"],
-  options: ["options", "event", "menuItem", "contentfulRichText"],
-  event: ["event", "menuItem", "contentfulRichText"],
+  options: ["options", "menuItem", "contentfulRichText"],
   menuItem: ["menuItem", "contentfulRichText"],
   contentfulRichText: ["contentfulRichText"],
   cartButton: ["cartButton"]
@@ -554,11 +600,11 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;
+  event2: typeof ContentfulFetcher;
   img: typeof p.PlasmicImg;
   link: "a";
   separator: typeof Separator;
   options: "div";
-  event: typeof ContentfulFetcher;
   menuItem: typeof MenuItem;
   contentfulRichText: typeof ContentfulRichText;
   cartButton: typeof CartButton;
@@ -625,11 +671,11 @@ export const PlasmicHomepage = Object.assign(
   {
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
+    event2: makeNodeComponent("event2"),
     img: makeNodeComponent("img"),
     link: makeNodeComponent("link"),
     separator: makeNodeComponent("separator"),
     options: makeNodeComponent("options"),
-    event: makeNodeComponent("event"),
     menuItem: makeNodeComponent("menuItem"),
     contentfulRichText: makeNodeComponent("contentfulRichText"),
     cartButton: makeNodeComponent("cartButton"),

@@ -599,8 +599,7 @@
           "displayName": "hostless-condition-guard",
           "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
         }
-      ],
-      "jsBundleThemes": []
+      ]
     },
     {
       "projectId": "95xp9cYcv7HrNWpFWWhbcv",
@@ -660,8 +659,7 @@
           "displayName": "global-embed-css",
           "componentImportPath": "@plasmicpkgs/plasmic-embed-css"
         }
-      ],
-      "jsBundleThemes": []
+      ]
     }
   ],
   "globalVariants": {
@@ -678,6 +676,6 @@
   "nextjsConfig": {
     "pagesDir": "../pages"
   },
-  "cliVersion": "0.1.301",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.301/dist/plasmic.schema.json"
+  "cliVersion": "0.1.302",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.302/dist/plasmic.schema.json"
 }
