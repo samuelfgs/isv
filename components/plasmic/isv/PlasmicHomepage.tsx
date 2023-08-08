@@ -203,24 +203,6 @@ function PlasmicHomepage__RenderFunc(props: {
                     hasGap={true}
                     className={classNames(projectcss.all, sty.freeBox__wFFs9)}
                   >
-                    {true ? (
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox___8Tr6E
-                        )}
-                      >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__cUiys
-                          )}
-                        >
-                          {"Inverno Crente"}
-                        </div>
-                      </div>
-                    ) : null}
                     <p.PlasmicImg
                       data-plasmic-name={"img"}
                       data-plasmic-override={overrides.img}
@@ -340,7 +322,7 @@ function PlasmicHomepage__RenderFunc(props: {
                                 sty.text__hS2Be
                               )}
                             >
-                              {"11 de mar\u00e7o \u00e0s 19:00"}
+                              {"12 de agosto \u00e0s 18:00"}
                             </div>
                           </p.Stack>
                         ) : null}
