@@ -124,7 +124,6 @@ export async function getStaticProps(context: GetStaticPropsContext) {
       <AddItem id={context.params?.id} queryCache={{}} prepass={true} />
     </PlasmicGlobalContextsProvider>
   );
-  console.log("dale", queryCache, context.params?.id);
   return {
     props: {
       id: context.params?.id,
