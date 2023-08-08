@@ -179,6 +179,7 @@ export function ContentfulFetcher({
   const { data: entryData, error: entryDataError } = usePlasmicQueryData<
     any | null
   >(entryID ? `${cacheKey}/entry/${entryID}` : null, async () => {
+    console.log("dale2", entryID);
     const response = await client.getEntry(`${entryID}`, { include: 2 });
     return response;
   });

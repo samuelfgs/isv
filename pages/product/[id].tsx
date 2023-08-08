@@ -5,54 +5,65 @@ import { useRouter } from "next/router";
 import { PlasmicAddItem } from "../../components/plasmic/isv/PlasmicAddItem";
 import { useSnapshot } from "valtio";
 import { addProductState, OptionType } from "../../lib/state-management";
-import { fetchContentfulEntry } from "../../components/contentful";
+import { ContentfulFetcher, fetchContentfulEntry } from "../../components/contentful";
 import { addToCart, getProductVariantPrice } from "../../lib/cart";
 import { GetStaticPropsContext, NextPageContext } from "next";
 import * as Contentful from "contentful";
 import { extractPlasmicQueryData } from "@plasmicapp/prepass";
 import { SWRConfig } from "swr";
+import PlasmicGlobalContextsProvider from "../../components/plasmic/isv/PlasmicGlobalContextsProvider";
 
-function AddItem({ id, queryCache }: { id: string, queryCache: Record<string, any> }) {
-    const refFooter = React.createRef<HTMLDivElement>();
-    const productStateSnap = useSnapshot(addProductState);
-    const router = useRouter();
-    
-    const product = fetchContentfulEntry(productStateSnap.productId);
-    const [scrollSpaceHeight, setScrollSpaceHeight] = React.useState(0);
+function AddItem({ id, queryCache, prepass }: { id: string, queryCache: Record<string, any>, prepass?: boolean }) {
+  const refFooter = React.createRef<HTMLDivElement>();
+  const productStateSnap = useSnapshot(addProductState);
+  const router = useRouter();
+  
+  const product = fetchContentfulEntry(productStateSnap.productId);
+  const [scrollSpaceHeight, setScrollSpaceHeight] = React.useState(0);
 
-    React.useEffect(() => {
-      setScrollSpaceHeight(
-        (document?.getElementById("footer")?.getClientRects()[0].height ?? 200) + 50
-      );
-    }, []);
+  React.useEffect(() => {
+    setScrollSpaceHeight(
+      (document?.getElementById("footer")?.getClientRects()[0].height ?? 200) + 50
+    );
+  }, []);
   
-    if (productStateSnap.product === undefined && product) {
-      addProductState.product = product;
-      addProductState.optionsType = Object.fromEntries(product.fields.options.map((option: any) => 
-        [option.sys.id as string, option.fields.maximum !== undefined ? OptionType.multi : OptionType.single]
-      )) as Record<string, OptionType>;
-      addProductState.sumOfOptionValuesQuantity = Object.fromEntries(product.fields.options.map((option: any) => 
-        [option.sys.id as string, 0]
-      )) as Record<string, number>;
-    }
+  if (productStateSnap.product === undefined && product) {
+    addProductState.product = product;
+    addProductState.optionsType = Object.fromEntries(product.fields.options.map((option: any) => 
+      [option.sys.id as string, option.fields.maximum !== undefined ? OptionType.multi : OptionType.single]
+    )) as Record<string, OptionType>;
+    addProductState.sumOfOptionValuesQuantity = Object.fromEntries(product.fields.options.map((option: any) => 
+      [option.sys.id as string, 0]
+    )) as Record<string, number>;
+  }
   
-    React.useEffect(() => {
-      window.scrollTo({top: 0})
-    }, [])
-    const totalPrice = productStateSnap.product
-      ? "R$ " + (getProductVariantPrice(productStateSnap)).toFixed(2)
-      : 0;
+  React.useEffect(() => {
+    window.scrollTo({top: 0})
+  }, [])
+  const totalPrice = productStateSnap.product
+    ? "R$ " + (getProductVariantPrice(productStateSnap)).toFixed(2)
+    : 0;
+
+  const isReady = (Object.entries(productStateSnap.sumOfOptionValuesQuantity).every(([optionId, quantity]) => 
+    (productStateSnap.product?.fields.options.find((option: any) => option.sys.id === optionId).fields.maximum ?? 1)
+    === quantity
+  ));
   
-    const isReady = (Object.entries(productStateSnap.sumOfOptionValuesQuantity).every(([optionId, quantity]) => 
-      (productStateSnap.product?.fields.options.find((option: any) => option.sys.id === optionId).fields.maximum ?? 1)
-      === quantity
-    ));
-  
-    return <SWRConfig
-      value={{
-        fallback: queryCache
-      }}
-    >
+  const wrapper = (children: React.ReactNode) => (
+    prepass 
+      ? children
+      : (
+        <SWRConfig
+          value={{
+            fallback: queryCache
+          }}
+        >
+          {children}
+        </SWRConfig>
+      )
+  )
+  return <>
+    {wrapper(
       <PlasmicAddItem
         entryId={id}
         back={{
@@ -95,7 +106,8 @@ function AddItem({ id, queryCache }: { id: string, queryCache: Record<string, an
         footer={{ref: refFooter}}
         total={totalPrice}
       />
-    </SWRConfig>;
+    )}
+  </>
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
@@ -108,13 +120,15 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   }
   // Cache the necessary data fetched for the page.
   const queryCache = await extractPlasmicQueryData(
-    <AddItem id={context.params?.id} queryCache={{}} />
+    <PlasmicGlobalContextsProvider>
+      <AddItem id={context.params?.id} queryCache={{}} prepass={true} />
+    </PlasmicGlobalContextsProvider>
   );
-  console.log("dale", queryCache);
+  console.log("dale", queryCache, context.params?.id);
   return {
     props: {
       id: context.params?.id,
-      queryCache
+      queryCache,
     },
   }
 }

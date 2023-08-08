@@ -52,7 +52,6 @@ export const Page = () => {
         return total_price;
     });
     const data = orders;
-    console.log("dale5", data);
 
     const map = new Map<any, any>();
     for (const item of data) {
