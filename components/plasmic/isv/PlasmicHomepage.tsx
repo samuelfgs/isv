@@ -191,7 +191,7 @@ function PlasmicHomepage__RenderFunc(props: {
             data-plasmic-override={overrides.event2}
             className={classNames("__wab_instance", sty.event2)}
             contentType={"event" as const}
-            entryID={"41SPN2nFQ7NujDwQPeb8kx" as const}
+            entryID={"70WMVeqj6BndWXu8X8k0ZX" as const}
             limit={1000 as const}
             noLayout={true}
           >

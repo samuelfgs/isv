@@ -567,6 +567,14 @@
     "@plasmicapp/query" "0.1.67"
     "@plasmicapp/react-ssr-prepass" "2.0.2"
 
+"@plasmicapp/prepass@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@plasmicapp/prepass/-/prepass-1.0.2.tgz#1189cf296d01d38e37c6e8875991fd3023b2ab81"
+  integrity sha512-nb7mo4SnuAimFEfGI/UPsp4E1jPVDnlFtH98ozZmeJyR6FKEdvx8wr12BhpMrtlQ6IzmpJHbGVSqla3BsPWEHg==
+  dependencies:
+    "@plasmicapp/query" "0.1.67"
+    "@plasmicapp/react-ssr-prepass" "2.0.3"
+
 "@plasmicapp/query@0.1.67", "@plasmicapp/query@^0.1.61", "@plasmicapp/query@^0.1.67":
   version "0.1.67"
   resolved "https://registry.yarnpkg.com/@plasmicapp/query/-/query-0.1.67.tgz#64515dc7782093fae5c3c741ad016fdcc9281200"
@@ -578,6 +586,11 @@
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@plasmicapp/react-ssr-prepass/-/react-ssr-prepass-2.0.2.tgz#0ebe044d4b89080cac1f3ac0a3bc152eea5b9cb5"
   integrity sha512-axZF7/lVsCqsDED40VkJOjf/Iow/RjfxLjdT3IRwP8KkjsLvy06ir0IfPhXJ+7TcHOiW87f79VmR4aMwJxy0sg==
+
+"@plasmicapp/react-ssr-prepass@2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@plasmicapp/react-ssr-prepass/-/react-ssr-prepass-2.0.3.tgz#d946d81c3d1e3a8f4f3cfcb8751edfe14b90d09e"
+  integrity sha512-jFde/wfL8NlJEr76Mshyju/3GvJD5Z9YijCG1/8DR+KOEv7m5uRvORjxtEEw2GKDXRp2GqpQqj97iWGLFUsOzA==
 
 "@plasmicapp/react-web@^0.2.236":
   version "0.2.236"

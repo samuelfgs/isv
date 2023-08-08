@@ -9,8 +9,10 @@ import { fetchContentfulEntry } from "../../components/contentful";
 import { addToCart, getProductVariantPrice } from "../../lib/cart";
 import { GetStaticPropsContext, NextPageContext } from "next";
 import * as Contentful from "contentful";
+import { extractPlasmicQueryData } from "@plasmicapp/prepass";
+import { SWRConfig } from "swr";
 
-function AddItem({ id }: { id: string }) {
+function AddItem({ id, queryCache }: { id: string, queryCache: Record<string, any> }) {
     const refFooter = React.createRef<HTMLDivElement>();
     const productStateSnap = useSnapshot(addProductState);
     const router = useRouter();
@@ -46,56 +48,73 @@ function AddItem({ id }: { id: string }) {
       === quantity
     ));
   
-    console.log("dale", totalPrice);
-    
-    return <PlasmicAddItem
-      entryId={id}
-      back={{
-        wrap: (node) => <div onClick={() => router.push("/")}>{node}</div>
+    return <SWRConfig
+      value={{
+        fallback: queryCache
       }}
-      header={{
-        hideHeader: true
-      }}
-      selectedOptionValues={{
-        children: (
-          Object.entries(productStateSnap.optionValues)
-            .sort(([_a, {optionId: optionIdA }], [_b, {optionId: optionIdB}]) => 
-              product?.fields.options.findIndex((option: any) => option.sys.id === optionIdA) - 
-              product?.fields.options.findIndex((option: any) => option.sys.id === optionIdB)
-            )
-            .map(([_, { optionId, valueId, quantity }]) => 
-              <div>
-                {productStateSnap.optionsType[optionId] === OptionType.multi ? `${quantity}x ` : ''}
-                {product?.fields.options
-                  .find((option: any) => option.sys.id === optionId)
-                  ?.fields.values.find((currOptionValue: any) => currOptionValue.sys.id === valueId)
-                  ?.fields.label
-                }
-              </div>
-            )
-        )
-      }}
-      button={{
-        isDisabled: !isReady,
-        onClick: () => {
-          if (productStateSnap.productId) {
-            addToCart();
+    >
+      <PlasmicAddItem
+        entryId={id}
+        back={{
+          wrap: (node) => <div onClick={() => router.push("/")}>{node}</div>
+        }}
+        header={{
+          hideHeader: true
+        }}
+        selectedOptionValues={{
+          children: (
+            Object.entries(productStateSnap.optionValues)
+              .sort(([_a, {optionId: optionIdA }], [_b, {optionId: optionIdB}]) => 
+                product?.fields.options.findIndex((option: any) => option.sys.id === optionIdA) - 
+                product?.fields.options.findIndex((option: any) => option.sys.id === optionIdB)
+              )
+              .map(([_, { optionId, valueId, quantity }]) => 
+                <div>
+                  {productStateSnap.optionsType[optionId] === OptionType.multi ? `${quantity}x ` : ''}
+                  {product?.fields.options
+                    .find((option: any) => option.sys.id === optionId)
+                    ?.fields.values.find((currOptionValue: any) => currOptionValue.sys.id === valueId)
+                    ?.fields.label
+                  }
+                </div>
+              )
+          )
+        }}
+        button={{
+          isDisabled: !isReady,
+          onClick: () => {
+            if (productStateSnap.productId) {
+              addToCart();
+            }
+            router.push("/checkout");
           }
-          router.push("/checkout");
-        }
-      }}
-      scrollSpace={{
-        height: scrollSpaceHeight
-      }}
-      footer={{ref: refFooter}}
-      total={totalPrice}
-    />;
+        }}
+        scrollSpace={{
+          height: scrollSpaceHeight
+        }}
+        footer={{ref: refFooter}}
+        total={totalPrice}
+      />
+    </SWRConfig>;
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
+  if (typeof context.params?.id !== "string") {
+    return {
+      props: {
+        id: context.params?.id
+      }
+    }
+  }
+  // Cache the necessary data fetched for the page.
+  const queryCache = await extractPlasmicQueryData(
+    <AddItem id={context.params?.id} queryCache={{}} />
+  );
+  console.log("dale", queryCache);
   return {
     props: {
-      id: context.params?.id
+      id: context.params?.id,
+      queryCache
     },
   }
 }
