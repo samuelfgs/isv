@@ -239,20 +239,12 @@ function PlasmicHomepage__RenderFunc(props: {
                       displayMinWidth={"0" as const}
                       displayWidth={"100%" as const}
                       loading={"lazy" as const}
-                      src={(() => {
-                        try {
-                          return $ctx.contentfulEventItem.fields.featuredImage
-                            .fields.file.url;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return "https://site-assets.plasmic.app/8bf29b51f07b58079540871d3f8881e5.jpg";
-                          }
-                          throw e;
-                        }
-                      })()}
+                      src={{
+                        src: "/plasmic/isv/images/arraial.jpg",
+                        fullWidth: 900,
+                        fullHeight: 1600,
+                        aspectRatio: undefined
+                      }}
                     />
 
                     {true ? (
