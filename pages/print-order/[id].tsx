@@ -76,7 +76,6 @@ function CompletedAdminOrder() {
     isLoading ? null :
     <>
       {!data?.paid ? <h1>Nao foi pago</h1> : <h1>Pago</h1>}
-      <h1>{data?.mercadoPago}</h1>
       <JSONPretty data={data?.mercadoPagoLineItems} />
       <button onClick={() => handlePrint()}>Print</button>
       <PlasmicCompletedAdminOrder
@@ -90,7 +89,6 @@ function CompletedAdminOrder() {
           }
         }}
       />
-      {data?.name}
       <PrintOrder 
         ref={ref} 
         id={orderId}

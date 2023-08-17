@@ -559,6 +559,12 @@
           "name": "Fetcher",
           "displayName": "plasmic-data-source-fetcher",
           "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
+        },
+        {
+          "id": "9qa_py_lAp",
+          "name": "Comp9QaPyLAp",
+          "displayName": "Test Comp",
+          "componentImportPath": ""
         }
       ]
     },

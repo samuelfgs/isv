@@ -65,19 +65,12 @@
   position: relative;
   object-fit: cover;
   max-width: 100%;
-  width: 100%;
-  min-width: 0;
 }
 .img > picture > img {
   object-fit: cover;
 }
 .img > :global(.__wab_img-spacer) > img {
   object-fit: cover;
-}
-@media (min-width: 700px) {
-  .img {
-    max-width: 400px;
-  }
 }
 .freeBox__cwUK {
   position: relative;
@@ -127,7 +120,6 @@
   }
 }
 .freeBox__wrEd8 {
-  display: flex;
   position: relative;
   flex-direction: column;
   align-items: center;
@@ -136,6 +128,7 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
+  display: none;
   padding: 8px;
 }
 .link {

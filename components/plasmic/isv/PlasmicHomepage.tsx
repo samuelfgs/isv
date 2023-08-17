@@ -43,8 +43,6 @@ import MenuItem from "../../MenuItem"; // plasmic-import: XSxN5kXvF2/component
 import { ContentfulRichText } from "../../contentful"; // plasmic-import: U_PL4X9jnS/codeComponent
 import CartButton from "../../CartButton"; // plasmic-import: xK4LVBS1m4/component
 
-import { useScreenVariants as useScreenVariantsrLyYkqyGlc01Z } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: rLyYkqyGLC01z/globalVariant
-
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_copy_of_plasmic_kit_q_4_color_tokens_css from "../copy_of_plasmic_kit_q_4_color_tokens/plasmic_copy_of_plasmic_kit_q_4_color_tokens.module.css"; // plasmic-import: r6wqTHP8pUBDqvkAaarh3E/projectcss
@@ -143,10 +141,6 @@ function PlasmicHomepage__RenderFunc(props: {
     $refs
   });
 
-  const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariantsrLyYkqyGlc01Z()
-  });
-
   return (
     <React.Fragment>
       <Head></Head>
@@ -191,7 +185,7 @@ function PlasmicHomepage__RenderFunc(props: {
             data-plasmic-override={overrides.event2}
             className={classNames("__wab_instance", sty.event2)}
             contentType={"event" as const}
-            entryID={"70WMVeqj6BndWXu8X8k0ZX" as const}
+            entryID={"44shvllrBqhspuQ0eHsLHn" as const}
             limit={1000 as const}
             noLayout={true}
           >
@@ -207,26 +201,28 @@ function PlasmicHomepage__RenderFunc(props: {
                       data-plasmic-name={"img"}
                       data-plasmic-override={overrides.img}
                       alt={""}
-                      className={classNames(sty.img, {
-                        [sty.imgclosed]: hasVariant($state, "closed", "closed")
-                      })}
+                      className={classNames(sty.img)}
                       displayHeight={"auto" as const}
                       displayMaxHeight={"none" as const}
-                      displayMaxWidth={
-                        hasVariant(globalVariants, "screen", "desktop")
-                          ? ("400px" as const)
-                          : ("100%" as const)
-                      }
+                      displayMaxWidth={"100%" as const}
                       displayMinHeight={"0" as const}
                       displayMinWidth={"0" as const}
-                      displayWidth={"100%" as const}
+                      displayWidth={"auto" as const}
                       loading={"lazy" as const}
-                      src={{
-                        src: "/plasmic/isv/images/arraial.jpg",
-                        fullWidth: 900,
-                        fullHeight: 1600,
-                        aspectRatio: undefined
-                      }}
+                      src={(() => {
+                        try {
+                          return $ctx.contentfulEventItem.fields.featuredImage
+                            .fields.file.url;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}
                     />
 
                     {true ? (
