@@ -559,12 +559,6 @@
           "name": "Fetcher",
           "displayName": "plasmic-data-source-fetcher",
           "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
-        },
-        {
-          "id": "9qa_py_lAp",
-          "name": "Comp9QaPyLAp",
-          "displayName": "Test Comp",
-          "componentImportPath": ""
         }
       ]
     },
@@ -610,8 +604,7 @@
           "displayName": "hostless-condition-guard",
           "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
         }
-      ],
-      "jsBundleThemes": []
+      ]
     },
     {
       "projectId": "95xp9cYcv7HrNWpFWWhbcv",

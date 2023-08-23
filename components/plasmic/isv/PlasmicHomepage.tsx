@@ -73,7 +73,7 @@ export const PlasmicHomepage__ArgProps = new Array<ArgPropType>();
 export type PlasmicHomepage__OverridesType = {
   root?: p.Flex<"div">;
   header?: p.Flex<typeof Header>;
-  event2?: p.Flex<typeof ContentfulFetcher>;
+  event?: p.Flex<typeof ContentfulFetcher>;
   img?: p.Flex<typeof p.PlasmicImg>;
   link?: p.Flex<"a"> & Partial<LinkProps>;
   separator?: p.Flex<typeof Separator>;
@@ -181,11 +181,11 @@ function PlasmicHomepage__RenderFunc(props: {
             />
           ) : null}
           <ContentfulFetcher
-            data-plasmic-name={"event2"}
-            data-plasmic-override={overrides.event2}
-            className={classNames("__wab_instance", sty.event2)}
+            data-plasmic-name={"event"}
+            data-plasmic-override={overrides.event}
+            className={classNames("__wab_instance", sty.event)}
             contentType={"event" as const}
-            entryID={"44shvllrBqhspuQ0eHsLHn" as const}
+            entryID={"2gNbNR48VqDBxbunC3Hol9" as const}
             limit={1000 as const}
             noLayout={true}
           >
@@ -537,7 +537,7 @@ const PlasmicDescendants = {
   root: [
     "root",
     "header",
-    "event2",
+    "event",
     "img",
     "link",
     "separator",
@@ -547,8 +547,8 @@ const PlasmicDescendants = {
     "cartButton"
   ],
   header: ["header"],
-  event2: [
-    "event2",
+  event: [
+    "event",
     "img",
     "link",
     "separator",
@@ -570,7 +570,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;
-  event2: typeof ContentfulFetcher;
+  event: typeof ContentfulFetcher;
   img: typeof p.PlasmicImg;
   link: "a";
   separator: typeof Separator;
@@ -641,7 +641,7 @@ export const PlasmicHomepage = Object.assign(
   {
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
-    event2: makeNodeComponent("event2"),
+    event: makeNodeComponent("event"),
     img: makeNodeComponent("img"),
     link: makeNodeComponent("link"),
     separator: makeNodeComponent("separator"),
