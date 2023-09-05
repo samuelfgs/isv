@@ -37,8 +37,9 @@ function Checkout() {
 
   return <PlasmicCheckout2
     lineItems={{
-      children: cart.lineItems.map((item, i) => (
-        <ShoppingCartLineItem
+      children: cart.lineItems.map((item, i) => {
+        console.log(i, item)
+        return <ShoppingCartLineItem
           index={i+1}
           name={item.product.product.fields.name}
           price={`R$ ${formatPrice(getProductVariantPrice(item.product) * item.quantity)}`}
@@ -47,7 +48,7 @@ function Checkout() {
           onChangeQuantity={(newQuantity) => updateCart(item.product, newQuantity)}
           product={item.product}
         />
-      )
+      }
     )}}
     isEmpty={cart.lineItems.length === 0}
     totalPrice={cart.totalPrice.toFixed(2)}
