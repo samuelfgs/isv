@@ -93,7 +93,7 @@ function PlasmicScrollSpace__RenderFunc(props: {
     () =>
       Object.assign(
         {
-          height: 300 as const
+          height: 300
         },
         props.args
       ),

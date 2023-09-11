@@ -116,13 +116,13 @@ function PlasmicLogin__RenderFunc(props: {
         path: "user.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "" as const
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
       },
       {
         path: "password.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "" as const
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -169,94 +169,85 @@ function PlasmicLogin__RenderFunc(props: {
 
           <div className={classNames(projectcss.all, sty.freeBox__hWjWy)}>
             <div className={classNames(projectcss.all, sty.freeBox__bsiDh)}>
-              {true ? (
+              <div
+                data-plasmic-name={"invalidData"}
+                data-plasmic-override={overrides.invalidData}
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.invalidData
+                )}
+              >
+                {"Dados inv\u00e1lidos"}
+              </div>
+              <p.Stack
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__wkvgH)}
+              >
                 <div
-                  data-plasmic-name={"invalidData"}
-                  data-plasmic-override={overrides.invalidData}
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.invalidData
+                    sty.text__mmEcN
                   )}
                 >
-                  {"Dados inv\u00e1lidos"}
+                  {"Usuario"}
                 </div>
-              ) : null}
-              {true ? (
-                <p.Stack
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__wkvgH)}
+                <TextInput
+                  data-plasmic-name={"user"}
+                  data-plasmic-override={overrides.user}
+                  className={classNames("__wab_instance", sty.user)}
+                  onChange={(...eventArgs) => {
+                    p.generateStateOnChangeProp($state, ["user", "value"])(
+                      (e => e.target?.value).apply(null, eventArgs)
+                    );
+                  }}
+                  value={
+                    p.generateStateValueProp($state, ["user", "value"]) ?? ""
+                  }
+                />
+              </p.Stack>
+              <p.Stack
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox___19A5C)}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__gjV6A
+                  )}
                 >
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__mmEcN
-                    )}
-                  >
-                    {"Usuario"}
-                  </div>
-                  <TextInput
-                    data-plasmic-name={"user"}
-                    data-plasmic-override={overrides.user}
-                    className={classNames("__wab_instance", sty.user)}
-                    onChange={(...eventArgs) => {
-                      p.generateStateOnChangeProp($state, ["user", "value"])(
-                        (e => e.target?.value).apply(null, eventArgs)
-                      );
-                    }}
-                    value={
-                      p.generateStateValueProp($state, ["user", "value"]) ?? ""
-                    }
-                  />
-                </p.Stack>
-              ) : null}
-              {true ? (
-                <p.Stack
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox___19A5C)}
-                >
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__gjV6A
-                    )}
-                  >
-                    {"Senha"}
-                  </div>
-                  <TextInput
-                    data-plasmic-name={"password"}
-                    data-plasmic-override={overrides.password}
-                    className={classNames("__wab_instance", sty.password)}
-                    onChange={(...eventArgs) => {
-                      p.generateStateOnChangeProp($state, [
-                        "password",
-                        "value"
-                      ])((e => e.target?.value).apply(null, eventArgs));
-                    }}
-                    value={
-                      p.generateStateValueProp($state, ["password", "value"]) ??
-                      ""
-                    }
-                  />
-                </p.Stack>
-              ) : null}
-              {true ? (
-                <div className={classNames(projectcss.all, sty.freeBox__dulrE)}>
-                  <Button
-                    data-plasmic-name={"signin"}
-                    data-plasmic-override={overrides.signin}
-                    className={classNames("__wab_instance", sty.signin)}
-                    color={"blue" as const}
-                    submitsForm={true}
-                  >
-                    {"Entrar"}
-                  </Button>
+                  {"Senha"}
                 </div>
-              ) : null}
+                <TextInput
+                  data-plasmic-name={"password"}
+                  data-plasmic-override={overrides.password}
+                  className={classNames("__wab_instance", sty.password)}
+                  onChange={(...eventArgs) => {
+                    p.generateStateOnChangeProp($state, ["password", "value"])(
+                      (e => e.target?.value).apply(null, eventArgs)
+                    );
+                  }}
+                  value={
+                    p.generateStateValueProp($state, ["password", "value"]) ??
+                    ""
+                  }
+                />
+              </p.Stack>
+              <div className={classNames(projectcss.all, sty.freeBox__dulrE)}>
+                <Button
+                  data-plasmic-name={"signin"}
+                  data-plasmic-override={overrides.signin}
+                  className={classNames("__wab_instance", sty.signin)}
+                  color={"blue"}
+                  submitsForm={true}
+                >
+                  {"Entrar"}
+                </Button>
+              </div>
             </div>
           </div>
         </div>

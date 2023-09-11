@@ -139,140 +139,116 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
   });
 
   return (
-    true ? (
+    <div
+      data-plasmic-name={"root"}
+      data-plasmic-override={overrides.root}
+      data-plasmic-root={true}
+      data-plasmic-for-node={forNode}
+      className={classNames(
+        projectcss.all,
+        projectcss.root_reset,
+        projectcss.plasmic_default_styles,
+        projectcss.plasmic_mixins,
+        projectcss.plasmic_tokens,
+        plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
+        plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
+        sty.root,
+        { [sty.rooteven]: hasVariant($state, "even", "even") }
+      )}
+    >
       <div
-        data-plasmic-name={"root"}
-        data-plasmic-override={overrides.root}
-        data-plasmic-root={true}
-        data-plasmic-for-node={forNode}
-        className={classNames(
-          projectcss.all,
-          projectcss.root_reset,
-          projectcss.plasmic_default_styles,
-          projectcss.plasmic_mixins,
-          projectcss.plasmic_tokens,
-          plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
-          plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
-          sty.root,
-          { [sty.rooteven]: hasVariant($state, "even", "even") }
-        )}
+        className={classNames(projectcss.all, sty.freeBox__sv7Tj, {
+          [sty.freeBoxeven__sv7TjeuiD]: hasVariant($state, "even", "even")
+        })}
       >
-        {true ? (
-          <div
-            className={classNames(projectcss.all, sty.freeBox__sv7Tj, {
-              [sty.freeBoxeven__sv7TjeuiD]: hasVariant($state, "even", "even")
-            })}
-          >
-            {true ? (
-              <p.Stack
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__tPsW5, {
-                  [sty.freeBoxeven__tPsW5EuiD]: hasVariant(
-                    $state,
-                    "even",
-                    "even"
-                  )
-                })}
-              >
-                <div
-                  className={classNames(projectcss.all, sty.freeBox___8HMms)}
-                >
-                  {p.renderPlasmicSlot({
-                    defaultContents: "1",
-                    value: args.index,
-                    className: classNames(sty.slotTargetIndex)
-                  })}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___8BjoR
-                  )}
-                >
-                  {"-"}
-                </div>
-                <div
-                  className={classNames(projectcss.all, sty.freeBox__bAMb3, {
-                    [sty.freeBoxeven__bAMb3EuiD]: hasVariant(
-                      $state,
-                      "even",
-                      "even"
-                    )
-                  })}
-                >
-                  {p.renderPlasmicSlot({
-                    defaultContents: "Combo 1",
-                    value: args.name
-                  })}
-                </div>
-              </p.Stack>
-            ) : null}
-            {true ? (
-              <p.Stack
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__ndMl6)}
-              >
-                {p.renderPlasmicSlot({
-                  defaultContents: "R$50.00",
-                  value: args.price,
-                  className: classNames(sty.slotTargetPrice, {
-                    [sty.slotTargetPriceeven]: hasVariant(
-                      $state,
-                      "even",
-                      "even"
-                    )
-                  })
-                })}
-              </p.Stack>
-            ) : null}
-          </div>
-        ) : null}
         <p.Stack
           as={"div"}
-          data-plasmic-name={"optionValues"}
-          data-plasmic-override={overrides.optionValues}
           hasGap={true}
-          className={classNames(projectcss.all, sty.optionValues)}
+          className={classNames(projectcss.all, sty.freeBox__tPsW5, {
+            [sty.freeBoxeven__tPsW5EuiD]: hasVariant($state, "even", "even")
+          })}
         >
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__zwko6
-            )}
-          >
-            {"Temaki Philadelphia"}
+          <div className={classNames(projectcss.all, sty.freeBox___8HMms)}>
+            {p.renderPlasmicSlot({
+              defaultContents: "1",
+              value: args.index,
+              className: classNames(sty.slotTargetIndex)
+            })}
           </div>
           <div
             className={classNames(
               projectcss.all,
               projectcss.__wab_text,
-              sty.text__rvi0T
+              sty.text___8BjoR
             )}
           >
-            {"Caldo de Cana"}
+            {"-"}
           </div>
-        </p.Stack>
-        {true ? (
           <div
-            className={classNames(projectcss.all, sty.freeBox__i53, {
-              [sty.freeBoxeven__i53EuiD]: hasVariant($state, "even", "even")
+            className={classNames(projectcss.all, sty.freeBox__bAMb3, {
+              [sty.freeBoxeven__bAMb3EuiD]: hasVariant($state, "even", "even")
             })}
           >
-            <Quantity
-              data-plasmic-name={"quantity"}
-              data-plasmic-override={overrides.quantity}
-              className={classNames("__wab_instance", sty.quantity, {
-                [sty.quantityeven]: hasVariant($state, "even", "even")
-              })}
-            />
+            {p.renderPlasmicSlot({
+              defaultContents: "Combo 1",
+              value: args.name
+            })}
           </div>
-        ) : null}
+        </p.Stack>
+        <p.Stack
+          as={"div"}
+          hasGap={true}
+          className={classNames(projectcss.all, sty.freeBox__ndMl6)}
+        >
+          {p.renderPlasmicSlot({
+            defaultContents: "R$50.00",
+            value: args.price,
+            className: classNames(sty.slotTargetPrice, {
+              [sty.slotTargetPriceeven]: hasVariant($state, "even", "even")
+            })
+          })}
+        </p.Stack>
       </div>
-    ) : null
+      <p.Stack
+        as={"div"}
+        data-plasmic-name={"optionValues"}
+        data-plasmic-override={overrides.optionValues}
+        hasGap={true}
+        className={classNames(projectcss.all, sty.optionValues)}
+      >
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__zwko6
+          )}
+        >
+          {"Temaki Philadelphia"}
+        </div>
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__rvi0T
+          )}
+        >
+          {"Caldo de Cana"}
+        </div>
+      </p.Stack>
+      <div
+        className={classNames(projectcss.all, sty.freeBox__i53, {
+          [sty.freeBoxeven__i53EuiD]: hasVariant($state, "even", "even")
+        })}
+      >
+        <Quantity
+          data-plasmic-name={"quantity"}
+          data-plasmic-override={overrides.quantity}
+          className={classNames("__wab_instance", sty.quantity, {
+            [sty.quantityeven]: hasVariant($state, "even", "even")
+          })}
+        />
+      </div>
+    </div>
   ) as React.ReactElement | null;
 }
 

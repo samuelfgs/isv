@@ -144,35 +144,33 @@ function PlasmicLoading__RenderFunc(props: {
           { [sty.roothide]: hasVariant($state, "hide", "hide") }
         )}
       >
-        {true ? (
-          <div
-            data-plasmic-name={"freeBox"}
-            data-plasmic-override={overrides.freeBox}
-            className={classNames(projectcss.all, sty.freeBox)}
-          >
-            <p.PlasmicImg
-              data-plasmic-name={"img"}
-              data-plasmic-override={overrides.img}
-              alt={""}
-              className={classNames(sty.img, {
-                [sty.imghide]: hasVariant($state, "hide", "hide")
-              })}
-              displayHeight={"150px" as const}
-              displayMaxHeight={"none" as const}
-              displayMaxWidth={"100%" as const}
-              displayMinHeight={"0" as const}
-              displayMinWidth={"0" as const}
-              displayWidth={"150px" as const}
-              loading={"lazy" as const}
-              src={{
-                src: "/plasmic/isv/images/zz5H1Gif.gif",
-                fullWidth: 256,
-                fullHeight: 256,
-                aspectRatio: undefined
-              }}
-            />
-          </div>
-        ) : null}
+        <div
+          data-plasmic-name={"freeBox"}
+          data-plasmic-override={overrides.freeBox}
+          className={classNames(projectcss.all, sty.freeBox)}
+        >
+          <p.PlasmicImg
+            data-plasmic-name={"img"}
+            data-plasmic-override={overrides.img}
+            alt={""}
+            className={classNames(sty.img, {
+              [sty.imghide]: hasVariant($state, "hide", "hide")
+            })}
+            displayHeight={"150px"}
+            displayMaxHeight={"none"}
+            displayMaxWidth={"100%"}
+            displayMinHeight={"0"}
+            displayMinWidth={"0"}
+            displayWidth={"150px"}
+            loading={"lazy"}
+            src={{
+              src: "/plasmic/isv/images/zz5H1Gif.gif",
+              fullWidth: 256,
+              fullHeight: 256,
+              aspectRatio: undefined
+            }}
+          />
+        </div>
       </div>
     ) : null
   ) as React.ReactElement | null;

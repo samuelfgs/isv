@@ -132,44 +132,40 @@ function PlasmicCartButton__RenderFunc(props: {
   });
 
   return (
-    (hasVariant($state, "isEmpty", "isEmpty") ? true : true) ? (
-      <div
-        data-plasmic-name={"root"}
-        data-plasmic-override={overrides.root}
-        data-plasmic-root={true}
-        data-plasmic-for-node={forNode}
-        className={classNames(
-          projectcss.all,
-          projectcss.root_reset,
-          projectcss.plasmic_default_styles,
-          projectcss.plasmic_mixins,
-          projectcss.plasmic_tokens,
-          plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
-          plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
-          sty.root,
-          { [sty.rootisEmpty]: hasVariant($state, "isEmpty", "isEmpty") }
-        )}
-      >
-        <CartIcon
-          data-plasmic-name={"svg"}
-          data-plasmic-override={overrides.svg}
-          className={classNames(projectcss.all, sty.svg)}
-          role={"img"}
-        />
+    <div
+      data-plasmic-name={"root"}
+      data-plasmic-override={overrides.root}
+      data-plasmic-root={true}
+      data-plasmic-for-node={forNode}
+      className={classNames(
+        projectcss.all,
+        projectcss.root_reset,
+        projectcss.plasmic_default_styles,
+        projectcss.plasmic_mixins,
+        projectcss.plasmic_tokens,
+        plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
+        plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
+        sty.root,
+        { [sty.rootisEmpty]: hasVariant($state, "isEmpty", "isEmpty") }
+      )}
+    >
+      <CartIcon
+        data-plasmic-name={"svg"}
+        data-plasmic-override={overrides.svg}
+        className={classNames(projectcss.all, sty.svg)}
+        role={"img"}
+      />
 
-        {true ? (
-          <div className={classNames(projectcss.all, sty.freeBox__vd0UC)}>
-            <div className={classNames(projectcss.all, sty.freeBox__ecsQm)}>
-              {p.renderPlasmicSlot({
-                defaultContents: "1",
-                value: args.quantity,
-                className: classNames(sty.slotTargetQuantity)
-              })}
-            </div>
-          </div>
-        ) : null}
+      <div className={classNames(projectcss.all, sty.freeBox__vd0UC)}>
+        <div className={classNames(projectcss.all, sty.freeBox__ecsQm)}>
+          {p.renderPlasmicSlot({
+            defaultContents: "1",
+            value: args.quantity,
+            className: classNames(sty.slotTargetQuantity)
+          })}
+        </div>
       </div>
-    ) : null
+    </div>
   ) as React.ReactElement | null;
 }
 

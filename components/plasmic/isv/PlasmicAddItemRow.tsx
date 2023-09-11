@@ -175,101 +175,79 @@ function PlasmicAddItemRow__RenderFunc(props: {
   });
 
   return (
-    true ? (
+    <div
+      data-plasmic-name={"root"}
+      data-plasmic-override={overrides.root}
+      data-plasmic-root={true}
+      data-plasmic-for-node={forNode}
+      className={classNames(
+        projectcss.all,
+        projectcss.root_reset,
+        projectcss.plasmic_default_styles,
+        projectcss.plasmic_mixins,
+        projectcss.plasmic_tokens,
+        plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
+        plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
+        sty.root,
+        {
+          [sty.rootisFirstRow]: hasVariant($state, "isFirstRow", "isFirstRow"),
+          [sty.rootisSelected]: hasVariant($state, "isSelected", "isSelected")
+        }
+      )}
+      data-menuoption-id={args.menuOptionId}
+      data-menuoptionvalue-id={args.menuOptionValueId}
+    >
       <div
-        data-plasmic-name={"root"}
-        data-plasmic-override={overrides.root}
-        data-plasmic-root={true}
-        data-plasmic-for-node={forNode}
-        className={classNames(
-          projectcss.all,
-          projectcss.root_reset,
-          projectcss.plasmic_default_styles,
-          projectcss.plasmic_mixins,
-          projectcss.plasmic_tokens,
-          plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
-          plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
-          sty.root,
-          {
-            [sty.rootisFirstRow]: hasVariant(
-              $state,
-              "isFirstRow",
-              "isFirstRow"
-            ),
-            [sty.rootisSelected]: hasVariant($state, "isSelected", "isSelected")
-          }
-        )}
-        data-menuoption-id={args.menuOptionId}
-        data-menuoptionvalue-id={args.menuOptionValueId}
+        className={classNames(projectcss.all, sty.freeBox__jy49O, {
+          [sty.freeBoxisFirstRow__jy49O0CdlZ]: hasVariant(
+            $state,
+            "isFirstRow",
+            "isFirstRow"
+          ),
+          [sty.freeBoxisSelected__jy49OkWo4T]: hasVariant(
+            $state,
+            "isSelected",
+            "isSelected"
+          ),
+          [sty.freeBoxshowPrice__jy49OuK411]: hasVariant(
+            $state,
+            "showPrice",
+            "showPrice"
+          ),
+          [sty.freeBoxshowQuantity_notInitial_showPrice__jy49ObtqIwUK411]:
+            hasVariant($state, "showQuantity", "notInitial") &&
+            hasVariant($state, "showPrice", "showPrice")
+        })}
       >
         <div
-          className={classNames(projectcss.all, sty.freeBox__jy49O, {
-            [sty.freeBoxisFirstRow__jy49O0CdlZ]: hasVariant(
-              $state,
-              "isFirstRow",
-              "isFirstRow"
-            ),
-            [sty.freeBoxisSelected__jy49OkWo4T]: hasVariant(
-              $state,
-              "isSelected",
-              "isSelected"
-            ),
-            [sty.freeBoxshowPrice__jy49OuK411]: hasVariant(
+          className={classNames(projectcss.all, sty.freeBox___9XzJs, {
+            [sty.freeBoxshowPrice___9XzJSuK411]: hasVariant(
               $state,
               "showPrice",
               "showPrice"
             ),
-            [sty.freeBoxshowQuantity_notInitial_showPrice__jy49ObtqIwUK411]:
+            [sty.freeBoxshowQuantity_initial___9XzJsnzcw9]: hasVariant(
+              $state,
+              "showQuantity",
+              "initial"
+            ),
+            [sty.freeBoxshowQuantity_initial_showPrice___9XzJsnzcw9UK411]:
+              hasVariant($state, "showQuantity", "initial") &&
+              hasVariant($state, "showPrice", "showPrice"),
+            [sty.freeBoxshowQuantity_notInitial___9XzJSbtqIw]: hasVariant(
+              $state,
+              "showQuantity",
+              "notInitial"
+            ),
+            [sty.freeBoxshowQuantity_notInitial_showPrice___9XzJSbtqIwUK411]:
               hasVariant($state, "showQuantity", "notInitial") &&
               hasVariant($state, "showPrice", "showPrice")
           })}
         >
-          {true ? (
-            <div
-              className={classNames(projectcss.all, sty.freeBox___9XzJs, {
-                [sty.freeBoxshowPrice___9XzJSuK411]: hasVariant(
-                  $state,
-                  "showPrice",
-                  "showPrice"
-                ),
-                [sty.freeBoxshowQuantity_initial___9XzJsnzcw9]: hasVariant(
-                  $state,
-                  "showQuantity",
-                  "initial"
-                ),
-                [sty.freeBoxshowQuantity_initial_showPrice___9XzJsnzcw9UK411]:
-                  hasVariant($state, "showQuantity", "initial") &&
-                  hasVariant($state, "showPrice", "showPrice"),
-                [sty.freeBoxshowQuantity_notInitial___9XzJSbtqIw]: hasVariant(
-                  $state,
-                  "showQuantity",
-                  "notInitial"
-                ),
-                [sty.freeBoxshowQuantity_notInitial_showPrice___9XzJSbtqIwUK411]:
-                  hasVariant($state, "showQuantity", "notInitial") &&
-                  hasVariant($state, "showPrice", "showPrice")
-              })}
-            >
-              {p.renderPlasmicSlot({
-                defaultContents: "Pastel de Pizza",
-                value: args.children
-              })}
-              {(
-                hasVariant($state, "showQuantity", "initial") &&
-                hasVariant($state, "showPrice", "showPrice")
-                  ? true
-                  : hasVariant($state, "showQuantity", "notInitial") &&
-                    hasVariant($state, "showPrice", "showPrice")
-                  ? true
-                  : false
-              )
-                ? p.renderPlasmicSlot({
-                    defaultContents: "+ R$ 0,00",
-                    value: args.price2
-                  })
-                : null}
-            </div>
-          ) : null}
+          {p.renderPlasmicSlot({
+            defaultContents: "Pastel de Pizza",
+            value: args.children
+          })}
           {(
             hasVariant($state, "showQuantity", "initial") &&
             hasVariant($state, "showPrice", "showPrice")
@@ -277,65 +255,57 @@ function PlasmicAddItemRow__RenderFunc(props: {
               : hasVariant($state, "showQuantity", "notInitial") &&
                 hasVariant($state, "showPrice", "showPrice")
               ? true
-              : hasVariant($state, "showPrice", "showPrice")
-              ? true
-              : true
-          ) ? (
-            <p.Stack
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__lbV7J, {
-                [sty.freeBoxshowPrice__lbV7JuK411]: hasVariant(
-                  $state,
-                  "showPrice",
-                  "showPrice"
-                ),
-                [sty.freeBoxshowQuantity_initial_showPrice__lbV7Jnzcw9UK411]:
-                  hasVariant($state, "showQuantity", "initial") &&
-                  hasVariant($state, "showPrice", "showPrice"),
-                [sty.freeBoxshowQuantity_notInitial_showPrice__lbV7JbtqIwUK411]:
-                  hasVariant($state, "showQuantity", "notInitial") &&
-                  hasVariant($state, "showPrice", "showPrice")
-              })}
-            >
-              {true
-                ? p.renderPlasmicSlot({
-                    defaultContents: "+ R$ 0,00",
-                    value: args.price
-                  })
-                : null}
-            </p.Stack>
-          ) : null}
-          {(
-            hasVariant($state, "showQuantity", "initial")
-              ? true
-              : hasVariant($state, "showQuantity", "notInitial")
-              ? true
-              : true
-          ) ? (
-            <Quantity
-              data-plasmic-name={"quantity"}
-              data-plasmic-override={overrides.quantity}
-              className={classNames("__wab_instance", sty.quantity, {
-                [sty.quantityshowQuantity_initial]: hasVariant(
-                  $state,
-                  "showQuantity",
-                  "initial"
-                ),
-                [sty.quantityshowQuantity_notInitial]: hasVariant(
-                  $state,
-                  "showQuantity",
-                  "notInitial"
-                )
-              })}
-              initialState={
-                hasVariant($state, "showQuantity", "initial") ? true : undefined
-              }
-            />
-          ) : null}
+              : false
+          )
+            ? p.renderPlasmicSlot({
+                defaultContents: "+ R$ 0,00",
+                value: args.price2
+              })
+            : null}
         </div>
+        <p.Stack
+          as={"div"}
+          hasGap={true}
+          className={classNames(projectcss.all, sty.freeBox__lbV7J, {
+            [sty.freeBoxshowPrice__lbV7JuK411]: hasVariant(
+              $state,
+              "showPrice",
+              "showPrice"
+            ),
+            [sty.freeBoxshowQuantity_initial_showPrice__lbV7Jnzcw9UK411]:
+              hasVariant($state, "showQuantity", "initial") &&
+              hasVariant($state, "showPrice", "showPrice"),
+            [sty.freeBoxshowQuantity_notInitial_showPrice__lbV7JbtqIwUK411]:
+              hasVariant($state, "showQuantity", "notInitial") &&
+              hasVariant($state, "showPrice", "showPrice")
+          })}
+        >
+          {p.renderPlasmicSlot({
+            defaultContents: "+ R$ 0,00",
+            value: args.price
+          })}
+        </p.Stack>
+        <Quantity
+          data-plasmic-name={"quantity"}
+          data-plasmic-override={overrides.quantity}
+          className={classNames("__wab_instance", sty.quantity, {
+            [sty.quantityshowQuantity_initial]: hasVariant(
+              $state,
+              "showQuantity",
+              "initial"
+            ),
+            [sty.quantityshowQuantity_notInitial]: hasVariant(
+              $state,
+              "showQuantity",
+              "notInitial"
+            )
+          })}
+          initialState={
+            hasVariant($state, "showQuantity", "initial") ? true : undefined
+          }
+        />
       </div>
-    ) : null
+    </div>
   ) as React.ReactElement | null;
 }
 

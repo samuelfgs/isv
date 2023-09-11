@@ -132,24 +132,22 @@ function PlasmicSuccess__RenderFunc(props: {
             sty.root
           )}
         >
-          {true ? (
-            <p.PlasmicLink
-              className={classNames(
-                projectcss.all,
-                projectcss.a,
-                sty.link__b44Od
-              )}
-              component={Link}
-              href={`/`}
-              platform={"nextjs"}
-            >
-              <Header
-                data-plasmic-name={"header"}
-                data-plasmic-override={overrides.header}
-                className={classNames("__wab_instance", sty.header)}
-              />
-            </p.PlasmicLink>
-          ) : null}
+          <p.PlasmicLink
+            className={classNames(
+              projectcss.all,
+              projectcss.a,
+              sty.link__b44Od
+            )}
+            component={Link}
+            href={`/`}
+            platform={"nextjs"}
+          >
+            <Header
+              data-plasmic-name={"header"}
+              data-plasmic-override={overrides.header}
+              className={classNames("__wab_instance", sty.header)}
+            />
+          </p.PlasmicLink>
           <div className={classNames(projectcss.all, sty.freeBox__jsI9F)}>
             <div className={classNames(projectcss.all, sty.freeBox__lxcmU)}>
               <CheckCircleIcon
@@ -188,20 +186,18 @@ function PlasmicSuccess__RenderFunc(props: {
                 </React.Fragment>
               </div>
             </div>
-            {true ? (
-              <p.PlasmicLink
-                className={classNames(
-                  projectcss.all,
-                  projectcss.a,
-                  projectcss.__wab_text,
-                  sty.link__wmkFi
-                )}
-                component={Link}
-                platform={"nextjs"}
-              >
-                {"Baixar comprovante"}
-              </p.PlasmicLink>
-            ) : null}
+            <p.PlasmicLink
+              className={classNames(
+                projectcss.all,
+                projectcss.a,
+                projectcss.__wab_text,
+                sty.link__wmkFi
+              )}
+              component={Link}
+              platform={"nextjs"}
+            >
+              {"Baixar comprovante"}
+            </p.PlasmicLink>
           </div>
         </div>
       </div>

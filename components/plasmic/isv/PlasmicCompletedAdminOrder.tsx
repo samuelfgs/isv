@@ -143,101 +143,95 @@ function PlasmicCompletedAdminOrder__RenderFunc(props: {
             className={classNames("__wab_instance", sty.header)}
           />
 
-          {true ? (
-            <div className={classNames(projectcss.all, sty.freeBox___4Zd1S)}>
-              <p.Stack
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox___2Cd8S)}
-              >
-                {true ? (
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__txSgs)}
-                  >
-                    <CheckCircleIcon
-                      className={classNames(projectcss.all, sty.svg__xvXht)}
-                      role={"img"}
-                    />
+          <div className={classNames(projectcss.all, sty.freeBox___4Zd1S)}>
+            <p.Stack
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox___2Cd8S)}
+            >
+              <div className={classNames(projectcss.all, sty.freeBox__txSgs)}>
+                <CheckCircleIcon
+                  className={classNames(projectcss.all, sty.svg__xvXht)}
+                  role={"img"}
+                />
 
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__xrfub
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h2
-                            data-plasmic-name={"h2"}
-                            data-plasmic-override={overrides.h2}
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h2,
-                              projectcss.__wab_text,
-                              sty.h2
-                            )}
-                          >
-                            {"PEDIDO CONCLUIDO"}
-                          </h2>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                ) : null}
-                <Button
-                  data-plasmic-name={"printBtn"}
-                  data-plasmic-override={overrides.printBtn}
-                  className={classNames("__wab_instance", sty.printBtn)}
-                  color={"green" as const}
-                  showStartIcon={true}
-                  startIcon={
-                    <PrintIcon
-                      className={classNames(projectcss.all, sty.svg___02JbQ)}
-                      role={"img"}
-                    />
-                  }
-                  submitsForm={true}
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__xrfub
+                  )}
                 >
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__d8YUm
-                    )}
-                  >
-                    {"Imprimir"}
-                  </div>
-                </Button>
-                <Button
-                  data-plasmic-name={"homeBtn"}
-                  data-plasmic-override={overrides.homeBtn}
-                  className={classNames("__wab_instance", sty.homeBtn)}
-                  color={"softGreen" as const}
-                  showStartIcon={true}
-                  startIcon={
-                    <HomeIcon
-                      className={classNames(projectcss.all, sty.svg__scmKv)}
-                      role={"img"}
-                    />
-                  }
-                  submitsForm={true}
+                  <React.Fragment>
+                    <React.Fragment>{""}</React.Fragment>
+                    {
+                      <h2
+                        data-plasmic-name={"h2"}
+                        data-plasmic-override={overrides.h2}
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.h2,
+                          projectcss.__wab_text,
+                          sty.h2
+                        )}
+                      >
+                        {"PEDIDO CONCLUIDO"}
+                      </h2>
+                    }
+                    <React.Fragment>{""}</React.Fragment>
+                  </React.Fragment>
+                </div>
+              </div>
+              <Button
+                data-plasmic-name={"printBtn"}
+                data-plasmic-override={overrides.printBtn}
+                className={classNames("__wab_instance", sty.printBtn)}
+                color={"green"}
+                showStartIcon={true}
+                startIcon={
+                  <PrintIcon
+                    className={classNames(projectcss.all, sty.svg___02JbQ)}
+                    role={"img"}
+                  />
+                }
+                submitsForm={true}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__d8YUm
+                  )}
                 >
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text___7IiDf
-                    )}
-                  >
-                    {"Fazer outro pedido"}
-                  </div>
-                </Button>
-              </p.Stack>
-            </div>
-          ) : null}
+                  {"Imprimir"}
+                </div>
+              </Button>
+              <Button
+                data-plasmic-name={"homeBtn"}
+                data-plasmic-override={overrides.homeBtn}
+                className={classNames("__wab_instance", sty.homeBtn)}
+                color={"softGreen"}
+                showStartIcon={true}
+                startIcon={
+                  <HomeIcon
+                    className={classNames(projectcss.all, sty.svg__scmKv)}
+                    role={"img"}
+                  />
+                }
+                submitsForm={true}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___7IiDf
+                  )}
+                >
+                  {"Fazer outro pedido"}
+                </div>
+              </Button>
+            </p.Stack>
+          </div>
         </div>
       </div>
     </React.Fragment>

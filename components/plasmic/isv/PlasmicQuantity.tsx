@@ -172,51 +172,47 @@ function PlasmicQuantity__RenderFunc(props: {
         }
       )}
     >
-      {(hasVariant($state, "initialState", "initialState") ? true : true) ? (
-        <Button
-          data-plasmic-name={"minusButton"}
-          data-plasmic-override={overrides.minusButton}
-          className={classNames("__wab_instance", sty.minusButton, {
-            [sty.minusButtoninitialState]: hasVariant(
-              $state,
-              "initialState",
-              "initialState"
-            )
-          })}
-          color={"blue" as const}
-          size={"compact" as const}
-          submitsForm={true}
-        >
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__rytN
-            )}
-          >
-            {"-"}
-          </div>
-        </Button>
-      ) : null}
-      {(hasVariant($state, "initialState", "initialState") ? true : true) ? (
+      <Button
+        data-plasmic-name={"minusButton"}
+        data-plasmic-override={overrides.minusButton}
+        className={classNames("__wab_instance", sty.minusButton, {
+          [sty.minusButtoninitialState]: hasVariant(
+            $state,
+            "initialState",
+            "initialState"
+          )
+        })}
+        color={"blue"}
+        size={"compact"}
+        submitsForm={true}
+      >
         <div
-          data-plasmic-name={"freeBox"}
-          data-plasmic-override={overrides.freeBox}
-          className={classNames(projectcss.all, sty.freeBox, {
-            [sty.freeBoxinitialState]: hasVariant(
-              $state,
-              "initialState",
-              "initialState"
-            )
-          })}
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__rytN
+          )}
         >
-          {p.renderPlasmicSlot({
-            defaultContents: "0",
-            value: args.quantity,
-            className: classNames(sty.slotTargetQuantity)
-          })}
+          {"-"}
         </div>
-      ) : null}
+      </Button>
+      <div
+        data-plasmic-name={"freeBox"}
+        data-plasmic-override={overrides.freeBox}
+        className={classNames(projectcss.all, sty.freeBox, {
+          [sty.freeBoxinitialState]: hasVariant(
+            $state,
+            "initialState",
+            "initialState"
+          )
+        })}
+      >
+        {p.renderPlasmicSlot({
+          defaultContents: "0",
+          value: args.quantity,
+          className: classNames(sty.slotTargetQuantity)
+        })}
+      </div>
       <Button
         data-plasmic-name={"plusButton"}
         data-plasmic-override={overrides.plusButton}
@@ -227,13 +223,13 @@ function PlasmicQuantity__RenderFunc(props: {
             "disablePlusButton"
           )
         })}
-        color={"blue" as const}
+        color={"blue"}
         isDisabled={
           hasVariant($state, "disablePlusButton", "disablePlusButton")
             ? true
             : undefined
         }
-        size={"compact" as const}
+        size={"compact"}
         submitsForm={true}
       >
         <div

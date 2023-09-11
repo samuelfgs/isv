@@ -14,7 +14,6 @@ export interface GlobalContextsProviderProps {
   contentfulCredentialsProviderProps?: Partial<
     Omit<React.ComponentProps<typeof ContentfulCredentialsProvider>, "children">
   >;
-
   embedCssProps?: Partial<
     Omit<React.ComponentProps<typeof EmbedCss>, "children">
   >;
@@ -32,19 +31,19 @@ export default function GlobalContextsProvider(
         contentfulCredentialsProviderProps &&
         "accessToken" in contentfulCredentialsProviderProps
           ? contentfulCredentialsProviderProps.accessToken!
-          : ("ZhMf0iObSvHFPx861zNK4VNL6kOrURuEQh5R24_QdvE" as const)
+          : "ZhMf0iObSvHFPx861zNK4VNL6kOrURuEQh5R24_QdvE"
       }
       environment={
         contentfulCredentialsProviderProps &&
         "environment" in contentfulCredentialsProviderProps
           ? contentfulCredentialsProviderProps.environment!
-          : ("master" as const)
+          : "master"
       }
       space={
         contentfulCredentialsProviderProps &&
         "space" in contentfulCredentialsProviderProps
           ? contentfulCredentialsProviderProps.space!
-          : ("1qzqoknl91s3" as const)
+          : "1qzqoknl91s3"
       }
     >
       <EmbedCss
@@ -52,7 +51,7 @@ export default function GlobalContextsProvider(
         css={
           embedCssProps && "css" in embedCssProps
             ? embedCssProps.css!
-            : ("@media print {\n  @page { margin: 0; }\n  body { margin: 0 0.6cm; }\n}" as const)
+            : "@media print {\n  @page { margin: 0; }\n  body { margin: 0 0.6cm; }\n}"
         }
       >
         {children}

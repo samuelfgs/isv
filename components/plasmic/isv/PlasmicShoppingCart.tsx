@@ -144,13 +144,13 @@ function PlasmicShoppingCart__RenderFunc(props: {
         path: "nameInput.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "" as const
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
       },
       {
         path: "emailInput.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "" as const
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -163,329 +163,288 @@ function PlasmicShoppingCart__RenderFunc(props: {
   });
 
   return (
-    true ? (
-      <p.Stack
-        as={"div"}
-        data-plasmic-name={"root"}
-        data-plasmic-override={overrides.root}
-        data-plasmic-root={true}
-        data-plasmic-for-node={forNode}
-        hasGap={true}
-        className={classNames(
-          projectcss.all,
-          projectcss.root_reset,
-          projectcss.plasmic_default_styles,
-          projectcss.plasmic_mixins,
-          projectcss.plasmic_tokens,
-          plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
-          plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
-          sty.root,
-          { [sty.rootisEmpty]: hasVariant($state, "isEmpty", "isEmpty") }
-        )}
-      >
-        <Header
-          data-plasmic-name={"header"}
-          data-plasmic-override={overrides.header}
-          className={classNames("__wab_instance", sty.header)}
-        />
+    <p.Stack
+      as={"div"}
+      data-plasmic-name={"root"}
+      data-plasmic-override={overrides.root}
+      data-plasmic-root={true}
+      data-plasmic-for-node={forNode}
+      hasGap={true}
+      className={classNames(
+        projectcss.all,
+        projectcss.root_reset,
+        projectcss.plasmic_default_styles,
+        projectcss.plasmic_mixins,
+        projectcss.plasmic_tokens,
+        plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
+        plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
+        sty.root,
+        { [sty.rootisEmpty]: hasVariant($state, "isEmpty", "isEmpty") }
+      )}
+    >
+      <Header
+        data-plasmic-name={"header"}
+        data-plasmic-override={overrides.header}
+        className={classNames("__wab_instance", sty.header)}
+      />
 
-        {(hasVariant($state, "isEmpty", "isEmpty") ? true : true) ? (
-          <div
-            className={classNames(projectcss.all, sty.freeBox__dK8WR, {
-              [sty.freeBoxisEmpty__dK8WRyqkGv]: hasVariant(
+      <div
+        className={classNames(projectcss.all, sty.freeBox__dK8WR, {
+          [sty.freeBoxisEmpty__dK8WRyqkGv]: hasVariant(
+            $state,
+            "isEmpty",
+            "isEmpty"
+          )
+        })}
+      >
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__w92Vj,
+            {
+              [sty.textisEmpty__w92VjyqkGv]: hasVariant(
                 $state,
                 "isEmpty",
                 "isEmpty"
               )
-            })}
-          >
-            {(hasVariant($state, "isEmpty", "isEmpty") ? true : true) ? (
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__w92Vj,
-                  {
-                    [sty.textisEmpty__w92VjyqkGv]: hasVariant(
-                      $state,
-                      "isEmpty",
-                      "isEmpty"
-                    )
-                  }
-                )}
-              >
-                {"Nenhum item foi adicionado."}
-              </div>
-            ) : null}
-          </div>
-        ) : null}
-        {true ? (
-          <div className={classNames(projectcss.all, sty.freeBox__mLvYu)}>
-            {(hasVariant($state, "isEmpty", "isEmpty") ? true : true) ? (
-              <p.Stack
-                as={"div"}
-                data-plasmic-name={"lineItems"}
-                data-plasmic-override={overrides.lineItems}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.lineItems, {
-                  [sty.lineItemsisEmpty]: hasVariant(
-                    $state,
-                    "isEmpty",
-                    "isEmpty"
-                  )
-                })}
-              >
-                {true ? (
-                  <ShoppingCartLineItem
-                    className={classNames(
-                      "__wab_instance",
-                      sty.shoppingCartLineItem__tSkQ
-                    )}
-                    even={true}
-                  />
-                ) : null}
-                {true ? (
-                  <ShoppingCartLineItem
-                    className={classNames(
-                      "__wab_instance",
-                      sty.shoppingCartLineItem__fCQA
-                    )}
-                  />
-                ) : null}
-                {true ? (
-                  <ShoppingCartLineItem
-                    className={classNames(
-                      "__wab_instance",
-                      sty.shoppingCartLineItem__trP6
-                    )}
-                    even={true}
-                  />
-                ) : null}
-              </p.Stack>
-            ) : null}
-            <div
-              data-plasmic-name={"scrollSpace"}
-              data-plasmic-override={overrides.scrollSpace}
-              className={classNames(projectcss.all, sty.scrollSpace)}
-            />
-          </div>
-        ) : null}
-        {true ? (
-          <p.Stack
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__avSb)}
-          >
-            {(hasVariant($state, "isEmpty", "isEmpty") ? true : true) ? (
-              <div
-                className={classNames(projectcss.all, sty.freeBox__bZiN9, {
-                  [sty.freeBoxisEmpty__bZiN9YqkGv]: hasVariant(
-                    $state,
-                    "isEmpty",
-                    "isEmpty"
-                  )
-                })}
-              >
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__riere
-                  )}
-                >
-                  {"Total: R$ "}
-                </div>
-                <div
-                  className={classNames(projectcss.all, sty.freeBox___6PIpe)}
-                >
-                  {p.renderPlasmicSlot({
-                    defaultContents: "20,00",
-                    value: args.totalPrice,
-                    className: classNames(sty.slotTargetTotalPrice)
-                  })}
-                </div>
-              </div>
-            ) : null}
-            {true ? (
-              <div
-                data-plasmic-name={"invalidData"}
-                data-plasmic-override={overrides.invalidData}
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.invalidData
-                )}
-              >
-                {"Dados inv\u00e1lidos"}
-              </div>
-            ) : null}
-            <p.Stack
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__az7FN)}
-            >
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__hPl3V
-                )}
-              >
-                {"Nome"}
-              </div>
-              <TextInput
-                data-plasmic-name={"nameInput"}
-                data-plasmic-override={overrides.nameInput}
-                className={classNames("__wab_instance", sty.nameInput)}
-                name={"name" as const}
-                onChange={(...eventArgs) => {
-                  p.generateStateOnChangeProp($state, ["nameInput", "value"])(
-                    (e => e.target?.value).apply(null, eventArgs)
-                  );
-                }}
-                placeholder={"" as const}
-                required={true}
-                value={
-                  p.generateStateValueProp($state, ["nameInput", "value"]) ?? ""
-                }
-              />
-            </p.Stack>
-            <p.Stack
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__dy3J8)}
-            >
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__ltFxi
-                )}
-              >
-                {"Email"}
-              </div>
-              <TextInput
-                data-plasmic-name={"emailInput"}
-                data-plasmic-override={overrides.emailInput}
-                className={classNames("__wab_instance", sty.emailInput)}
-                name={"email" as const}
-                onChange={(...eventArgs) => {
-                  p.generateStateOnChangeProp($state, ["emailInput", "value"])(
-                    (e => e.target?.value).apply(null, eventArgs)
-                  );
-                }}
-                required={true}
-                type={"email" as const}
-                value={
-                  p.generateStateValueProp($state, ["emailInput", "value"]) ??
-                  ""
-                }
-              />
-            </p.Stack>
-            {true ? (
-              <div
-                className={classNames(projectcss.all, sty.freeBox__dhXtS, {
-                  [sty.freeBoxisEmpty__dhXtSyqkGv]: hasVariant(
-                    $state,
-                    "isEmpty",
-                    "isEmpty"
-                  )
-                })}
-              >
-                <Button
-                  data-plasmic-name={"backBtn"}
-                  data-plasmic-override={overrides.backBtn}
-                  className={classNames("__wab_instance", sty.backBtn, {
-                    [sty.backBtnisEmpty]: hasVariant(
-                      $state,
-                      "isEmpty",
-                      "isEmpty"
-                    )
-                  })}
-                  color={"softBlue" as const}
-                  isDisabled={
-                    hasVariant($state, "isEmpty", "isEmpty") ? true : undefined
-                  }
-                  showStartIcon={true}
-                  startIcon={
-                    <PlusIcon
-                      data-plasmic-name={"svg"}
-                      data-plasmic-override={overrides.svg}
-                      className={classNames(projectcss.all, sty.svg)}
-                      role={"img"}
-                    />
-                  }
-                  submitsForm={true}
-                >
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text___528Rb,
-                      {
-                        [sty.textisEmpty___528RbyqkGv]: hasVariant(
-                          $state,
-                          "isEmpty",
-                          "isEmpty"
-                        )
-                      }
-                    )}
-                  >
-                    {hasVariant($state, "isEmpty", "isEmpty")
-                      ? "Adicionar"
-                      : "Adicionar mais"}
-                  </div>
-                </Button>
-                {(hasVariant($state, "isEmpty", "isEmpty") ? true : true) ? (
-                  <Button
-                    data-plasmic-name={"checkoutBtn"}
-                    data-plasmic-override={overrides.checkoutBtn}
-                    className={classNames("__wab_instance", sty.checkoutBtn, {
-                      [sty.checkoutBtnisEmpty]: hasVariant(
-                        $state,
-                        "isEmpty",
-                        "isEmpty"
-                      )
-                    })}
-                    color={"blue" as const}
-                    isDisabled={
-                      hasVariant($state, "isEmpty", "isEmpty")
-                        ? true
-                        : undefined
-                    }
-                    showStartIcon={true}
-                    submitsForm={true}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__nNaap,
-                        {
-                          [sty.textisEmpty__nNaapYqkGv]: hasVariant(
-                            $state,
-                            "isEmpty",
-                            "isEmpty"
-                          )
-                        }
-                      )}
-                    >
-                      {"Finalizar compra"}
-                    </div>
-                  </Button>
-                ) : null}
-              </div>
-            ) : null}
-          </p.Stack>
-        ) : null}
-        <Loading
-          data-plasmic-name={"loading"}
-          data-plasmic-override={overrides.loading}
-          className={classNames("__wab_instance", sty.loading)}
-          hide={true}
+            }
+          )}
+        >
+          {"Nenhum item foi adicionado."}
+        </div>
+      </div>
+      <div className={classNames(projectcss.all, sty.freeBox__mLvYu)}>
+        <p.Stack
+          as={"div"}
+          data-plasmic-name={"lineItems"}
+          data-plasmic-override={overrides.lineItems}
+          hasGap={true}
+          className={classNames(projectcss.all, sty.lineItems, {
+            [sty.lineItemsisEmpty]: hasVariant($state, "isEmpty", "isEmpty")
+          })}
+        >
+          <ShoppingCartLineItem
+            className={classNames(
+              "__wab_instance",
+              sty.shoppingCartLineItem__tSkQ
+            )}
+            even={true}
+          />
+
+          <ShoppingCartLineItem
+            className={classNames(
+              "__wab_instance",
+              sty.shoppingCartLineItem__fCQA
+            )}
+          />
+
+          <ShoppingCartLineItem
+            className={classNames(
+              "__wab_instance",
+              sty.shoppingCartLineItem__trP6
+            )}
+            even={true}
+          />
+        </p.Stack>
+        <div
+          data-plasmic-name={"scrollSpace"}
+          data-plasmic-override={overrides.scrollSpace}
+          className={classNames(projectcss.all, sty.scrollSpace)}
         />
+      </div>
+      <p.Stack
+        as={"div"}
+        hasGap={true}
+        className={classNames(projectcss.all, sty.freeBox__avSb)}
+      >
+        <div
+          className={classNames(projectcss.all, sty.freeBox__bZiN9, {
+            [sty.freeBoxisEmpty__bZiN9YqkGv]: hasVariant(
+              $state,
+              "isEmpty",
+              "isEmpty"
+            )
+          })}
+        >
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__riere
+            )}
+          >
+            {"Total: R$ "}
+          </div>
+          <div className={classNames(projectcss.all, sty.freeBox___6PIpe)}>
+            {p.renderPlasmicSlot({
+              defaultContents: "20,00",
+              value: args.totalPrice,
+              className: classNames(sty.slotTargetTotalPrice)
+            })}
+          </div>
+        </div>
+        <div
+          data-plasmic-name={"invalidData"}
+          data-plasmic-override={overrides.invalidData}
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.invalidData
+          )}
+        >
+          {"Dados inv\u00e1lidos"}
+        </div>
+        <p.Stack
+          as={"div"}
+          hasGap={true}
+          className={classNames(projectcss.all, sty.freeBox__az7FN)}
+        >
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__hPl3V
+            )}
+          >
+            {"Nome"}
+          </div>
+          <TextInput
+            data-plasmic-name={"nameInput"}
+            data-plasmic-override={overrides.nameInput}
+            className={classNames("__wab_instance", sty.nameInput)}
+            name={"name"}
+            onChange={(...eventArgs) => {
+              p.generateStateOnChangeProp($state, ["nameInput", "value"])(
+                (e => e.target?.value).apply(null, eventArgs)
+              );
+            }}
+            placeholder={""}
+            required={true}
+            value={
+              p.generateStateValueProp($state, ["nameInput", "value"]) ?? ""
+            }
+          />
+        </p.Stack>
+        <p.Stack
+          as={"div"}
+          hasGap={true}
+          className={classNames(projectcss.all, sty.freeBox__dy3J8)}
+        >
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__ltFxi
+            )}
+          >
+            {"Email"}
+          </div>
+          <TextInput
+            data-plasmic-name={"emailInput"}
+            data-plasmic-override={overrides.emailInput}
+            className={classNames("__wab_instance", sty.emailInput)}
+            name={"email"}
+            onChange={(...eventArgs) => {
+              p.generateStateOnChangeProp($state, ["emailInput", "value"])(
+                (e => e.target?.value).apply(null, eventArgs)
+              );
+            }}
+            required={true}
+            type={"email"}
+            value={
+              p.generateStateValueProp($state, ["emailInput", "value"]) ?? ""
+            }
+          />
+        </p.Stack>
+        <div
+          className={classNames(projectcss.all, sty.freeBox__dhXtS, {
+            [sty.freeBoxisEmpty__dhXtSyqkGv]: hasVariant(
+              $state,
+              "isEmpty",
+              "isEmpty"
+            )
+          })}
+        >
+          <Button
+            data-plasmic-name={"backBtn"}
+            data-plasmic-override={overrides.backBtn}
+            className={classNames("__wab_instance", sty.backBtn, {
+              [sty.backBtnisEmpty]: hasVariant($state, "isEmpty", "isEmpty")
+            })}
+            color={"softBlue"}
+            isDisabled={
+              hasVariant($state, "isEmpty", "isEmpty") ? true : undefined
+            }
+            showStartIcon={true}
+            startIcon={
+              <PlusIcon
+                data-plasmic-name={"svg"}
+                data-plasmic-override={overrides.svg}
+                className={classNames(projectcss.all, sty.svg)}
+                role={"img"}
+              />
+            }
+            submitsForm={true}
+          >
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text___528Rb,
+                {
+                  [sty.textisEmpty___528RbyqkGv]: hasVariant(
+                    $state,
+                    "isEmpty",
+                    "isEmpty"
+                  )
+                }
+              )}
+            >
+              {hasVariant($state, "isEmpty", "isEmpty")
+                ? "Adicionar"
+                : "Adicionar mais"}
+            </div>
+          </Button>
+          <Button
+            data-plasmic-name={"checkoutBtn"}
+            data-plasmic-override={overrides.checkoutBtn}
+            className={classNames("__wab_instance", sty.checkoutBtn, {
+              [sty.checkoutBtnisEmpty]: hasVariant($state, "isEmpty", "isEmpty")
+            })}
+            color={"blue"}
+            isDisabled={
+              hasVariant($state, "isEmpty", "isEmpty") ? true : undefined
+            }
+            showStartIcon={true}
+            submitsForm={true}
+          >
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__nNaap,
+                {
+                  [sty.textisEmpty__nNaapYqkGv]: hasVariant(
+                    $state,
+                    "isEmpty",
+                    "isEmpty"
+                  )
+                }
+              )}
+            >
+              {"Finalizar compra"}
+            </div>
+          </Button>
+        </div>
       </p.Stack>
-    ) : null
+      <Loading
+        data-plasmic-name={"loading"}
+        data-plasmic-override={overrides.loading}
+        className={classNames("__wab_instance", sty.loading)}
+        hide={true}
+      />
+    </p.Stack>
   ) as React.ReactElement | null;
 }
 

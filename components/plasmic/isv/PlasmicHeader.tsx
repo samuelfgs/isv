@@ -136,81 +136,75 @@ function PlasmicHeader__RenderFunc(props: {
   });
 
   return (
-    true ? (
+    <div
+      data-plasmic-name={"root"}
+      data-plasmic-override={overrides.root}
+      data-plasmic-root={true}
+      data-plasmic-for-node={forNode}
+      className={classNames(
+        projectcss.all,
+        projectcss.root_reset,
+        projectcss.plasmic_default_styles,
+        projectcss.plasmic_mixins,
+        projectcss.plasmic_tokens,
+        plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
+        plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
+        sty.root
+      )}
+    >
       <div
-        data-plasmic-name={"root"}
-        data-plasmic-override={overrides.root}
-        data-plasmic-root={true}
-        data-plasmic-for-node={forNode}
-        className={classNames(
-          projectcss.all,
-          projectcss.root_reset,
-          projectcss.plasmic_default_styles,
-          projectcss.plasmic_mixins,
-          projectcss.plasmic_tokens,
-          plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
-          plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
-          sty.root
-        )}
+        className={classNames(projectcss.all, sty.freeBox__qbnXe, {
+          [sty.freeBoxisAdmin__qbnXe1KjFr]: hasVariant(
+            $state,
+            "isAdmin",
+            "isAdmin"
+          )
+        })}
       >
-        {(hasVariant($state, "isAdmin", "isAdmin") ? true : true) ? (
-          <div
-            className={classNames(projectcss.all, sty.freeBox__qbnXe, {
-              [sty.freeBoxisAdmin__qbnXe1KjFr]: hasVariant(
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__b70Yv
+          )}
+        >
+          {"ADMIN ACCOUNT"}
+        </div>
+      </div>
+      <p.Stack
+        as={"div"}
+        hasGap={true}
+        className={classNames(projectcss.all, sty.freeBox___9LywB, {
+          [sty.freeBoxhideHeader___9LywBQhGLc]: hasVariant(
+            $state,
+            "hideHeader",
+            "hideHeader"
+          )
+        })}
+      >
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__q840C,
+            {
+              [sty.texthideHeader__q840CQhGLc]: hasVariant(
+                $state,
+                "hideHeader",
+                "hideHeader"
+              ),
+              [sty.textisAdmin__q840C1KjFr]: hasVariant(
                 $state,
                 "isAdmin",
                 "isAdmin"
               )
-            })}
-          >
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__b70Yv
-              )}
-            >
-              {"ADMIN ACCOUNT"}
-            </div>
-          </div>
-        ) : null}
-        {(hasVariant($state, "hideHeader", "hideHeader") ? true : true) ? (
-          <p.Stack
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox___9LywB, {
-              [sty.freeBoxhideHeader___9LywBQhGLc]: hasVariant(
-                $state,
-                "hideHeader",
-                "hideHeader"
-              )
-            })}
-          >
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__q840C,
-                {
-                  [sty.texthideHeader__q840CQhGLc]: hasVariant(
-                    $state,
-                    "hideHeader",
-                    "hideHeader"
-                  ),
-                  [sty.textisAdmin__q840C1KjFr]: hasVariant(
-                    $state,
-                    "isAdmin",
-                    "isAdmin"
-                  )
-                }
-              )}
-            >
-              {"IGREJA EM S\u00c3O VICENTE"}
-            </div>
-          </p.Stack>
-        ) : null}
-      </div>
-    ) : null
+            }
+          )}
+        >
+          {"IGREJA EM S\u00c3O VICENTE"}
+        </div>
+      </p.Stack>
+    </div>
   ) as React.ReactElement | null;
 }
 

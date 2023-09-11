@@ -159,19 +159,17 @@ function PlasmicPrintOrder__RenderFunc(props: {
       )}
     >
       <div className={classNames(projectcss.all, sty.freeBox__vfgn1)}>
-        {true ? (
-          <div className={classNames(projectcss.all, sty.freeBox___8NgMx)}>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__nA4
-              )}
-            >
-              {"PEDIDO "}
-            </div>
+        <div className={classNames(projectcss.all, sty.freeBox___8NgMx)}>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__nA4
+            )}
+          >
+            {"PEDIDO "}
           </div>
-        ) : null}
+        </div>
         <div className={classNames(projectcss.all, sty.freeBox__cf0Nw)}>
           <div
             className={classNames(
@@ -188,21 +186,19 @@ function PlasmicPrintOrder__RenderFunc(props: {
             className: classNames(sty.slotTargetId)
           })}
         </div>
-        {true ? (
-          <div
-            data-plasmic-name={"name"}
-            data-plasmic-override={overrides.name}
-            className={classNames(projectcss.all, sty.name)}
-          >
-            <div className={classNames(projectcss.all, sty.freeBox__g9Mzm)}>
-              {p.renderPlasmicSlot({
-                defaultContents: "Enter some text",
-                value: args.nameSlot,
-                className: classNames(sty.slotTargetNameSlot)
-              })}
-            </div>
+        <div
+          data-plasmic-name={"name"}
+          data-plasmic-override={overrides.name}
+          className={classNames(projectcss.all, sty.name)}
+        >
+          <div className={classNames(projectcss.all, sty.freeBox__g9Mzm)}>
+            {p.renderPlasmicSlot({
+              defaultContents: "Enter some text",
+              value: args.nameSlot,
+              className: classNames(sty.slotTargetNameSlot)
+            })}
           </div>
-        ) : null}
+        </div>
         <div className={classNames(projectcss.all, sty.freeBox__kBuec)}>
           {(
             (() => {
@@ -348,130 +344,118 @@ function PlasmicPrintOrder__RenderFunc(props: {
                   </div>
                 </div>
               ) : null}
-              {true ? (
-                <div className={classNames(projectcss.all, sty.freeBox__npLEt)}>
-                  {true ? (
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__six4D)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__aBqo
-                        )}
-                      >
-                        {"Qtd: "}
-                      </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__fTaH0
-                        )}
-                      >
-                        <React.Fragment>
-                          {(() => {
-                            try {
-                              return currentItem.quantity;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "X";
-                              }
-                              throw e;
-                            }
-                          })()}
-                        </React.Fragment>
-                      </div>
-                    </div>
-                  ) : null}
-                  {true ? (
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__bY9IY)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__dlXKe
-                        )}
-                      >
-                        {"Total: R$ "}
-                      </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__fJcvj
-                        )}
-                      >
-                        <React.Fragment>
-                          {(() => {
-                            try {
-                              return currentItem.totalPrice
-                                .toFixed(2)
-                                .replace(".", ",");
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "Total: R$ ";
-                              }
-                              throw e;
-                            }
-                          })()}
-                        </React.Fragment>
-                      </div>
-                    </div>
-                  ) : null}
+              <div className={classNames(projectcss.all, sty.freeBox__npLEt)}>
+                <div className={classNames(projectcss.all, sty.freeBox__six4D)}>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__aBqo
+                    )}
+                  >
+                    {"Qtd: "}
+                  </div>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__fTaH0
+                    )}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return currentItem.quantity;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "X";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  </div>
                 </div>
-              ) : null}
+                <div className={classNames(projectcss.all, sty.freeBox__bY9IY)}>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__dlXKe
+                    )}
+                  >
+                    {"Total: R$ "}
+                  </div>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__fJcvj
+                    )}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return currentItem.totalPrice
+                            .toFixed(2)
+                            .replace(".", ",");
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "Total: R$ ";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
-        {true ? (
-          <div className={classNames(projectcss.all, sty.freeBox___4B48M)}>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__mBXug
-              )}
-            >
-              {"Total: R$ "}
-            </div>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__pnzkh
-              )}
-            >
-              <React.Fragment>
-                {(() => {
-                  try {
-                    return $props.lineItems
-                      .reduce((total, item) => (total += item.totalPrice), 0)
-                      .toFixed(2)
-                      .replace(".", ",");
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return "20,00";
-                    }
-                    throw e;
-                  }
-                })()}
-              </React.Fragment>
-            </div>
+        <div className={classNames(projectcss.all, sty.freeBox___4B48M)}>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__mBXug
+            )}
+          >
+            {"Total: R$ "}
           </div>
-        ) : null}
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__pnzkh
+            )}
+          >
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $props.lineItems
+                    .reduce((total, item) => (total += item.totalPrice), 0)
+                    .toFixed(2)
+                    .replace(".", ",");
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "20,00";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+        </div>
       </div>
       <button
         data-plasmic-name={"button"}

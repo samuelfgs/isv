@@ -111,7 +111,7 @@ function PlasmicAddItem__RenderFunc(props: {
     () =>
       Object.assign(
         {
-          entryId: "mHfexEU5q4uAOdRq2w7zu" as const
+          entryId: "mHfexEU5q4uAOdRq2w7zu"
         },
         props.args
       ),
@@ -167,9 +167,9 @@ function PlasmicAddItem__RenderFunc(props: {
             data-plasmic-name={"contentfulFetcher"}
             data-plasmic-override={overrides.contentfulFetcher}
             className={classNames("__wab_instance", sty.contentfulFetcher)}
-            contentType={"eventMenuItem" as const}
+            contentType={"eventMenuItem"}
             entryID={args.entryId}
-            limit={1000 as const}
+            limit={1000}
             noLayout={true}
           >
             <ph.DataCtxReader>
@@ -226,77 +226,72 @@ function PlasmicAddItem__RenderFunc(props: {
                   >
                     {"Escolha sua op\u00e7\u00e3o"}
                   </div>
-                  {true ? (
-                    <p.Stack
-                      as={"div"}
-                      hasGap={true}
-                      className={classNames(projectcss.all, sty.freeBox__cw7B)}
-                    >
-                      {true
-                        ? (
-                            (() => {
-                              try {
-                                return (
-                                  $ctx.contentfulEventmenuitemItem?.fields
-                                    .options ?? []
-                                );
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return [];
-                                }
-                                throw e;
+                  <p.Stack
+                    as={"div"}
+                    hasGap={true}
+                    className={classNames(projectcss.all, sty.freeBox__cw7B)}
+                  >
+                    {(
+                      (() => {
+                        try {
+                          return (
+                            $ctx.contentfulEventmenuitemItem?.fields.options ??
+                            []
+                          );
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [];
+                          }
+                          throw e;
+                        }
+                      })() ?? []
+                    ).map((currentItem, currentIndex) => (
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox___6Pw6B
+                        )}
+                        key={currentIndex}
+                      >
+                        <AddItemOption
+                          data-plasmic-name={"addItemOption"}
+                          data-plasmic-override={overrides.addItemOption}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.addItemOption
+                          )}
+                          id={(() => {
+                            try {
+                              return currentItem.sys.id;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
                               }
-                            })() ?? []
-                          ).map((currentItem, currentIndex) => (
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox___6Pw6B
-                              )}
-                              key={currentIndex}
-                            >
-                              <AddItemOption
-                                data-plasmic-name={"addItemOption"}
-                                data-plasmic-override={overrides.addItemOption}
-                                className={classNames(
-                                  "__wab_instance",
-                                  sty.addItemOption
-                                )}
-                                id={(() => {
-                                  try {
-                                    return currentItem.sys.id;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })()}
-                              />
-                            </div>
-                          ))
-                        : null}
-                    </p.Stack>
-                  ) : null}
+                              throw e;
+                            }
+                          })()}
+                        />
+                      </div>
+                    ))}
+                  </p.Stack>
                   <ScrollSpace
                     data-plasmic-name={"scrollSpace"}
                     data-plasmic-override={overrides.scrollSpace}
                     className={classNames("__wab_instance", sty.scrollSpace)}
-                    height={200 as const}
+                    height={200}
                   />
 
                   <div
                     data-plasmic-name={"footer"}
                     data-plasmic-override={overrides.footer}
                     className={classNames(projectcss.all, sty.footer)}
-                    id={"footer" as const}
+                    id={"footer"}
                   >
                     <div
                       className={classNames(projectcss.all, sty.freeBox__eJscO)}
@@ -360,47 +355,41 @@ function PlasmicAddItem__RenderFunc(props: {
                         })}
                       </div>
                     </div>
-                    {true ? (
-                      <p.Stack
-                        as={"div"}
-                        data-plasmic-name={"selectedOptionValues"}
-                        data-plasmic-override={overrides.selectedOptionValues}
-                        hasGap={true}
-                        className={classNames(
-                          projectcss.all,
-                          sty.selectedOptionValues
-                        )}
-                      />
-                    ) : null}
-                    {true ? (
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__axdVo
-                        )}
+                    <p.Stack
+                      as={"div"}
+                      data-plasmic-name={"selectedOptionValues"}
+                      data-plasmic-override={overrides.selectedOptionValues}
+                      hasGap={true}
+                      className={classNames(
+                        projectcss.all,
+                        sty.selectedOptionValues
+                      )}
+                    />
+
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__axdVo)}
+                    >
+                      <Button
+                        data-plasmic-name={"button"}
+                        data-plasmic-override={overrides.button}
+                        className={classNames("__wab_instance", sty.button)}
+                        color={"blue"}
+                        isDisabled={true}
+                        showStartIcon={true}
+                        startIcon={
+                          <CartIcon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__fshV5
+                            )}
+                            role={"img"}
+                          />
+                        }
+                        submitsForm={true}
                       >
-                        <Button
-                          data-plasmic-name={"button"}
-                          data-plasmic-override={overrides.button}
-                          className={classNames("__wab_instance", sty.button)}
-                          color={"blue" as const}
-                          isDisabled={true}
-                          showStartIcon={true}
-                          startIcon={
-                            <CartIcon
-                              className={classNames(
-                                projectcss.all,
-                                sty.svg__fshV5
-                              )}
-                              role={"img"}
-                            />
-                          }
-                          submitsForm={true}
-                        >
-                          {"Adicionar ao Carrinho"}
-                        </Button>
-                      </div>
-                    ) : null}
+                        {"Adicionar ao Carrinho"}
+                      </Button>
+                    </div>
                   </div>
                 </React.Fragment>
               )}

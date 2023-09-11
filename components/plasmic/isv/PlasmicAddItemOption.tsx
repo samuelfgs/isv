@@ -113,314 +113,267 @@ function PlasmicAddItemOption__RenderFunc(props: {
   const currentUser = p.useCurrentUser?.() || {};
 
   return (
-    true ? (
-      <p.Stack
-        as={"div"}
-        data-plasmic-name={"root"}
-        data-plasmic-override={overrides.root}
-        data-plasmic-root={true}
-        data-plasmic-for-node={forNode}
-        hasGap={true}
-        className={classNames(
-          projectcss.all,
-          projectcss.root_reset,
-          projectcss.plasmic_default_styles,
-          projectcss.plasmic_mixins,
-          projectcss.plasmic_tokens,
-          plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
-          plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
-          sty.root
-        )}
+    <p.Stack
+      as={"div"}
+      data-plasmic-name={"root"}
+      data-plasmic-override={overrides.root}
+      data-plasmic-root={true}
+      data-plasmic-for-node={forNode}
+      hasGap={true}
+      className={classNames(
+        projectcss.all,
+        projectcss.root_reset,
+        projectcss.plasmic_default_styles,
+        projectcss.plasmic_mixins,
+        projectcss.plasmic_tokens,
+        plasmic_copy_of_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
+        plasmic_plasmic_kit_q_4_color_tokens_css.plasmic_tokens,
+        sty.root
+      )}
+    >
+      <ContentfulFetcher
+        data-plasmic-name={"contentfulFetcher"}
+        data-plasmic-override={overrides.contentfulFetcher}
+        className={classNames("__wab_instance", sty.contentfulFetcher)}
+        contentType={"menuItemOption"}
+        entryID={(() => {
+          try {
+            return $props.id ?? "5cO5YwXaNu1Va5AoONVcoJ";
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return "40KJD7INRJVICcoyX7F2Pv";
+            }
+            throw e;
+          }
+        })()}
+        limit={1000}
+        noLayout={false}
       >
-        {true ? (
-          <ContentfulFetcher
-            data-plasmic-name={"contentfulFetcher"}
-            data-plasmic-override={overrides.contentfulFetcher}
-            className={classNames("__wab_instance", sty.contentfulFetcher)}
-            contentType={"menuItemOption" as const}
-            entryID={(() => {
-              try {
-                return $props.id ?? "5cO5YwXaNu1Va5AoONVcoJ";
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "40KJD7INRJVICcoyX7F2Pv";
-                }
-                throw e;
-              }
-            })()}
-            limit={1000 as const}
-            noLayout={false}
-          >
-            <ph.DataCtxReader>
-              {$ctx => (
-                <React.Fragment>
-                  {true ? (
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        sty.freeBox___3Xeyx
-                      )}
+        <ph.DataCtxReader>
+          {$ctx => (
+            <React.Fragment>
+              <div className={classNames(projectcss.all, sty.freeBox___3Xeyx)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___3SKAx
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $ctx.contentfulMenuitemoptionItem.fields.label;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "Sabor do Pastel";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+                <div className={classNames(projectcss.all, sty.freeBox__q66S3)}>
+                  {p.renderPlasmicSlot({
+                    defaultContents: "0",
+                    value: args.currentQuantity
+                  })}
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__l4TsI
+                    )}
+                  >
+                    <React.Fragment>
+                      {"/" +
+                        ($ctx.contentfulMenuitemoptionItem?.fields?.maximum ??
+                          1)}
+                    </React.Fragment>
+                  </div>
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__jeZf)}>
+                {(
+                  (() => {
+                    try {
+                      return (
+                        $ctx.contentfulMenuitemoptionItem.fields?.values ?? []
+                      );
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })() ?? []
+                ).map((currentOptionValue, currentIndex) => (
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__xExz7)}
+                    key={currentIndex}
+                  >
+                    <AddItemRow
+                      data-plasmic-name={"addItemRow"}
+                      data-plasmic-override={overrides.addItemRow}
+                      className={classNames("__wab_instance", sty.addItemRow)}
+                      menuOptionId={(() => {
+                        try {
+                          return $ctx.contentfulMenuitemoptionItem.sys.id;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}
+                      menuOptionValueId={(() => {
+                        try {
+                          return currentOptionValue.sys.id;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}
+                      price={
+                        (() => {
+                          try {
+                            return (
+                              currentOptionValue.fields.price !== undefined
+                            );
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return true;
+                            }
+                            throw e;
+                          }
+                        })() ? (
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__lMsAr
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return (
+                                    "R$ " +
+                                    currentOptionValue.fields.price.toFixed(2)
+                                  );
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "Enter some text";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
+                        ) : null
+                      }
+                      price2={
+                        (() => {
+                          try {
+                            return (
+                              currentOptionValue.fields.price !== undefined
+                            );
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return true;
+                            }
+                            throw e;
+                          }
+                        })() ? (
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text___7V9Oz
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return (
+                                    "R$ " +
+                                    currentOptionValue.fields.price.toFixed(2)
+                                  );
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "Enter some text";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
+                        ) : null
+                      }
                     >
                       <div
                         className={classNames(
                           projectcss.all,
                           projectcss.__wab_text,
-                          sty.text___3SKAx
+                          sty.text__wpgIy
                         )}
                       >
                         <React.Fragment>
                           {(() => {
                             try {
-                              return $ctx.contentfulMenuitemoptionItem.fields
-                                .label;
+                              return currentOptionValue.fields.label;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
                                 e?.plasmicType === "PlasmicUndefinedDataError"
                               ) {
-                                return "Sabor do Pastel";
+                                return "Enter some text";
                               }
                               throw e;
                             }
                           })()}
                         </React.Fragment>
                       </div>
-                      {true ? (
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__q66S3
-                          )}
-                        >
-                          {p.renderPlasmicSlot({
-                            defaultContents: "0",
-                            value: args.currentQuantity
-                          })}
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__l4TsI
-                            )}
-                          >
-                            <React.Fragment>
-                              {"/" +
-                                ($ctx.contentfulMenuitemoptionItem?.fields
-                                  ?.maximum ?? 1)}
-                            </React.Fragment>
-                          </div>
-                        </div>
-                      ) : null}
-                    </div>
-                  ) : null}
-                  {true ? (
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__jeZf)}
-                    >
-                      {true
-                        ? (
-                            (() => {
-                              try {
-                                return (
-                                  $ctx.contentfulMenuitemoptionItem.fields
-                                    ?.values ?? []
-                                );
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return [];
-                                }
-                                throw e;
-                              }
-                            })() ?? []
-                          ).map((currentOptionValue, currentIndex) => (
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox__xExz7
-                              )}
-                              key={currentIndex}
-                            >
-                              {true ? (
-                                <AddItemRow
-                                  data-plasmic-name={"addItemRow"}
-                                  data-plasmic-override={overrides.addItemRow}
-                                  className={classNames(
-                                    "__wab_instance",
-                                    sty.addItemRow
-                                  )}
-                                  menuOptionId={(() => {
-                                    try {
-                                      return $ctx.contentfulMenuitemoptionItem
-                                        .sys.id;
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })()}
-                                  menuOptionValueId={(() => {
-                                    try {
-                                      return currentOptionValue.sys.id;
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })()}
-                                  price={
-                                    (() => {
-                                      try {
-                                        return (
-                                          currentOptionValue.fields.price !==
-                                          undefined
-                                        );
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return true;
-                                        }
-                                        throw e;
-                                      }
-                                    })() ? (
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          projectcss.__wab_text,
-                                          sty.text__lMsAr
-                                        )}
-                                      >
-                                        <React.Fragment>
-                                          {(() => {
-                                            try {
-                                              return (
-                                                "R$ " +
-                                                currentOptionValue.fields.price.toFixed(
-                                                  2
-                                                )
-                                              );
-                                            } catch (e) {
-                                              if (
-                                                e instanceof TypeError ||
-                                                e?.plasmicType ===
-                                                  "PlasmicUndefinedDataError"
-                                              ) {
-                                                return "Enter some text";
-                                              }
-                                              throw e;
-                                            }
-                                          })()}
-                                        </React.Fragment>
-                                      </div>
-                                    ) : null
-                                  }
-                                  price2={
-                                    (() => {
-                                      try {
-                                        return (
-                                          currentOptionValue.fields.price !==
-                                          undefined
-                                        );
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return true;
-                                        }
-                                        throw e;
-                                      }
-                                    })() ? (
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          projectcss.__wab_text,
-                                          sty.text___7V9Oz
-                                        )}
-                                      >
-                                        <React.Fragment>
-                                          {(() => {
-                                            try {
-                                              return (
-                                                "R$ " +
-                                                currentOptionValue.fields.price.toFixed(
-                                                  2
-                                                )
-                                              );
-                                            } catch (e) {
-                                              if (
-                                                e instanceof TypeError ||
-                                                e?.plasmicType ===
-                                                  "PlasmicUndefinedDataError"
-                                              ) {
-                                                return "Enter some text";
-                                              }
-                                              throw e;
-                                            }
-                                          })()}
-                                        </React.Fragment>
-                                      </div>
-                                    ) : null
-                                  }
-                                >
-                                  <div
-                                    className={classNames(
-                                      projectcss.all,
-                                      projectcss.__wab_text,
-                                      sty.text__wpgIy
-                                    )}
-                                  >
-                                    <React.Fragment>
-                                      {(() => {
-                                        try {
-                                          return currentOptionValue.fields
-                                            .label;
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return "Enter some text";
-                                          }
-                                          throw e;
-                                        }
-                                      })()}
-                                    </React.Fragment>
-                                  </div>
-                                </AddItemRow>
-                              ) : null}
-                            </div>
-                          ))
-                        : null}
-                    </div>
-                  ) : null}
-                </React.Fragment>
-              )}
-            </ph.DataCtxReader>
-          </ContentfulFetcher>
-        ) : null}
-      </p.Stack>
-    ) : null
+                    </AddItemRow>
+                  </div>
+                ))}
+              </div>
+            </React.Fragment>
+          )}
+        </ph.DataCtxReader>
+      </ContentfulFetcher>
+    </p.Stack>
   ) as React.ReactElement | null;
 }
 

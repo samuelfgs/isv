@@ -136,72 +136,59 @@ function PlasmicMenuItem__RenderFunc(props: {
       )}
       data-menuitem-id={args.id}
     >
-      {true ? (
-        <div className={classNames(projectcss.all, sty.freeBox__j4S6X)}>
-          <div className={classNames(projectcss.all, sty.freeBox__rBsbD)}>
-            {true ? (
-              <div className={classNames(projectcss.all, sty.freeBox__wtSy8)}>
-                <div className={classNames(projectcss.all, sty.freeBox__gCuoj)}>
-                  {p.renderPlasmicSlot({
-                    defaultContents: "Combo 1",
-                    value: args.title,
-                    className: classNames(sty.slotTargetTitle)
-                  })}
-                </div>
+      <div className={classNames(projectcss.all, sty.freeBox__j4S6X)}>
+        <div className={classNames(projectcss.all, sty.freeBox__rBsbD)}>
+          <div className={classNames(projectcss.all, sty.freeBox__wtSy8)}>
+            <div className={classNames(projectcss.all, sty.freeBox__gCuoj)}>
+              {p.renderPlasmicSlot({
+                defaultContents: "Combo 1",
+                value: args.title,
+                className: classNames(sty.slotTargetTitle)
+              })}
+            </div>
+          </div>
+          <div className={classNames(projectcss.all, sty.freeBox__uinhy)}>
+            <p.Stack
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox___0YXaw)}
+            >
+              <div className={classNames(projectcss.all, sty.freeBox__r6HkW)}>
+                <p.PlasmicImg
+                  data-plasmic-name={"img"}
+                  data-plasmic-override={overrides.img}
+                  alt={""}
+                  className={classNames(sty.img)}
+                  displayHeight={"130px"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"none"}
+                  displayMinHeight={"130px"}
+                  displayMinWidth={"0"}
+                  displayWidth={"100%"}
+                  loading={"lazy"}
+                  src={args.image}
+                />
               </div>
-            ) : null}
-            {true ? (
-              <div className={classNames(projectcss.all, sty.freeBox__uinhy)}>
-                <p.Stack
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox___0YXaw)}
-                >
-                  {true ? (
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__r6HkW)}
-                    >
-                      <p.PlasmicImg
-                        data-plasmic-name={"img"}
-                        data-plasmic-override={overrides.img}
-                        alt={""}
-                        className={classNames(sty.img)}
-                        displayHeight={"130px" as const}
-                        displayMaxHeight={"none" as const}
-                        displayMaxWidth={"none" as const}
-                        displayMinHeight={"130px" as const}
-                        displayMinWidth={"0" as const}
-                        displayWidth={"100%" as const}
-                        loading={"lazy" as const}
-                        src={args.image}
-                      />
-                    </div>
-                  ) : null}
-                  {true ? (
-                    <p.Stack
-                      as={"div"}
-                      hasGap={true}
-                      className={classNames(projectcss.all, sty.freeBox__qrX8)}
-                    >
-                      {p.renderPlasmicSlot({
-                        defaultContents:
-                          "1 Caldo\nBebida a vontade\n1 Sobremesa",
-                        value: args.description,
-                        className: classNames(sty.slotTargetDescription)
-                      })}
-                      {p.renderPlasmicSlot({
-                        defaultContents: "R$ 20,00",
-                        value: args.price,
-                        className: classNames(sty.slotTargetPrice)
-                      })}
-                    </p.Stack>
-                  ) : null}
-                </p.Stack>
-              </div>
-            ) : null}
+              <p.Stack
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__qrX8)}
+              >
+                {p.renderPlasmicSlot({
+                  defaultContents: "1 Caldo\nBebida a vontade\n1 Sobremesa",
+                  value: args.description,
+                  className: classNames(sty.slotTargetDescription)
+                })}
+                {p.renderPlasmicSlot({
+                  defaultContents: "R$ 20,00",
+                  value: args.price,
+                  className: classNames(sty.slotTargetPrice)
+                })}
+              </p.Stack>
+            </p.Stack>
           </div>
         </div>
-      ) : null}
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
