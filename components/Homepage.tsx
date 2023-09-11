@@ -45,7 +45,7 @@ function Homepage(props: HomepageProps) {
           addProductState.productId = id;
           addProductState.optionValues = {};
           addToCart();
-          router.push(`/checkout-2`);
+          router.push(`/checkout`);
         } else {
           router.push(`/product/${id}`);
         }
