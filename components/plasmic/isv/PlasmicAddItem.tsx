@@ -84,13 +84,7 @@ export type PlasmicAddItem__OverridesType = {
 
 export interface DefaultAddItemProps {}
 
-const __wrapUserFunction =
-  globalThis.__PlasmicWrapUserFunction ?? ((loc, fn) => fn());
-const __wrapUserPromise =
-  globalThis.__PlasmicWrapUserPromise ??
-  (async (loc, promise) => {
-    return await promise;
-  });
+const $$ = {};
 
 function useNextRouter() {
   try {
@@ -231,7 +225,8 @@ function PlasmicAddItem__RenderFunc(props: {
                     hasGap={true}
                     className={classNames(projectcss.all, sty.freeBox__cw7B)}
                   >
-                    {(
+                    {(_par =>
+                      !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                       (() => {
                         try {
                           return (
@@ -247,38 +242,42 @@ function PlasmicAddItem__RenderFunc(props: {
                           }
                           throw e;
                         }
-                      })() ?? []
-                    ).map((currentItem, currentIndex) => (
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox___6Pw6B
-                        )}
-                        key={currentIndex}
-                      >
-                        <AddItemOption
-                          data-plasmic-name={"addItemOption"}
-                          data-plasmic-override={overrides.addItemOption}
+                      })()
+                    ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                      const currentItem = __plasmic_item_0;
+                      const currentIndex = __plasmic_idx_0;
+                      return (
+                        <div
                           className={classNames(
-                            "__wab_instance",
-                            sty.addItemOption
+                            projectcss.all,
+                            sty.freeBox___6Pw6B
                           )}
-                          id={(() => {
-                            try {
-                              return currentItem.sys.id;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                          key={currentIndex}
+                        >
+                          <AddItemOption
+                            data-plasmic-name={"addItemOption"}
+                            data-plasmic-override={overrides.addItemOption}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.addItemOption
+                            )}
+                            id={(() => {
+                              try {
+                                return currentItem.sys.id;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })()}
-                        />
-                      </div>
-                    ))}
+                            })()}
+                          />
+                        </div>
+                      );
+                    })}
                   </p.Stack>
                   <ScrollSpace
                     data-plasmic-name={"scrollSpace"}
@@ -432,7 +431,7 @@ const PlasmicDescendants = {
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
-  typeof PlasmicDescendants[T][number];
+  (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;

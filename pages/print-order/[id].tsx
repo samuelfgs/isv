@@ -19,7 +19,6 @@ function CompletedAdminOrder() {
   const creds = ensure(React.useContext(CredentialsContext));
   const router = useRouter();
   const { id : orderId } = router.query;
-  console.log("dale", orderId, creds);
 
   const handlePrint = useReactToPrint({
     content: () => ref.current

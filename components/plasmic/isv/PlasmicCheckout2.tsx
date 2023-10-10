@@ -105,13 +105,7 @@ export type PlasmicCheckout2__OverridesType = {
 
 export interface DefaultCheckout2Props {}
 
-const __wrapUserFunction =
-  globalThis.__PlasmicWrapUserFunction ?? ((loc, fn) => fn());
-const __wrapUserPromise =
-  globalThis.__PlasmicWrapUserPromise ??
-  (async (loc, promise) => {
-    return await promise;
-  });
+const $$ = {};
 
 function useNextRouter() {
   try {
@@ -850,7 +844,7 @@ function PlasmicCheckout2__RenderFunc(props: {
                     "value"
                   ])}
                 >
-                  {(
+                  {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                     (() => {
                       try {
                         return $props.formasDePagamento;
@@ -863,30 +857,18 @@ function PlasmicCheckout2__RenderFunc(props: {
                         }
                         throw e;
                       }
-                    })() ?? []
-                  ).map((currentItem, currentIndex) => (
-                    <Select__Option
-                      data-plasmic-name={"option"}
-                      data-plasmic-override={overrides.option}
-                      className={classNames("__wab_instance", sty.option)}
-                      key={currentIndex}
-                      textValue={currentItem}
-                      value={(() => {
-                        try {
-                          return currentItem;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return "Pix";
-                          }
-                          throw e;
-                        }
-                      })()}
-                    >
-                      <React.Fragment>
-                        {(() => {
+                    })()
+                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                    const currentItem = __plasmic_item_0;
+                    const currentIndex = __plasmic_idx_0;
+                    return (
+                      <Select__Option
+                        data-plasmic-name={"option"}
+                        data-plasmic-override={overrides.option}
+                        className={classNames("__wab_instance", sty.option)}
+                        key={currentIndex}
+                        textValue={currentItem}
+                        value={(() => {
                           try {
                             return currentItem;
                           } catch (e) {
@@ -894,14 +876,30 @@ function PlasmicCheckout2__RenderFunc(props: {
                               e instanceof TypeError ||
                               e?.plasmicType === "PlasmicUndefinedDataError"
                             ) {
-                              return "Option 2";
+                              return "Pix";
                             }
                             throw e;
                           }
                         })()}
-                      </React.Fragment>
-                    </Select__Option>
-                  ))}
+                      >
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return currentItem;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "Option 2";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
+                      </Select__Option>
+                    );
+                  })}
                 </Select>
               </div>
             </p.Stack>
@@ -1013,7 +1011,7 @@ const PlasmicDescendants = {
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
-  typeof PlasmicDescendants[T][number];
+  (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;

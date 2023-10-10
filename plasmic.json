@@ -560,7 +560,8 @@
           "displayName": "plasmic-data-source-fetcher",
           "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
         }
-      ]
+      ],
+      "customFunctions": []
     },
     {
       "projectId": "caTPwKxj5ZrD9LQ7DMdK4Z",
@@ -603,9 +604,15 @@
           "name": "ConditionGuard",
           "displayName": "hostless-condition-guard",
           "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
+        },
+        {
+          "id": "K-mWGqrHefEp",
+          "name": "SideEffect",
+          "displayName": "hostless-side-effect",
+          "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
         }
       ],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "95xp9cYcv7HrNWpFWWhbcv",
@@ -666,7 +673,7 @@
           "componentImportPath": "@plasmicpkgs/plasmic-embed-css"
         }
       ],
-      "jsBundleThemes": []
+      "customFunctions": []
     }
   ],
   "globalVariants": {
@@ -683,6 +690,6 @@
   "nextjsConfig": {
     "pagesDir": "../pages"
   },
-  "cliVersion": "0.1.307",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.307/dist/plasmic.schema.json"
+  "cliVersion": "0.1.314",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.314/dist/plasmic.schema.json"
 }

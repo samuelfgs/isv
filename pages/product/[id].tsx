@@ -97,7 +97,7 @@ function AddItem({ id, queryCache, prepass }: { id: string, queryCache: Record<s
             if (productStateSnap.productId) {
               addToCart();
             }
-            router.push("/checkout-2");
+            router.push("/checkout");
           }
         }}
         scrollSpace={{

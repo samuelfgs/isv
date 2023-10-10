@@ -127,9 +127,6 @@
   > img {
   margin-top: 10px;
 }
-.freeBoxisEmpty__ykaXx7Xt6O {
-  display: flex;
-}
 .freeBox__jyRmg {
   display: flex;
   position: relative;
@@ -141,9 +138,6 @@
   max-width: 100%;
   min-width: 0;
   padding: 8px;
-}
-.freeBoxisAdmin__jyRmgbaKz0 {
-  display: flex;
 }
 .text__bdrZd {
   width: auto;
@@ -172,7 +166,6 @@
   text-align: center;
   color: var(--token-A2_corQeQXhDp);
   min-width: 0;
-  display: block;
 }
 .freeBox__mqfv {
   display: flex;
@@ -201,9 +194,6 @@
   > picture
   > img {
   margin-left: 10px;
-}
-.freeBoxisAdmin__mqfvBaKz0 {
-  display: flex;
 }
 .text__hITsI {
   position: relative;
@@ -663,17 +653,12 @@
 .freeBoxisAdmin__uoz1ZbaKz0 {
   width: 100%;
   min-width: 0;
-  display: flex;
   padding: 0px;
 }
 .paymentInput:global(.__wab_instance) {
   max-width: 100%;
   width: 100%;
   min-width: 0;
-  display: flex;
-}
-.paymentInputisAdmin:global(.__wab_instance) {
-  display: flex;
 }
 .option:global(.__wab_instance) {
   position: relative;

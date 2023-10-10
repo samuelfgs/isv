@@ -93,9 +93,6 @@
   min-width: 0;
   padding: 0px;
 }
-.addItemRow:global(.__wab_instance) {
-  display: flex;
-}
 .text__wpgIy {
   width: 100%;
   height: auto;

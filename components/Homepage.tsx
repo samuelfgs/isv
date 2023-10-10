@@ -2,7 +2,7 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import { addToCart } from "../lib/cart";
-import { fetchContentfulEntries } from "../components/contentful";
+import { fetchContentfulEntries } from "./contentful";
 import {
   PlasmicHomepage,
   DefaultHomepageProps
