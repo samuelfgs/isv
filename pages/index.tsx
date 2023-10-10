@@ -20,7 +20,7 @@ function Index({ queryCache }: { queryCache?: Record<string, any> }) {
       fallback: queryCache
     }}
   >
-    <Homepage closed />
+    <Homepage  />
   </SWRConfig>
 }
 
