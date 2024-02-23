@@ -561,7 +561,8 @@
           "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "splitsProviderFilePath": ""
     },
     {
       "projectId": "caTPwKxj5ZrD9LQ7DMdK4Z",
@@ -610,9 +611,16 @@
           "name": "SideEffect",
           "displayName": "hostless-side-effect",
           "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
+        },
+        {
+          "id": "SpkzmXJqg27p",
+          "name": "Timer",
+          "displayName": "hostless-timer",
+          "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "splitsProviderFilePath": ""
     },
     {
       "projectId": "95xp9cYcv7HrNWpFWWhbcv",
@@ -632,7 +640,8 @@
       "indirect": true,
       "globalContextsFilePath": "",
       "codeComponents": [],
-      "jsBundleThemes": []
+      "jsBundleThemes": [],
+      "splitsProviderFilePath": ""
     },
     {
       "projectId": "r6wqTHP8pUBDqvkAaarh3E",
@@ -652,7 +661,8 @@
       "indirect": true,
       "globalContextsFilePath": "",
       "codeComponents": [],
-      "jsBundleThemes": []
+      "jsBundleThemes": [],
+      "splitsProviderFilePath": ""
     },
     {
       "projectId": "8PtdGodUbexNYgkuyBUcWu",
@@ -673,7 +683,8 @@
           "componentImportPath": "@plasmicpkgs/plasmic-embed-css"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "splitsProviderFilePath": ""
     }
   ],
   "globalVariants": {
@@ -690,6 +701,6 @@
   "nextjsConfig": {
     "pagesDir": "../pages"
   },
-  "cliVersion": "0.1.314",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.314/dist/plasmic.schema.json"
+  "cliVersion": "0.1.326",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.326/dist/plasmic.schema.json"
 }

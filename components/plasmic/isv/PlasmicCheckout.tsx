@@ -17,25 +17,48 @@ import Head from "next/head";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
 
-import * as p from "@plasmicapp/react-web";
-import * as ph from "@plasmicapp/react-web/lib/host";
-
 import {
-  hasVariant,
-  classNames,
-  wrapWithClassName,
-  createPlasmicElementProxy,
-  makeFragment,
+  Flex as Flex__,
   MultiChoiceArg,
+  PlasmicDataSourceContextProvider as PlasmicDataSourceContextProvider__,
+  PlasmicIcon as PlasmicIcon__,
+  PlasmicImg as PlasmicImg__,
+  PlasmicLink as PlasmicLink__,
+  PlasmicPageGuard as PlasmicPageGuard__,
   SingleBooleanChoiceArg,
   SingleChoiceArg,
-  pick,
-  omit,
-  useTrigger,
+  Stack as Stack__,
   StrictProps,
+  Trans as Trans__,
+  classNames,
+  createPlasmicElementProxy,
   deriveRenderOpts,
-  ensureGlobalVariants
+  ensureGlobalVariants,
+  generateOnMutateForSpec,
+  generateStateOnChangeProp,
+  generateStateOnChangePropForCodeComponents,
+  generateStateValueProp,
+  get as $stateGet,
+  hasVariant,
+  initializeCodeComponentStates,
+  initializePlasmicStates,
+  makeFragment,
+  omit,
+  pick,
+  renderPlasmicSlot,
+  set as $stateSet,
+  useCurrentUser,
+  useDollarState,
+  usePlasmicTranslator,
+  useTrigger,
+  wrapWithClassName
 } from "@plasmicapp/react-web";
+import {
+  DataCtxReader as DataCtxReader__,
+  useDataEnv,
+  useGlobalActions
+} from "@plasmicapp/react-web/lib/host";
+
 import Header from "../../Header"; // plasmic-import: oeaZd66p84/component
 import ShoppingCartLineItem from "../../ShoppingCartLineItem"; // plasmic-import: cnD_NnksTl/component
 import TextInput from "../../TextInput"; // plasmic-import: ZCE1TfqnzIq/component
@@ -83,19 +106,19 @@ export const PlasmicCheckout__ArgProps = new Array<ArgPropType>(
 );
 
 export type PlasmicCheckout__OverridesType = {
-  root?: p.Flex<"div">;
-  header?: p.Flex<typeof Header>;
-  lineItems?: p.Flex<"div">;
-  scrollSpace?: p.Flex<"div">;
-  invalidData?: p.Flex<"div">;
-  nameInput?: p.Flex<typeof TextInput>;
-  emailInput?: p.Flex<typeof TextInput>;
-  paymentInput?: p.Flex<typeof Select>;
-  option?: p.Flex<typeof Select__Option>;
-  backBtn?: p.Flex<typeof Button>;
-  svg?: p.Flex<"svg">;
-  checkoutBtn?: p.Flex<typeof Button>;
-  loading?: p.Flex<typeof Loading>;
+  root?: Flex__<"div">;
+  header?: Flex__<typeof Header>;
+  lineItems?: Flex__<"div">;
+  scrollSpace?: Flex__<"div">;
+  invalidData?: Flex__<"div">;
+  nameInput?: Flex__<typeof TextInput>;
+  emailInput?: Flex__<typeof TextInput>;
+  paymentInput?: Flex__<typeof Select>;
+  option?: Flex__<typeof Select__Option>;
+  backBtn?: Flex__<typeof Button>;
+  svg?: Flex__<"svg">;
+  checkoutBtn?: Flex__<typeof Button>;
+  loading?: Flex__<typeof Loading>;
 };
 
 export interface DefaultCheckoutProps {}
@@ -134,13 +157,13 @@ function PlasmicCheckout__RenderFunc(props: {
   };
 
   const __nextRouter = useNextRouter();
-  const $ctx = ph.useDataEnv?.() || {};
+  const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const currentUser = p.useCurrentUser?.() || {};
+  const currentUser = useCurrentUser?.() || {};
 
-  const stateSpecs: Parameters<typeof p.useDollarState>[0] = React.useMemo(
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
         path: "isEmpty",
@@ -175,7 +198,7 @@ function PlasmicCheckout__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
-  const $state = p.useDollarState(stateSpecs, {
+  const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
     $queries: {},
@@ -254,7 +277,7 @@ function PlasmicCheckout__RenderFunc(props: {
               )
             })}
           >
-            <p.Stack
+            <Stack__
               as={"div"}
               data-plasmic-name={"lineItems"}
               data-plasmic-override={overrides.lineItems}
@@ -290,14 +313,14 @@ function PlasmicCheckout__RenderFunc(props: {
                 )}
                 even={true}
               />
-            </p.Stack>
+            </Stack__>
             <div
               data-plasmic-name={"scrollSpace"}
               data-plasmic-override={overrides.scrollSpace}
               className={classNames(projectcss.all, sty.scrollSpace)}
             />
           </div>
-          <p.Stack
+          <Stack__
             as={"div"}
             hasGap={true}
             className={classNames(projectcss.all, sty.freeBox__e1Rk, {
@@ -332,7 +355,7 @@ function PlasmicCheckout__RenderFunc(props: {
                 {"Total: R$ "}
               </div>
               <div className={classNames(projectcss.all, sty.freeBox__zIai4)}>
-                {p.renderPlasmicSlot({
+                {renderPlasmicSlot({
                   defaultContents: "20,00",
                   value: args.totalPrice,
                   className: classNames(sty.slotTargetTotalPrice)
@@ -362,7 +385,7 @@ function PlasmicCheckout__RenderFunc(props: {
             >
               {"Dados inv\u00e1lidos"}
             </div>
-            <p.Stack
+            <Stack__
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__rW7Tu, {
@@ -395,18 +418,18 @@ function PlasmicCheckout__RenderFunc(props: {
                 className={classNames("__wab_instance", sty.nameInput)}
                 name={"name"}
                 onChange={(...eventArgs) => {
-                  p.generateStateOnChangeProp($state, ["nameInput", "value"])(
+                  generateStateOnChangeProp($state, ["nameInput", "value"])(
                     (e => e.target?.value).apply(null, eventArgs)
                   );
                 }}
                 placeholder={""}
                 required={true}
                 value={
-                  p.generateStateValueProp($state, ["nameInput", "value"]) ?? ""
+                  generateStateValueProp($state, ["nameInput", "value"]) ?? ""
                 }
               />
-            </p.Stack>
-            <p.Stack
+            </Stack__>
+            <Stack__
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__uwY6I, {
@@ -439,19 +462,18 @@ function PlasmicCheckout__RenderFunc(props: {
                 className={classNames("__wab_instance", sty.emailInput)}
                 name={"name"}
                 onChange={(...eventArgs) => {
-                  p.generateStateOnChangeProp($state, ["emailInput", "value"])(
+                  generateStateOnChangeProp($state, ["emailInput", "value"])(
                     (e => e.target?.value).apply(null, eventArgs)
                   );
                 }}
                 placeholder={""}
                 required={true}
                 value={
-                  p.generateStateValueProp($state, ["emailInput", "value"]) ??
-                  ""
+                  generateStateValueProp($state, ["emailInput", "value"]) ?? ""
                 }
               />
-            </p.Stack>
-            <p.Stack
+            </Stack__>
+            <Stack__
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__nmWzQ, {
@@ -498,12 +520,12 @@ function PlasmicCheckout__RenderFunc(props: {
                     )
                   })}
                   onChange={(...eventArgs) => {
-                    p.generateStateOnChangeProp($state, [
+                    generateStateOnChangeProp($state, [
                       "paymentInput",
                       "value"
                     ])(eventArgs[0]);
                   }}
-                  value={p.generateStateValueProp($state, [
+                  value={generateStateValueProp($state, [
                     "paymentInput",
                     "value"
                   ])}
@@ -566,7 +588,7 @@ function PlasmicCheckout__RenderFunc(props: {
                   })}
                 </Select>
               </div>
-            </p.Stack>
+            </Stack__>
             <div
               className={classNames(projectcss.all, sty.freeBox__h27MF, {
                 [sty.freeBoxisAdmin__h27MFwWf5]: hasVariant(
@@ -621,7 +643,7 @@ function PlasmicCheckout__RenderFunc(props: {
                 </div>
               </Button>
             </div>
-          </p.Stack>
+          </Stack__>
           <Loading
             data-plasmic-name={"loading"}
             data-plasmic-override={overrides.loading}
@@ -716,7 +738,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       () =>
         deriveRenderOpts(props, {
           name: nodeName,
-          descendantNames: [...PlasmicDescendants[nodeName]],
+          descendantNames: PlasmicDescendants[nodeName],
           internalArgPropNames: PlasmicCheckout__ArgProps,
           internalVariantPropNames: PlasmicCheckout__VariantProps
         }),

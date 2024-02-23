@@ -17,25 +17,47 @@ import Head from "next/head";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
 
-import * as p from "@plasmicapp/react-web";
-import * as ph from "@plasmicapp/react-web/lib/host";
-
 import {
-  hasVariant,
-  classNames,
-  wrapWithClassName,
-  createPlasmicElementProxy,
-  makeFragment,
+  Flex as Flex__,
   MultiChoiceArg,
+  PlasmicDataSourceContextProvider as PlasmicDataSourceContextProvider__,
+  PlasmicIcon as PlasmicIcon__,
+  PlasmicImg as PlasmicImg__,
+  PlasmicLink as PlasmicLink__,
+  PlasmicPageGuard as PlasmicPageGuard__,
   SingleBooleanChoiceArg,
   SingleChoiceArg,
-  pick,
-  omit,
-  useTrigger,
+  Stack as Stack__,
   StrictProps,
+  Trans as Trans__,
+  classNames,
+  createPlasmicElementProxy,
   deriveRenderOpts,
-  ensureGlobalVariants
+  ensureGlobalVariants,
+  generateOnMutateForSpec,
+  generateStateOnChangeProp,
+  generateStateOnChangePropForCodeComponents,
+  generateStateValueProp,
+  get as $stateGet,
+  hasVariant,
+  initializeCodeComponentStates,
+  initializePlasmicStates,
+  makeFragment,
+  omit,
+  pick,
+  renderPlasmicSlot,
+  set as $stateSet,
+  useCurrentUser,
+  useDollarState,
+  usePlasmicTranslator,
+  useTrigger,
+  wrapWithClassName
 } from "@plasmicapp/react-web";
+import {
+  DataCtxReader as DataCtxReader__,
+  useDataEnv,
+  useGlobalActions
+} from "@plasmicapp/react-web/lib/host";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -64,11 +86,11 @@ export const PlasmicPrintOrder__ArgProps = new Array<ArgPropType>(
 );
 
 export type PlasmicPrintOrder__OverridesType = {
-  root?: p.Flex<"div">;
-  name?: p.Flex<"div">;
-  withDescription?: p.Flex<"div">;
-  withoutDescription?: p.Flex<"div">;
-  button?: p.Flex<"button">;
+  root?: Flex__<"div">;
+  name?: Flex__<"div">;
+  withDescription?: Flex__<"div">;
+  withoutDescription?: Flex__<"div">;
+  button?: Flex__<"button">;
 };
 
 export interface DefaultPrintOrderProps {
@@ -129,11 +151,11 @@ function PlasmicPrintOrder__RenderFunc(props: {
   };
 
   const __nextRouter = useNextRouter();
-  const $ctx = ph.useDataEnv?.() || {};
+  const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const currentUser = p.useCurrentUser?.() || {};
+  const currentUser = useCurrentUser?.() || {};
 
   return (
     <div
@@ -174,7 +196,7 @@ function PlasmicPrintOrder__RenderFunc(props: {
           >
             {"PEDIDO "}
           </div>
-          {p.renderPlasmicSlot({
+          {renderPlasmicSlot({
             defaultContents: "X",
             value: args.id,
             className: classNames(sty.slotTargetId)
@@ -186,7 +208,7 @@ function PlasmicPrintOrder__RenderFunc(props: {
           className={classNames(projectcss.all, sty.name)}
         >
           <div className={classNames(projectcss.all, sty.freeBox__g9Mzm)}>
-            {p.renderPlasmicSlot({
+            {renderPlasmicSlot({
               defaultContents: "Enter some text",
               value: args.nameSlot,
               className: classNames(sty.slotTargetNameSlot)
@@ -545,7 +567,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       () =>
         deriveRenderOpts(props, {
           name: nodeName,
-          descendantNames: [...PlasmicDescendants[nodeName]],
+          descendantNames: PlasmicDescendants[nodeName],
           internalArgPropNames: PlasmicPrintOrder__ArgProps,
           internalVariantPropNames: PlasmicPrintOrder__VariantProps
         }),

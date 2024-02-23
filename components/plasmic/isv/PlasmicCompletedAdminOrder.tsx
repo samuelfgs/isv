@@ -17,25 +17,48 @@ import Head from "next/head";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
 
-import * as p from "@plasmicapp/react-web";
-import * as ph from "@plasmicapp/react-web/lib/host";
-
 import {
-  hasVariant,
-  classNames,
-  wrapWithClassName,
-  createPlasmicElementProxy,
-  makeFragment,
+  Flex as Flex__,
   MultiChoiceArg,
+  PlasmicDataSourceContextProvider as PlasmicDataSourceContextProvider__,
+  PlasmicIcon as PlasmicIcon__,
+  PlasmicImg as PlasmicImg__,
+  PlasmicLink as PlasmicLink__,
+  PlasmicPageGuard as PlasmicPageGuard__,
   SingleBooleanChoiceArg,
   SingleChoiceArg,
-  pick,
-  omit,
-  useTrigger,
+  Stack as Stack__,
   StrictProps,
+  Trans as Trans__,
+  classNames,
+  createPlasmicElementProxy,
   deriveRenderOpts,
-  ensureGlobalVariants
+  ensureGlobalVariants,
+  generateOnMutateForSpec,
+  generateStateOnChangeProp,
+  generateStateOnChangePropForCodeComponents,
+  generateStateValueProp,
+  get as $stateGet,
+  hasVariant,
+  initializeCodeComponentStates,
+  initializePlasmicStates,
+  makeFragment,
+  omit,
+  pick,
+  renderPlasmicSlot,
+  set as $stateSet,
+  useCurrentUser,
+  useDollarState,
+  usePlasmicTranslator,
+  useTrigger,
+  wrapWithClassName
 } from "@plasmicapp/react-web";
+import {
+  DataCtxReader as DataCtxReader__,
+  useDataEnv,
+  useGlobalActions
+} from "@plasmicapp/react-web/lib/host";
+
 import Header from "../../Header"; // plasmic-import: oeaZd66p84/component
 import Button from "../../Button"; // plasmic-import: dTivG-jH3lW/component
 
@@ -64,11 +87,11 @@ type ArgPropType = keyof PlasmicCompletedAdminOrder__ArgsType;
 export const PlasmicCompletedAdminOrder__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicCompletedAdminOrder__OverridesType = {
-  root?: p.Flex<"div">;
-  header?: p.Flex<typeof Header>;
-  h2?: p.Flex<"h2">;
-  printBtn?: p.Flex<typeof Button>;
-  homeBtn?: p.Flex<typeof Button>;
+  root?: Flex__<"div">;
+  header?: Flex__<typeof Header>;
+  h2?: Flex__<"h2">;
+  printBtn?: Flex__<typeof Button>;
+  homeBtn?: Flex__<typeof Button>;
 };
 
 export interface DefaultCompletedAdminOrderProps {}
@@ -98,11 +121,11 @@ function PlasmicCompletedAdminOrder__RenderFunc(props: {
   };
 
   const __nextRouter = useNextRouter();
-  const $ctx = ph.useDataEnv?.() || {};
+  const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const currentUser = p.useCurrentUser?.() || {};
+  const currentUser = useCurrentUser?.() || {};
 
   return (
     <React.Fragment>
@@ -138,7 +161,7 @@ function PlasmicCompletedAdminOrder__RenderFunc(props: {
           />
 
           <div className={classNames(projectcss.all, sty.freeBox___4Zd1S)}>
-            <p.Stack
+            <Stack__
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox___2Cd8S)}
@@ -224,7 +247,7 @@ function PlasmicCompletedAdminOrder__RenderFunc(props: {
                   {"Fazer outro pedido"}
                 </div>
               </Button>
-            </p.Stack>
+            </Stack__>
           </div>
         </div>
       </div>
@@ -284,7 +307,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       () =>
         deriveRenderOpts(props, {
           name: nodeName,
-          descendantNames: [...PlasmicDescendants[nodeName]],
+          descendantNames: PlasmicDescendants[nodeName],
           internalArgPropNames: PlasmicCompletedAdminOrder__ArgProps,
           internalVariantPropNames: PlasmicCompletedAdminOrder__VariantProps
         }),

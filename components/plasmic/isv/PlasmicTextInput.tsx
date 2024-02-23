@@ -17,26 +17,49 @@ import Head from "next/head";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
 
-import * as p from "@plasmicapp/react-web";
-import * as ph from "@plasmicapp/react-web/lib/host";
-
-import * as pp from "@plasmicapp/react-web";
 import {
-  hasVariant,
-  classNames,
-  wrapWithClassName,
-  createPlasmicElementProxy,
-  makeFragment,
+  Flex as Flex__,
   MultiChoiceArg,
+  PlasmicDataSourceContextProvider as PlasmicDataSourceContextProvider__,
+  PlasmicIcon as PlasmicIcon__,
+  PlasmicImg as PlasmicImg__,
+  PlasmicLink as PlasmicLink__,
+  PlasmicPageGuard as PlasmicPageGuard__,
   SingleBooleanChoiceArg,
   SingleChoiceArg,
-  pick,
-  omit,
-  useTrigger,
+  Stack as Stack__,
   StrictProps,
+  Trans as Trans__,
+  classNames,
+  createPlasmicElementProxy,
   deriveRenderOpts,
-  ensureGlobalVariants
+  ensureGlobalVariants,
+  generateOnMutateForSpec,
+  generateStateOnChangeProp,
+  generateStateOnChangePropForCodeComponents,
+  generateStateValueProp,
+  get as $stateGet,
+  hasVariant,
+  initializeCodeComponentStates,
+  initializePlasmicStates,
+  makeFragment,
+  omit,
+  pick,
+  renderPlasmicSlot,
+  set as $stateSet,
+  useCurrentUser,
+  useDollarState,
+  usePlasmicTranslator,
+  useTrigger,
+  wrapWithClassName
 } from "@plasmicapp/react-web";
+import {
+  DataCtxReader as DataCtxReader__,
+  useDataEnv,
+  useGlobalActions
+} from "@plasmicapp/react-web/lib/host";
+
+import * as pp from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -89,6 +112,7 @@ export type PlasmicTextInput__ArgsType = {
     | "time"
     | "email"
     | "tel";
+  onChange?: (event: any) => void;
 };
 type ArgPropType = keyof PlasmicTextInput__ArgsType;
 export const PlasmicTextInput__ArgProps = new Array<ArgPropType>(
@@ -100,14 +124,15 @@ export const PlasmicTextInput__ArgProps = new Array<ArgPropType>(
   "required",
   "aria-label",
   "aria-labelledby",
-  "type"
+  "type",
+  "onChange"
 );
 
 export type PlasmicTextInput__OverridesType = {
-  root?: p.Flex<"div">;
-  startIconContainer?: p.Flex<"div">;
-  input?: p.Flex<"input">;
-  endIconContainer?: p.Flex<"div">;
+  root?: Flex__<"div">;
+  startIconContainer?: Flex__<"div">;
+  input?: Flex__<"input">;
+  endIconContainer?: Flex__<"div">;
 };
 
 export interface DefaultTextInputProps extends pp.BaseTextInputProps {
@@ -127,6 +152,7 @@ export interface DefaultTextInputProps extends pp.BaseTextInputProps {
     | "time"
     | "email"
     | "tel";
+  onChange?: (event: any) => void;
   color?: SingleChoiceArg<"dark">;
 }
 
@@ -155,13 +181,13 @@ function PlasmicTextInput__RenderFunc(props: {
   };
 
   const __nextRouter = useNextRouter();
-  const $ctx = ph.useDataEnv?.() || {};
+  const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const currentUser = p.useCurrentUser?.() || {};
+  const currentUser = useCurrentUser?.() || {};
 
-  const stateSpecs: Parameters<typeof p.useDollarState>[0] = React.useMemo(
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
         path: "showStartIcon",
@@ -198,7 +224,7 @@ function PlasmicTextInput__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
-  const $state = p.useDollarState(stateSpecs, {
+  const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
     $queries: {},
@@ -264,7 +290,7 @@ function PlasmicTextInput__RenderFunc(props: {
           )
         })}
       >
-        {p.renderPlasmicSlot({
+        {renderPlasmicSlot({
           defaultContents: (
             <SearchsvgIcon
               className={classNames(projectcss.all, sty.svg___1JPlI)}
@@ -327,7 +353,7 @@ function PlasmicTextInput__RenderFunc(props: {
           )
         })}
       >
-        {p.renderPlasmicSlot({
+        {renderPlasmicSlot({
           defaultContents: (
             <ChecksvgIcon
               className={classNames(projectcss.all, sty.svg__awSTg)}
@@ -427,7 +453,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       () =>
         deriveRenderOpts(props, {
           name: nodeName,
-          descendantNames: [...PlasmicDescendants[nodeName]],
+          descendantNames: PlasmicDescendants[nodeName],
           internalArgPropNames: PlasmicTextInput__ArgProps,
           internalVariantPropNames: PlasmicTextInput__VariantProps
         }),

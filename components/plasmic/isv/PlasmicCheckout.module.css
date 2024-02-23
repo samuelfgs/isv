@@ -225,13 +225,13 @@
 .svg__mBdjO {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .svg__jIt6M {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .freeBox__uwY6I {
@@ -282,13 +282,13 @@
 .svg__cMtOk {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .svg__jeWql {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .freeBox__nmWzQ {
@@ -377,7 +377,7 @@
 .svg {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .text__dk1Tj {
@@ -386,7 +386,7 @@
 .svg__oidKm {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .checkoutBtn:global(.__wab_instance) {
@@ -397,7 +397,7 @@
 .svg___2Zmtx {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .text__csUxJ {
@@ -406,7 +406,7 @@
 .svg__oC9J6 {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .loading:global(.__wab_instance) {

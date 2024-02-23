@@ -212,13 +212,13 @@
 .svg__ivHve {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .svg__pKum {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .freeBox__kIt60 {
@@ -269,13 +269,13 @@
 .svg___7D3Ba {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .svg__tEEuM {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .freeBox__kHqHn {
@@ -326,13 +326,13 @@
 .svg__wapdg {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .svg__kd1Ug {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .freeBox__xrZj6 {
@@ -383,13 +383,13 @@
 .svg__hgvG {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .svg__sLuvP {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .freeBox__t7DLq {
@@ -440,13 +440,13 @@
 .svg__la6TT {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .svg___22Wq2 {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .freeBox__xs0Ds {
@@ -497,13 +497,13 @@
 .svg__fbe3L {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .svg__xzuI {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .freeBox__rwAk0 {
@@ -682,7 +682,7 @@
 .svg {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .text__zYd5 {
@@ -691,7 +691,7 @@
 .svg__fEo5 {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .checkoutBtn:global(.__wab_instance) {
@@ -702,7 +702,7 @@
 .svg__grJmL {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .text__nUFh {
@@ -711,7 +711,7 @@
 .svg___8M0RO {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .loading:global(.__wab_instance) {

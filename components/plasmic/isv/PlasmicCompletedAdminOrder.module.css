@@ -102,7 +102,7 @@
 .svg__xqTu {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .homeBtn:global(.__wab_instance) {
@@ -121,6 +121,6 @@
 .svg__zZbSa {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }

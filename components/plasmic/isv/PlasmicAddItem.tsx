@@ -17,25 +17,48 @@ import Head from "next/head";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
 
-import * as p from "@plasmicapp/react-web";
-import * as ph from "@plasmicapp/react-web/lib/host";
-
 import {
-  hasVariant,
-  classNames,
-  wrapWithClassName,
-  createPlasmicElementProxy,
-  makeFragment,
+  Flex as Flex__,
   MultiChoiceArg,
+  PlasmicDataSourceContextProvider as PlasmicDataSourceContextProvider__,
+  PlasmicIcon as PlasmicIcon__,
+  PlasmicImg as PlasmicImg__,
+  PlasmicLink as PlasmicLink__,
+  PlasmicPageGuard as PlasmicPageGuard__,
   SingleBooleanChoiceArg,
   SingleChoiceArg,
-  pick,
-  omit,
-  useTrigger,
+  Stack as Stack__,
   StrictProps,
+  Trans as Trans__,
+  classNames,
+  createPlasmicElementProxy,
   deriveRenderOpts,
-  ensureGlobalVariants
+  ensureGlobalVariants,
+  generateOnMutateForSpec,
+  generateStateOnChangeProp,
+  generateStateOnChangePropForCodeComponents,
+  generateStateValueProp,
+  get as $stateGet,
+  hasVariant,
+  initializeCodeComponentStates,
+  initializePlasmicStates,
+  makeFragment,
+  omit,
+  pick,
+  renderPlasmicSlot,
+  set as $stateSet,
+  useCurrentUser,
+  useDollarState,
+  usePlasmicTranslator,
+  useTrigger,
+  wrapWithClassName
 } from "@plasmicapp/react-web";
+import {
+  DataCtxReader as DataCtxReader__,
+  useDataEnv,
+  useGlobalActions
+} from "@plasmicapp/react-web/lib/host";
+
 import Header from "../../Header"; // plasmic-import: oeaZd66p84/component
 import { ContentfulFetcher } from "../../contentful"; // plasmic-import: AIFoPRZ0EI/codeComponent
 import AddItemOption from "../../AddItemOption"; // plasmic-import: hCmOmN_odDK/component
@@ -71,15 +94,15 @@ export const PlasmicAddItem__ArgProps = new Array<ArgPropType>(
 );
 
 export type PlasmicAddItem__OverridesType = {
-  root?: p.Flex<"div">;
-  header?: p.Flex<typeof Header>;
-  contentfulFetcher?: p.Flex<typeof ContentfulFetcher>;
-  back?: p.Flex<"div">;
-  addItemOption?: p.Flex<typeof AddItemOption>;
-  scrollSpace?: p.Flex<typeof ScrollSpace>;
-  footer?: p.Flex<"div">;
-  selectedOptionValues?: p.Flex<"div">;
-  button?: p.Flex<typeof Button>;
+  root?: Flex__<"div">;
+  header?: Flex__<typeof Header>;
+  contentfulFetcher?: Flex__<typeof ContentfulFetcher>;
+  back?: Flex__<"div">;
+  addItemOption?: Flex__<typeof AddItemOption>;
+  scrollSpace?: Flex__<typeof ScrollSpace>;
+  footer?: Flex__<"div">;
+  selectedOptionValues?: Flex__<"div">;
+  button?: Flex__<typeof Button>;
 };
 
 export interface DefaultAddItemProps {}
@@ -118,11 +141,11 @@ function PlasmicAddItem__RenderFunc(props: {
   };
 
   const __nextRouter = useNextRouter();
-  const $ctx = ph.useDataEnv?.() || {};
+  const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const currentUser = p.useCurrentUser?.() || {};
+  const currentUser = useCurrentUser?.() || {};
 
   return (
     <React.Fragment>
@@ -166,7 +189,7 @@ function PlasmicAddItem__RenderFunc(props: {
             limit={1000}
             noLayout={true}
           >
-            <ph.DataCtxReader>
+            <DataCtxReader__>
               {$ctx => (
                 <React.Fragment>
                   <div
@@ -220,7 +243,7 @@ function PlasmicAddItem__RenderFunc(props: {
                   >
                     {"Escolha sua op\u00e7\u00e3o"}
                   </div>
-                  <p.Stack
+                  <Stack__
                     as={"div"}
                     hasGap={true}
                     className={classNames(projectcss.all, sty.freeBox__cw7B)}
@@ -278,7 +301,7 @@ function PlasmicAddItem__RenderFunc(props: {
                         </div>
                       );
                     })}
-                  </p.Stack>
+                  </Stack__>
                   <ScrollSpace
                     data-plasmic-name={"scrollSpace"}
                     data-plasmic-override={overrides.scrollSpace}
@@ -325,7 +348,7 @@ function PlasmicAddItem__RenderFunc(props: {
                           sty.freeBox__cQd1X
                         )}
                       >
-                        {p.renderPlasmicSlot({
+                        {renderPlasmicSlot({
                           defaultContents: (
                             <React.Fragment>
                               {(() => {
@@ -354,7 +377,7 @@ function PlasmicAddItem__RenderFunc(props: {
                         })}
                       </div>
                     </div>
-                    <p.Stack
+                    <Stack__
                       as={"div"}
                       data-plasmic-name={"selectedOptionValues"}
                       data-plasmic-override={overrides.selectedOptionValues}
@@ -392,7 +415,7 @@ function PlasmicAddItem__RenderFunc(props: {
                   </div>
                 </React.Fragment>
               )}
-            </ph.DataCtxReader>
+            </DataCtxReader__>
           </ContentfulFetcher>
         </div>
       </div>
@@ -478,7 +501,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       () =>
         deriveRenderOpts(props, {
           name: nodeName,
-          descendantNames: [...PlasmicDescendants[nodeName]],
+          descendantNames: PlasmicDescendants[nodeName],
           internalArgPropNames: PlasmicAddItem__ArgProps,
           internalVariantPropNames: PlasmicAddItem__VariantProps
         }),

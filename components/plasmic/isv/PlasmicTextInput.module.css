@@ -54,9 +54,8 @@
 .svg___1JPlI {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
-  flex-shrink: 0;
 }
 .input {
   width: 100%;
@@ -116,7 +115,6 @@
 .svg__awSTg {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
-  flex-shrink: 0;
 }

@@ -17,25 +17,48 @@ import Head from "next/head";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
 
-import * as p from "@plasmicapp/react-web";
-import * as ph from "@plasmicapp/react-web/lib/host";
-
 import {
-  hasVariant,
-  classNames,
-  wrapWithClassName,
-  createPlasmicElementProxy,
-  makeFragment,
+  Flex as Flex__,
   MultiChoiceArg,
+  PlasmicDataSourceContextProvider as PlasmicDataSourceContextProvider__,
+  PlasmicIcon as PlasmicIcon__,
+  PlasmicImg as PlasmicImg__,
+  PlasmicLink as PlasmicLink__,
+  PlasmicPageGuard as PlasmicPageGuard__,
   SingleBooleanChoiceArg,
   SingleChoiceArg,
-  pick,
-  omit,
-  useTrigger,
+  Stack as Stack__,
   StrictProps,
+  Trans as Trans__,
+  classNames,
+  createPlasmicElementProxy,
   deriveRenderOpts,
-  ensureGlobalVariants
+  ensureGlobalVariants,
+  generateOnMutateForSpec,
+  generateStateOnChangeProp,
+  generateStateOnChangePropForCodeComponents,
+  generateStateValueProp,
+  get as $stateGet,
+  hasVariant,
+  initializeCodeComponentStates,
+  initializePlasmicStates,
+  makeFragment,
+  omit,
+  pick,
+  renderPlasmicSlot,
+  set as $stateSet,
+  useCurrentUser,
+  useDollarState,
+  usePlasmicTranslator,
+  useTrigger,
+  wrapWithClassName
 } from "@plasmicapp/react-web";
+import {
+  DataCtxReader as DataCtxReader__,
+  useDataEnv,
+  useGlobalActions
+} from "@plasmicapp/react-web/lib/host";
+
 import Header from "../../Header"; // plasmic-import: oeaZd66p84/component
 import { ContentfulFetcher } from "../../contentful"; // plasmic-import: AIFoPRZ0EI/codeComponent
 import Separator from "../../Separator"; // plasmic-import: wUTVsB-fca/component
@@ -71,16 +94,16 @@ type ArgPropType = keyof PlasmicHomepage__ArgsType;
 export const PlasmicHomepage__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHomepage__OverridesType = {
-  root?: p.Flex<"div">;
-  header?: p.Flex<typeof Header>;
-  event?: p.Flex<typeof ContentfulFetcher>;
-  img?: p.Flex<typeof p.PlasmicImg>;
-  link?: p.Flex<"a"> & Partial<LinkProps>;
-  separator?: p.Flex<typeof Separator>;
-  options?: p.Flex<"div">;
-  menuItem?: p.Flex<typeof MenuItem>;
-  contentfulRichText?: p.Flex<typeof ContentfulRichText>;
-  cartButton?: p.Flex<typeof CartButton>;
+  root?: Flex__<"div">;
+  header?: Flex__<typeof Header>;
+  event?: Flex__<typeof ContentfulFetcher>;
+  img?: Flex__<typeof PlasmicImg__>;
+  link?: Flex__<"a"> & Partial<LinkProps>;
+  separator?: Flex__<typeof Separator>;
+  options?: Flex__<"div">;
+  menuItem?: Flex__<typeof MenuItem>;
+  contentfulRichText?: Flex__<typeof ContentfulRichText>;
+  cartButton?: Flex__<typeof CartButton>;
 };
 
 export interface DefaultHomepageProps {}
@@ -110,13 +133,13 @@ function PlasmicHomepage__RenderFunc(props: {
   };
 
   const __nextRouter = useNextRouter();
-  const $ctx = ph.useDataEnv?.() || {};
+  const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const currentUser = p.useCurrentUser?.() || {};
+  const currentUser = useCurrentUser?.() || {};
 
-  const stateSpecs: Parameters<typeof p.useDollarState>[0] = React.useMemo(
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
         path: "closed",
@@ -127,7 +150,7 @@ function PlasmicHomepage__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
-  const $state = p.useDollarState(stateSpecs, {
+  const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
     $queries: {},
@@ -145,7 +168,7 @@ function PlasmicHomepage__RenderFunc(props: {
       `}</style>
 
       <div className={projectcss.plasmic_page_wrapper}>
-        <p.Stack
+        <Stack__
           as={"div"}
           data-plasmic-name={"root"}
           data-plasmic-override={overrides.root}
@@ -177,19 +200,19 @@ function PlasmicHomepage__RenderFunc(props: {
             data-plasmic-override={overrides.event}
             className={classNames("__wab_instance", sty.event)}
             contentType={"event"}
-            entryID={"1WNfwBEVS4VuURQrDY7RgD"}
+            entryID={"3kx01giGi4y6Sw5tJNnkcU"}
             limit={1000}
             noLayout={true}
           >
-            <ph.DataCtxReader>
+            <DataCtxReader__>
               {$ctx => (
                 <React.Fragment>
-                  <p.Stack
+                  <Stack__
                     as={"div"}
                     hasGap={true}
                     className={classNames(projectcss.all, sty.freeBox__wFFs9)}
                   >
-                    <p.PlasmicImg
+                    <PlasmicImg__
                       data-plasmic-name={"img"}
                       data-plasmic-override={overrides.img}
                       alt={""}
@@ -217,7 +240,7 @@ function PlasmicHomepage__RenderFunc(props: {
                       })()}
                     />
 
-                    <p.Stack
+                    <Stack__
                       as={"div"}
                       hasGap={true}
                       className={classNames(projectcss.all, sty.freeBox__cwUK)}
@@ -236,12 +259,12 @@ function PlasmicHomepage__RenderFunc(props: {
                       >
                         {"23 de julho"}
                       </div>
-                    </p.Stack>
+                    </Stack__>
                     <div
                       className={classNames(projectcss.all, sty.freeBox__wrEd8)}
                     >
-                      <p.Stack
-                        as={p.PlasmicLink}
+                      <Stack__
+                        as={PlasmicLink__}
                         data-plasmic-name={"link"}
                         data-plasmic-override={overrides.link}
                         hasGap={true}
@@ -271,8 +294,8 @@ function PlasmicHomepage__RenderFunc(props: {
                         >
                           {"Rua Jardel Fran\u00e7a, 18"}
                         </div>
-                      </p.Stack>
-                      <p.Stack
+                      </Stack__>
+                      <Stack__
                         as={"div"}
                         hasGap={true}
                         className={classNames(
@@ -294,16 +317,16 @@ function PlasmicHomepage__RenderFunc(props: {
                         >
                           {"12 de agosto \u00e0s 18:00"}
                         </div>
-                      </p.Stack>
+                      </Stack__>
                     </div>
-                  </p.Stack>
+                  </Stack__>
                   <Separator
                     data-plasmic-name={"separator"}
                     data-plasmic-override={overrides.separator}
                     className={classNames("__wab_instance", sty.separator)}
                   />
 
-                  <p.Stack
+                  <Stack__
                     as={"div"}
                     hasGap={true}
                     className={classNames(projectcss.all, sty.freeBox__dg52T)}
@@ -327,7 +350,7 @@ function PlasmicHomepage__RenderFunc(props: {
                         ? "VENDAS ENCERRADAS!"
                         : "Almo\u00e7o AD 20"}
                     </div>
-                    <p.Stack
+                    <Stack__
                       as={"div"}
                       data-plasmic-name={"options"}
                       data-plasmic-override={overrides.options}
@@ -478,11 +501,11 @@ function PlasmicHomepage__RenderFunc(props: {
                           />
                         );
                       })}
-                    </p.Stack>
-                  </p.Stack>
+                    </Stack__>
+                  </Stack__>
                 </React.Fragment>
               )}
-            </ph.DataCtxReader>
+            </DataCtxReader__>
           </ContentfulFetcher>
           <CartButton
             data-plasmic-name={"cartButton"}
@@ -490,7 +513,7 @@ function PlasmicHomepage__RenderFunc(props: {
             className={classNames("__wab_instance", sty.cartButton)}
             isEmpty={true}
           />
-        </p.Stack>
+        </Stack__>
       </div>
     </React.Fragment>
   ) as React.ReactElement | null;
@@ -534,7 +557,7 @@ type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;
   event: typeof ContentfulFetcher;
-  img: typeof p.PlasmicImg;
+  img: typeof PlasmicImg__;
   link: "a";
   separator: typeof Separator;
   options: "div";
@@ -577,7 +600,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       () =>
         deriveRenderOpts(props, {
           name: nodeName,
-          descendantNames: [...PlasmicDescendants[nodeName]],
+          descendantNames: PlasmicDescendants[nodeName],
           internalArgPropNames: PlasmicHomepage__ArgProps,
           internalVariantPropNames: PlasmicHomepage__VariantProps
         }),

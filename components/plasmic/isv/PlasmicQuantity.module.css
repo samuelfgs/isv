@@ -34,7 +34,7 @@
 .svg__wKudk {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .text__rytN {
@@ -47,7 +47,7 @@
 .svg__waY0M {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .freeBox {
@@ -75,7 +75,7 @@
 .svg__hiZEl {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .text__zWdC {
@@ -89,6 +89,6 @@
 .svg__a2Rho {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }

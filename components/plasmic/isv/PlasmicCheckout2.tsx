@@ -17,25 +17,48 @@ import Head from "next/head";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
 
-import * as p from "@plasmicapp/react-web";
-import * as ph from "@plasmicapp/react-web/lib/host";
-
 import {
-  hasVariant,
-  classNames,
-  wrapWithClassName,
-  createPlasmicElementProxy,
-  makeFragment,
+  Flex as Flex__,
   MultiChoiceArg,
+  PlasmicDataSourceContextProvider as PlasmicDataSourceContextProvider__,
+  PlasmicIcon as PlasmicIcon__,
+  PlasmicImg as PlasmicImg__,
+  PlasmicLink as PlasmicLink__,
+  PlasmicPageGuard as PlasmicPageGuard__,
   SingleBooleanChoiceArg,
   SingleChoiceArg,
-  pick,
-  omit,
-  useTrigger,
+  Stack as Stack__,
   StrictProps,
+  Trans as Trans__,
+  classNames,
+  createPlasmicElementProxy,
   deriveRenderOpts,
-  ensureGlobalVariants
+  ensureGlobalVariants,
+  generateOnMutateForSpec,
+  generateStateOnChangeProp,
+  generateStateOnChangePropForCodeComponents,
+  generateStateValueProp,
+  get as $stateGet,
+  hasVariant,
+  initializeCodeComponentStates,
+  initializePlasmicStates,
+  makeFragment,
+  omit,
+  pick,
+  renderPlasmicSlot,
+  set as $stateSet,
+  useCurrentUser,
+  useDollarState,
+  usePlasmicTranslator,
+  useTrigger,
+  wrapWithClassName
 } from "@plasmicapp/react-web";
+import {
+  DataCtxReader as DataCtxReader__,
+  useDataEnv,
+  useGlobalActions
+} from "@plasmicapp/react-web/lib/host";
+
 import Header from "../../Header"; // plasmic-import: oeaZd66p84/component
 import ShoppingCartLineItem from "../../ShoppingCartLineItem"; // plasmic-import: cnD_NnksTl/component
 import TextInput from "../../TextInput"; // plasmic-import: ZCE1TfqnzIq/component
@@ -83,24 +106,24 @@ export const PlasmicCheckout2__ArgProps = new Array<ArgPropType>(
 );
 
 export type PlasmicCheckout2__OverridesType = {
-  root?: p.Flex<"div">;
-  header?: p.Flex<typeof Header>;
-  lineItems?: p.Flex<"div">;
-  invalidData?: p.Flex<"div">;
-  nameInput?: p.Flex<typeof TextInput>;
-  emailInput?: p.Flex<typeof TextInput>;
-  addressInput?: p.Flex<typeof TextInput>;
-  numberInput?: p.Flex<typeof TextInput>;
-  complementoInput?: p.Flex<typeof TextInput>;
-  bairroInput?: p.Flex<typeof TextInput>;
-  cityInput?: p.Flex<typeof Select>;
-  entregaInput?: p.Flex<typeof Select>;
-  paymentInput?: p.Flex<typeof Select>;
-  option?: p.Flex<typeof Select__Option>;
-  backBtn?: p.Flex<typeof Button>;
-  svg?: p.Flex<"svg">;
-  checkoutBtn?: p.Flex<typeof Button>;
-  loading?: p.Flex<typeof Loading>;
+  root?: Flex__<"div">;
+  header?: Flex__<typeof Header>;
+  lineItems?: Flex__<"div">;
+  invalidData?: Flex__<"div">;
+  nameInput?: Flex__<typeof TextInput>;
+  emailInput?: Flex__<typeof TextInput>;
+  addressInput?: Flex__<typeof TextInput>;
+  numberInput?: Flex__<typeof TextInput>;
+  complementoInput?: Flex__<typeof TextInput>;
+  bairroInput?: Flex__<typeof TextInput>;
+  cityInput?: Flex__<typeof Select>;
+  entregaInput?: Flex__<typeof Select>;
+  paymentInput?: Flex__<typeof Select>;
+  option?: Flex__<typeof Select__Option>;
+  backBtn?: Flex__<typeof Button>;
+  svg?: Flex__<"svg">;
+  checkoutBtn?: Flex__<typeof Button>;
+  loading?: Flex__<typeof Loading>;
 };
 
 export interface DefaultCheckout2Props {}
@@ -139,13 +162,13 @@ function PlasmicCheckout2__RenderFunc(props: {
   };
 
   const __nextRouter = useNextRouter();
-  const $ctx = ph.useDataEnv?.() || {};
+  const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const currentUser = p.useCurrentUser?.() || {};
+  const currentUser = useCurrentUser?.() || {};
 
-  const stateSpecs: Parameters<typeof p.useDollarState>[0] = React.useMemo(
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
         path: "isEmpty",
@@ -216,7 +239,7 @@ function PlasmicCheckout2__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
-  const $state = p.useDollarState(stateSpecs, {
+  const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
     $queries: {},
@@ -295,7 +318,7 @@ function PlasmicCheckout2__RenderFunc(props: {
               )
             })}
           >
-            <p.Stack
+            <Stack__
               as={"div"}
               data-plasmic-name={"lineItems"}
               data-plasmic-override={overrides.lineItems}
@@ -331,9 +354,9 @@ function PlasmicCheckout2__RenderFunc(props: {
                 )}
                 even={true}
               />
-            </p.Stack>
+            </Stack__>
           </div>
-          <p.Stack
+          <Stack__
             as={"div"}
             hasGap={true}
             className={classNames(projectcss.all, sty.freeBox__ykaXx, {
@@ -368,7 +391,7 @@ function PlasmicCheckout2__RenderFunc(props: {
                 {"Total: R$ "}
               </div>
               <div className={classNames(projectcss.all, sty.freeBox__ozBb8)}>
-                {p.renderPlasmicSlot({
+                {renderPlasmicSlot({
                   defaultContents: "20,00",
                   value: args.totalPrice,
                   className: classNames(sty.slotTargetTotalPrice)
@@ -398,7 +421,7 @@ function PlasmicCheckout2__RenderFunc(props: {
             >
               {"Dados inv\u00e1lidos"}
             </div>
-            <p.Stack
+            <Stack__
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__mqfv, {
@@ -431,18 +454,18 @@ function PlasmicCheckout2__RenderFunc(props: {
                 className={classNames("__wab_instance", sty.nameInput)}
                 name={"name"}
                 onChange={(...eventArgs) => {
-                  p.generateStateOnChangeProp($state, ["nameInput", "value"])(
+                  generateStateOnChangeProp($state, ["nameInput", "value"])(
                     (e => e.target?.value).apply(null, eventArgs)
                   );
                 }}
                 placeholder={""}
                 required={true}
                 value={
-                  p.generateStateValueProp($state, ["nameInput", "value"]) ?? ""
+                  generateStateValueProp($state, ["nameInput", "value"]) ?? ""
                 }
               />
-            </p.Stack>
-            <p.Stack
+            </Stack__>
+            <Stack__
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__kIt60, {
@@ -475,19 +498,18 @@ function PlasmicCheckout2__RenderFunc(props: {
                 className={classNames("__wab_instance", sty.emailInput)}
                 name={"name"}
                 onChange={(...eventArgs) => {
-                  p.generateStateOnChangeProp($state, ["emailInput", "value"])(
+                  generateStateOnChangeProp($state, ["emailInput", "value"])(
                     (e => e.target?.value).apply(null, eventArgs)
                   );
                 }}
                 placeholder={""}
                 required={true}
                 value={
-                  p.generateStateValueProp($state, ["emailInput", "value"]) ??
-                  ""
+                  generateStateValueProp($state, ["emailInput", "value"]) ?? ""
                 }
               />
-            </p.Stack>
-            <p.Stack
+            </Stack__>
+            <Stack__
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__kHqHn, {
@@ -520,20 +542,19 @@ function PlasmicCheckout2__RenderFunc(props: {
                 className={classNames("__wab_instance", sty.addressInput)}
                 name={"address"}
                 onChange={(...eventArgs) => {
-                  p.generateStateOnChangeProp($state, [
-                    "addressInput",
-                    "value"
-                  ])((e => e.target?.value).apply(null, eventArgs));
+                  generateStateOnChangeProp($state, ["addressInput", "value"])(
+                    (e => e.target?.value).apply(null, eventArgs)
+                  );
                 }}
                 placeholder={""}
                 required={true}
                 value={
-                  p.generateStateValueProp($state, ["addressInput", "value"]) ??
+                  generateStateValueProp($state, ["addressInput", "value"]) ??
                   ""
                 }
               />
-            </p.Stack>
-            <p.Stack
+            </Stack__>
+            <Stack__
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__xrZj6, {
@@ -566,19 +587,18 @@ function PlasmicCheckout2__RenderFunc(props: {
                 className={classNames("__wab_instance", sty.numberInput)}
                 name={"number"}
                 onChange={(...eventArgs) => {
-                  p.generateStateOnChangeProp($state, ["numberInput", "value"])(
+                  generateStateOnChangeProp($state, ["numberInput", "value"])(
                     (e => e.target?.value).apply(null, eventArgs)
                   );
                 }}
                 placeholder={""}
                 required={true}
                 value={
-                  p.generateStateValueProp($state, ["numberInput", "value"]) ??
-                  ""
+                  generateStateValueProp($state, ["numberInput", "value"]) ?? ""
                 }
               />
-            </p.Stack>
-            <p.Stack
+            </Stack__>
+            <Stack__
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__t7DLq, {
@@ -611,7 +631,7 @@ function PlasmicCheckout2__RenderFunc(props: {
                 className={classNames("__wab_instance", sty.complementoInput)}
                 name={"complemento"}
                 onChange={(...eventArgs) => {
-                  p.generateStateOnChangeProp($state, [
+                  generateStateOnChangeProp($state, [
                     "complementoInput",
                     "value"
                   ])((e => e.target?.value).apply(null, eventArgs));
@@ -619,14 +639,14 @@ function PlasmicCheckout2__RenderFunc(props: {
                 placeholder={""}
                 required={false}
                 value={
-                  p.generateStateValueProp($state, [
+                  generateStateValueProp($state, [
                     "complementoInput",
                     "value"
                   ]) ?? ""
                 }
               />
-            </p.Stack>
-            <p.Stack
+            </Stack__>
+            <Stack__
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__xs0Ds, {
@@ -659,19 +679,18 @@ function PlasmicCheckout2__RenderFunc(props: {
                 className={classNames("__wab_instance", sty.bairroInput)}
                 name={"bairro"}
                 onChange={(...eventArgs) => {
-                  p.generateStateOnChangeProp($state, ["bairroInput", "value"])(
+                  generateStateOnChangeProp($state, ["bairroInput", "value"])(
                     (e => e.target?.value).apply(null, eventArgs)
                   );
                 }}
                 placeholder={""}
                 required={false}
                 value={
-                  p.generateStateValueProp($state, ["bairroInput", "value"]) ??
-                  ""
+                  generateStateValueProp($state, ["bairroInput", "value"]) ?? ""
                 }
               />
-            </p.Stack>
-            <p.Stack
+            </Stack__>
+            <Stack__
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__rwAk0, {
@@ -703,7 +722,7 @@ function PlasmicCheckout2__RenderFunc(props: {
                 data-plasmic-override={overrides.cityInput}
                 className={classNames("__wab_instance", sty.cityInput)}
                 onChange={(...eventArgs) => {
-                  p.generateStateOnChangeProp($state, ["cityInput", "value"])(
+                  generateStateOnChangeProp($state, ["cityInput", "value"])(
                     eventArgs[0]
                   );
                 }}
@@ -721,10 +740,10 @@ function PlasmicCheckout2__RenderFunc(props: {
                   __composite["2"]["label"] = "Praia Grande";
                   return __composite;
                 })()}
-                value={p.generateStateValueProp($state, ["cityInput", "value"])}
+                value={generateStateValueProp($state, ["cityInput", "value"])}
               />
-            </p.Stack>
-            <p.Stack
+            </Stack__>
+            <Stack__
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__rZlsc, {
@@ -756,10 +775,9 @@ function PlasmicCheckout2__RenderFunc(props: {
                 data-plasmic-override={overrides.entregaInput}
                 className={classNames("__wab_instance", sty.entregaInput)}
                 onChange={(...eventArgs) => {
-                  p.generateStateOnChangeProp($state, [
-                    "entregaInput",
-                    "value"
-                  ])(eventArgs[0]);
+                  generateStateOnChangeProp($state, ["entregaInput", "value"])(
+                    eventArgs[0]
+                  );
                 }}
                 options={(() => {
                   try {
@@ -781,13 +799,13 @@ function PlasmicCheckout2__RenderFunc(props: {
                     throw e;
                   }
                 })()}
-                value={p.generateStateValueProp($state, [
+                value={generateStateValueProp($state, [
                   "entregaInput",
                   "value"
                 ])}
               />
-            </p.Stack>
-            <p.Stack
+            </Stack__>
+            <Stack__
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__s4Ns9, {
@@ -834,12 +852,12 @@ function PlasmicCheckout2__RenderFunc(props: {
                     )
                   })}
                   onChange={(...eventArgs) => {
-                    p.generateStateOnChangeProp($state, [
+                    generateStateOnChangeProp($state, [
                       "paymentInput",
                       "value"
                     ])(eventArgs[0]);
                   }}
-                  value={p.generateStateValueProp($state, [
+                  value={generateStateValueProp($state, [
                     "paymentInput",
                     "value"
                   ])}
@@ -902,7 +920,7 @@ function PlasmicCheckout2__RenderFunc(props: {
                   })}
                 </Select>
               </div>
-            </p.Stack>
+            </Stack__>
             <div
               className={classNames(projectcss.all, sty.freeBox__t6Fu, {
                 [sty.freeBoxisAdmin__t6FUbaKz0]: hasVariant(
@@ -957,7 +975,7 @@ function PlasmicCheckout2__RenderFunc(props: {
                 </div>
               </Button>
             </div>
-          </p.Stack>
+          </Stack__>
           <Loading
             data-plasmic-name={"loading"}
             data-plasmic-override={overrides.loading}
@@ -1067,7 +1085,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       () =>
         deriveRenderOpts(props, {
           name: nodeName,
-          descendantNames: [...PlasmicDescendants[nodeName]],
+          descendantNames: PlasmicDescendants[nodeName],
           internalArgPropNames: PlasmicCheckout2__ArgProps,
           internalVariantPropNames: PlasmicCheckout2__VariantProps
         }),

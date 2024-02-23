@@ -244,13 +244,13 @@
 .svg__ppYda {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .svg__yRnjY {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .freeBox__dy3J8 {
@@ -296,13 +296,13 @@
 .svg__onlLc {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .svg__clsjS {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .freeBox__dhXtS {
@@ -328,7 +328,7 @@
 .svg {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .text___528Rb {
@@ -337,7 +337,7 @@
 .svg___3T3Dd {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .checkoutBtn:global(.__wab_instance) {
@@ -351,7 +351,7 @@
 .svg__kfdZs {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .text__nNaap {
@@ -360,7 +360,7 @@
 .svg__djAh {
   position: relative;
   object-fit: cover;
-  width: 1em;
+  width: auto;
   height: 1em;
 }
 .loading:global(.__wab_instance) {

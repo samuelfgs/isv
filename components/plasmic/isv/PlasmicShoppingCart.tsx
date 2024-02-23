@@ -17,25 +17,48 @@ import Head from "next/head";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
 
-import * as p from "@plasmicapp/react-web";
-import * as ph from "@plasmicapp/react-web/lib/host";
-
 import {
-  hasVariant,
-  classNames,
-  wrapWithClassName,
-  createPlasmicElementProxy,
-  makeFragment,
+  Flex as Flex__,
   MultiChoiceArg,
+  PlasmicDataSourceContextProvider as PlasmicDataSourceContextProvider__,
+  PlasmicIcon as PlasmicIcon__,
+  PlasmicImg as PlasmicImg__,
+  PlasmicLink as PlasmicLink__,
+  PlasmicPageGuard as PlasmicPageGuard__,
   SingleBooleanChoiceArg,
   SingleChoiceArg,
-  pick,
-  omit,
-  useTrigger,
+  Stack as Stack__,
   StrictProps,
+  Trans as Trans__,
+  classNames,
+  createPlasmicElementProxy,
   deriveRenderOpts,
-  ensureGlobalVariants
+  ensureGlobalVariants,
+  generateOnMutateForSpec,
+  generateStateOnChangeProp,
+  generateStateOnChangePropForCodeComponents,
+  generateStateValueProp,
+  get as $stateGet,
+  hasVariant,
+  initializeCodeComponentStates,
+  initializePlasmicStates,
+  makeFragment,
+  omit,
+  pick,
+  renderPlasmicSlot,
+  set as $stateSet,
+  useCurrentUser,
+  useDollarState,
+  usePlasmicTranslator,
+  useTrigger,
+  wrapWithClassName
 } from "@plasmicapp/react-web";
+import {
+  DataCtxReader as DataCtxReader__,
+  useDataEnv,
+  useGlobalActions
+} from "@plasmicapp/react-web/lib/host";
+
 import Header from "../../Header"; // plasmic-import: oeaZd66p84/component
 import ShoppingCartLineItem from "../../ShoppingCartLineItem"; // plasmic-import: cnD_NnksTl/component
 import TextInput from "../../TextInput"; // plasmic-import: ZCE1TfqnzIq/component
@@ -76,17 +99,17 @@ export const PlasmicShoppingCart__ArgProps = new Array<ArgPropType>(
 );
 
 export type PlasmicShoppingCart__OverridesType = {
-  root?: p.Flex<"div">;
-  header?: p.Flex<typeof Header>;
-  lineItems?: p.Flex<"div">;
-  scrollSpace?: p.Flex<"div">;
-  invalidData?: p.Flex<"div">;
-  nameInput?: p.Flex<typeof TextInput>;
-  emailInput?: p.Flex<typeof TextInput>;
-  backBtn?: p.Flex<typeof Button>;
-  svg?: p.Flex<"svg">;
-  checkoutBtn?: p.Flex<typeof Button>;
-  loading?: p.Flex<typeof Loading>;
+  root?: Flex__<"div">;
+  header?: Flex__<typeof Header>;
+  lineItems?: Flex__<"div">;
+  scrollSpace?: Flex__<"div">;
+  invalidData?: Flex__<"div">;
+  nameInput?: Flex__<typeof TextInput>;
+  emailInput?: Flex__<typeof TextInput>;
+  backBtn?: Flex__<typeof Button>;
+  svg?: Flex__<"svg">;
+  checkoutBtn?: Flex__<typeof Button>;
+  loading?: Flex__<typeof Loading>;
 };
 
 export interface DefaultShoppingCartProps {
@@ -120,13 +143,13 @@ function PlasmicShoppingCart__RenderFunc(props: {
   };
 
   const __nextRouter = useNextRouter();
-  const $ctx = ph.useDataEnv?.() || {};
+  const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const currentUser = p.useCurrentUser?.() || {};
+  const currentUser = useCurrentUser?.() || {};
 
-  const stateSpecs: Parameters<typeof p.useDollarState>[0] = React.useMemo(
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
         path: "isEmpty",
@@ -149,7 +172,7 @@ function PlasmicShoppingCart__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
-  const $state = p.useDollarState(stateSpecs, {
+  const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
     $queries: {},
@@ -157,7 +180,7 @@ function PlasmicShoppingCart__RenderFunc(props: {
   });
 
   return (
-    <p.Stack
+    <Stack__
       as={"div"}
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
@@ -209,7 +232,7 @@ function PlasmicShoppingCart__RenderFunc(props: {
         </div>
       </div>
       <div className={classNames(projectcss.all, sty.freeBox__mLvYu)}>
-        <p.Stack
+        <Stack__
           as={"div"}
           data-plasmic-name={"lineItems"}
           data-plasmic-override={overrides.lineItems}
@@ -240,14 +263,14 @@ function PlasmicShoppingCart__RenderFunc(props: {
             )}
             even={true}
           />
-        </p.Stack>
+        </Stack__>
         <div
           data-plasmic-name={"scrollSpace"}
           data-plasmic-override={overrides.scrollSpace}
           className={classNames(projectcss.all, sty.scrollSpace)}
         />
       </div>
-      <p.Stack
+      <Stack__
         as={"div"}
         hasGap={true}
         className={classNames(projectcss.all, sty.freeBox__avSb)}
@@ -271,7 +294,7 @@ function PlasmicShoppingCart__RenderFunc(props: {
             {"Total: R$ "}
           </div>
           <div className={classNames(projectcss.all, sty.freeBox___6PIpe)}>
-            {p.renderPlasmicSlot({
+            {renderPlasmicSlot({
               defaultContents: "20,00",
               value: args.totalPrice,
               className: classNames(sty.slotTargetTotalPrice)
@@ -289,7 +312,7 @@ function PlasmicShoppingCart__RenderFunc(props: {
         >
           {"Dados inv\u00e1lidos"}
         </div>
-        <p.Stack
+        <Stack__
           as={"div"}
           hasGap={true}
           className={classNames(projectcss.all, sty.freeBox__az7FN)}
@@ -309,18 +332,16 @@ function PlasmicShoppingCart__RenderFunc(props: {
             className={classNames("__wab_instance", sty.nameInput)}
             name={"name"}
             onChange={(...eventArgs) => {
-              p.generateStateOnChangeProp($state, ["nameInput", "value"])(
+              generateStateOnChangeProp($state, ["nameInput", "value"])(
                 (e => e.target?.value).apply(null, eventArgs)
               );
             }}
             placeholder={""}
             required={true}
-            value={
-              p.generateStateValueProp($state, ["nameInput", "value"]) ?? ""
-            }
+            value={generateStateValueProp($state, ["nameInput", "value"]) ?? ""}
           />
-        </p.Stack>
-        <p.Stack
+        </Stack__>
+        <Stack__
           as={"div"}
           hasGap={true}
           className={classNames(projectcss.all, sty.freeBox__dy3J8)}
@@ -340,17 +361,17 @@ function PlasmicShoppingCart__RenderFunc(props: {
             className={classNames("__wab_instance", sty.emailInput)}
             name={"email"}
             onChange={(...eventArgs) => {
-              p.generateStateOnChangeProp($state, ["emailInput", "value"])(
+              generateStateOnChangeProp($state, ["emailInput", "value"])(
                 (e => e.target?.value).apply(null, eventArgs)
               );
             }}
             required={true}
             type={"email"}
             value={
-              p.generateStateValueProp($state, ["emailInput", "value"]) ?? ""
+              generateStateValueProp($state, ["emailInput", "value"]) ?? ""
             }
           />
-        </p.Stack>
+        </Stack__>
         <div
           className={classNames(projectcss.all, sty.freeBox__dhXtS, {
             [sty.freeBoxisEmpty__dhXtSyqkGv]: hasVariant(
@@ -431,14 +452,14 @@ function PlasmicShoppingCart__RenderFunc(props: {
             </div>
           </Button>
         </div>
-      </p.Stack>
+      </Stack__>
       <Loading
         data-plasmic-name={"loading"}
         data-plasmic-override={overrides.loading}
         className={classNames("__wab_instance", sty.loading)}
         hide={true}
       />
-    </p.Stack>
+    </Stack__>
   ) as React.ReactElement | null;
 }
 
@@ -518,7 +539,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       () =>
         deriveRenderOpts(props, {
           name: nodeName,
-          descendantNames: [...PlasmicDescendants[nodeName]],
+          descendantNames: PlasmicDescendants[nodeName],
           internalArgPropNames: PlasmicShoppingCart__ArgProps,
           internalVariantPropNames: PlasmicShoppingCart__VariantProps
         }),

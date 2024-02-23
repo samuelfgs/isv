@@ -17,25 +17,48 @@ import Head from "next/head";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
 
-import * as p from "@plasmicapp/react-web";
-import * as ph from "@plasmicapp/react-web/lib/host";
-
 import {
-  hasVariant,
-  classNames,
-  wrapWithClassName,
-  createPlasmicElementProxy,
-  makeFragment,
+  Flex as Flex__,
   MultiChoiceArg,
+  PlasmicDataSourceContextProvider as PlasmicDataSourceContextProvider__,
+  PlasmicIcon as PlasmicIcon__,
+  PlasmicImg as PlasmicImg__,
+  PlasmicLink as PlasmicLink__,
+  PlasmicPageGuard as PlasmicPageGuard__,
   SingleBooleanChoiceArg,
   SingleChoiceArg,
-  pick,
-  omit,
-  useTrigger,
+  Stack as Stack__,
   StrictProps,
+  Trans as Trans__,
+  classNames,
+  createPlasmicElementProxy,
   deriveRenderOpts,
-  ensureGlobalVariants
+  ensureGlobalVariants,
+  generateOnMutateForSpec,
+  generateStateOnChangeProp,
+  generateStateOnChangePropForCodeComponents,
+  generateStateValueProp,
+  get as $stateGet,
+  hasVariant,
+  initializeCodeComponentStates,
+  initializePlasmicStates,
+  makeFragment,
+  omit,
+  pick,
+  renderPlasmicSlot,
+  set as $stateSet,
+  useCurrentUser,
+  useDollarState,
+  usePlasmicTranslator,
+  useTrigger,
+  wrapWithClassName
 } from "@plasmicapp/react-web";
+import {
+  DataCtxReader as DataCtxReader__,
+  useDataEnv,
+  useGlobalActions
+} from "@plasmicapp/react-web/lib/host";
+
 import Quantity from "../../Quantity"; // plasmic-import: VGSmBro-ef/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -70,9 +93,9 @@ export const PlasmicShoppingCartLineItem__ArgProps = new Array<ArgPropType>(
 );
 
 export type PlasmicShoppingCartLineItem__OverridesType = {
-  root?: p.Flex<"div">;
-  optionValues?: p.Flex<"div">;
-  quantity?: p.Flex<typeof Quantity>;
+  root?: Flex__<"div">;
+  optionValues?: Flex__<"div">;
+  quantity?: Flex__<typeof Quantity>;
 };
 
 export interface DefaultShoppingCartLineItemProps {
@@ -108,13 +131,13 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
   };
 
   const __nextRouter = useNextRouter();
-  const $ctx = ph.useDataEnv?.() || {};
+  const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const currentUser = p.useCurrentUser?.() || {};
+  const currentUser = useCurrentUser?.() || {};
 
-  const stateSpecs: Parameters<typeof p.useDollarState>[0] = React.useMemo(
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
         path: "even",
@@ -125,7 +148,7 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
-  const $state = p.useDollarState(stateSpecs, {
+  const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
     $queries: {},
@@ -155,7 +178,7 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
           [sty.freeBoxeven__sv7TjeuiD]: hasVariant($state, "even", "even")
         })}
       >
-        <p.Stack
+        <Stack__
           as={"div"}
           hasGap={true}
           className={classNames(projectcss.all, sty.freeBox__tPsW5, {
@@ -163,7 +186,7 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
           })}
         >
           <div className={classNames(projectcss.all, sty.freeBox___8HMms)}>
-            {p.renderPlasmicSlot({
+            {renderPlasmicSlot({
               defaultContents: "1",
               value: args.index,
               className: classNames(sty.slotTargetIndex)
@@ -183,27 +206,27 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
               [sty.freeBoxeven__bAMb3EuiD]: hasVariant($state, "even", "even")
             })}
           >
-            {p.renderPlasmicSlot({
+            {renderPlasmicSlot({
               defaultContents: "Combo 1",
               value: args.name
             })}
           </div>
-        </p.Stack>
-        <p.Stack
+        </Stack__>
+        <Stack__
           as={"div"}
           hasGap={true}
           className={classNames(projectcss.all, sty.freeBox__ndMl6)}
         >
-          {p.renderPlasmicSlot({
+          {renderPlasmicSlot({
             defaultContents: "R$50.00",
             value: args.price,
             className: classNames(sty.slotTargetPrice, {
               [sty.slotTargetPriceeven]: hasVariant($state, "even", "even")
             })
           })}
-        </p.Stack>
+        </Stack__>
       </div>
-      <p.Stack
+      <Stack__
         as={"div"}
         data-plasmic-name={"optionValues"}
         data-plasmic-override={overrides.optionValues}
@@ -228,7 +251,7 @@ function PlasmicShoppingCartLineItem__RenderFunc(props: {
         >
           {"Caldo de Cana"}
         </div>
-      </p.Stack>
+      </Stack__>
       <div
         className={classNames(projectcss.all, sty.freeBox__i53, {
           [sty.freeBoxeven__i53EuiD]: hasVariant($state, "even", "even")
@@ -294,7 +317,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       () =>
         deriveRenderOpts(props, {
           name: nodeName,
-          descendantNames: [...PlasmicDescendants[nodeName]],
+          descendantNames: PlasmicDescendants[nodeName],
           internalArgPropNames: PlasmicShoppingCartLineItem__ArgProps,
           internalVariantPropNames: PlasmicShoppingCartLineItem__VariantProps
         }),

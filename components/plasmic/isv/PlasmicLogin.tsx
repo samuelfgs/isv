@@ -17,25 +17,48 @@ import Head from "next/head";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
 
-import * as p from "@plasmicapp/react-web";
-import * as ph from "@plasmicapp/react-web/lib/host";
-
 import {
-  hasVariant,
-  classNames,
-  wrapWithClassName,
-  createPlasmicElementProxy,
-  makeFragment,
+  Flex as Flex__,
   MultiChoiceArg,
+  PlasmicDataSourceContextProvider as PlasmicDataSourceContextProvider__,
+  PlasmicIcon as PlasmicIcon__,
+  PlasmicImg as PlasmicImg__,
+  PlasmicLink as PlasmicLink__,
+  PlasmicPageGuard as PlasmicPageGuard__,
   SingleBooleanChoiceArg,
   SingleChoiceArg,
-  pick,
-  omit,
-  useTrigger,
+  Stack as Stack__,
   StrictProps,
+  Trans as Trans__,
+  classNames,
+  createPlasmicElementProxy,
   deriveRenderOpts,
-  ensureGlobalVariants
+  ensureGlobalVariants,
+  generateOnMutateForSpec,
+  generateStateOnChangeProp,
+  generateStateOnChangePropForCodeComponents,
+  generateStateValueProp,
+  get as $stateGet,
+  hasVariant,
+  initializeCodeComponentStates,
+  initializePlasmicStates,
+  makeFragment,
+  omit,
+  pick,
+  renderPlasmicSlot,
+  set as $stateSet,
+  useCurrentUser,
+  useDollarState,
+  usePlasmicTranslator,
+  useTrigger,
+  wrapWithClassName
 } from "@plasmicapp/react-web";
+import {
+  DataCtxReader as DataCtxReader__,
+  useDataEnv,
+  useGlobalActions
+} from "@plasmicapp/react-web/lib/host";
+
 import Header from "../../Header"; // plasmic-import: oeaZd66p84/component
 import TextInput from "../../TextInput"; // plasmic-import: ZCE1TfqnzIq/component
 import Button from "../../Button"; // plasmic-import: dTivG-jH3lW/component
@@ -63,12 +86,12 @@ type ArgPropType = keyof PlasmicLogin__ArgsType;
 export const PlasmicLogin__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicLogin__OverridesType = {
-  root?: p.Flex<"div">;
-  header?: p.Flex<typeof Header>;
-  invalidData?: p.Flex<"div">;
-  user?: p.Flex<typeof TextInput>;
-  password?: p.Flex<typeof TextInput>;
-  signin?: p.Flex<typeof Button>;
+  root?: Flex__<"div">;
+  header?: Flex__<typeof Header>;
+  invalidData?: Flex__<"div">;
+  user?: Flex__<typeof TextInput>;
+  password?: Flex__<typeof TextInput>;
+  signin?: Flex__<typeof Button>;
 };
 
 export interface DefaultLoginProps {}
@@ -98,13 +121,13 @@ function PlasmicLogin__RenderFunc(props: {
   };
 
   const __nextRouter = useNextRouter();
-  const $ctx = ph.useDataEnv?.() || {};
+  const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const currentUser = p.useCurrentUser?.() || {};
+  const currentUser = useCurrentUser?.() || {};
 
-  const stateSpecs: Parameters<typeof p.useDollarState>[0] = React.useMemo(
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
         path: "user.value",
@@ -121,7 +144,7 @@ function PlasmicLogin__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
-  const $state = p.useDollarState(stateSpecs, {
+  const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
     $queries: {},
@@ -174,7 +197,7 @@ function PlasmicLogin__RenderFunc(props: {
               >
                 {"Dados inv\u00e1lidos"}
               </div>
-              <p.Stack
+              <Stack__
                 as={"div"}
                 hasGap={true}
                 className={classNames(projectcss.all, sty.freeBox__wkvgH)}
@@ -193,16 +216,16 @@ function PlasmicLogin__RenderFunc(props: {
                   data-plasmic-override={overrides.user}
                   className={classNames("__wab_instance", sty.user)}
                   onChange={(...eventArgs) => {
-                    p.generateStateOnChangeProp($state, ["user", "value"])(
+                    generateStateOnChangeProp($state, ["user", "value"])(
                       (e => e.target?.value).apply(null, eventArgs)
                     );
                   }}
                   value={
-                    p.generateStateValueProp($state, ["user", "value"]) ?? ""
+                    generateStateValueProp($state, ["user", "value"]) ?? ""
                   }
                 />
-              </p.Stack>
-              <p.Stack
+              </Stack__>
+              <Stack__
                 as={"div"}
                 hasGap={true}
                 className={classNames(projectcss.all, sty.freeBox___19A5C)}
@@ -221,16 +244,15 @@ function PlasmicLogin__RenderFunc(props: {
                   data-plasmic-override={overrides.password}
                   className={classNames("__wab_instance", sty.password)}
                   onChange={(...eventArgs) => {
-                    p.generateStateOnChangeProp($state, ["password", "value"])(
+                    generateStateOnChangeProp($state, ["password", "value"])(
                       (e => e.target?.value).apply(null, eventArgs)
                     );
                   }}
                   value={
-                    p.generateStateValueProp($state, ["password", "value"]) ??
-                    ""
+                    generateStateValueProp($state, ["password", "value"]) ?? ""
                   }
                 />
-              </p.Stack>
+              </Stack__>
               <div className={classNames(projectcss.all, sty.freeBox__dulrE)}>
                 <Button
                   data-plasmic-name={"signin"}
@@ -304,7 +326,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       () =>
         deriveRenderOpts(props, {
           name: nodeName,
-          descendantNames: [...PlasmicDescendants[nodeName]],
+          descendantNames: PlasmicDescendants[nodeName],
           internalArgPropNames: PlasmicLogin__ArgProps,
           internalVariantPropNames: PlasmicLogin__VariantProps
         }),
