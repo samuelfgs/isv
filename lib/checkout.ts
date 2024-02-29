@@ -20,31 +20,31 @@ export const goToCheckout = async (name: string, email: string, payment: string 
     quantity: item.quantity
   }));
   
-  // const external_id = `${Math.floor(Math.random() * 112345678)}`;
-  // const supabaseResponse = await Supabase.insert("orders", {
-  //   name,
-  //   email,
-  //   ...rest,
-  //   mercadopago_id: external_id,
-  //   total_price: state.cart.totalPrice,
-  //   status: state.isAdmin ? 1 : 0,
-  //   payment: state.isAdmin ? payment : "App",
-  //   line_items: state.cart.lineItems.map(lineItem => ({
-  //     productId: lineItem.productId,
-  //     variantId: JSON.parse(lineItem.variantId),
-  //     quantity: lineItem.quantity
-  //   }))
-  // });
-  // if (supabaseResponse.status !== 200) {
-  //   console.log("error", supabaseResponse);
-  //   return ;
-  // }
+  const external_id = `${Math.floor(Math.random() * 112345678)}`;
+  const supabaseResponse = await Supabase.insert("orders", {
+    name,
+    email,
+    ...rest,
+    mercadopago_id: external_id,
+    total_price: state.cart.totalPrice,
+    status: state.isAdmin ? 1 : 0,
+    payment: state.isAdmin ? payment : "App",
+    line_items: state.cart.lineItems.map(lineItem => ({
+      productId: lineItem.productId,
+      variantId: JSON.parse(lineItem.variantId),
+      quantity: lineItem.quantity
+    }))
+  });
+  if (supabaseResponse.status !== 200) {
+    console.log("error", supabaseResponse);
+    return ;
+  }
 
-  // const newOrder = await supabaseResponse.json();
-  // if (newOrder.length !== 1) {
-  //   console.log("error", newOrder);
-  //   return ;
-  // }
+  const newOrder = await supabaseResponse.json();
+  if (newOrder.length !== 1) {
+    console.log("error", newOrder);
+    return ;
+  }
 
   if (!state.isAdmin) { // Mercado pago
     const response = await fetch("/api/admin", {
