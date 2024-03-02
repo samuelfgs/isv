@@ -39,7 +39,7 @@ function CompletedAdminOrder() {
     console.log("dale", mercadoPago_id)
     const mercadoPago = await (await fetch(`https://api.mercadopago.com/v1/payments/search?external_reference=${mercadoPago_id}`, {
       headers: {
-        authorization: "Bearer APP_USR-4846877984480703-062812-0851d62aca9c156ee183c30017844081-154849269"
+        authorization: `Bearer ${process.env.ACCESS_TOKEN}`
       }
     })).json();
     const mercadoPagoLineItems = mercadoPago?.results?.[0]?.additional_info?.items ?? [];
